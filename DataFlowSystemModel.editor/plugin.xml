@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated dataflowsystem -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.kit.ipd.sdq.dataflow.systemmodel.presentation.SystemModelModelWizardID"
+            name="%_UI_SystemModelModelWizard_label"
+            class="edu.kit.ipd.sdq.dataflow.systemmodel.presentation.SystemModelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SystemModelModelFile.gif">
+         <description>%_UI_SystemModelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated dataflowsystem -->
+      <editor
+            id="edu.kit.ipd.sdq.dataflow.systemmodel.presentation.SystemModelEditorID"
+            name="%_UI_SystemModelEditor_label"
+            icon="icons/full/obj16/SystemModelModelFile.gif"
+            extensions="systemmodel"
+            class="edu.kit.ipd.sdq.dataflow.systemmodel.presentation.SystemModelEditor"
+            contributorClass="edu.kit.ipd.sdq.dataflow.systemmodel.presentation.SystemModelActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

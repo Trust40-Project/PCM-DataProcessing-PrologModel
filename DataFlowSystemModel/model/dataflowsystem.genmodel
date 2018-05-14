@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/DataFlowSystemModel/src-gen" creationIcons="false"
+    editDirectory="/DataFlowSystemModel.edit/src-gen" editorDirectory="/DataFlowSystemModel.editor/src-gen"
+    modelPluginID="DataFlowSystemModel" modelName="Dataflowsystem" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>dataflowsystem.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="SystemModel" basePackage="edu.kit.ipd.sdq.dataflow" disposableProviderFactory="true"
+      ecorePackage="dataflowsystem.ecore#/">
+    <genClasses ecoreClass="dataflowsystem.ecore#//System">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//System/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//System/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//System/datatypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//System/operations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//System/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//System/types"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//System/systemusages"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//Attribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//Attribute/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//Value">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//Value/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//Operation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/returnValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/propertyDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//Operation/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/returnValueAssignments"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//Variable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Variable/datatype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//Variable/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//DataType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//DataType/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//DataType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//Property">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Property/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//Property/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//PropertyDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//PropertyDefinition/property"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//PropertyDefinition/presentValues"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//OperationCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//OperationCall/callee"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//OperationCall/parameterAssignments"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//OperationCall/caller"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//VariableAssignment">
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/variable"/>
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/attribute"/>
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/term"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//ValueSetType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ValueSetType/values"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//ValueSetType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//LogicTerm"/>
+    <genClasses ecoreClass="dataflowsystem.ecore#//True"/>
+    <genClasses ecoreClass="dataflowsystem.ecore#//False"/>
+    <genClasses ecoreClass="dataflowsystem.ecore#//And">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//And/firstOperand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//And/secondOperand"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//Or">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Or/firstOperand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Or/secondOperand"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//Not">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Not/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//ParameterRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ParameterRef/parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ParameterRef/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ParameterRef/value"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//PropertyRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//PropertyRef/operation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//PropertyRef/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dataflowsystem.ecore#//Caller">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Caller/calls"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//SystemUsage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//SystemUsage/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//ReturnValueRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ReturnValueRef/parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ReturnValueRef/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ReturnValueRef/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ReturnValueRef/call"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
