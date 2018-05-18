@@ -4,6 +4,8 @@ package edu.kit.ipd.sdq.dataflow.systemmodel.provider;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute;
 import edu.kit.ipd.sdq.dataflow.systemmodel.DataType;
+import edu.kit.ipd.sdq.dataflow.systemmodel.Operation;
+import edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelFactory;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.ValueSetType;
@@ -74,15 +76,44 @@ public class VariableAssignmentItemProvider extends ItemProviderAdapter implemen
 	 * This adds a property descriptor for the Variable feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addVariablePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+		itemPropertyDescriptors.add(new ItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_VariableAssignment_variable_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_VariableAssignment_variable_feature",
 						"_UI_VariableAssignment_type"),
-				SystemModelPackage.Literals.VARIABLE_ASSIGNMENT__VARIABLE, true, false, true, null, null, null));
+				SystemModelPackage.Literals.VARIABLE_ASSIGNMENT__VARIABLE, true, false, true, null, null, null) {
+
+			@Override
+			public Collection<?> getChoiceOfValues(Object thisObject) {
+				//two cases: the assignment is either a return value (containing feature is assignments of Operation)
+				// or a parameter assignment (containing feature is assignments of OperationCall)
+
+				Optional<VariableAssignment> thisObj = Util.tryCast(VariableAssignment.class, thisObject);
+				Optional<EStructuralFeature> containingFeature = thisObj.map(VariableAssignment::eContainingFeature);
+
+				if (!containingFeature.isPresent()) {
+					return super.getChoiceOfValues(thisObject);
+				}
+
+				if (containingFeature.get() == SystemModelPackage.eINSTANCE.getOperation_ReturnValueAssignments()) {
+					return Util.getOrElse(
+							thisObj.map(VariableAssignment::eContainer).filter(Operation.class::isInstance)
+									.map(Operation.class::cast).map(Operation::getReturnValues),
+							() -> super.getChoiceOfValues(thisObject));
+				} else if (containingFeature.get() == SystemModelPackage.eINSTANCE
+						.getOperationCall_ParameterAssignments()) {
+					return Util.getOrElse(thisObj.map(VariableAssignment::eContainer)
+							.filter(OperationCall.class::isInstance).map(OperationCall.class::cast)
+							.map(OperationCall::getCallee).map(Operation::getParameters),
+							() -> super.getChoiceOfValues(thisObject));
+				}
+				return super.getChoiceOfValues(thisObject);
+			}
+
+		});
 	}
 
 	/**

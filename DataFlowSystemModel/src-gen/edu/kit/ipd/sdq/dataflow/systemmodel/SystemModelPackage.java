@@ -250,13 +250,22 @@ public interface SystemModelPackage extends EPackage {
 	int CALLER__CALLS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALLER__NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Caller</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALLER_FEATURE_COUNT = 1;
+	int CALLER_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Caller</em>' class.
@@ -287,6 +296,15 @@ public interface SystemModelPackage extends EPackage {
 	int OPERATION__CALLS = CALLER__CALLS;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__NAME = CALLER__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -314,22 +332,13 @@ public interface SystemModelPackage extends EPackage {
 	int OPERATION__PROPERTY_DEFINITIONS = CALLER_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__NAME = CALLER_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Return Value Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__RETURN_VALUE_ASSIGNMENTS = CALLER_FEATURE_COUNT + 4;
+	int OPERATION__RETURN_VALUE_ASSIGNMENTS = CALLER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
@@ -338,7 +347,7 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = CALLER_FEATURE_COUNT + 5;
+	int OPERATION_FEATURE_COUNT = CALLER_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Operation</em>' class.
@@ -571,13 +580,22 @@ public interface SystemModelPackage extends EPackage {
 	int OPERATION_CALL__CALLER = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL__NAME = 3;
+
+	/**
 	 * The number of structural features of the '<em>Operation Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_FEATURE_COUNT = 3;
+	int OPERATION_CALL_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Operation Call</em>' class.
@@ -793,22 +811,13 @@ public interface SystemModelPackage extends EPackage {
 	int AND = 14;
 
 	/**
-	 * The feature id for the '<em><b>First Operand</b></em>' containment reference.
+	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND__FIRST_OPERAND = LOGIC_TERM_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Second Operand</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AND__SECOND_OPERAND = LOGIC_TERM_FEATURE_COUNT + 1;
+	int AND__OPERANDS = LOGIC_TERM_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>And</em>' class.
@@ -817,7 +826,7 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 2;
+	int AND_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -839,22 +848,13 @@ public interface SystemModelPackage extends EPackage {
 	int OR = 15;
 
 	/**
-	 * The feature id for the '<em><b>First Operand</b></em>' containment reference.
+	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OR__FIRST_OPERAND = LOGIC_TERM_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Second Operand</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OR__SECOND_OPERAND = LOGIC_TERM_FEATURE_COUNT + 1;
+	int OR__OPERANDS = LOGIC_TERM_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Or</em>' class.
@@ -863,7 +863,7 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 2;
+	int OR_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Or</em>' class.
@@ -995,13 +995,22 @@ public interface SystemModelPackage extends EPackage {
 	int PROPERTY_REF__VALUE = LOGIC_TERM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REF__PROPERTY = LOGIC_TERM_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Property Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_REF_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 2;
+	int PROPERTY_REF_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Property Ref</em>' class.
@@ -1038,7 +1047,7 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_USAGE__NAME = CALLER_FEATURE_COUNT + 0;
+	int SYSTEM_USAGE__NAME = CALLER__NAME;
 
 	/**
 	 * The number of structural features of the '<em>System Usage</em>' class.
@@ -1047,7 +1056,7 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_USAGE_FEATURE_COUNT = CALLER_FEATURE_COUNT + 1;
+	int SYSTEM_USAGE_FEATURE_COUNT = CALLER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>System Usage</em>' class.
@@ -1069,13 +1078,13 @@ public interface SystemModelPackage extends EPackage {
 	int RETURN_VALUE_REF = 21;
 
 	/**
-	 * The feature id for the '<em><b>Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Return Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RETURN_VALUE_REF__PARAMETER = LOGIC_TERM_FEATURE_COUNT + 0;
+	int RETURN_VALUE_REF__RETURN_VALUE = LOGIC_TERM_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -1306,17 +1315,6 @@ public interface SystemModelPackage extends EPackage {
 	EReference getOperation_PropertyDefinitions();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getName()
-	 * @see #getOperation()
-	 * @generated
-	 */
-	EAttribute getOperation_Name();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getReturnValueAssignments <em>Return Value Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1499,6 +1497,17 @@ public interface SystemModelPackage extends EPackage {
 	EReference getOperationCall_Caller();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getName()
+	 * @see #getOperationCall()
+	 * @generated
+	 */
+	EAttribute getOperationCall_Name();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment <em>Variable Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1625,26 +1634,15 @@ public interface SystemModelPackage extends EPackage {
 	EClass getAnd();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.And#getFirstOperand <em>First Operand</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.kit.ipd.sdq.dataflow.systemmodel.And#getOperands <em>Operands</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>First Operand</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.And#getFirstOperand()
+	 * @return the meta object for the containment reference list '<em>Operands</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.And#getOperands()
 	 * @see #getAnd()
 	 * @generated
 	 */
-	EReference getAnd_FirstOperand();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.And#getSecondOperand <em>Second Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Second Operand</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.And#getSecondOperand()
-	 * @see #getAnd()
-	 * @generated
-	 */
-	EReference getAnd_SecondOperand();
+	EReference getAnd_Operands();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or <em>Or</em>}'.
@@ -1657,26 +1655,15 @@ public interface SystemModelPackage extends EPackage {
 	EClass getOr();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or#getFirstOperand <em>First Operand</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or#getOperands <em>Operands</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>First Operand</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Or#getFirstOperand()
+	 * @return the meta object for the containment reference list '<em>Operands</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Or#getOperands()
 	 * @see #getOr()
 	 * @generated
 	 */
-	EReference getOr_FirstOperand();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or#getSecondOperand <em>Second Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Second Operand</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Or#getSecondOperand()
-	 * @see #getOr()
-	 * @generated
-	 */
-	EReference getOr_SecondOperand();
+	EReference getOr_Operands();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Not <em>Not</em>}'.
@@ -1775,6 +1762,17 @@ public interface SystemModelPackage extends EPackage {
 	EReference getPropertyRef_Value();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getProperty()
+	 * @see #getPropertyRef()
+	 * @generated
+	 */
+	EReference getPropertyRef_Property();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Caller <em>Caller</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1796,6 +1794,17 @@ public interface SystemModelPackage extends EPackage {
 	EReference getCaller_Calls();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Caller#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Caller#getName()
+	 * @see #getCaller()
+	 * @generated
+	 */
+	EAttribute getCaller_Name();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.SystemUsage <em>System Usage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1804,17 +1813,6 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSystemUsage();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.kit.ipd.sdq.dataflow.systemmodel.SystemUsage#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemUsage#getName()
-	 * @see #getSystemUsage()
-	 * @generated
-	 */
-	EAttribute getSystemUsage_Name();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef <em>Return Value Ref</em>}'.
@@ -1827,15 +1825,15 @@ public interface SystemModelPackage extends EPackage {
 	EClass getReturnValueRef();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getParameter <em>Parameter</em>}'.
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getReturnValue <em>Return Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parameter</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getParameter()
+	 * @return the meta object for the reference '<em>Return Value</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getReturnValue()
 	 * @see #getReturnValueRef()
 	 * @generated
 	 */
-	EReference getReturnValueRef_Parameter();
+	EReference getReturnValueRef_ReturnValue();
 
 	/**
 	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getAttribute <em>Attribute</em>}'.
@@ -2038,14 +2036,6 @@ public interface SystemModelPackage extends EPackage {
 		EReference OPERATION__PROPERTY_DEFINITIONS = eINSTANCE.getOperation_PropertyDefinitions();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPERATION__NAME = eINSTANCE.getOperation_Name();
-
-		/**
 		 * The meta object literal for the '<em><b>Return Value Assignments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2192,6 +2182,14 @@ public interface SystemModelPackage extends EPackage {
 		EReference OPERATION_CALL__CALLER = eINSTANCE.getOperationCall_Caller();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION_CALL__NAME = eINSTANCE.getOperationCall_Name();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.VariableAssignmentImpl <em>Variable Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2300,20 +2298,12 @@ public interface SystemModelPackage extends EPackage {
 		EClass AND = eINSTANCE.getAnd();
 
 		/**
-		 * The meta object literal for the '<em><b>First Operand</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Operands</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference AND__FIRST_OPERAND = eINSTANCE.getAnd_FirstOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Second Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference AND__SECOND_OPERAND = eINSTANCE.getAnd_SecondOperand();
+		EReference AND__OPERANDS = eINSTANCE.getAnd_Operands();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OrImpl <em>Or</em>}' class.
@@ -2326,20 +2316,12 @@ public interface SystemModelPackage extends EPackage {
 		EClass OR = eINSTANCE.getOr();
 
 		/**
-		 * The meta object literal for the '<em><b>First Operand</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Operands</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OR__FIRST_OPERAND = eINSTANCE.getOr_FirstOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Second Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OR__SECOND_OPERAND = eINSTANCE.getOr_SecondOperand();
+		EReference OR__OPERANDS = eINSTANCE.getOr_Operands();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.NotImpl <em>Not</em>}' class.
@@ -2420,6 +2402,14 @@ public interface SystemModelPackage extends EPackage {
 		EReference PROPERTY_REF__VALUE = eINSTANCE.getPropertyRef_Value();
 
 		/**
+		 * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_REF__PROPERTY = eINSTANCE.getPropertyRef_Property();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.CallerImpl <em>Caller</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2438,6 +2428,14 @@ public interface SystemModelPackage extends EPackage {
 		EReference CALLER__CALLS = eINSTANCE.getCaller_Calls();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CALLER__NAME = eINSTANCE.getCaller_Name();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.SystemUsageImpl <em>System Usage</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2446,14 +2444,6 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SYSTEM_USAGE = eINSTANCE.getSystemUsage();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SYSTEM_USAGE__NAME = eINSTANCE.getSystemUsage_Name();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ReturnValueRefImpl <em>Return Value Ref</em>}' class.
@@ -2466,12 +2456,12 @@ public interface SystemModelPackage extends EPackage {
 		EClass RETURN_VALUE_REF = eINSTANCE.getReturnValueRef();
 
 		/**
-		 * The meta object literal for the '<em><b>Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Return Value</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RETURN_VALUE_REF__PARAMETER = eINSTANCE.getReturnValueRef_Parameter();
+		EReference RETURN_VALUE_REF__RETURN_VALUE = eINSTANCE.getReturnValueRef_ReturnValue();
 
 		/**
 		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.

@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Property;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyDefinition;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
@@ -141,6 +142,12 @@ public class PropertyDefinitionItemProvider extends ItemProviderAdapter implemen
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(PropertyDefinition.class)) {
+		case SystemModelPackage.PROPERTY_DEFINITION__PROPERTY:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 

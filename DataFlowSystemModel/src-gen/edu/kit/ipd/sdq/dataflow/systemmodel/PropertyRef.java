@@ -13,6 +13,7 @@ package edu.kit.ipd.sdq.dataflow.systemmodel;
  * <ul>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getOperation <em>Operation</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getValue <em>Value</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getPropertyRef()
@@ -71,5 +72,31 @@ public interface PropertyRef extends LogicTerm {
 	 * @generated
 	 */
 	void setValue(Value value);
+
+	/**
+	 * Returns the value of the '<em><b>Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Property</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Property</em>' reference.
+	 * @see #setProperty(Property)
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getPropertyRef_Property()
+	 * @model required="true"
+	 * @generated
+	 */
+	Property getProperty();
+
+	/**
+	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getProperty <em>Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Property</em>' reference.
+	 * @see #getProperty()
+	 * @generated
+	 */
+	void setProperty(Property value);
 
 } // PropertyRef

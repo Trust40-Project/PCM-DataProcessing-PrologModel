@@ -156,6 +156,7 @@ public class VariableItemProvider extends ItemProviderAdapter implements IEditin
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Variable.class)) {
+		case SystemModelPackage.VARIABLE__DATATYPE:
 		case SystemModelPackage.VARIABLE__NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

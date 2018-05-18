@@ -415,17 +415,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOperation_Name() {
-		return (EAttribute) operationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getOperation_ReturnValueAssignments() {
-		return (EReference) operationEClass.getEStructuralFeatures().get(4);
+		return (EReference) operationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -577,6 +568,15 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOperationCall_Name() {
+		return (EAttribute) operationCallEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVariableAssignment() {
 		return variableAssignmentEClass;
 	}
@@ -685,17 +685,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnd_FirstOperand() {
+	public EReference getAnd_Operands() {
 		return (EReference) andEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAnd_SecondOperand() {
-		return (EReference) andEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -712,17 +703,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOr_FirstOperand() {
+	public EReference getOr_Operands() {
 		return (EReference) orEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getOr_SecondOperand() {
-		return (EReference) orEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -811,6 +793,15 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPropertyRef_Property() {
+		return (EReference) propertyRefEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCaller() {
 		return callerEClass;
 	}
@@ -829,8 +820,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSystemUsage() {
-		return systemUsageEClass;
+	public EAttribute getCaller_Name() {
+		return (EAttribute) callerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -838,8 +829,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSystemUsage_Name() {
-		return (EAttribute) systemUsageEClass.getEStructuralFeatures().get(0);
+	public EClass getSystemUsage() {
+		return systemUsageEClass;
 	}
 
 	/**
@@ -856,7 +847,7 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReturnValueRef_Parameter() {
+	public EReference getReturnValueRef_ReturnValue() {
 		return (EReference) returnValueRefEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -936,7 +927,6 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEReference(operationEClass, OPERATION__PARAMETERS);
 		createEReference(operationEClass, OPERATION__RETURN_VALUES);
 		createEReference(operationEClass, OPERATION__PROPERTY_DEFINITIONS);
-		createEAttribute(operationEClass, OPERATION__NAME);
 		createEReference(operationEClass, OPERATION__RETURN_VALUE_ASSIGNMENTS);
 
 		variableEClass = createEClass(VARIABLE);
@@ -959,6 +949,7 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEReference(operationCallEClass, OPERATION_CALL__CALLEE);
 		createEReference(operationCallEClass, OPERATION_CALL__PARAMETER_ASSIGNMENTS);
 		createEReference(operationCallEClass, OPERATION_CALL__CALLER);
+		createEAttribute(operationCallEClass, OPERATION_CALL__NAME);
 
 		variableAssignmentEClass = createEClass(VARIABLE_ASSIGNMENT);
 		createEReference(variableAssignmentEClass, VARIABLE_ASSIGNMENT__VARIABLE);
@@ -977,12 +968,10 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		falseEClass = createEClass(FALSE);
 
 		andEClass = createEClass(AND);
-		createEReference(andEClass, AND__FIRST_OPERAND);
-		createEReference(andEClass, AND__SECOND_OPERAND);
+		createEReference(andEClass, AND__OPERANDS);
 
 		orEClass = createEClass(OR);
-		createEReference(orEClass, OR__FIRST_OPERAND);
-		createEReference(orEClass, OR__SECOND_OPERAND);
+		createEReference(orEClass, OR__OPERANDS);
 
 		notEClass = createEClass(NOT);
 		createEReference(notEClass, NOT__OPERAND);
@@ -995,15 +984,16 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		propertyRefEClass = createEClass(PROPERTY_REF);
 		createEReference(propertyRefEClass, PROPERTY_REF__OPERATION);
 		createEReference(propertyRefEClass, PROPERTY_REF__VALUE);
+		createEReference(propertyRefEClass, PROPERTY_REF__PROPERTY);
 
 		callerEClass = createEClass(CALLER);
 		createEReference(callerEClass, CALLER__CALLS);
+		createEAttribute(callerEClass, CALLER__NAME);
 
 		systemUsageEClass = createEClass(SYSTEM_USAGE);
-		createEAttribute(systemUsageEClass, SYSTEM_USAGE__NAME);
 
 		returnValueRefEClass = createEClass(RETURN_VALUE_REF);
-		createEReference(returnValueRefEClass, RETURN_VALUE_REF__PARAMETER);
+		createEReference(returnValueRefEClass, RETURN_VALUE_REF__RETURN_VALUE);
 		createEReference(returnValueRefEClass, RETURN_VALUE_REF__ATTRIBUTE);
 		createEReference(returnValueRefEClass, RETURN_VALUE_REF__VALUE);
 		createEReference(returnValueRefEClass, RETURN_VALUE_REF__CALL);
@@ -1097,8 +1087,6 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEReference(getOperation_PropertyDefinitions(), this.getPropertyDefinition(), null, "propertyDefinitions",
 				null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getOperation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Operation.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperation_ReturnValueAssignments(), this.getVariableAssignment(), null,
 				"returnValueAssignments", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1147,6 +1135,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEReference(getOperationCall_Caller(), this.getCaller(), this.getCaller_Calls(), "caller", null, 1, 1,
 				OperationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperationCall_Name(), ecorePackage.getEString(), "name", null, 0, 1, OperationCall.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(variableAssignmentEClass, VariableAssignment.class, "VariableAssignment", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1179,20 +1169,14 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEClass(falseEClass, False.class, "False", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(andEClass, And.class, "And", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnd_FirstOperand(), this.getLogicTerm(), null, "firstOperand", null, 1, 1, And.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnd_SecondOperand(), this.getLogicTerm(), null, "secondOperand", null, 1, 1, And.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnd_Operands(), this.getLogicTerm(), null, "operands", null, 2, 2, And.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(orEClass, Or.class, "Or", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOr_FirstOperand(), this.getLogicTerm(), null, "firstOperand", null, 1, 1, Or.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOr_SecondOperand(), this.getLogicTerm(), null, "secondOperand", null, 1, 1, Or.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOr_Operands(), this.getLogicTerm(), null, "operands", null, 2, 2, Or.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(notEClass, Not.class, "Not", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNot_Operand(), this.getLogicTerm(), null, "operand", null, 1, 1, Not.class, !IS_TRANSIENT,
@@ -1219,20 +1203,23 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEReference(getPropertyRef_Value(), this.getValue(), null, "value", null, 0, 1, PropertyRef.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyRef_Property(), this.getProperty(), null, "property", null, 1, 1, PropertyRef.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(callerEClass, Caller.class, "Caller", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCaller_Calls(), this.getOperationCall(), this.getOperationCall_Caller(), "calls", null, 0, -1,
 				Caller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCaller_Name(), ecorePackage.getEString(), "name", null, 0, 1, Caller.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(systemUsageEClass, SystemUsage.class, "SystemUsage", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSystemUsage_Name(), ecorePackage.getEString(), "name", null, 0, 1, SystemUsage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(returnValueRefEClass, ReturnValueRef.class, "ReturnValueRef", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReturnValueRef_Parameter(), this.getVariable(), null, "parameter", null, 1, 1,
+		initEReference(getReturnValueRef_ReturnValue(), this.getVariable(), null, "returnValue", null, 1, 1,
 				ReturnValueRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReturnValueRef_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1,
@@ -1241,7 +1228,7 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEReference(getReturnValueRef_Value(), this.getValue(), null, "value", null, 0, 1, ReturnValueRef.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReturnValueRef_Call(), this.getOperationCall(), null, "call", null, 0, 1,
+		initEReference(getReturnValueRef_Call(), this.getOperationCall(), null, "call", null, 1, 1,
 				ReturnValueRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

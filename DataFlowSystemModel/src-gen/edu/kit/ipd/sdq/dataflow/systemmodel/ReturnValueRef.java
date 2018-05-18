@@ -11,7 +11,7 @@ package edu.kit.ipd.sdq.dataflow.systemmodel;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getReturnValue <em>Return Value</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getValue <em>Value</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getCall <em>Call</em>}</li>
@@ -23,30 +23,30 @@ package edu.kit.ipd.sdq.dataflow.systemmodel;
  */
 public interface ReturnValueRef extends LogicTerm {
 	/**
-	 * Returns the value of the '<em><b>Parameter</b></em>' reference.
+	 * Returns the value of the '<em><b>Return Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parameter</em>' reference isn't clear,
+	 * If the meaning of the '<em>Return Value</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameter</em>' reference.
-	 * @see #setParameter(Variable)
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getReturnValueRef_Parameter()
+	 * @return the value of the '<em>Return Value</em>' reference.
+	 * @see #setReturnValue(Variable)
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getReturnValueRef_ReturnValue()
 	 * @model required="true"
 	 * @generated
 	 */
-	Variable getParameter();
+	Variable getReturnValue();
 
 	/**
-	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getParameter <em>Parameter</em>}' reference.
+	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getReturnValue <em>Return Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parameter</em>' reference.
-	 * @see #getParameter()
+	 * @param value the new value of the '<em>Return Value</em>' reference.
+	 * @see #getReturnValue()
 	 * @generated
 	 */
-	void setParameter(Variable value);
+	void setReturnValue(Variable value);
 
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
@@ -111,7 +111,7 @@ public interface ReturnValueRef extends LogicTerm {
 	 * @return the value of the '<em>Call</em>' reference.
 	 * @see #setCall(OperationCall)
 	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getReturnValueRef_Call()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	OperationCall getCall();

@@ -3,6 +3,7 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel.impl;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.Operation;
+import edu.kit.ipd.sdq.dataflow.systemmodel.Property;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.PropertyRefImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.PropertyRefImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.PropertyRefImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,6 +50,16 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 	 * @ordered
 	 */
 	protected Value value;
+
+	/**
+	 * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected Property property;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,6 +165,46 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Property getProperty() {
+		if (property != null && property.eIsProxy()) {
+			InternalEObject oldProperty = (InternalEObject) property;
+			property = (Property) eResolveProxy(oldProperty);
+			if (property != oldProperty) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SystemModelPackage.PROPERTY_REF__PROPERTY,
+							oldProperty, property));
+			}
+		}
+		return property;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Property basicGetProperty() {
+		return property;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProperty(Property newProperty) {
+		Property oldProperty = property;
+		property = newProperty;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.PROPERTY_REF__PROPERTY,
+					oldProperty, property));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -164,6 +216,10 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 			if (resolve)
 				return getValue();
 			return basicGetValue();
+		case SystemModelPackage.PROPERTY_REF__PROPERTY:
+			if (resolve)
+				return getProperty();
+			return basicGetProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -181,6 +237,9 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 			return;
 		case SystemModelPackage.PROPERTY_REF__VALUE:
 			setValue((Value) newValue);
+			return;
+		case SystemModelPackage.PROPERTY_REF__PROPERTY:
+			setProperty((Property) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -200,6 +259,9 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 		case SystemModelPackage.PROPERTY_REF__VALUE:
 			setValue((Value) null);
 			return;
+		case SystemModelPackage.PROPERTY_REF__PROPERTY:
+			setProperty((Property) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -216,6 +278,8 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 			return operation != null;
 		case SystemModelPackage.PROPERTY_REF__VALUE:
 			return value != null;
+		case SystemModelPackage.PROPERTY_REF__PROPERTY:
+			return property != null;
 		}
 		return super.eIsSet(featureID);
 	}

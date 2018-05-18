@@ -31,7 +31,6 @@
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyDefinitions" upperBound="-1"
         eType="#//PropertyDefinition" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnValueAssignments"
         upperBound="-1" eType="#//VariableAssignment" containment="true"/>
   </eClassifiers>
@@ -62,6 +61,7 @@
         eType="#//VariableAssignment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="caller" lowerBound="1"
         eType="#//Caller" eOpposite="#//Caller/calls"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
@@ -80,16 +80,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//LogicTerm"/>
   <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//LogicTerm"/>
   <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//LogicTerm">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="firstOperand" lowerBound="1"
-        eType="#//LogicTerm" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="secondOperand" lowerBound="1"
-        eType="#//LogicTerm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="2"
+        upperBound="2" eType="#//LogicTerm" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//LogicTerm">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="firstOperand" lowerBound="1"
-        eType="#//LogicTerm" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="secondOperand" lowerBound="1"
-        eType="#//LogicTerm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="2"
+        upperBound="2" eType="#//LogicTerm" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//LogicTerm">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
@@ -105,19 +101,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
         eType="#//Operation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+        eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Caller" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="calls" upperBound="-1"
         eType="#//OperationCall" containment="true" eOpposite="#//OperationCall/caller"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SystemUsage" eSuperTypes="#//Caller">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SystemUsage" eSuperTypes="#//Caller"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReturnValueRef" eSuperTypes="#//LogicTerm">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" lowerBound="1"
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="call" eType="#//OperationCall"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="call" lowerBound="1" eType="#//OperationCall"/>
   </eClassifiers>
 </ecore:EPackage>

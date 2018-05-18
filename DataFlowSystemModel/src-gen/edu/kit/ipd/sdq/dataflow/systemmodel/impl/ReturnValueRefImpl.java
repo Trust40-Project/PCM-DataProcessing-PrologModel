@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ReturnValueRefImpl#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ReturnValueRefImpl#getReturnValue <em>Return Value</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ReturnValueRefImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ReturnValueRefImpl#getValue <em>Value</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ReturnValueRefImpl#getCall <em>Call</em>}</li>
@@ -34,14 +34,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef {
 	/**
-	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
+	 * The cached value of the '{@link #getReturnValue() <em>Return Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameter()
+	 * @see #getReturnValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable parameter;
+	protected Variable returnValue;
 
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
@@ -97,17 +97,17 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable getParameter() {
-		if (parameter != null && parameter.eIsProxy()) {
-			InternalEObject oldParameter = (InternalEObject) parameter;
-			parameter = (Variable) eResolveProxy(oldParameter);
-			if (parameter != oldParameter) {
+	public Variable getReturnValue() {
+		if (returnValue != null && returnValue.eIsProxy()) {
+			InternalEObject oldReturnValue = (InternalEObject) returnValue;
+			returnValue = (Variable) eResolveProxy(oldReturnValue);
+			if (returnValue != oldReturnValue) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							SystemModelPackage.RETURN_VALUE_REF__PARAMETER, oldParameter, parameter));
+							SystemModelPackage.RETURN_VALUE_REF__RETURN_VALUE, oldReturnValue, returnValue));
 			}
 		}
-		return parameter;
+		return returnValue;
 	}
 
 	/**
@@ -115,8 +115,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable basicGetParameter() {
-		return parameter;
+	public Variable basicGetReturnValue() {
+		return returnValue;
 	}
 
 	/**
@@ -124,12 +124,12 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParameter(Variable newParameter) {
-		Variable oldParameter = parameter;
-		parameter = newParameter;
+	public void setReturnValue(Variable newReturnValue) {
+		Variable oldReturnValue = returnValue;
+		returnValue = newReturnValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.RETURN_VALUE_REF__PARAMETER,
-					oldParameter, parameter));
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.RETURN_VALUE_REF__RETURN_VALUE,
+					oldReturnValue, returnValue));
 	}
 
 	/**
@@ -260,10 +260,10 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SystemModelPackage.RETURN_VALUE_REF__PARAMETER:
+		case SystemModelPackage.RETURN_VALUE_REF__RETURN_VALUE:
 			if (resolve)
-				return getParameter();
-			return basicGetParameter();
+				return getReturnValue();
+			return basicGetReturnValue();
 		case SystemModelPackage.RETURN_VALUE_REF__ATTRIBUTE:
 			if (resolve)
 				return getAttribute();
@@ -288,8 +288,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SystemModelPackage.RETURN_VALUE_REF__PARAMETER:
-			setParameter((Variable) newValue);
+		case SystemModelPackage.RETURN_VALUE_REF__RETURN_VALUE:
+			setReturnValue((Variable) newValue);
 			return;
 		case SystemModelPackage.RETURN_VALUE_REF__ATTRIBUTE:
 			setAttribute((Attribute) newValue);
@@ -312,8 +312,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SystemModelPackage.RETURN_VALUE_REF__PARAMETER:
-			setParameter((Variable) null);
+		case SystemModelPackage.RETURN_VALUE_REF__RETURN_VALUE:
+			setReturnValue((Variable) null);
 			return;
 		case SystemModelPackage.RETURN_VALUE_REF__ATTRIBUTE:
 			setAttribute((Attribute) null);
@@ -336,8 +336,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SystemModelPackage.RETURN_VALUE_REF__PARAMETER:
-			return parameter != null;
+		case SystemModelPackage.RETURN_VALUE_REF__RETURN_VALUE:
+			return returnValue != null;
 		case SystemModelPackage.RETURN_VALUE_REF__ATTRIBUTE:
 			return attribute != null;
 		case SystemModelPackage.RETURN_VALUE_REF__VALUE:

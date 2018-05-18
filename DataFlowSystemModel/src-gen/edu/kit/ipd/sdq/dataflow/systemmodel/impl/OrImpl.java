@@ -6,13 +6,14 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Or;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,32 +23,21 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OrImpl#getFirstOperand <em>First Operand</em>}</li>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OrImpl#getSecondOperand <em>Second Operand</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OrImpl#getOperands <em>Operands</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OrImpl extends LogicTermImpl implements Or {
 	/**
-	 * The cached value of the '{@link #getFirstOperand() <em>First Operand</em>}' containment reference.
+	 * The cached value of the '{@link #getOperands() <em>Operands</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFirstOperand()
+	 * @see #getOperands()
 	 * @generated
 	 * @ordered
 	 */
-	protected LogicTerm firstOperand;
-
-	/**
-	 * The cached value of the '{@link #getSecondOperand() <em>Second Operand</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSecondOperand()
-	 * @generated
-	 * @ordered
-	 */
-	protected LogicTerm secondOperand;
+	protected EList<LogicTerm> operands;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,99 +63,11 @@ public class OrImpl extends LogicTermImpl implements Or {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LogicTerm getFirstOperand() {
-		return firstOperand;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetFirstOperand(LogicTerm newFirstOperand, NotificationChain msgs) {
-		LogicTerm oldFirstOperand = firstOperand;
-		firstOperand = newFirstOperand;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					SystemModelPackage.OR__FIRST_OPERAND, oldFirstOperand, newFirstOperand);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<LogicTerm> getOperands() {
+		if (operands == null) {
+			operands = new EObjectContainmentEList<LogicTerm>(LogicTerm.class, this, SystemModelPackage.OR__OPERANDS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFirstOperand(LogicTerm newFirstOperand) {
-		if (newFirstOperand != firstOperand) {
-			NotificationChain msgs = null;
-			if (firstOperand != null)
-				msgs = ((InternalEObject) firstOperand).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - SystemModelPackage.OR__FIRST_OPERAND, null, msgs);
-			if (newFirstOperand != null)
-				msgs = ((InternalEObject) newFirstOperand).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - SystemModelPackage.OR__FIRST_OPERAND, null, msgs);
-			msgs = basicSetFirstOperand(newFirstOperand, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.OR__FIRST_OPERAND, newFirstOperand,
-					newFirstOperand));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LogicTerm getSecondOperand() {
-		return secondOperand;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSecondOperand(LogicTerm newSecondOperand, NotificationChain msgs) {
-		LogicTerm oldSecondOperand = secondOperand;
-		secondOperand = newSecondOperand;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					SystemModelPackage.OR__SECOND_OPERAND, oldSecondOperand, newSecondOperand);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSecondOperand(LogicTerm newSecondOperand) {
-		if (newSecondOperand != secondOperand) {
-			NotificationChain msgs = null;
-			if (secondOperand != null)
-				msgs = ((InternalEObject) secondOperand).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - SystemModelPackage.OR__SECOND_OPERAND, null, msgs);
-			if (newSecondOperand != null)
-				msgs = ((InternalEObject) newSecondOperand).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - SystemModelPackage.OR__SECOND_OPERAND, null, msgs);
-			msgs = basicSetSecondOperand(newSecondOperand, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.OR__SECOND_OPERAND,
-					newSecondOperand, newSecondOperand));
+		return operands;
 	}
 
 	/**
@@ -176,10 +78,8 @@ public class OrImpl extends LogicTermImpl implements Or {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SystemModelPackage.OR__FIRST_OPERAND:
-			return basicSetFirstOperand(null, msgs);
-		case SystemModelPackage.OR__SECOND_OPERAND:
-			return basicSetSecondOperand(null, msgs);
+		case SystemModelPackage.OR__OPERANDS:
+			return ((InternalEList<?>) getOperands()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -192,10 +92,8 @@ public class OrImpl extends LogicTermImpl implements Or {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SystemModelPackage.OR__FIRST_OPERAND:
-			return getFirstOperand();
-		case SystemModelPackage.OR__SECOND_OPERAND:
-			return getSecondOperand();
+		case SystemModelPackage.OR__OPERANDS:
+			return getOperands();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -205,14 +103,13 @@ public class OrImpl extends LogicTermImpl implements Or {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SystemModelPackage.OR__FIRST_OPERAND:
-			setFirstOperand((LogicTerm) newValue);
-			return;
-		case SystemModelPackage.OR__SECOND_OPERAND:
-			setSecondOperand((LogicTerm) newValue);
+		case SystemModelPackage.OR__OPERANDS:
+			getOperands().clear();
+			getOperands().addAll((Collection<? extends LogicTerm>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -226,11 +123,8 @@ public class OrImpl extends LogicTermImpl implements Or {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SystemModelPackage.OR__FIRST_OPERAND:
-			setFirstOperand((LogicTerm) null);
-			return;
-		case SystemModelPackage.OR__SECOND_OPERAND:
-			setSecondOperand((LogicTerm) null);
+		case SystemModelPackage.OR__OPERANDS:
+			getOperands().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -244,10 +138,8 @@ public class OrImpl extends LogicTermImpl implements Or {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SystemModelPackage.OR__FIRST_OPERAND:
-			return firstOperand != null;
-		case SystemModelPackage.OR__SECOND_OPERAND:
-			return secondOperand != null;
+		case SystemModelPackage.OR__OPERANDS:
+			return operands != null && !operands.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

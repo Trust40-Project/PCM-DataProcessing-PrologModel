@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getCallee <em>Callee</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getParameterAssignments <em>Parameter Assignments</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getCaller <em>Caller</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperationCall()
@@ -94,5 +95,31 @@ public interface OperationCall extends EObject {
 	 * @generated
 	 */
 	void setCaller(Caller value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperationCall_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // OperationCall

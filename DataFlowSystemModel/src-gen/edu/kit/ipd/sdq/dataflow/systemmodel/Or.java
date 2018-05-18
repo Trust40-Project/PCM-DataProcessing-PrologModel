@@ -2,6 +2,8 @@
  */
 package edu.kit.ipd.sdq.dataflow.systemmodel;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Or</b></em>'.
@@ -11,8 +13,7 @@ package edu.kit.ipd.sdq.dataflow.systemmodel;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or#getFirstOperand <em>First Operand</em>}</li>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or#getSecondOperand <em>Second Operand</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or#getOperands <em>Operands</em>}</li>
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOr()
@@ -21,55 +22,19 @@ package edu.kit.ipd.sdq.dataflow.systemmodel;
  */
 public interface Or extends LogicTerm {
 	/**
-	 * Returns the value of the '<em><b>First Operand</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Operands</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>First Operand</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Operands</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>First Operand</em>' containment reference.
-	 * @see #setFirstOperand(LogicTerm)
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOr_FirstOperand()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Operands</em>' containment reference list.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOr_Operands()
+	 * @model containment="true" lower="2" upper="2"
 	 * @generated
 	 */
-	LogicTerm getFirstOperand();
-
-	/**
-	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or#getFirstOperand <em>First Operand</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>First Operand</em>' containment reference.
-	 * @see #getFirstOperand()
-	 * @generated
-	 */
-	void setFirstOperand(LogicTerm value);
-
-	/**
-	 * Returns the value of the '<em><b>Second Operand</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Second Operand</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Second Operand</em>' containment reference.
-	 * @see #setSecondOperand(LogicTerm)
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOr_SecondOperand()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	LogicTerm getSecondOperand();
-
-	/**
-	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Or#getSecondOperand <em>Second Operand</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Second Operand</em>' containment reference.
-	 * @see #getSecondOperand()
-	 * @generated
-	 */
-	void setSecondOperand(LogicTerm value);
+	EList<LogicTerm> getOperands();
 
 } // Or

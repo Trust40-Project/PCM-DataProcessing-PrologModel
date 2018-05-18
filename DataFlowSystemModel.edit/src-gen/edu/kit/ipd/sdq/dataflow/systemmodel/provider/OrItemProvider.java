@@ -61,8 +61,7 @@ public class OrItemProvider extends LogicTermItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SystemModelPackage.Literals.OR__FIRST_OPERAND);
-			childrenFeatures.add(SystemModelPackage.Literals.OR__SECOND_OPERAND);
+			childrenFeatures.add(SystemModelPackage.Literals.OR__OPERANDS);
 		}
 		return childrenFeatures;
 	}
@@ -124,8 +123,7 @@ public class OrItemProvider extends LogicTermItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Or.class)) {
-		case SystemModelPackage.OR__FIRST_OPERAND:
-		case SystemModelPackage.OR__SECOND_OPERAND:
+		case SystemModelPackage.OR__OPERANDS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -143,74 +141,29 @@ public class OrItemProvider extends LogicTermItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__FIRST_OPERAND,
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createTrue()));
 
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__FIRST_OPERAND,
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createFalse()));
 
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__FIRST_OPERAND,
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createAnd()));
 
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__FIRST_OPERAND,
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createOr()));
 
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__FIRST_OPERAND,
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createNot()));
 
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__FIRST_OPERAND,
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createParameterRef()));
 
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__FIRST_OPERAND,
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createPropertyRef()));
 
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__FIRST_OPERAND,
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createReturnValueRef()));
-
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__SECOND_OPERAND,
-				SystemModelFactory.eINSTANCE.createTrue()));
-
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__SECOND_OPERAND,
-				SystemModelFactory.eINSTANCE.createFalse()));
-
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__SECOND_OPERAND,
-				SystemModelFactory.eINSTANCE.createAnd()));
-
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__SECOND_OPERAND,
-				SystemModelFactory.eINSTANCE.createOr()));
-
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__SECOND_OPERAND,
-				SystemModelFactory.eINSTANCE.createNot()));
-
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__SECOND_OPERAND,
-				SystemModelFactory.eINSTANCE.createParameterRef()));
-
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__SECOND_OPERAND,
-				SystemModelFactory.eINSTANCE.createPropertyRef()));
-
-		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__SECOND_OPERAND,
-				SystemModelFactory.eINSTANCE.createReturnValueRef()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify = childFeature == SystemModelPackage.Literals.OR__FIRST_OPERAND
-				|| childFeature == SystemModelPackage.Literals.OR__SECOND_OPERAND;
-
-		if (qualify) {
-			return getString("_UI_CreateChild_text2",
-					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }
