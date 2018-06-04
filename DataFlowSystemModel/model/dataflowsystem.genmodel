@@ -25,6 +25,7 @@
     </genClasses>
     <genClasses ecoreClass="dataflowsystem.ecore#//Value">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//Value/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Value/containingType"/>
     </genClasses>
     <genClasses ecoreClass="dataflowsystem.ecore#//Operation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/parameters"/>

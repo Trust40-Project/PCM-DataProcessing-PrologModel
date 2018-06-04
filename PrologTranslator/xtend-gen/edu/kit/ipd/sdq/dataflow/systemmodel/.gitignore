@@ -13,3 +13,7 @@
 /LogicTermTypeChecker.java
 /PrologProgram.java
 /TypeInformationTranslator.java
+/.TypeRestrictions.java._trace
+/.AttributeRestriction.java._trace
+/.AttributeDataTypeRestriction.java._trace
+/.Blackboard.java._trace

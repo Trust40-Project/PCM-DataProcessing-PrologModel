@@ -379,6 +379,15 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getValue_ContainingType() {
+		return (EReference) valueEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOperation() {
 		return operationEClass;
 	}
@@ -922,6 +931,7 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 
 		valueEClass = createEClass(VALUE);
 		createEAttribute(valueEClass, VALUE__NAME);
+		createEReference(valueEClass, VALUE__CONTAINING_TYPE);
 
 		operationEClass = createEClass(OPERATION);
 		createEReference(operationEClass, OPERATION__PARAMETERS);
@@ -1075,6 +1085,9 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValue_Name(), ecorePackage.getEString(), "name", null, 0, 1, Value.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getValue_ContainingType(), this.getValueSetType(), this.getValueSetType_Values(),
+				"containingType", null, 1, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1155,9 +1168,9 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 
 		initEClass(valueSetTypeEClass, ValueSetType.class, "ValueSetType", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getValueSetType_Values(), this.getValue(), null, "values", null, 0, -1, ValueSetType.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getValueSetType_Values(), this.getValue(), this.getValue_ContainingType(), "values", null, 0, -1,
+				ValueSetType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getValueSetType_Name(), ecorePackage.getEString(), "name", null, 0, 1, ValueSetType.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

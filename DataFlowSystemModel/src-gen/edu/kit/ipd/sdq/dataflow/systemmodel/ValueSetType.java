@@ -27,6 +27,7 @@ public interface ValueSetType extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Values</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.kit.ipd.sdq.dataflow.systemmodel.Value}.
+	 * It is bidirectional and its opposite is '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Value#getContainingType <em>Containing Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Values</em>' containment reference list isn't clear,
@@ -35,7 +36,8 @@ public interface ValueSetType extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values</em>' containment reference list.
 	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getValueSetType_Values()
-	 * @model containment="true"
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Value#getContainingType
+	 * @model opposite="containingType" containment="true"
 	 * @generated
 	 */
 	EList<Value> getValues();

@@ -25,7 +25,7 @@ class Main {
         val resSet = new ResourceSetImpl();
 
         // Get the resource
-        val resource = resSet.getResource(URI.createURI("file://C:\\Users\\jku\\masther-thesis\\modeling-oxygen\\runtime-EclipseApplication\\TestModels\\geolocation.systemmodel"), true);
+        val resource = resSet.getResource(URI.createURI("file://C:\\Users\\jku\\masther-thesis\\code_git\\data-flow-analysis\\TestModels\\accesscontrol_agencynotify.systemmodel"), true);
         // Get the first model element and cast it to the right type, in my
         // example everything is hierarchical included in this first node
         val sys = resource.getContents().get(0) as System;

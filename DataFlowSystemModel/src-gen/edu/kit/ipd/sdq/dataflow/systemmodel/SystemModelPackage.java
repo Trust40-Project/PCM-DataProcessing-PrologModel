@@ -213,13 +213,22 @@ public interface SystemModelPackage extends EPackage {
 	int VALUE__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Containing Type</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE__CONTAINING_TYPE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_FEATURE_COUNT = 1;
+	int VALUE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Value</em>' class.
@@ -1272,6 +1281,17 @@ public interface SystemModelPackage extends EPackage {
 	EAttribute getValue_Name();
 
 	/**
+	 * Returns the meta object for the container reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Value#getContainingType <em>Containing Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Containing Type</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Value#getContainingType()
+	 * @see #getValue()
+	 * @generated
+	 */
+	EReference getValue_ContainingType();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2000,6 +2020,14 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VALUE__NAME = eINSTANCE.getValue_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Containing Type</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE__CONTAINING_TYPE = eINSTANCE.getValue_ContainingType();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationImpl <em>Operation</em>}' class.

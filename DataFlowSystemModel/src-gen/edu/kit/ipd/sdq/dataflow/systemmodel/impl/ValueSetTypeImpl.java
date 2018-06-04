@@ -18,8 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -93,7 +92,8 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	 */
 	public EList<Value> getValues() {
 		if (values == null) {
-			values = new EObjectContainmentEList<Value>(Value.class, this, SystemModelPackage.VALUE_SET_TYPE__VALUES);
+			values = new EObjectContainmentWithInverseEList<Value>(Value.class, this,
+					SystemModelPackage.VALUE_SET_TYPE__VALUES, SystemModelPackage.VALUE__CONTAINING_TYPE);
 		}
 		return values;
 	}
@@ -118,6 +118,21 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.VALUE_SET_TYPE__NAME, oldName,
 					name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case SystemModelPackage.VALUE_SET_TYPE__VALUES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getValues()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
