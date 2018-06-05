@@ -25,7 +25,7 @@ class Main {
         val resSet = new ResourceSetImpl();
 
         // Get the resource
-        val resource = resSet.getResource(URI.createURI("file://C:\\Users\\jku\\masther-thesis\\code_git\\data-flow-analysis\\TestModels\\accesscontrol_agencynotify.systemmodel"), true);
+        val resource = resSet.getResource(URI.createURI("file://C:\\Users\\jku\\masther-thesis\\code_git\\data-flow-analysis\\TestModels\\accesscontrol_nodeclassify.systemmodel"), true);
         // Get the first model element and cast it to the right type, in my
         // example everything is hierarchical included in this first node
         val sys = resource.getContents().get(0) as System;
@@ -51,11 +51,11 @@ class Main {
 		trans.addDataTypes(result, sys.datatypes);
 		
 		for(Operation op : sys.operations) {
-			opTrans.translateOperation(result, op);
+			opTrans.translate(op, result);
 		}
 		
 		for(SystemUsage su : sys.systemusages) {
-			opTrans.translateSystemUsage(result, su);
+			opTrans.translate(su, result);
 		}
 		
 		return result;
