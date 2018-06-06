@@ -2,8 +2,11 @@ package edu.kit.ipd.sdq.dataflow.systemmodel
 
 class CallerTranslator {
 	
-	Blackboard bb = new Blackboard;
-	val assignmentTrans = new AssignmentsTranslator(bb);
+	val AssignmentsTranslator assignmentTrans;
+	
+	new(Blackboard bb) {
+		assignmentTrans  = new AssignmentsTranslator(bb);
+	}
 	
 	def dispatch translate(Operation op, PrologProgram result) {
 		result.addMajorHeading('''Operation «op.name»''')

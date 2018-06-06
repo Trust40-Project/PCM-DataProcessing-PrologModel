@@ -8,6 +8,8 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.Blackboard
 
 class TypeRestrictions {
 	
+	public static val NO_RESTRICTIONS = new TypeRestrictions();
+	
 	/**
 	 * Specifies whether any term references the current stack-list.
 	 * This required to prevent warnings about unused Variables in the Prolog Code.
@@ -29,6 +31,21 @@ class TypeRestrictions {
 			}
 		}
 		return true;
+	}
+	
+	def duplicate() {
+		val copy = new TypeRestrictions();
+		copy.isStackReferenced = this.isStackReferenced;
+		copy.attributeRestrictions.addAll(this.attributeRestrictions);
+		return copy;
+	}
+	
+	def getMerged(TypeRestrictions other) {
+		val copy = new TypeRestrictions();
+		copy.isStackReferenced = this.isStackReferenced || other.isStackReferenced;
+		copy.attributeRestrictions.addAll(this.attributeRestrictions);
+		copy.attributeRestrictions.addAll(other.attributeRestrictions);
+		return copy;
 	}
 	
 	

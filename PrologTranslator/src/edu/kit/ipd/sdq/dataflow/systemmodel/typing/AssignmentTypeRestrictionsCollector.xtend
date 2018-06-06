@@ -1,13 +1,18 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel.typing
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment
+import edu.kit.ipd.sdq.dataflow.systemmodel.Blackboard
 
 class AssignmentTypeRestrictionsCollector {
 	
-	val termRestrictionsCollector = new TermTypeRestrictionsCollector();
+	val Blackboard bb;
+	
+	new(Blackboard bb) {
+		this.bb = bb;
+	}
 	
 	def TypeRestrictions collect(VariableAssignment assignment) {
-		val result = new TypeRestrictions();
+		val result = bb.getTermTypeRestrictions(assignment.term).duplicate();
 		
 		val isAttributeWildCard = assignment.attribute === null;
 		val isValueWildCard = assignment.value === null;
@@ -18,7 +23,6 @@ class AssignmentTypeRestrictionsCollector {
 				result.addAttributeRestriction(new AttributeValueSetTypeRestriction(assignment.value.containingType));				
 			}
 		}
-		termRestrictionsCollector.collect(assignment.term, result);		
 		return result;
 	}
 }

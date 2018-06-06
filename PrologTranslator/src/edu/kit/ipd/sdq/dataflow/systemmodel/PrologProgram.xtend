@@ -7,27 +7,12 @@ class PrologProgram {
 	
 	var resultCode = new StringBuilder;
 	
-	val SEPARATOR_LINE = "--------------------------------------------------------------";
+	val SEPARATOR_LINE = "----------------------------------------------------------------------------";
 	
 	val PREAMBLE_RESOURCE = "/preamble.pl";
 	
 	def getCode() {
 		return resultCode.toString()
-	}
-	
-	def appendDefaultPreamble() {
-		try {
-			val stream = class.getResourceAsStream(PREAMBLE_RESOURCE);
-			val reader = new BufferedReader(new InputStreamReader(stream));
-			var String line;
-			while((line = reader.readLine()) !== null) {
-				resultCode.append(line).append("\n");
-			}
-			reader.close();
-			stream.close();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 	
 	def addRule(String pattern, String value) {
