@@ -3,9 +3,11 @@ package edu.kit.ipd.sdq.dataflow.systemmodel
 class LogicTermTranslator {
 	
 	val Blackboard bb;
+	val Configuration config
 	
-	new(Blackboard bb) {
+	new(Blackboard bb, Configuration config) {
 		this.bb = bb;
+		this.config = config;
 	}
 	
 	def dispatch String translate(True term, String stackList, String attrib, String value) {
@@ -17,12 +19,16 @@ class LogicTermTranslator {
 	}
 	
 	def dispatch String translate(Not term, String stackList, String attrib, String value) {
-		if(bb.getTermTypeRestrictions(term.operand).isStackReferenced) {
-			//we have to bind the stack-variable in case it is used within the negated operand
-			//all other possible variables are required to be bound when invoking logical terms
-			return '''(stackValid(«stackList»), \+ «translate(term.operand,stackList,attrib,value)»)''';			
+		if(config.optimizedNegations) {
+			return '''lnot(«translate(term.operand,stackList,attrib,value)»)''';	
 		} else {
-			return '''\+ «translate(term.operand,stackList,attrib,value)»)''';			
+			if(bb.getTermTypeRestrictions(term.operand).isStackReferenced) {
+				//we have to bind the stack-variable in case it is used within the negated operand
+				//all other possible variables are required to be bound when invoking logical terms
+				return '''(stackValid(«stackList»), \+ «translate(term.operand,stackList,attrib,value)»)''';			
+			} else {
+				return '''\+ «translate(term.operand,stackList,attrib,value)»)''';			
+			}
 		}
 	}
 	

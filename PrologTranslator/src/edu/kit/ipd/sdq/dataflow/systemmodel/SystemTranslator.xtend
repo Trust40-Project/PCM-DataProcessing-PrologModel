@@ -4,9 +4,18 @@ import java.util.Collection
 
 class SystemTranslator {
 	
-	val bb = new Blackboard();
-	val callerTranslator = new CallerTranslator(bb);
-	val preambleBuilder = new PreambleBuilder();
+	val Configuration config;
+	
+	val Blackboard bb;
+	val CallerTranslator callerTranslator;
+	val PreambleBuilder preambleBuilder;
+	
+	new(Configuration config) {
+		this.config = config;
+		bb = new Blackboard();
+		callerTranslator = new CallerTranslator(bb, config);
+		preambleBuilder = new PreambleBuilder(config);
+	}
 	
 	private def addValueSetTypes(Collection<ValueSetType> types, PrologProgram result) {
 		result.addMinorHeading("Value Set Type Definitions");

@@ -1,11 +1,15 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
+import java.util.HashSet
+
 class CallerTranslator {
 	
 	val AssignmentsTranslator assignmentTrans;
+	val Configuration config;
 	
-	new(Blackboard bb) {
-		assignmentTrans  = new AssignmentsTranslator(bb);
+	new(Blackboard bb, Configuration config) {
+		assignmentTrans  = new AssignmentsTranslator(bb, config);
+		this.config = config;
 	}
 	
 	def dispatch translate(Operation op, PrologProgram result) {
@@ -18,6 +22,14 @@ class CallerTranslator {
 			for(Value value : propDef.presentValues) {
 				result.addFact('''operationProperty('«op.name»','«propDef.property.name»', '«value.name»')''');
 			}		
+			if(config.optimizedNegations) {
+				val presentValues = new HashSet<Value>(propDef.presentValues);
+				for(Value value : propDef.property.type.values) {
+					if(!presentValues.contains(value)) {
+						result.addFact('''not_operationProperty('«op.name»','«propDef.property.name»', '«value.name»')''');						
+					}
+				}
+			}
 		}
 		
 		//Call Signature

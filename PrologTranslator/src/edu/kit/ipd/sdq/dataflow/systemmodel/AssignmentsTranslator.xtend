@@ -7,6 +7,7 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.typing.TypeRestrictions
 import java.util.Collections
 import java.util.ArrayList
 import java.util.stream.Collectors
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class AssignmentsTranslator {
 	
@@ -14,14 +15,16 @@ class AssignmentsTranslator {
 		def String getPredicate(String stackContextList, String variable, String attribute, String value);
 	}
 	
-	Blackboard bb;
-	AssignmentTypeRestrictionsCollector restrictionsCollector;
-	LogicTermTranslator logicTermTranslator;
+	val Blackboard bb;
+	val AssignmentTypeRestrictionsCollector restrictionsCollector;
+	val LogicTermTranslator logicTermTranslator;
+	val Configuration config;
 	
-	new(Blackboard bb) {
+	new(Blackboard bb, Configuration config) {
 		this.bb = bb;
+		this.config = config;
 		restrictionsCollector = new AssignmentTypeRestrictionsCollector(bb);
-		logicTermTranslator = new LogicTermTranslator(bb);
+		logicTermTranslator = new LogicTermTranslator(bb, config);
 	}
 	
 	def void buildAssignments(List<VariableAssignment> assignments, Caller callContext, PredicateProvider predicate, PrologProgram sink) {
@@ -55,9 +58,16 @@ class AssignmentsTranslator {
 								} else {
 									stackContext = '''['«callContext.name»'|_]''';							
 								}
-								val String pred = predicate.getPredicate(stackContext,vari.name,attrib.name,value.name);
-								val String term = logicTermTranslator.translate(assi.term, stackContext, attrib.name, value.name);
+								var String pred = predicate.getPredicate(stackContext,vari.name,attrib.name,value.name);
+								var String term = logicTermTranslator.translate(assi.term, stackContext, attrib.name, value.name);
 								sink.addRule(pred, term);
+								if(config.optimizedNegations) {
+									pred = "not_"+pred;
+									val negated = SystemModelFactory.eINSTANCE.createNot();
+									negated.operand = EcoreUtil.copy(assi.term);
+									term = logicTermTranslator.translate(negated, stackContext, attrib.name, value.name);
+									sink.addRule(pred, term);									
+								}
 							}
 						}
 					}
