@@ -32,7 +32,7 @@ class PreambleBuilder {
 		}		
 		
 		for(pred : discontigousPredicates) {
-			result.addRule("", '''discontiguous «pred»''')
+			result.addRule("", '''discontiguous(«pred»)''')
 		}
 		
 	}
@@ -78,9 +78,7 @@ class PreambleBuilder {
 		result.addRule("isProperty(ATTRIB)", "propertyType(ATTRIB,_)");
 		
 		result.addRule("operationParameter(OP,PARAM)", "operationParameterType(OP,PARAM,_)");
-		result.addRule("operationReturnValue(OP,RVAL)", "operationReturnValueType(OP,RVAL,_)");
-		
-		
+		result.addRule("operationReturnValue(OP,RVAL)", "operationReturnValueType(OP,RVAL,_)");		
 	}
 		
 	def buildPreamble(PrologProgram result) {
