@@ -2,6 +2,7 @@
  */
 package edu.kit.ipd.sdq.dataflow.systemmodel.provider;
 
+import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import java.util.Collection;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -47,8 +49,25 @@ public class LogicTermItemProvider extends ItemProviderAdapter implements IEditi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainingAssignmentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Containing Assignment feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainingAssignmentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LogicTerm_containingAssignment_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LogicTerm_containingAssignment_feature",
+								"_UI_LogicTerm_type"),
+						SystemModelPackage.Literals.LOGIC_TERM__CONTAINING_ASSIGNMENT, false, false, false, null, null,
+						null));
 	}
 
 	/**

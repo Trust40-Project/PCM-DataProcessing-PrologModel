@@ -65,7 +65,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ValueSetType/values"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//ValueSetType/name"/>
     </genClasses>
-    <genClasses ecoreClass="dataflowsystem.ecore#//LogicTerm"/>
+    <genClasses ecoreClass="dataflowsystem.ecore#//LogicTerm">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference dataflowsystem.ecore#//LogicTerm/containingAssignment"/>
+    </genClasses>
     <genClasses ecoreClass="dataflowsystem.ecore#//True"/>
     <genClasses ecoreClass="dataflowsystem.ecore#//False"/>
     <genClasses ecoreClass="dataflowsystem.ecore#//And">

@@ -20,7 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperation()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='parameterNamesUnique returnValueNamesUnique noDuplicatePropertyDefinitions noCyclesInCallGraph'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot parameterNamesUnique='parameters-&gt;isUnique(name)' returnValueNamesUnique='returnValues-&gt;isUnique(name)' noDuplicatePropertyDefinitions='propertyDefinitions-&gt;isUnique(property)' noCyclesInCallGraph=' self.calls-&gt;closure(call | call.callee.calls).callee-&gt;excludes(self)'"
  * @generated
  */
 public interface Operation extends Caller {

@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getSystem()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeNamesUnique datatypeNamesUnique propertyNamesUnique valueSetTypeNamesUnique operationAndSystemUsageNamesUnique'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot attributeNamesUnique='attributes-&gt;isUnique(name)' datatypeNamesUnique='datatypes-&gt;isUnique(name)' propertyNamesUnique='properties-&gt;isUnique(name)' valueSetTypeNamesUnique='types-&gt;isUnique(name)' operationAndSystemUsageNamesUnique='operations-&gt;union(systemusages)-&gt;isUnique(name)'"
  * @generated
  */
 public interface System extends EObject {

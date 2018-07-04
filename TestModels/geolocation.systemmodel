@@ -63,6 +63,12 @@
     <parameters datatype="//@datatypes.0" name="datum"/>
     <propertyDefinitions property="//@properties.0" presentValues="//@types.0/@values.1"/>
   </operations>
+  <operations name="test1">
+    <calls callee="//@operations.5"/>
+  </operations>
+  <operations name="test2">
+    <calls callee="//@operations.4"/>
+  </operations>
   <properties type="//@types.0" name="deploymentLocation"/>
   <types name="geolocation">
     <values name="EU"/>

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface SystemModelPackage extends EPackage {
@@ -736,13 +737,22 @@ public interface SystemModelPackage extends EPackage {
 	int LOGIC_TERM = 11;
 
 	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOGIC_TERM__CONTAINING_ASSIGNMENT = 0;
+
+	/**
 	 * The number of structural features of the '<em>Logic Term</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOGIC_TERM_FEATURE_COUNT = 0;
+	int LOGIC_TERM_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Logic Term</em>' class.
@@ -762,6 +772,15 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	int TRUE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRUE__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
 
 	/**
 	 * The number of structural features of the '<em>True</em>' class.
@@ -792,6 +811,15 @@ public interface SystemModelPackage extends EPackage {
 	int FALSE = 13;
 
 	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FALSE__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
+
+	/**
 	 * The number of structural features of the '<em>False</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -818,6 +846,15 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	int AND = 14;
+
+	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -857,6 +894,15 @@ public interface SystemModelPackage extends EPackage {
 	int OR = 15;
 
 	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
+
+	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -894,6 +940,15 @@ public interface SystemModelPackage extends EPackage {
 	int NOT = 16;
 
 	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
+
+	/**
 	 * The feature id for the '<em><b>Operand</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -929,6 +984,15 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	int PARAMETER_REF = 17;
+
+	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_REF__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
 
 	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' reference.
@@ -984,6 +1048,15 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	int PROPERTY_REF = 18;
+
+	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REF__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' reference.
@@ -1085,6 +1158,15 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	int RETURN_VALUE_REF = 21;
+
+	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_VALUE_REF__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
 
 	/**
 	 * The feature id for the '<em><b>Return Value</b></em>' reference.
@@ -1622,6 +1704,17 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLogicTerm();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm#getContainingAssignment <em>Containing Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Containing Assignment</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm#getContainingAssignment()
+	 * @see #getLogicTerm()
+	 * @generated
+	 */
+	EReference getLogicTerm_ContainingAssignment();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.True <em>True</em>}'.
@@ -2294,6 +2387,14 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LOGIC_TERM = eINSTANCE.getLogicTerm();
+
+		/**
+		 * The meta object literal for the '<em><b>Containing Assignment</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOGIC_TERM__CONTAINING_ASSIGNMENT = eINSTANCE.getLogicTerm_ContainingAssignment();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.TrueImpl <em>True</em>}' class.

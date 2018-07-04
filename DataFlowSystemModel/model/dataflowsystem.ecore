@@ -2,7 +2,22 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="systemmodel" nsURI="http://sdq.ipd.kit.edu/dataflow/systemmodel"
     nsPrefix="systemmodel">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="System">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="attributeNamesUnique datatypeNamesUnique propertyNamesUnique valueSetTypeNamesUnique operationAndSystemUsageNamesUnique"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="attributeNamesUnique" value="attributes->isUnique(name)"/>
+      <details key="datatypeNamesUnique" value="datatypes->isUnique(name)"/>
+      <details key="propertyNamesUnique" value="properties->isUnique(name)"/>
+      <details key="valueSetTypeNamesUnique" value="types->isUnique(name)"/>
+      <details key="operationAndSystemUsageNamesUnique" value="operations->union(systemusages)->isUnique(name)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
@@ -27,6 +42,15 @@
         eType="#//ValueSetType" eOpposite="#//ValueSetType/values"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Caller">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="parameterNamesUnique returnValueNamesUnique noDuplicatePropertyDefinitions noCyclesInCallGraph"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="parameterNamesUnique" value="parameters->isUnique(name)"/>
+      <details key="returnValueNamesUnique" value="returnValues->isUnique(name)"/>
+      <details key="noDuplicatePropertyDefinitions" value="propertyDefinitions->isUnique(property)"/>
+      <details key="noCyclesInCallGraph" value=" self.calls->closure(call | call.callee.calls).callee->excludes(self)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnValues" upperBound="-1"
@@ -78,7 +102,14 @@
         eType="#//Value" containment="true" eOpposite="#//Value/containingType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LogicTerm" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicTerm" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingAssignment" eType="#//VariableAssignment"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self->closure(elem | elem.oclContainer())->any(self->oclIsKindOf(VariableAssignment))->oclAsType(VariableAssignment)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//LogicTerm"/>
   <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//LogicTerm"/>
   <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//LogicTerm">
@@ -113,6 +144,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SystemUsage" eSuperTypes="#//Caller"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReturnValueRef" eSuperTypes="#//LogicTerm">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="returnValueIsContainedInTargetOperation isAttributePartOfReturnValue isValuePartOfAttribute"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="returnValueIsContainedInTargetOperation" value="call.callee.returnValues->includes(returnValue)"/>
+      <details key="isAttributePartOfReturnValue" value="(not attribute.oclIsUndefined()) implies returnValue.datatype.attributes->includes(attribute)"/>
+      <details key="isValuePartOfAttribute" value="(not attribute.oclIsUndefined() and not value.oclIsUndefined())&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;implies attribute.type.values->includes(value)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" lowerBound="1"
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>

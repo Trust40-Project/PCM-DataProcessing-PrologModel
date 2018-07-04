@@ -26,11 +26,13 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.ValueSetType;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
 import edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment;
 
+import edu.kit.ipd.sdq.dataflow.systemmodel.util.SystemModelValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -248,6 +250,13 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 
 		// Initialize created meta-data
 		theSystemModelPackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put(theSystemModelPackage, new EValidator.Descriptor() {
+			public EValidator getEValidator() {
+				return SystemModelValidator.INSTANCE;
+			}
+		});
 
 		// Mark meta-data to indicate it can't be changed
 		theSystemModelPackage.freeze();
@@ -667,6 +676,15 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLogicTerm_ContainingAssignment() {
+		return (EReference) logicTermEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTrue() {
 		return trueEClass;
 	}
@@ -972,6 +990,7 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEAttribute(valueSetTypeEClass, VALUE_SET_TYPE__NAME);
 
 		logicTermEClass = createEClass(LOGIC_TERM);
+		createEReference(logicTermEClass, LOGIC_TERM__CONTAINING_ASSIGNMENT);
 
 		trueEClass = createEClass(TRUE);
 
@@ -1176,6 +1195,9 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 
 		initEClass(logicTermEClass, LogicTerm.class, "LogicTerm", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLogicTerm_ContainingAssignment(), this.getVariableAssignment(), null, "containingAssignment",
+				null, 0, 1, LogicTerm.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(trueEClass, True.class, "True", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1247,6 +1269,52 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+		createPivotAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation(this, source,
+				new String[] { "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+						"settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "validationDelegates",
+						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" });
+		addAnnotation(systemEClass, source, new String[] { "constraints",
+				"attributeNamesUnique datatypeNamesUnique propertyNamesUnique valueSetTypeNamesUnique operationAndSystemUsageNamesUnique" });
+		addAnnotation(operationEClass, source, new String[] { "constraints",
+				"parameterNamesUnique returnValueNamesUnique noDuplicatePropertyDefinitions noCyclesInCallGraph" });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createPivotAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
+		addAnnotation(systemEClass, source,
+				new String[] { "attributeNamesUnique", "attributes->isUnique(name)", "datatypeNamesUnique",
+						"datatypes->isUnique(name)", "propertyNamesUnique", "properties->isUnique(name)",
+						"valueSetTypeNamesUnique", "types->isUnique(name)", "operationAndSystemUsageNamesUnique",
+						"operations->union(systemusages)->isUnique(name)" });
+		addAnnotation(operationEClass, source,
+				new String[] { "parameterNamesUnique", "parameters->isUnique(name)", "returnValueNamesUnique",
+						"returnValues->isUnique(name)", "noDuplicatePropertyDefinitions",
+						"propertyDefinitions->isUnique(property)", "noCyclesInCallGraph",
+						" self.calls->closure(call | call.callee.calls).callee->excludes(self)" });
+		addAnnotation(getLogicTerm_ContainingAssignment(), source, new String[] { "derivation",
+				"self->closure(elem | elem.oclContainer())->any(self->oclIsTypeOf(VariableAssignment))->oclAsType(VariableAssignment)" });
 	}
 
 } //SystemModelPackageImpl
