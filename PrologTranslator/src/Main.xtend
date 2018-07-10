@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import edu.kit.ipd.sdq.dataflow.systemmodel.Configuration
 
 class Main {
 	
@@ -23,12 +24,14 @@ class Main {
 	
 	def static void main(String[] args) {
 		
+		val config = new Configuration();
+		
 		if(args.length < 2 || args.length > 3) {
 			println("Usage: [modelfile] [outputfile] [optional:prolog-to-append]");
 			return;
 		}
         val sys = loadSystem(args.get(0));
-        val SystemTranslator st = new SystemTranslator();
+        val SystemTranslator st = new SystemTranslator(config);
         
 		val result = st.translate(sys);
 		

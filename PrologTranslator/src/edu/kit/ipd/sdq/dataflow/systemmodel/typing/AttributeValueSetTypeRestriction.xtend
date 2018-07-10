@@ -17,4 +17,8 @@ class AttributeValueSetTypeRestriction implements AttributeRestriction {
 		return attribute.type == requiredValueSetType;
 	}
 	
+	override getPredicateForRestriction(String attributeVariable) {
+		return '''attributeType(«attributeVariable», '«requiredValueSetType.name»')''';	
+	}
+	
 }

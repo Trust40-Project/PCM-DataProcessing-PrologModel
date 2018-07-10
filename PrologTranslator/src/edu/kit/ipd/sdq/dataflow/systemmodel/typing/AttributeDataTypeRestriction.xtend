@@ -17,6 +17,8 @@ class AttributeDataTypeRestriction implements AttributeRestriction {
 		return bb.getDataTypeAttributes(requiredContainingDataType).contains(attribute);
 	}
 	
-	
+	override getPredicateForRestriction(String attributeVariable) {
+		return '''dataTypeAttribute('«requiredContainingDataType.name»', «attributeVariable»)''';	
+	}
 	
 }

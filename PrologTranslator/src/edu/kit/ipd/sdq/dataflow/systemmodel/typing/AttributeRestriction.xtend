@@ -7,4 +7,6 @@ interface AttributeRestriction {
 	
 	def boolean doesAttributeMatch(Blackboard bb, Attribute attribute);
 	
+	def String getPredicateForRestriction(String attributeVariable);
+	
 }

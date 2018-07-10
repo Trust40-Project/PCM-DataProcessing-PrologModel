@@ -1,11 +1,16 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
+import java.util.HashSet
+import edu.kit.ipd.sdq.dataflow.systemmodel.AssignmentsTranslator.PredicateProvider
+
 class CallerTranslator {
 	
 	val AssignmentsTranslator assignmentTrans;
+	val Configuration config;
 	
-	new(Blackboard bb) {
-		assignmentTrans  = new AssignmentsTranslator(bb);
+	new(Blackboard bb, Configuration config) {
+		assignmentTrans  = new AssignmentsTranslator(bb, config);
+		this.config = config;
 	}
 	
 	def dispatch translate(Operation op, PrologProgram result) {
@@ -18,6 +23,14 @@ class CallerTranslator {
 			for(Value value : propDef.presentValues) {
 				result.addFact('''operationProperty('«op.name»','«propDef.property.name»', '«value.name»')''');
 			}		
+			if(config.optimizedNegations) {
+				val presentValues = new HashSet<Value>(propDef.presentValues);
+				for(Value value : propDef.property.type.values) {
+					if(!presentValues.contains(value)) {
+						result.addFact('''not_operationProperty('«op.name»','«propDef.property.name»', '«value.name»')''');						
+					}
+				}
+			}
 		}
 		
 		//Call Signature
@@ -30,12 +43,8 @@ class CallerTranslator {
 		}
 		
 		translateCalls(result, op);
+		translateReturnValues(result,op);
 		
-		result.addMinorHeading('''Return Values of «op.name»''')
-		assignmentTrans.buildAssignments(op.returnValueAssignments ,op,
-			[stack,vari,attrib,value | '''returnValueImpl(«stack», '«vari»', '«attrib»', '«value»')''']
-			,result
-		);
 	}
 	
 	def dispatch translate(SystemUsage op, PrologProgram result) {
@@ -51,10 +60,24 @@ class CallerTranslator {
 			result.addMinorHeading('''Call to «call.callee.name» («call.name»)''');
 			result.addFact('''operationCall('«call.caller.name»','«call.callee.name»','«call.name»')''');
 			
-			assignmentTrans.buildAssignments(call.parameterAssignments, caller,
-				[stack,vari,attrib,value | '''callArgumentImpl(['«call.callee.name»','«call.name»'|«stack»], '«vari»', '«attrib»', '«value»')''']
-				,result
-			);
+			var PredicateProvider argPred;
+			if(config.argumentAndReturnValueIndexing) {
+				argPred = [stack,vari,attrib,value | '''callArgumentIndexed('«call.callee.name»',['«call.callee.name»','«call.name»'|«stack»], «vari», «attrib», «value»)'''];	
+			} else {
+				argPred = [stack,vari,attrib,value | '''callArgumentImpl(['«call.callee.name»','«call.name»'|«stack»], «vari», «attrib», «value»)'''];	
+			}
+			assignmentTrans.buildAssignments(call.parameterAssignments, caller, argPred, result);
 		}
+	}
+	
+	private def translateReturnValues(PrologProgram result, Operation op) {
+		result.addMinorHeading('''Return Values of «op.name»''')
+		var PredicateProvider rvPred;
+		if(config.argumentAndReturnValueIndexing) {
+			rvPred = [stack,vari,attrib,value | '''returnValueIndexed('«op.name»',«stack», «vari», «attrib», «value»)'''];
+		} else {
+			rvPred = [stack,vari,attrib,value | '''returnValueImpl(«stack», «vari», «attrib», «value»)'''];			
+		}
+		assignmentTrans.buildAssignments(op.returnValueAssignments ,op,rvPred,result);
 	}
 }
