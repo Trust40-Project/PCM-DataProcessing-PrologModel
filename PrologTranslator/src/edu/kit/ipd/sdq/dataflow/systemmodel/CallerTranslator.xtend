@@ -1,6 +1,7 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
 import java.util.HashSet
+import edu.kit.ipd.sdq.dataflow.systemmodel.AssignmentsTranslator.PredicateProvider
 
 class CallerTranslator {
 	
@@ -42,12 +43,8 @@ class CallerTranslator {
 		}
 		
 		translateCalls(result, op);
+		translateReturnValues(result,op);
 		
-		result.addMinorHeading('''Return Values of «op.name»''')
-		assignmentTrans.buildAssignments(op.returnValueAssignments ,op,
-			[stack,vari,attrib,value | '''returnValueImpl(«stack», '«vari»', '«attrib»', '«value»')''']
-			,result
-		);
 	}
 	
 	def dispatch translate(SystemUsage op, PrologProgram result) {
@@ -63,10 +60,24 @@ class CallerTranslator {
 			result.addMinorHeading('''Call to «call.callee.name» («call.name»)''');
 			result.addFact('''operationCall('«call.caller.name»','«call.callee.name»','«call.name»')''');
 			
-			assignmentTrans.buildAssignments(call.parameterAssignments, caller,
-				[stack,vari,attrib,value | '''callArgumentImpl(['«call.callee.name»','«call.name»'|«stack»], '«vari»', '«attrib»', '«value»')''']
-				,result
-			);
+			var PredicateProvider argPred;
+			if(config.argumentAndReturnValueIndexing) {
+				argPred = [stack,vari,attrib,value | '''callArgumentIndexed('«call.callee.name»',['«call.callee.name»','«call.name»'|«stack»], «vari», «attrib», «value»)'''];	
+			} else {
+				argPred = [stack,vari,attrib,value | '''callArgumentImpl(['«call.callee.name»','«call.name»'|«stack»], «vari», «attrib», «value»)'''];	
+			}
+			assignmentTrans.buildAssignments(call.parameterAssignments, caller, argPred, result);
 		}
+	}
+	
+	private def translateReturnValues(PrologProgram result, Operation op) {
+		result.addMinorHeading('''Return Values of «op.name»''')
+		var PredicateProvider rvPred;
+		if(config.argumentAndReturnValueIndexing) {
+			rvPred = [stack,vari,attrib,value | '''returnValueIndexed('«op.name»',«stack», «vari», «attrib», «value»)'''];
+		} else {
+			rvPred = [stack,vari,attrib,value | '''returnValueImpl(«stack», «vari», «attrib», «value»)'''];			
+		}
+		assignmentTrans.buildAssignments(op.returnValueAssignments ,op,rvPred,result);
 	}
 }

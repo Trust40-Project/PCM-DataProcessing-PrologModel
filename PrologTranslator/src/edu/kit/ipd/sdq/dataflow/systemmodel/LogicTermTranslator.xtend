@@ -10,6 +10,22 @@ class LogicTermTranslator {
 		this.config = config;
 	}
 	
+	def String getWildcard(Attribute attrib, String wildcardValue) {
+		if(attrib !== null) {
+			return "'" + attrib.name +"'";
+		} else {
+			return wildcardValue;
+		}
+	}
+	
+	def String getWildcard(Value value, String wildcardValue) {
+		if(value !== null) {
+			return "'" + value.name +"'";
+		} else {
+			return wildcardValue;
+		}
+	}
+	
 	def dispatch String translate(True term, String stackList, String attrib, String value) {
 		return "true";
 	}
@@ -41,16 +57,16 @@ class LogicTermTranslator {
 	}
 	
 	def dispatch String translate(PropertyRef term, String stackList, String attrib, String value) {
-		return '''operationProperty('«term.operation.name»','«term.property.name»','«term.value?.name ?: value»')''';
+		return '''operationProperty('«term.operation.name»','«term.property.name»',«getWildcard(term.value,value)»)''';
 	}
 	
 	def dispatch String translate(ParameterRef term, String stackList, String attrib, String value) {
-		return '''callArgumentImpl(«stackList»,'«term.parameter.name»','«term.attribute?.name ?: attrib»','«term.value?.name ?: value»')''';
+		return '''callArgumentImpl(«stackList»,'«term.parameter.name»',«getWildcard(term.attribute,attrib)»,«getWildcard(term.value,value)»)''';
 	}
 	
 	def dispatch String translate(ReturnValueRef term, String stackList, String attrib, String value) {
 		val callStack = '''['«term.call.callee.name»','«term.call.name»'|«stackList»]'''
-		return '''returnValueImpl(«callStack»,'«term.returnValue.name»','«term.attribute?.name ?: attrib»','«term.value?.name ?: value»')''';
+		return '''returnValueImpl(«callStack»,'«term.returnValue.name»',«getWildcard(term.attribute,attrib)»,«getWildcard(term.value,value)»)''';
 	}
 	
 }

@@ -1,15 +1,10 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
-
 class PrologProgram {
 	
 	var resultCode = new StringBuilder;
 	
 	val SEPARATOR_LINE = "----------------------------------------------------------------------------";
-	
-	val PREAMBLE_RESOURCE = "/preamble.pl";
 	
 	def getCode() {
 		return resultCode.toString()

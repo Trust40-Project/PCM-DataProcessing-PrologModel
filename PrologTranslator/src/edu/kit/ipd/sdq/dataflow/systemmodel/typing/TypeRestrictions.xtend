@@ -17,6 +17,18 @@ class TypeRestrictions {
 	@Accessors
 	boolean isStackReferenced = false;
 	
+	/**
+	 * Specifies, whether the value of the "Value-Wildcard" is used on the right side of the assignment.
+	 */
+	@Accessors
+	boolean valueWildCardReferenced = false;
+	
+	/**
+	 * Specifies, whether the value of the "Attribute-Wildcard" is used on the right side of the assignment.
+	 */
+	@Accessors
+	boolean attributeWildCardReferenced = false;
+	
 	@Accessors(PUBLIC_GETTER,NONE)
 	Set<AttributeRestriction> attributeRestrictions = new HashSet<AttributeRestriction>();
 	
@@ -36,6 +48,8 @@ class TypeRestrictions {
 	def duplicate() {
 		val copy = new TypeRestrictions();
 		copy.isStackReferenced = this.isStackReferenced;
+		copy.attributeWildCardReferenced = this.attributeWildCardReferenced;
+		copy.valueWildCardReferenced = this.valueWildCardReferenced;
 		copy.attributeRestrictions.addAll(this.attributeRestrictions);
 		return copy;
 	}
@@ -43,6 +57,8 @@ class TypeRestrictions {
 	def getMerged(TypeRestrictions other) {
 		val copy = new TypeRestrictions();
 		copy.isStackReferenced = this.isStackReferenced || other.isStackReferenced;
+		copy.attributeWildCardReferenced = this.attributeWildCardReferenced || other.attributeWildCardReferenced;
+		copy.valueWildCardReferenced = this.valueWildCardReferenced || other.valueWildCardReferenced;
 		copy.attributeRestrictions.addAll(this.attributeRestrictions);
 		copy.attributeRestrictions.addAll(other.attributeRestrictions);
 		return copy;

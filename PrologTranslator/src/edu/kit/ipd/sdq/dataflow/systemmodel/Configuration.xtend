@@ -6,4 +6,6 @@ import org.eclipse.xtend.lib.annotations.Data
 class Configuration {
 	
 	boolean optimizedNegations = true;
+	boolean shorterAssignments = true;
+	boolean argumentAndReturnValueIndexing = true;
 }

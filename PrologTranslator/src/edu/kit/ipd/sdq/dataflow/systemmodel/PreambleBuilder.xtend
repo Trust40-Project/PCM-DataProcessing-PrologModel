@@ -20,14 +20,25 @@ class PreambleBuilder {
 		discontigousPredicates.add("operationProperty/3");
 		discontigousPredicates.add("operationParameterType/3");
 		discontigousPredicates.add("operationReturnValueType/3");
-		discontigousPredicates.add("operationCall/3");
-		discontigousPredicates.add("callArgumentImpl/4");
-		discontigousPredicates.add("returnValueImpl/4");
+		discontigousPredicates.add("operationCall/3");		
 		discontigousPredicates.add("isSystemUsage/1");
 		
+		if(config.argumentAndReturnValueIndexing) {
+			discontigousPredicates.add("callArgumentIndexed/5");
+			discontigousPredicates.add("returnValueIndexed/5");			
+		} else {
+			discontigousPredicates.add("callArgumentImpl/4");
+			discontigousPredicates.add("returnValueImpl/4");
+		}
+		
 		if(config.optimizedNegations) {
-			discontigousPredicates.add("not_callArgumentImpl/4");
-			discontigousPredicates.add("not_returnValueImpl/4");		
+			if(config.argumentAndReturnValueIndexing) {
+				discontigousPredicates.add("not_callArgumentIndexed/5");
+				discontigousPredicates.add("not_returnValueIndexed/5");			
+			} else {
+				discontigousPredicates.add("not_callArgumentImpl/4");
+				discontigousPredicates.add("not_returnValueImpl/4");	
+			}	
 			discontigousPredicates.add("not_operationProperty/3");		
 		}		
 		
@@ -73,6 +84,19 @@ class PreambleBuilder {
 		
 	}
 	
+	def addIndexResolvingRules(PrologProgram result) {
+		result.addRule("callArgumentImpl([OP|S],VAR,A,VAL)",
+			"callArgumentIndexed(OP, [OP|S],VAR,A,VAL)");
+		result.addRule("returnValueImpl([OP|S],VAR,A,VAL)",
+			"returnValueIndexed(OP, [OP|S],VAR,A,VAL)");
+		if(config.optimizedNegations) {
+			result.addRule("not_callArgumentImpl([OP|S],VAR,A,VAL)",
+			"not_callArgumentIndexed(OP, [OP|S],VAR,A,VAL)");
+			result.addRule("not_returnValueImpl([OP|S],VAR,A,VAL)",
+			"not_returnValueIndexed(OP, [OP|S],VAR,A,VAL)");
+		}
+	}
+	
 	def addAPIShortcuts(PrologProgram result) {
 		result.addRule("isAttribute(ATTRIB)", "attributeType(ATTRIB,_)");
 		result.addRule("isProperty(ATTRIB)", "propertyType(ATTRIB,_)");
@@ -87,6 +111,9 @@ class PreambleBuilder {
 		addAPIRules(result);
 		if(config.optimizedNegations) {
 			addLogicalNegationRules(result);
+		}
+		if(config.argumentAndReturnValueIndexing) {
+			addIndexResolvingRules(result);
 		}
 	}
 	

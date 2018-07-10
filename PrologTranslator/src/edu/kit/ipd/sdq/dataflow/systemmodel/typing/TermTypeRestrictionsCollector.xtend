@@ -42,6 +42,7 @@ class TermTypeRestrictionsCollector {
 		if(term.value === null) {
 			val restrictions = new TypeRestrictions();
 			restrictions.addAttributeRestriction(new AttributeValueSetTypeRestriction(term.property.type));
+			restrictions.valueWildCardReferenced = true;
 			return restrictions;
 		} else {
 			return TypeRestrictions.NO_RESTRICTIONS;
@@ -65,6 +66,9 @@ class TermTypeRestrictionsCollector {
 	def private collectForVariableReference(Variable vari, Attribute attrib, Value value, TypeRestrictions restrictions) {
 		val isAttribWildcard = attrib === null;	
 		val isValueWildcard = value === null;	
+		
+		restrictions.attributeWildCardReferenced = isAttribWildcard;
+		restrictions.valueWildCardReferenced = isValueWildcard;
 		
 		if(isAttribWildcard) {
 			val res = new AttributeDataTypeRestriction(vari.datatype);
