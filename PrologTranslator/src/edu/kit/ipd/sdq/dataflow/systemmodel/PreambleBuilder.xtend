@@ -58,7 +58,7 @@ class PreambleBuilder {
 		);
 		
 		result.addRule("stackValid([SU])", "isSystemUsage(SU)");
-		result.addRule("stackValid([DEST,CALL,SOURCE | S])", "stackValid([SOURCE | S]), operationCall(SOURCE,DEST,CALL)");
+		result.addRule("stackValid([DEST,CALL,SOURCE | S])", "operationCall(SOURCE,DEST,CALL), stackValid([SOURCE | S])");
 		
 	}
 	
