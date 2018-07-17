@@ -17,6 +17,7 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.Property;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyDefinition;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef;
+import edu.kit.ipd.sdq.dataflow.systemmodel.StateRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemUsage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.True;
@@ -152,6 +153,8 @@ public class SystemModelValidator extends EObjectValidator {
 			return validateSystemUsage((SystemUsage) value, diagnostics, context);
 		case SystemModelPackage.RETURN_VALUE_REF:
 			return validateReturnValueRef((ReturnValueRef) value, diagnostics, context);
+		case SystemModelPackage.STATE_REF:
+			return validateStateRef((StateRef) value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -602,7 +605,106 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validateReturnValueRef(ReturnValueRef returnValueRef, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(returnValueRef, diagnostics, context);
+		if (!validate_NoCircularContainment(returnValueRef, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateReturnValueRef_returnValueIsContainedInTargetOperation(returnValueRef, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validateReturnValueRef_isAttributePartOfReturnValue(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateReturnValueRef_isValuePartOfAttribute(returnValueRef, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the returnValueIsContainedInTargetOperation constraint of '<em>Return Value Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String RETURN_VALUE_REF__RETURN_VALUE_IS_CONTAINED_IN_TARGET_OPERATION__EEXPRESSION = "call.callee.returnValues->includes(returnValue)";
+
+	/**
+	 * Validates the returnValueIsContainedInTargetOperation constraint of '<em>Return Value Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReturnValueRef_returnValueIsContainedInTargetOperation(ReturnValueRef returnValueRef,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.RETURN_VALUE_REF, returnValueRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "returnValueIsContainedInTargetOperation",
+				RETURN_VALUE_REF__RETURN_VALUE_IS_CONTAINED_IN_TARGET_OPERATION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isAttributePartOfReturnValue constraint of '<em>Return Value Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String RETURN_VALUE_REF__IS_ATTRIBUTE_PART_OF_RETURN_VALUE__EEXPRESSION = "(not attribute.oclIsUndefined()) implies returnValue.datatype.attributes->includes(attribute)";
+
+	/**
+	 * Validates the isAttributePartOfReturnValue constraint of '<em>Return Value Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReturnValueRef_isAttributePartOfReturnValue(ReturnValueRef returnValueRef,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.RETURN_VALUE_REF, returnValueRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isAttributePartOfReturnValue",
+				RETURN_VALUE_REF__IS_ATTRIBUTE_PART_OF_RETURN_VALUE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
+	}
+
+	/**
+	 * The cached validation expression for the isValuePartOfAttribute constraint of '<em>Return Value Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String RETURN_VALUE_REF__IS_VALUE_PART_OF_ATTRIBUTE__EEXPRESSION = "(not attribute.oclIsUndefined() and not value.oclIsUndefined())\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\timplies attribute.type.values->includes(value)";
+
+	/**
+	 * Validates the isValuePartOfAttribute constraint of '<em>Return Value Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReturnValueRef_isValuePartOfAttribute(ReturnValueRef returnValueRef,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.RETURN_VALUE_REF, returnValueRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isValuePartOfAttribute",
+				RETURN_VALUE_REF__IS_VALUE_PART_OF_ATTRIBUTE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateRef(StateRef stateRef, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(stateRef, diagnostics, context);
 	}
 
 	/**

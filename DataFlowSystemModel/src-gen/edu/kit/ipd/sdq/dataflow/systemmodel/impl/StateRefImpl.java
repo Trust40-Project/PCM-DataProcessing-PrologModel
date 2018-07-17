@@ -3,7 +3,7 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel.impl;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute;
-import edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef;
+import edu.kit.ipd.sdq.dataflow.systemmodel.StateRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
@@ -21,29 +21,29 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Parameter Ref</b></em>'.
+ * An implementation of the model object '<em><b>State Ref</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ParameterRefImpl#getParameter <em>Parameter</em>}</li>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ParameterRefImpl#getAttribute <em>Attribute</em>}</li>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ParameterRefImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl#getStateVariable <em>State Variable</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
+public class StateRefImpl extends LogicTermImpl implements StateRef {
 	/**
-	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
+	 * The cached value of the '{@link #getStateVariable() <em>State Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameter()
+	 * @see #getStateVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable parameter;
+	protected Variable stateVariable;
 
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
@@ -70,7 +70,7 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ParameterRefImpl() {
+	protected StateRefImpl() {
 		super();
 	}
 
@@ -81,7 +81,7 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SystemModelPackage.Literals.PARAMETER_REF;
+		return SystemModelPackage.Literals.STATE_REF;
 	}
 
 	/**
@@ -89,17 +89,17 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable getParameter() {
-		if (parameter != null && parameter.eIsProxy()) {
-			InternalEObject oldParameter = (InternalEObject) parameter;
-			parameter = (Variable) eResolveProxy(oldParameter);
-			if (parameter != oldParameter) {
+	public Variable getStateVariable() {
+		if (stateVariable != null && stateVariable.eIsProxy()) {
+			InternalEObject oldStateVariable = (InternalEObject) stateVariable;
+			stateVariable = (Variable) eResolveProxy(oldStateVariable);
+			if (stateVariable != oldStateVariable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							SystemModelPackage.PARAMETER_REF__PARAMETER, oldParameter, parameter));
+							SystemModelPackage.STATE_REF__STATE_VARIABLE, oldStateVariable, stateVariable));
 			}
 		}
-		return parameter;
+		return stateVariable;
 	}
 
 	/**
@@ -107,8 +107,8 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable basicGetParameter() {
-		return parameter;
+	public Variable basicGetStateVariable() {
+		return stateVariable;
 	}
 
 	/**
@@ -116,12 +116,12 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParameter(Variable newParameter) {
-		Variable oldParameter = parameter;
-		parameter = newParameter;
+	public void setStateVariable(Variable newStateVariable) {
+		Variable oldStateVariable = stateVariable;
+		stateVariable = newStateVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.PARAMETER_REF__PARAMETER,
-					oldParameter, parameter));
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.STATE_REF__STATE_VARIABLE,
+					oldStateVariable, stateVariable));
 	}
 
 	/**
@@ -135,8 +135,8 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 			attribute = (Attribute) eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							SystemModelPackage.PARAMETER_REF__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SystemModelPackage.STATE_REF__ATTRIBUTE,
+							oldAttribute, attribute));
 			}
 		}
 		return attribute;
@@ -160,8 +160,8 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 		Attribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.PARAMETER_REF__ATTRIBUTE,
-					oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.STATE_REF__ATTRIBUTE, oldAttribute,
+					attribute));
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 			value = (Value) eResolveProxy(oldValue);
 			if (value != oldValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SystemModelPackage.PARAMETER_REF__VALUE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SystemModelPackage.STATE_REF__VALUE,
 							oldValue, value));
 			}
 		}
@@ -200,19 +200,19 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 		Value oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.PARAMETER_REF__VALUE, oldValue,
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemModelPackage.STATE_REF__VALUE, oldValue,
 					value));
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #getPossibleParameters() <em>Get Possible Parameters</em>}' operation.
+	 * The cached invocation delegate for the '{@link #getPossibleVariables() <em>Get Possible Variables</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPossibleParameters()
+	 * @see #getPossibleVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_PARAMETERS__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.PARAMETER_REF___GET_POSSIBLE_PARAMETERS)
+	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_VARIABLES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.STATE_REF___GET_POSSIBLE_VARIABLES)
 			.getInvocationDelegate();
 
 	/**
@@ -221,9 +221,9 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Variable> getPossibleParameters() {
+	public EList<Variable> getPossibleVariables() {
 		try {
-			return (EList<Variable>) GET_POSSIBLE_PARAMETERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<Variable>) GET_POSSIBLE_VARIABLES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		} catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
@@ -237,7 +237,7 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_ATTRIBUTES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.PARAMETER_REF___GET_POSSIBLE_ATTRIBUTES)
+	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_ATTRIBUTES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.STATE_REF___GET_POSSIBLE_ATTRIBUTES)
 			.getInvocationDelegate();
 
 	/**
@@ -262,7 +262,7 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.PARAMETER_REF___GET_POSSIBLE_VALUES)
+	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.STATE_REF___GET_POSSIBLE_VALUES)
 			.getInvocationDelegate();
 
 	/**
@@ -287,15 +287,15 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SystemModelPackage.PARAMETER_REF__PARAMETER:
+		case SystemModelPackage.STATE_REF__STATE_VARIABLE:
 			if (resolve)
-				return getParameter();
-			return basicGetParameter();
-		case SystemModelPackage.PARAMETER_REF__ATTRIBUTE:
+				return getStateVariable();
+			return basicGetStateVariable();
+		case SystemModelPackage.STATE_REF__ATTRIBUTE:
 			if (resolve)
 				return getAttribute();
 			return basicGetAttribute();
-		case SystemModelPackage.PARAMETER_REF__VALUE:
+		case SystemModelPackage.STATE_REF__VALUE:
 			if (resolve)
 				return getValue();
 			return basicGetValue();
@@ -311,13 +311,13 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SystemModelPackage.PARAMETER_REF__PARAMETER:
-			setParameter((Variable) newValue);
+		case SystemModelPackage.STATE_REF__STATE_VARIABLE:
+			setStateVariable((Variable) newValue);
 			return;
-		case SystemModelPackage.PARAMETER_REF__ATTRIBUTE:
+		case SystemModelPackage.STATE_REF__ATTRIBUTE:
 			setAttribute((Attribute) newValue);
 			return;
-		case SystemModelPackage.PARAMETER_REF__VALUE:
+		case SystemModelPackage.STATE_REF__VALUE:
 			setValue((Value) newValue);
 			return;
 		}
@@ -332,13 +332,13 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SystemModelPackage.PARAMETER_REF__PARAMETER:
-			setParameter((Variable) null);
+		case SystemModelPackage.STATE_REF__STATE_VARIABLE:
+			setStateVariable((Variable) null);
 			return;
-		case SystemModelPackage.PARAMETER_REF__ATTRIBUTE:
+		case SystemModelPackage.STATE_REF__ATTRIBUTE:
 			setAttribute((Attribute) null);
 			return;
-		case SystemModelPackage.PARAMETER_REF__VALUE:
+		case SystemModelPackage.STATE_REF__VALUE:
 			setValue((Value) null);
 			return;
 		}
@@ -353,11 +353,11 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SystemModelPackage.PARAMETER_REF__PARAMETER:
-			return parameter != null;
-		case SystemModelPackage.PARAMETER_REF__ATTRIBUTE:
+		case SystemModelPackage.STATE_REF__STATE_VARIABLE:
+			return stateVariable != null;
+		case SystemModelPackage.STATE_REF__ATTRIBUTE:
 			return attribute != null;
-		case SystemModelPackage.PARAMETER_REF__VALUE:
+		case SystemModelPackage.STATE_REF__VALUE:
 			return value != null;
 		}
 		return super.eIsSet(featureID);
@@ -371,14 +371,14 @@ public class ParameterRefImpl extends LogicTermImpl implements ParameterRef {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case SystemModelPackage.PARAMETER_REF___GET_POSSIBLE_PARAMETERS:
-			return getPossibleParameters();
-		case SystemModelPackage.PARAMETER_REF___GET_POSSIBLE_ATTRIBUTES:
+		case SystemModelPackage.STATE_REF___GET_POSSIBLE_VARIABLES:
+			return getPossibleVariables();
+		case SystemModelPackage.STATE_REF___GET_POSSIBLE_ATTRIBUTES:
 			return getPossibleAttributes();
-		case SystemModelPackage.PARAMETER_REF___GET_POSSIBLE_VALUES:
+		case SystemModelPackage.STATE_REF___GET_POSSIBLE_VALUES:
 			return getPossibleValues();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ParameterRefImpl
+} //StateRefImpl

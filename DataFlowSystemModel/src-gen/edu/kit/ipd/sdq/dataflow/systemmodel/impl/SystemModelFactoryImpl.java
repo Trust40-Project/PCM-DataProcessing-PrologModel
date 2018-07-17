@@ -15,6 +15,7 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.Property;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyDefinition;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef;
+import edu.kit.ipd.sdq.dataflow.systemmodel.StateRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelFactory;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemUsage;
@@ -116,6 +117,8 @@ public class SystemModelFactoryImpl extends EFactoryImpl implements SystemModelF
 			return createSystemUsage();
 		case SystemModelPackage.RETURN_VALUE_REF:
 			return createReturnValueRef();
+		case SystemModelPackage.STATE_REF:
+			return createStateRef();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -319,6 +322,16 @@ public class SystemModelFactoryImpl extends EFactoryImpl implements SystemModelF
 	public ReturnValueRef createReturnValueRef() {
 		ReturnValueRefImpl returnValueRef = new ReturnValueRefImpl();
 		return returnValueRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateRef createStateRef() {
+		StateRefImpl stateRef = new StateRefImpl();
+		return stateRef;
 	}
 
 	/**

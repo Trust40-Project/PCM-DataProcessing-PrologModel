@@ -17,6 +17,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getReturnValues <em>Return Values</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getPropertyDefinitions <em>Property Definitions</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getReturnValueAssignments <em>Return Value Assignments</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getStateVariables <em>State Variables</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getDefaultStateDefinitions <em>Default State Definitions</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getPostExecutionStateDefinitions <em>Post Execution State Definitions</em>}</li>
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperation()
@@ -88,5 +91,53 @@ public interface Operation extends Caller {
 	 * @generated
 	 */
 	EList<VariableAssignment> getReturnValueAssignments();
+
+	/**
+	 * Returns the value of the '<em><b>State Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.kit.ipd.sdq.dataflow.systemmodel.Variable}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>State Variables</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State Variables</em>' containment reference list.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperation_StateVariables()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Variable> getStateVariables();
+
+	/**
+	 * Returns the value of the '<em><b>Default State Definitions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default State Definitions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default State Definitions</em>' containment reference list.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperation_DefaultStateDefinitions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<VariableAssignment> getDefaultStateDefinitions();
+
+	/**
+	 * Returns the value of the '<em><b>Post Execution State Definitions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Post Execution State Definitions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Post Execution State Definitions</em>' containment reference list.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperation_PostExecutionStateDefinitions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<VariableAssignment> getPostExecutionStateDefinitions();
 
 } // Operation

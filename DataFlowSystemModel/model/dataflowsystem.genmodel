@@ -32,6 +32,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/returnValues"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/propertyDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/returnValueAssignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/stateVariables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/defaultStateDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Operation/postExecutionStateDefinitions"/>
     </genClasses>
     <genClasses ecoreClass="dataflowsystem.ecore#//Variable">
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//Variable/datatype"/>
@@ -54,6 +57,7 @@
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//OperationCall/parameterAssignments"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//OperationCall/caller"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//OperationCall/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//OperationCall/preCallStateDefinitions"/>
     </genClasses>
     <genClasses ecoreClass="dataflowsystem.ecore#//VariableAssignment">
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/variable"/>
@@ -99,6 +103,14 @@
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ReturnValueRef/attribute"/>
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ReturnValueRef/value"/>
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//ReturnValueRef/call"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflowsystem.ecore#//StateRef">
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//StateRef/stateVariable"/>
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//StateRef/attribute"/>
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//StateRef/value"/>
+      <genOperations ecoreOperation="dataflowsystem.ecore#//StateRef/getPossibleVariables"/>
+      <genOperations ecoreOperation="dataflowsystem.ecore#//StateRef/getPossibleAttributes"/>
+      <genOperations ecoreOperation="dataflowsystem.ecore#//StateRef/getPossibleValues"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

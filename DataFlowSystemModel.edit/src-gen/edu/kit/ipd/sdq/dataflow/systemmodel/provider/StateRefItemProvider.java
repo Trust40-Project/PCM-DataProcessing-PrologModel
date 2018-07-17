@@ -2,14 +2,17 @@
  */
 package edu.kit.ipd.sdq.dataflow.systemmodel.provider;
 
+import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Operation;
-import edu.kit.ipd.sdq.dataflow.systemmodel.Property;
-import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef;
+import edu.kit.ipd.sdq.dataflow.systemmodel.StateRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
+import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -19,19 +22,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef} object.
+ * This is the item provider adapter for a {@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyRefItemProvider extends LogicTermItemProvider {
+public class StateRefItemProvider extends LogicTermItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyRefItemProvider(AdapterFactory adapterFactory) {
+	public StateRefItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,26 +49,51 @@ public class PropertyRefItemProvider extends LogicTermItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOperationPropertyDescriptor(object);
+			addStateVariablePropertyDescriptor(object);
+			addAttributePropertyDescriptor(object);
 			addValuePropertyDescriptor(object);
-			addPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Operation feature.
+	 * This adds a property descriptor for the State Variable feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected void addOperationPropertyDescriptor(Object object) {
+	protected void addStateVariablePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PropertyRef_operation_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyRef_operation_feature",
-								"_UI_PropertyRef_type"),
-						SystemModelPackage.Literals.PROPERTY_REF__OPERATION, true, false, true, null, null, null));
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_StateRef_stateVariable_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_StateRef_stateVariable_feature",
+								"_UI_StateRef_type"),
+						SystemModelPackage.Literals.STATE_REF__STATE_VARIABLE, true, false, true, null, null, null) {
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+						return ((StateRef) object).getPossibleVariables();
+					}
+				});
+	}
+
+	/**
+	 * This adds a property descriptor for the Attribute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected void addAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_StateRef_attribute_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_StateRef_attribute_feature",
+								"_UI_StateRef_type"),
+						SystemModelPackage.Literals.STATE_REF__ATTRIBUTE, true, false, true, null, null, null) {
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+						return ((StateRef) object).getPossibleAttributes();
+					}
+				});
 	}
 
 	/**
@@ -77,51 +105,26 @@ public class PropertyRefItemProvider extends LogicTermItemProvider {
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PropertyRef_value_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyRef_value_feature",
-								"_UI_PropertyRef_type"),
-						SystemModelPackage.Literals.PROPERTY_REF__VALUE, true, false, true, null, null, null) {
-
+						getResourceLocator(), getString("_UI_StateRef_value_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_StateRef_value_feature",
+								"_UI_StateRef_type"),
+						SystemModelPackage.Literals.STATE_REF__VALUE, true, false, true, null, null, null) {
 					@Override
-					public Collection<?> getChoiceOfValues(Object thisObject) {
-						//the values are dependent on the selected property
-						return ((PropertyRef) thisObject).getPossibleValues();
+					public Collection<?> getChoiceOfValues(Object object) {
+						return ((StateRef) object).getPossibleValues();
 					}
-
 				});
 	}
 
 	/**
-	 * This adds a property descriptor for the Property feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	protected void addPropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PropertyRef_property_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyRef_property_feature",
-								"_UI_PropertyRef_type"),
-						SystemModelPackage.Literals.PROPERTY_REF__PROPERTY, true, false, true, null, null, null) {
-
-					@Override
-					public Collection<?> getChoiceOfValues(Object thisObject) {
-						return ((PropertyRef) thisObject).getPossibleProperties();
-					}
-
-				});
-	}
-
-	/**
-	 * This returns PropertyRef.gif.
+	 * This returns StateRef.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyRef"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StateRef"));
 	}
 
 	/**
@@ -142,12 +145,15 @@ public class PropertyRefItemProvider extends LogicTermItemProvider {
 	 */
 	@Override
 	public String getText(Object thisObject) {
-		Optional<PropertyRef> thiz = Util.tryCast(PropertyRef.class, thisObject);
+		Optional<StateRef> thiz = Util.tryCast(StateRef.class, thisObject);
 		StringBuilder result = new StringBuilder();
-		result.append("Property: ");
-		result.append(thiz.map(PropertyRef::getOperation).map(Operation::getName).orElse("")).append('.');
-		result.append(thiz.map(PropertyRef::getProperty).map(Property::getName).orElse("")).append('.');
-		result.append(thiz.map(PropertyRef::getValue).map(Value::getName).orElse("[V]"));
+		result.append("State: ");
+		Optional<Variable> var = thiz.map(StateRef::getStateVariable);
+		result.append(var.map(Variable::eContainer).flatMap(obj -> Util.tryCast(Operation.class, obj))
+				.map(Operation::getName).orElse("")).append('.');
+		result.append(var.map(Variable::getName).orElse("")).append(".");
+		result.append(thiz.map(StateRef::getAttribute).map(Attribute::getName).orElse("[A]")).append('.');
+		result.append(thiz.map(StateRef::getValue).map(Value::getName).orElse("[V]"));
 		return result.toString();
 	}
 
@@ -162,10 +168,10 @@ public class PropertyRefItemProvider extends LogicTermItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PropertyRef.class)) {
-		case SystemModelPackage.PROPERTY_REF__OPERATION:
-		case SystemModelPackage.PROPERTY_REF__VALUE:
-		case SystemModelPackage.PROPERTY_REF__PROPERTY:
+		switch (notification.getFeatureID(StateRef.class)) {
+		case SystemModelPackage.STATE_REF__STATE_VARIABLE:
+		case SystemModelPackage.STATE_REF__ATTRIBUTE:
+		case SystemModelPackage.STATE_REF__VALUE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

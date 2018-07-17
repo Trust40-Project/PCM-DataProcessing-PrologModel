@@ -9,10 +9,14 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
 import edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -265,6 +269,81 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #getPossibleVariables() <em>Get Possible Variables</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPossibleVariables()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_VARIABLES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.VARIABLE_ASSIGNMENT___GET_POSSIBLE_VARIABLES)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Variable> getPossibleVariables() {
+		try {
+			return (EList<Variable>) GET_POSSIBLE_VARIABLES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #getPossibleAttributes() <em>Get Possible Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPossibleAttributes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_ATTRIBUTES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.VARIABLE_ASSIGNMENT___GET_POSSIBLE_ATTRIBUTES)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Attribute> getPossibleAttributes() {
+		try {
+			return (EList<Attribute>) GET_POSSIBLE_ATTRIBUTES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPossibleValues()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Value> getPossibleValues() {
+		try {
+			return (EList<Value>) GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -370,6 +449,24 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 			return term != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+		case SystemModelPackage.VARIABLE_ASSIGNMENT___GET_POSSIBLE_VARIABLES:
+			return getPossibleVariables();
+		case SystemModelPackage.VARIABLE_ASSIGNMENT___GET_POSSIBLE_ATTRIBUTES:
+			return getPossibleAttributes();
+		case SystemModelPackage.VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES:
+			return getPossibleValues();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //VariableAssignmentImpl

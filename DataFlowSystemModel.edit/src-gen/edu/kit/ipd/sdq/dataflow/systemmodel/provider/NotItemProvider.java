@@ -164,6 +164,9 @@ public class NotItemProvider extends LogicTermItemProvider {
 
 		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.NOT__OPERAND,
 				SystemModelFactory.eINSTANCE.createReturnValueRef()));
+
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.NOT__OPERAND,
+				SystemModelFactory.eINSTANCE.createStateRef()));
 	}
 
 }

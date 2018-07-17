@@ -533,6 +533,29 @@ public class SystemModelItemProviderAdapterFactory extends SystemModelAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateRefItemProvider stateRefItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateRefAdapter() {
+		if (stateRefItemProvider == null) {
+			stateRefItemProvider = new StateRefItemProvider(this);
+		}
+
+		return stateRefItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -671,6 +694,8 @@ public class SystemModelItemProviderAdapterFactory extends SystemModelAdapterFac
 			systemUsageItemProvider.dispose();
 		if (returnValueRefItemProvider != null)
 			returnValueRefItemProvider.dispose();
+		if (stateRefItemProvider != null)
+			stateRefItemProvider.dispose();
 	}
 
 }

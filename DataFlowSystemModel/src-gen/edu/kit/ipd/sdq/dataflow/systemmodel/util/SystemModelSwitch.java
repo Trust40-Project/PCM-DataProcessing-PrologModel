@@ -17,6 +17,7 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.Property;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyDefinition;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef;
+import edu.kit.ipd.sdq.dataflow.systemmodel.StateRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemUsage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.True;
@@ -257,6 +258,15 @@ public class SystemModelSwitch<T> extends Switch<T> {
 			T result = caseReturnValueRef(returnValueRef);
 			if (result == null)
 				result = caseLogicTerm(returnValueRef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case SystemModelPackage.STATE_REF: {
+			StateRef stateRef = (StateRef) theEObject;
+			T result = caseStateRef(stateRef);
+			if (result == null)
+				result = caseLogicTerm(stateRef);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -593,6 +603,21 @@ public class SystemModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReturnValueRef(ReturnValueRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateRef(StateRef object) {
 		return null;
 	}
 

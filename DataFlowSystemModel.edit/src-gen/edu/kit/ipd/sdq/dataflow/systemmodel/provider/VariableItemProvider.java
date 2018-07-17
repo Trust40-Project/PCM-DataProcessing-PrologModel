@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.DataType;
+import edu.kit.ipd.sdq.dataflow.systemmodel.Operation;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
 
@@ -124,6 +125,8 @@ public class VariableItemProvider extends ItemProviderAdapter implements IEditin
 
 		Optional<Variable> var = Util.tryCast(Variable.class, object);
 		Optional<EStructuralFeature> containingFeature = var.map(Variable::eContainingFeature);
+		Optional<Operation> containingOperation = var.map(Variable::eContainer)
+				.flatMap(obj -> Util.tryCast(Operation.class, obj));
 
 		Optional<String> typeName = var.map(Variable::getDatatype).map(DataType::getName);
 		String typeSuffix = "";
@@ -137,6 +140,11 @@ public class VariableItemProvider extends ItemProviderAdapter implements IEditin
 		} else if (containingFeature.isPresent()
 				&& containingFeature.get() == SystemModelPackage.eINSTANCE.getOperation_Parameters()) {
 			return "Parameter " + label + typeSuffix;
+
+		} else if (containingFeature.isPresent()
+				&& containingFeature.get() == SystemModelPackage.eINSTANCE.getOperation_StateVariables()) {
+			String opName = containingOperation.map(Operation::getName).orElse("");
+			return "State " + opName + "." + label + typeSuffix;
 
 		} else {
 			return label == null || label.length() == 0 ? getString("_UI_Variable_type")

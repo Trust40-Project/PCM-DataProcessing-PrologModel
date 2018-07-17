@@ -30,6 +30,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationImpl#getReturnValues <em>Return Values</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationImpl#getPropertyDefinitions <em>Property Definitions</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationImpl#getReturnValueAssignments <em>Return Value Assignments</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationImpl#getStateVariables <em>State Variables</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationImpl#getDefaultStateDefinitions <em>Default State Definitions</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationImpl#getPostExecutionStateDefinitions <em>Post Execution State Definitions</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,6 +77,36 @@ public class OperationImpl extends CallerImpl implements Operation {
 	 * @ordered
 	 */
 	protected EList<VariableAssignment> returnValueAssignments;
+
+	/**
+	 * The cached value of the '{@link #getStateVariables() <em>State Variables</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStateVariables()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Variable> stateVariables;
+
+	/**
+	 * The cached value of the '{@link #getDefaultStateDefinitions() <em>Default State Definitions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultStateDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<VariableAssignment> defaultStateDefinitions;
+
+	/**
+	 * The cached value of the '{@link #getPostExecutionStateDefinitions() <em>Post Execution State Definitions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPostExecutionStateDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<VariableAssignment> postExecutionStateDefinitions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,6 +184,45 @@ public class OperationImpl extends CallerImpl implements Operation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Variable> getStateVariables() {
+		if (stateVariables == null) {
+			stateVariables = new EObjectContainmentEList<Variable>(Variable.class, this,
+					SystemModelPackage.OPERATION__STATE_VARIABLES);
+		}
+		return stateVariables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<VariableAssignment> getDefaultStateDefinitions() {
+		if (defaultStateDefinitions == null) {
+			defaultStateDefinitions = new EObjectContainmentEList<VariableAssignment>(VariableAssignment.class, this,
+					SystemModelPackage.OPERATION__DEFAULT_STATE_DEFINITIONS);
+		}
+		return defaultStateDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<VariableAssignment> getPostExecutionStateDefinitions() {
+		if (postExecutionStateDefinitions == null) {
+			postExecutionStateDefinitions = new EObjectContainmentEList<VariableAssignment>(VariableAssignment.class,
+					this, SystemModelPackage.OPERATION__POST_EXECUTION_STATE_DEFINITIONS);
+		}
+		return postExecutionStateDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -162,6 +234,12 @@ public class OperationImpl extends CallerImpl implements Operation {
 			return ((InternalEList<?>) getPropertyDefinitions()).basicRemove(otherEnd, msgs);
 		case SystemModelPackage.OPERATION__RETURN_VALUE_ASSIGNMENTS:
 			return ((InternalEList<?>) getReturnValueAssignments()).basicRemove(otherEnd, msgs);
+		case SystemModelPackage.OPERATION__STATE_VARIABLES:
+			return ((InternalEList<?>) getStateVariables()).basicRemove(otherEnd, msgs);
+		case SystemModelPackage.OPERATION__DEFAULT_STATE_DEFINITIONS:
+			return ((InternalEList<?>) getDefaultStateDefinitions()).basicRemove(otherEnd, msgs);
+		case SystemModelPackage.OPERATION__POST_EXECUTION_STATE_DEFINITIONS:
+			return ((InternalEList<?>) getPostExecutionStateDefinitions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -182,6 +260,12 @@ public class OperationImpl extends CallerImpl implements Operation {
 			return getPropertyDefinitions();
 		case SystemModelPackage.OPERATION__RETURN_VALUE_ASSIGNMENTS:
 			return getReturnValueAssignments();
+		case SystemModelPackage.OPERATION__STATE_VARIABLES:
+			return getStateVariables();
+		case SystemModelPackage.OPERATION__DEFAULT_STATE_DEFINITIONS:
+			return getDefaultStateDefinitions();
+		case SystemModelPackage.OPERATION__POST_EXECUTION_STATE_DEFINITIONS:
+			return getPostExecutionStateDefinitions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,6 +295,18 @@ public class OperationImpl extends CallerImpl implements Operation {
 			getReturnValueAssignments().clear();
 			getReturnValueAssignments().addAll((Collection<? extends VariableAssignment>) newValue);
 			return;
+		case SystemModelPackage.OPERATION__STATE_VARIABLES:
+			getStateVariables().clear();
+			getStateVariables().addAll((Collection<? extends Variable>) newValue);
+			return;
+		case SystemModelPackage.OPERATION__DEFAULT_STATE_DEFINITIONS:
+			getDefaultStateDefinitions().clear();
+			getDefaultStateDefinitions().addAll((Collection<? extends VariableAssignment>) newValue);
+			return;
+		case SystemModelPackage.OPERATION__POST_EXECUTION_STATE_DEFINITIONS:
+			getPostExecutionStateDefinitions().clear();
+			getPostExecutionStateDefinitions().addAll((Collection<? extends VariableAssignment>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -235,6 +331,15 @@ public class OperationImpl extends CallerImpl implements Operation {
 		case SystemModelPackage.OPERATION__RETURN_VALUE_ASSIGNMENTS:
 			getReturnValueAssignments().clear();
 			return;
+		case SystemModelPackage.OPERATION__STATE_VARIABLES:
+			getStateVariables().clear();
+			return;
+		case SystemModelPackage.OPERATION__DEFAULT_STATE_DEFINITIONS:
+			getDefaultStateDefinitions().clear();
+			return;
+		case SystemModelPackage.OPERATION__POST_EXECUTION_STATE_DEFINITIONS:
+			getPostExecutionStateDefinitions().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -255,6 +360,12 @@ public class OperationImpl extends CallerImpl implements Operation {
 			return propertyDefinitions != null && !propertyDefinitions.isEmpty();
 		case SystemModelPackage.OPERATION__RETURN_VALUE_ASSIGNMENTS:
 			return returnValueAssignments != null && !returnValueAssignments.isEmpty();
+		case SystemModelPackage.OPERATION__STATE_VARIABLES:
+			return stateVariables != null && !stateVariables.isEmpty();
+		case SystemModelPackage.OPERATION__DEFAULT_STATE_DEFINITIONS:
+			return defaultStateDefinitions != null && !defaultStateDefinitions.isEmpty();
+		case SystemModelPackage.OPERATION__POST_EXECUTION_STATE_DEFINITIONS:
+			return postExecutionStateDefinitions != null && !postExecutionStateDefinitions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

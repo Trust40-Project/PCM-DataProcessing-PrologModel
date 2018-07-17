@@ -4,6 +4,7 @@ package edu.kit.ipd.sdq.dataflow.systemmodel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -351,13 +352,40 @@ public interface SystemModelPackage extends EPackage {
 	int OPERATION__RETURN_VALUE_ASSIGNMENTS = CALLER_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>State Variables</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__STATE_VARIABLES = CALLER_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Default State Definitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__DEFAULT_STATE_DEFINITIONS = CALLER_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Post Execution State Definitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__POST_EXECUTION_STATE_DEFINITIONS = CALLER_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = CALLER_FEATURE_COUNT + 4;
+	int OPERATION_FEATURE_COUNT = CALLER_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Operation</em>' class.
@@ -544,13 +572,22 @@ public interface SystemModelPackage extends EPackage {
 	int PROPERTY_DEFINITION_FEATURE_COUNT = 2;
 
 	/**
+	 * The operation id for the '<em>Get Possible Values</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_DEFINITION___GET_POSSIBLE_VALUES = 0;
+
+	/**
 	 * The number of operations of the '<em>Property Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_DEFINITION_OPERATION_COUNT = 0;
+	int PROPERTY_DEFINITION_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationCallImpl <em>Operation Call</em>}' class.
@@ -599,13 +636,22 @@ public interface SystemModelPackage extends EPackage {
 	int OPERATION_CALL__NAME = 3;
 
 	/**
+	 * The feature id for the '<em><b>Pre Call State Definitions</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Operation Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_FEATURE_COUNT = 4;
+	int OPERATION_CALL_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Operation Call</em>' class.
@@ -672,13 +718,40 @@ public interface SystemModelPackage extends EPackage {
 	int VARIABLE_ASSIGNMENT_FEATURE_COUNT = 4;
 
 	/**
+	 * The operation id for the '<em>Get Possible Variables</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_ASSIGNMENT___GET_POSSIBLE_VARIABLES = 0;
+
+	/**
+	 * The operation id for the '<em>Get Possible Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_ASSIGNMENT___GET_POSSIBLE_ATTRIBUTES = 1;
+
+	/**
+	 * The operation id for the '<em>Get Possible Values</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES = 2;
+
+	/**
 	 * The number of operations of the '<em>Variable Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_ASSIGNMENT_OPERATION_COUNT = 0;
+	int VARIABLE_ASSIGNMENT_OPERATION_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ValueSetTypeImpl <em>Value Set Type</em>}' class.
@@ -1031,13 +1104,40 @@ public interface SystemModelPackage extends EPackage {
 	int PARAMETER_REF_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Get Possible Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_REF___GET_POSSIBLE_PARAMETERS = LOGIC_TERM_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Possible Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_REF___GET_POSSIBLE_ATTRIBUTES = LOGIC_TERM_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Possible Values</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Parameter Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 0;
+	int PARAMETER_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.PropertyRefImpl <em>Property Ref</em>}' class.
@@ -1095,13 +1195,31 @@ public interface SystemModelPackage extends EPackage {
 	int PROPERTY_REF_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Get Possible Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REF___GET_POSSIBLE_PROPERTIES = LOGIC_TERM_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Possible Values</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Property Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 0;
+	int PROPERTY_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.SystemUsageImpl <em>System Usage</em>}' class.
@@ -1214,13 +1332,140 @@ public interface SystemModelPackage extends EPackage {
 	int RETURN_VALUE_REF_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Get Possible Calls</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_VALUE_REF___GET_POSSIBLE_CALLS = LOGIC_TERM_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Possible Return Values</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_VALUE_REF___GET_POSSIBLE_RETURN_VALUES = LOGIC_TERM_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Possible Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_VALUE_REF___GET_POSSIBLE_ATTRIBUTES = LOGIC_TERM_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Possible Values</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_VALUE_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Return Value Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RETURN_VALUE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 0;
+	int RETURN_VALUE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl <em>State Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.impl.SystemModelPackageImpl#getStateRef()
+	 * @generated
+	 */
+	int STATE_REF = 22;
+
+	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>State Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF__STATE_VARIABLE = LOGIC_TERM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF__ATTRIBUTE = LOGIC_TERM_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF__VALUE = LOGIC_TERM_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>State Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get Possible Variables</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF___GET_POSSIBLE_VARIABLES = LOGIC_TERM_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Possible Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF___GET_POSSIBLE_ATTRIBUTES = LOGIC_TERM_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Possible Values</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>State Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 3;
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.System <em>System</em>}'.
@@ -1428,6 +1673,39 @@ public interface SystemModelPackage extends EPackage {
 	EReference getOperation_ReturnValueAssignments();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getStateVariables <em>State Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>State Variables</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getStateVariables()
+	 * @see #getOperation()
+	 * @generated
+	 */
+	EReference getOperation_StateVariables();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getDefaultStateDefinitions <em>Default State Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Default State Definitions</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getDefaultStateDefinitions()
+	 * @see #getOperation()
+	 * @generated
+	 */
+	EReference getOperation_DefaultStateDefinitions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getPostExecutionStateDefinitions <em>Post Execution State Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Post Execution State Definitions</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.Operation#getPostExecutionStateDefinitions()
+	 * @see #getOperation()
+	 * @generated
+	 */
+	EReference getOperation_PostExecutionStateDefinitions();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Variable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1556,6 +1834,16 @@ public interface SystemModelPackage extends EPackage {
 	EReference getPropertyDefinition_PresentValues();
 
 	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyDefinition#getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Values</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.PropertyDefinition#getPossibleValues()
+	 * @generated
+	 */
+	EOperation getPropertyDefinition__GetPossibleValues();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall <em>Operation Call</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1610,6 +1898,17 @@ public interface SystemModelPackage extends EPackage {
 	EAttribute getOperationCall_Name();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getPreCallStateDefinitions <em>Pre Call State Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Pre Call State Definitions</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getPreCallStateDefinitions()
+	 * @see #getOperationCall()
+	 * @generated
+	 */
+	EReference getOperationCall_PreCallStateDefinitions();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment <em>Variable Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1662,6 +1961,36 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVariableAssignment_Term();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getPossibleVariables() <em>Get Possible Variables</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Variables</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getPossibleVariables()
+	 * @generated
+	 */
+	EOperation getVariableAssignment__GetPossibleVariables();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getPossibleAttributes() <em>Get Possible Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Attributes</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getPossibleAttributes()
+	 * @generated
+	 */
+	EOperation getVariableAssignment__GetPossibleAttributes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Values</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getPossibleValues()
+	 * @generated
+	 */
+	EOperation getVariableAssignment__GetPossibleValues();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ValueSetType <em>Value Set Type</em>}'.
@@ -1843,6 +2172,36 @@ public interface SystemModelPackage extends EPackage {
 	EReference getParameterRef_Value();
 
 	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#getPossibleParameters() <em>Get Possible Parameters</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Parameters</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#getPossibleParameters()
+	 * @generated
+	 */
+	EOperation getParameterRef__GetPossibleParameters();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#getPossibleAttributes() <em>Get Possible Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Attributes</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#getPossibleAttributes()
+	 * @generated
+	 */
+	EOperation getParameterRef__GetPossibleAttributes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Values</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#getPossibleValues()
+	 * @generated
+	 */
+	EOperation getParameterRef__GetPossibleValues();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef <em>Property Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1884,6 +2243,26 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPropertyRef_Property();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getPossibleProperties() <em>Get Possible Properties</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Properties</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getPossibleProperties()
+	 * @generated
+	 */
+	EOperation getPropertyRef__GetPossibleProperties();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Values</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#getPossibleValues()
+	 * @generated
+	 */
+	EOperation getPropertyRef__GetPossibleValues();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Caller <em>Caller</em>}'.
@@ -1980,6 +2359,119 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getReturnValueRef_Call();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getPossibleCalls() <em>Get Possible Calls</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Calls</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getPossibleCalls()
+	 * @generated
+	 */
+	EOperation getReturnValueRef__GetPossibleCalls();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getPossibleReturnValues() <em>Get Possible Return Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Return Values</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getPossibleReturnValues()
+	 * @generated
+	 */
+	EOperation getReturnValueRef__GetPossibleReturnValues();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getPossibleAttributes() <em>Get Possible Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Attributes</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getPossibleAttributes()
+	 * @generated
+	 */
+	EOperation getReturnValueRef__GetPossibleAttributes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Values</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#getPossibleValues()
+	 * @generated
+	 */
+	EOperation getReturnValueRef__GetPossibleValues();
+
+	/**
+	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef <em>State Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State Ref</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef
+	 * @generated
+	 */
+	EClass getStateRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getStateVariable <em>State Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>State Variable</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getStateVariable()
+	 * @see #getStateRef()
+	 * @generated
+	 */
+	EReference getStateRef_StateVariable();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Attribute</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getAttribute()
+	 * @see #getStateRef()
+	 * @generated
+	 */
+	EReference getStateRef_Attribute();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getValue()
+	 * @see #getStateRef()
+	 * @generated
+	 */
+	EReference getStateRef_Value();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getPossibleVariables() <em>Get Possible Variables</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Variables</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getPossibleVariables()
+	 * @generated
+	 */
+	EOperation getStateRef__GetPossibleVariables();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getPossibleAttributes() <em>Get Possible Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Attributes</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getPossibleAttributes()
+	 * @generated
+	 */
+	EOperation getStateRef__GetPossibleAttributes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Values</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getPossibleValues()
+	 * @generated
+	 */
+	EOperation getStateRef__GetPossibleValues();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2165,6 +2657,30 @@ public interface SystemModelPackage extends EPackage {
 		EReference OPERATION__RETURN_VALUE_ASSIGNMENTS = eINSTANCE.getOperation_ReturnValueAssignments();
 
 		/**
+		 * The meta object literal for the '<em><b>State Variables</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__STATE_VARIABLES = eINSTANCE.getOperation_StateVariables();
+
+		/**
+		 * The meta object literal for the '<em><b>Default State Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__DEFAULT_STATE_DEFINITIONS = eINSTANCE.getOperation_DefaultStateDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Post Execution State Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__POST_EXECUTION_STATE_DEFINITIONS = eINSTANCE.getOperation_PostExecutionStateDefinitions();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.VariableImpl <em>Variable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2269,6 +2785,14 @@ public interface SystemModelPackage extends EPackage {
 		EReference PROPERTY_DEFINITION__PRESENT_VALUES = eINSTANCE.getPropertyDefinition_PresentValues();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Possible Values</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROPERTY_DEFINITION___GET_POSSIBLE_VALUES = eINSTANCE.getPropertyDefinition__GetPossibleValues();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationCallImpl <em>Operation Call</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2311,6 +2835,14 @@ public interface SystemModelPackage extends EPackage {
 		EAttribute OPERATION_CALL__NAME = eINSTANCE.getOperationCall_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Pre Call State Definitions</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS = eINSTANCE.getOperationCall_PreCallStateDefinitions();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.VariableAssignmentImpl <em>Variable Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2351,6 +2883,32 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VARIABLE_ASSIGNMENT__TERM = eINSTANCE.getVariableAssignment_Term();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Variables</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VARIABLE_ASSIGNMENT___GET_POSSIBLE_VARIABLES = eINSTANCE
+				.getVariableAssignment__GetPossibleVariables();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Attributes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VARIABLE_ASSIGNMENT___GET_POSSIBLE_ATTRIBUTES = eINSTANCE
+				.getVariableAssignment__GetPossibleAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Values</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES = eINSTANCE.getVariableAssignment__GetPossibleValues();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ValueSetTypeImpl <em>Value Set Type</em>}' class.
@@ -2505,6 +3063,30 @@ public interface SystemModelPackage extends EPackage {
 		EReference PARAMETER_REF__VALUE = eINSTANCE.getParameterRef_Value();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Possible Parameters</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PARAMETER_REF___GET_POSSIBLE_PARAMETERS = eINSTANCE.getParameterRef__GetPossibleParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Attributes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PARAMETER_REF___GET_POSSIBLE_ATTRIBUTES = eINSTANCE.getParameterRef__GetPossibleAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Values</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PARAMETER_REF___GET_POSSIBLE_VALUES = eINSTANCE.getParameterRef__GetPossibleValues();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.PropertyRefImpl <em>Property Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2537,6 +3119,22 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_REF__PROPERTY = eINSTANCE.getPropertyRef_Property();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Properties</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROPERTY_REF___GET_POSSIBLE_PROPERTIES = eINSTANCE.getPropertyRef__GetPossibleProperties();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Values</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROPERTY_REF___GET_POSSIBLE_VALUES = eINSTANCE.getPropertyRef__GetPossibleValues();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.CallerImpl <em>Caller</em>}' class.
@@ -2615,6 +3213,97 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RETURN_VALUE_REF__CALL = eINSTANCE.getReturnValueRef_Call();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Calls</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation RETURN_VALUE_REF___GET_POSSIBLE_CALLS = eINSTANCE.getReturnValueRef__GetPossibleCalls();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Return Values</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation RETURN_VALUE_REF___GET_POSSIBLE_RETURN_VALUES = eINSTANCE
+				.getReturnValueRef__GetPossibleReturnValues();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Attributes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation RETURN_VALUE_REF___GET_POSSIBLE_ATTRIBUTES = eINSTANCE.getReturnValueRef__GetPossibleAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Values</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation RETURN_VALUE_REF___GET_POSSIBLE_VALUES = eINSTANCE.getReturnValueRef__GetPossibleValues();
+
+		/**
+		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl <em>State Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl
+		 * @see edu.kit.ipd.sdq.dataflow.systemmodel.impl.SystemModelPackageImpl#getStateRef()
+		 * @generated
+		 */
+		EClass STATE_REF = eINSTANCE.getStateRef();
+
+		/**
+		 * The meta object literal for the '<em><b>State Variable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_REF__STATE_VARIABLE = eINSTANCE.getStateRef_StateVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_REF__ATTRIBUTE = eINSTANCE.getStateRef_Attribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_REF__VALUE = eINSTANCE.getStateRef_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Variables</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STATE_REF___GET_POSSIBLE_VARIABLES = eINSTANCE.getStateRef__GetPossibleVariables();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Attributes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STATE_REF___GET_POSSIBLE_ATTRIBUTES = eINSTANCE.getStateRef__GetPossibleAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Values</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STATE_REF___GET_POSSIBLE_VALUES = eINSTANCE.getStateRef__GetPossibleValues();
 
 	}
 

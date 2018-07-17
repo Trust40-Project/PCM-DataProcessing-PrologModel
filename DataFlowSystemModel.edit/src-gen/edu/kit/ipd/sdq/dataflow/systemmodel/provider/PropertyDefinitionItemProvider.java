@@ -89,10 +89,7 @@ public class PropertyDefinitionItemProvider extends ItemProviderAdapter implemen
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object thisObject) {
-				return Util.getOrElse(
-						Util.tryCast(PropertyDefinition.class, thisObject).map(PropertyDefinition::getProperty)
-								.map(Property::getType).map(v -> (Collection<?>) v.getValues()),
-						() -> super.getChoiceOfValues(thisObject));
+				return ((PropertyDefinition) thisObject).getPossibleValues();
 			}
 		});
 	}

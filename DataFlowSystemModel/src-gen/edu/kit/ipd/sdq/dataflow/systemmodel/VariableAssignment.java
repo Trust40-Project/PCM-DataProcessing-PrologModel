@@ -2,6 +2,7 @@
  */
 package edu.kit.ipd.sdq.dataflow.systemmodel;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -127,5 +128,32 @@ public interface VariableAssignment extends EObject {
 	 * @generated
 	 */
 	void setTerm(LogicTerm value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tlet cont = self.oclContainer() in\n\t\t\t\tif(cont.oclIsUndefined()) then\n\t\t\t\t\tVariable.allInstances()-&gt;asSet()\n\t\t\t\telse \n\t\t\t\t\tif(cont.oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tif cont.oclAsType(OperationCall).parameterAssignments-&gt;includes(self) then\n\t\t\t\t\t\t\tcont.oclAsType(OperationCall).callee.parameters-&gt;asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tOperation.allInstances().stateVariables-&gt;asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(cont.oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tif cont.oclAsType(Operation).returnValueAssignments-&gt;includes(self) then\n\t\t\t\t\t\t\t\tcont.oclAsType(Operation).returnValues-&gt;asSet()\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tif cont.oclAsType(Operation).defaultStateDefinitions-&gt;includes(self) then\n\t\t\t\t\t\t\t\t\tcont.oclAsType(Operation).stateVariables-&gt;asSet()\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tOperation.allInstances().stateVariables-&gt;asSet()\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tVariable.allInstances()-&gt;asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	EList<Variable> getPossibleVariables();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif variable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\tvariable.datatype.attributes-&gt;asSet()\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	EList<Attribute> getPossibleAttributes();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values-&gt;asSet()\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	EList<Value> getPossibleValues();
 
 } // VariableAssignment

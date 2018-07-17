@@ -3,7 +3,6 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel.provider;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +14,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute;
-import edu.kit.ipd.sdq.dataflow.systemmodel.Caller;
-import edu.kit.ipd.sdq.dataflow.systemmodel.DataType;
-import edu.kit.ipd.sdq.dataflow.systemmodel.Operation;
 import edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
@@ -75,21 +71,7 @@ public class ParameterRefItemProvider extends LogicTermItemProvider {
 					@Override
 					public Collection<?> getChoiceOfValues(Object thisObject) {
 						//the values are dependent on the selected property
-
-						Optional<ParameterRef> thiz = Util.tryCast(ParameterRef.class, thisObject);
-						Optional<Caller> containingCaller = thiz
-								.flatMap(obj -> Util.getContainerOfType(obj, Caller.class));
-						//this ref is either part of a operation call which in turn is part of a caller or part of a caller itself
-						if (containingCaller.isPresent()) {
-							if (containingCaller.get() instanceof Operation) {
-								return ((Operation) containingCaller.get()).getParameters();
-							} else {
-								return Collections.emptyList();
-							}
-						} else {
-							return super.getChoiceOfValues(object);
-						}
-
+						return ((ParameterRef) thisObject).getPossibleParameters();
 					}
 				});
 	}
@@ -111,10 +93,7 @@ public class ParameterRefItemProvider extends LogicTermItemProvider {
 					@Override
 					public Collection<?> getChoiceOfValues(Object thisObject) {
 						//the values are dependent on the selected property
-						return Util.getOrElse(
-								Util.tryCast(ParameterRef.class, thisObject).map(ParameterRef::getParameter)
-										.map(Variable::getDatatype).map(DataType::getAttributes).map(Util::addNull),
-								() -> super.getChoiceOfValues(object));
+						return ((ParameterRef) thisObject).getPossibleAttributes();
 					}
 
 				});
@@ -124,15 +103,23 @@ public class ParameterRefItemProvider extends LogicTermItemProvider {
 	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						getResourceLocator(), getString("_UI_ParameterRef_value_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_ParameterRef_value_feature",
 								"_UI_ParameterRef_type"),
-						SystemModelPackage.Literals.PARAMETER_REF__VALUE, true, false, true, null, null, null));
+						SystemModelPackage.Literals.PARAMETER_REF__VALUE, true, false, true, null, null, null) {
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object thisObject) {
+						//the values are dependent on the selected property
+						return ((ParameterRef) thisObject).getPossibleValues();
+					}
+
+				});
 	}
 
 	/**

@@ -164,6 +164,9 @@ public class AndItemProvider extends LogicTermItemProvider {
 
 		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.AND__OPERANDS,
 				SystemModelFactory.eINSTANCE.createReturnValueRef()));
+
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.AND__OPERANDS,
+				SystemModelFactory.eINSTANCE.createStateRef()));
 	}
 
 }

@@ -8,21 +8,16 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute;
-import edu.kit.ipd.sdq.dataflow.systemmodel.Caller;
-import edu.kit.ipd.sdq.dataflow.systemmodel.DataType;
-import edu.kit.ipd.sdq.dataflow.systemmodel.Operation;
 import edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall;
 import edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
-import edu.kit.ipd.sdq.dataflow.systemmodel.ValueSetType;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
 import edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment;
 
@@ -79,11 +74,7 @@ public class ReturnValueRefItemProvider extends LogicTermItemProvider {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object thisObject) {
-						//the values are dependent on the selected property
-						return Util.getOrElse(
-								Util.tryCast(ReturnValueRef.class, thisObject).map(ReturnValueRef::getCall)
-										.map(OperationCall::getCallee).map(Operation::getReturnValues),
-								() -> super.getChoiceOfValues(object));
+						return ((ReturnValueRef) thisObject).getPossibleReturnValues();
 					}
 
 				});
@@ -105,11 +96,7 @@ public class ReturnValueRefItemProvider extends LogicTermItemProvider {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object thisObject) {
-						//the values are dependent on the selected property
-						return Util.getOrElse(
-								Util.tryCast(ReturnValueRef.class, thisObject).map(ReturnValueRef::getReturnValue)
-										.map(Variable::getDatatype).map(DataType::getAttributes).map(Util::addNull),
-								() -> super.getChoiceOfValues(object));
+						return ((ReturnValueRef) thisObject).getPossibleAttributes();
 					}
 				});
 	}
@@ -130,11 +117,7 @@ public class ReturnValueRefItemProvider extends LogicTermItemProvider {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object thisObject) {
-						//the values are dependent on the selected property
-						return Util.getOrElse(
-								Util.tryCast(ReturnValueRef.class, thisObject).map(ReturnValueRef::getAttribute)
-										.map(Attribute::getType).map(ValueSetType::getValues).map(Util::addNull),
-								() -> super.getChoiceOfValues(object));
+						return ((ReturnValueRef) thisObject).getPossibleValues();
 					}
 				});
 	}
@@ -155,34 +138,8 @@ public class ReturnValueRefItemProvider extends LogicTermItemProvider {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object thisObject) {
-
-						Optional<VariableAssignment> containingAssignment = Util
-								.tryCast(ReturnValueRef.class, thisObject)
-								.flatMap(obj -> Util.getContainerOfType(obj, VariableAssignment.class));
-
-						Optional<EStructuralFeature> containingFeature = containingAssignment
-								.map(VariableAssignment::eContainingFeature);
-
-						if (!containingFeature.isPresent()) {
-							return super.getChoiceOfValues(thisObject);
-						}
-
-						//we are part of a parameter assignment ==> We can only reference calls which happen before us!
-						if (containingFeature.get() == SystemModelPackage.eINSTANCE
-								.getOperationCall_ParameterAssignments()) {
-							OperationCall containingCall = (OperationCall) containingAssignment.get().eContainer();
-							return Util.getOrElse(
-									Optional.ofNullable(containingCall.getCaller()).map(Caller::getCalls).map(calls -> {
-										//only return calls which happen before our call
-										return calls.subList(0, calls.indexOf(containingCall));
-									}), () -> super.getChoiceOfValues(thisObject));
-						} else if (containingFeature.get() == SystemModelPackage.eINSTANCE
-								.getOperation_ReturnValueAssignments()) {
-							Operation containingOperation = (Operation) containingAssignment.get().eContainer();
-							return containingOperation.getCalls();
-						} else {
-							return super.getChoiceOfValues(thisObject);
-						}
+						VariableAssignment assi = ((ReturnValueRef) thisObject).getContainingAssignment();
+						return ((ReturnValueRef) thisObject).getPossibleCalls();
 					}
 				});
 	}

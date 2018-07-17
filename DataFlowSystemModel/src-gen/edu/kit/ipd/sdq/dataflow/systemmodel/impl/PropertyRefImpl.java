@@ -8,9 +8,13 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -201,6 +205,56 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #getPossibleProperties() <em>Get Possible Properties</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPossibleProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_PROPERTIES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.PROPERTY_REF___GET_POSSIBLE_PROPERTIES)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Property> getPossibleProperties() {
+		try {
+			return (EList<Property>) GET_POSSIBLE_PROPERTIES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPossibleValues()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.PROPERTY_REF___GET_POSSIBLE_VALUES)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Value> getPossibleValues() {
+		try {
+			return (EList<Value>) GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -282,6 +336,22 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 			return property != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+		case SystemModelPackage.PROPERTY_REF___GET_POSSIBLE_PROPERTIES:
+			return getPossibleProperties();
+		case SystemModelPackage.PROPERTY_REF___GET_POSSIBLE_VALUES:
+			return getPossibleValues();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //PropertyRefImpl

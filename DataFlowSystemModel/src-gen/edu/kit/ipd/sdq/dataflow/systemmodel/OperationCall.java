@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getParameterAssignments <em>Parameter Assignments</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getCaller <em>Caller</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getName <em>Name</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getPreCallStateDefinitions <em>Pre Call State Definitions</em>}</li>
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperationCall()
@@ -121,5 +122,31 @@ public interface OperationCall extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Pre Call State Definitions</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Pre Call State Definitions</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Pre Call State Definitions</em>' reference.
+	 * @see #setPreCallStateDefinitions(VariableAssignment)
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperationCall_PreCallStateDefinitions()
+	 * @model
+	 * @generated
+	 */
+	VariableAssignment getPreCallStateDefinitions();
+
+	/**
+	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getPreCallStateDefinitions <em>Pre Call State Definitions</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pre Call State Definitions</em>' reference.
+	 * @see #getPreCallStateDefinitions()
+	 * @generated
+	 */
+	void setPreCallStateDefinitions(VariableAssignment value);
 
 } // OperationCall

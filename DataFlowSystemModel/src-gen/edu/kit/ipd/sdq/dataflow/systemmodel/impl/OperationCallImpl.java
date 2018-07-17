@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationCallImpl#getParameterAssignments <em>Parameter Assignments</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationCallImpl#getCaller <em>Caller</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationCallImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.OperationCallImpl#getPreCallStateDefinitions <em>Pre Call State Definitions</em>}</li>
  * </ul>
  *
  * @generated
@@ -81,6 +82,16 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPreCallStateDefinitions() <em>Pre Call State Definitions</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreCallStateDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected VariableAssignment preCallStateDefinitions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -226,6 +237,48 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public VariableAssignment getPreCallStateDefinitions() {
+		if (preCallStateDefinitions != null && preCallStateDefinitions.eIsProxy()) {
+			InternalEObject oldPreCallStateDefinitions = (InternalEObject) preCallStateDefinitions;
+			preCallStateDefinitions = (VariableAssignment) eResolveProxy(oldPreCallStateDefinitions);
+			if (preCallStateDefinitions != oldPreCallStateDefinitions) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							SystemModelPackage.OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS, oldPreCallStateDefinitions,
+							preCallStateDefinitions));
+			}
+		}
+		return preCallStateDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VariableAssignment basicGetPreCallStateDefinitions() {
+		return preCallStateDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPreCallStateDefinitions(VariableAssignment newPreCallStateDefinitions) {
+		VariableAssignment oldPreCallStateDefinitions = preCallStateDefinitions;
+		preCallStateDefinitions = newPreCallStateDefinitions;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					SystemModelPackage.OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS, oldPreCallStateDefinitions,
+					preCallStateDefinitions));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -285,6 +338,10 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 			return getCaller();
 		case SystemModelPackage.OPERATION_CALL__NAME:
 			return getName();
+		case SystemModelPackage.OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS:
+			if (resolve)
+				return getPreCallStateDefinitions();
+			return basicGetPreCallStateDefinitions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -311,6 +368,9 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 		case SystemModelPackage.OPERATION_CALL__NAME:
 			setName((String) newValue);
 			return;
+		case SystemModelPackage.OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS:
+			setPreCallStateDefinitions((VariableAssignment) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -335,6 +395,9 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 		case SystemModelPackage.OPERATION_CALL__NAME:
 			setName(NAME_EDEFAULT);
 			return;
+		case SystemModelPackage.OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS:
+			setPreCallStateDefinitions((VariableAssignment) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -355,6 +418,8 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 			return getCaller() != null;
 		case SystemModelPackage.OPERATION_CALL__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case SystemModelPackage.OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS:
+			return preCallStateDefinitions != null;
 		}
 		return super.eIsSet(featureID);
 	}

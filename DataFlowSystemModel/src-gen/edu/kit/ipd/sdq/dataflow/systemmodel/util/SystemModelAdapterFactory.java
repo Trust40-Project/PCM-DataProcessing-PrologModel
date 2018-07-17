@@ -17,6 +17,7 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.Property;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyDefinition;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef;
+import edu.kit.ipd.sdq.dataflow.systemmodel.StateRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemUsage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.True;
@@ -195,6 +196,11 @@ public class SystemModelAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseReturnValueRef(ReturnValueRef object) {
 			return createReturnValueRefAdapter();
+		}
+
+		@Override
+		public Adapter caseStateRef(StateRef object) {
+			return createStateRefAdapter();
 		}
 
 		@Override
@@ -521,6 +527,20 @@ public class SystemModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReturnValueRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef <em>State Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef
+	 * @generated
+	 */
+	public Adapter createStateRefAdapter() {
 		return null;
 	}
 

@@ -202,6 +202,15 @@ public interface SystemModelFactory extends EFactory {
 	ReturnValueRef createReturnValueRef();
 
 	/**
+	 * Returns a new object of class '<em>State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Ref</em>'.
+	 * @generated
+	 */
+	StateRef createStateRef();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

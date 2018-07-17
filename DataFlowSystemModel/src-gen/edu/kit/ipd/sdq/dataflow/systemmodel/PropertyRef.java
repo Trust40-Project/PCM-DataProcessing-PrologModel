@@ -2,6 +2,8 @@
  */
 package edu.kit.ipd.sdq.dataflow.systemmodel;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property Ref</b></em>'.
@@ -98,5 +100,23 @@ public interface PropertyRef extends LogicTerm {
 	 * @generated
 	 */
 	void setProperty(Property value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif operation.oclIsUndefined() then\n\t\t\t\t\tOperation.allInstances().propertyDefinitions.property-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\toperation.propertyDefinitions.property-&gt;asSet()\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	EList<Property> getPossibleProperties();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tgetPossibleProperties().type.values-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values-&gt;asSet()\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	EList<Value> getPossibleValues();
 
 } // PropertyRef

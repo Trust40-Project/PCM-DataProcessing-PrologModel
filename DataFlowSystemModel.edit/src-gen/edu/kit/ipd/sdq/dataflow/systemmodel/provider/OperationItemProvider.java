@@ -64,6 +64,9 @@ public class OperationItemProvider extends CallerItemProvider {
 			childrenFeatures.add(SystemModelPackage.Literals.OPERATION__RETURN_VALUES);
 			childrenFeatures.add(SystemModelPackage.Literals.OPERATION__PROPERTY_DEFINITIONS);
 			childrenFeatures.add(SystemModelPackage.Literals.OPERATION__RETURN_VALUE_ASSIGNMENTS);
+			childrenFeatures.add(SystemModelPackage.Literals.OPERATION__STATE_VARIABLES);
+			childrenFeatures.add(SystemModelPackage.Literals.OPERATION__DEFAULT_STATE_DEFINITIONS);
+			childrenFeatures.add(SystemModelPackage.Literals.OPERATION__POST_EXECUTION_STATE_DEFINITIONS);
 		}
 		return childrenFeatures;
 	}
@@ -131,6 +134,9 @@ public class OperationItemProvider extends CallerItemProvider {
 		case SystemModelPackage.OPERATION__RETURN_VALUES:
 		case SystemModelPackage.OPERATION__PROPERTY_DEFINITIONS:
 		case SystemModelPackage.OPERATION__RETURN_VALUE_ASSIGNMENTS:
+		case SystemModelPackage.OPERATION__STATE_VARIABLES:
+		case SystemModelPackage.OPERATION__DEFAULT_STATE_DEFINITIONS:
+		case SystemModelPackage.OPERATION__POST_EXECUTION_STATE_DEFINITIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -159,6 +165,16 @@ public class OperationItemProvider extends CallerItemProvider {
 
 		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OPERATION__RETURN_VALUE_ASSIGNMENTS,
 				SystemModelFactory.eINSTANCE.createVariableAssignment()));
+
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OPERATION__STATE_VARIABLES,
+				SystemModelFactory.eINSTANCE.createVariable()));
+
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OPERATION__DEFAULT_STATE_DEFINITIONS,
+				SystemModelFactory.eINSTANCE.createVariableAssignment()));
+
+		newChildDescriptors
+				.add(createChildParameter(SystemModelPackage.Literals.OPERATION__POST_EXECUTION_STATE_DEFINITIONS,
+						SystemModelFactory.eINSTANCE.createVariableAssignment()));
 	}
 
 	/**
@@ -173,7 +189,11 @@ public class OperationItemProvider extends CallerItemProvider {
 		Object childObject = child;
 
 		boolean qualify = childFeature == SystemModelPackage.Literals.OPERATION__PARAMETERS
-				|| childFeature == SystemModelPackage.Literals.OPERATION__RETURN_VALUES;
+				|| childFeature == SystemModelPackage.Literals.OPERATION__RETURN_VALUES
+				|| childFeature == SystemModelPackage.Literals.OPERATION__STATE_VARIABLES
+				|| childFeature == SystemModelPackage.Literals.OPERATION__RETURN_VALUE_ASSIGNMENTS
+				|| childFeature == SystemModelPackage.Literals.OPERATION__DEFAULT_STATE_DEFINITIONS
+				|| childFeature == SystemModelPackage.Literals.OPERATION__POST_EXECUTION_STATE_DEFINITIONS;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2",

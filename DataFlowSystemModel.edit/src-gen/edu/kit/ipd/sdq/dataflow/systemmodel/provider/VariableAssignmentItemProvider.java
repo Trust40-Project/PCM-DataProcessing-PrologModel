@@ -3,12 +3,8 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel.provider;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute;
-import edu.kit.ipd.sdq.dataflow.systemmodel.DataType;
-import edu.kit.ipd.sdq.dataflow.systemmodel.Operation;
-import edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelFactory;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
-import edu.kit.ipd.sdq.dataflow.systemmodel.ValueSetType;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
 import edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment;
@@ -16,8 +12,6 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -88,29 +82,7 @@ public class VariableAssignmentItemProvider extends ItemProviderAdapter implemen
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object thisObject) {
-				//two cases: the assignment is either a return value (containing feature is assignments of Operation)
-				// or a parameter assignment (containing feature is assignments of OperationCall)
-
-				Optional<VariableAssignment> thisObj = Util.tryCast(VariableAssignment.class, thisObject);
-				Optional<EStructuralFeature> containingFeature = thisObj.map(VariableAssignment::eContainingFeature);
-
-				if (!containingFeature.isPresent()) {
-					return super.getChoiceOfValues(thisObject);
-				}
-
-				if (containingFeature.get() == SystemModelPackage.eINSTANCE.getOperation_ReturnValueAssignments()) {
-					return Util.getOrElse(
-							thisObj.map(VariableAssignment::eContainer).filter(Operation.class::isInstance)
-									.map(Operation.class::cast).map(Operation::getReturnValues),
-							() -> super.getChoiceOfValues(thisObject));
-				} else if (containingFeature.get() == SystemModelPackage.eINSTANCE
-						.getOperationCall_ParameterAssignments()) {
-					return Util.getOrElse(thisObj.map(VariableAssignment::eContainer)
-							.filter(OperationCall.class::isInstance).map(OperationCall.class::cast)
-							.map(OperationCall::getCallee).map(Operation::getParameters),
-							() -> super.getChoiceOfValues(thisObject));
-				}
-				return super.getChoiceOfValues(thisObject);
+				return ((VariableAssignment) thisObject).getPossibleVariables();
 			}
 
 		});
@@ -132,10 +104,7 @@ public class VariableAssignmentItemProvider extends ItemProviderAdapter implemen
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object thisObject) {
-				return Util.getOrElse(
-						Util.tryCast(VariableAssignment.class, thisObject).map(VariableAssignment::getVariable)
-								.map(Variable::getDatatype).map(DataType::getAttributes).map(Util::addNull),
-						() -> super.getChoiceOfValues(thisObject));
+				return ((VariableAssignment) thisObject).getPossibleAttributes();
 			}
 		});
 	}
@@ -156,21 +125,7 @@ public class VariableAssignmentItemProvider extends ItemProviderAdapter implemen
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object thisObject) {
-						Optional<VariableAssignment> assignment = Util.tryCast(VariableAssignment.class, thisObject);
-
-						Optional<Attribute> attrib = assignment.map(VariableAssignment::getAttribute);
-						if (attrib.isPresent()) {
-							return Util.getOrElse(
-									attrib.map(Attribute::getType).map(ValueSetType::getValues).map(Util::addNull),
-									() -> super.getChoiceOfValues(thisObject));
-						} else {
-							return Util.getOrElse(assignment.map(VariableAssignment::getVariable)
-									.map(Variable::getDatatype).map(DataType::getAttributes)
-									.map(attribList -> attribList.stream().map(Attribute::getType)
-											.filter(type -> type != null).flatMap(type -> type.getValues().stream())
-											.collect(Collectors.toList()))
-									.map(Util::addNull), () -> super.getChoiceOfValues(thisObject));
-						}
+						return ((VariableAssignment) thisObject).getPossibleValues();
 					}
 				});
 	}
@@ -235,7 +190,8 @@ public class VariableAssignmentItemProvider extends ItemProviderAdapter implemen
 	@Override
 	public String getText(Object object) {
 		Optional<VariableAssignment> assignment = Util.tryCast(VariableAssignment.class, object);
-		String varName = assignment.map(VariableAssignment::getVariable).map(Variable::getName).orElse("");
+		Optional<Variable> var = assignment.map(VariableAssignment::getVariable);
+		String varName = var.map(Variable::getName).orElse("");
 		String attribName = assignment.map(VariableAssignment::getAttribute).map(Attribute::getName).orElse("*");
 		String valueName = assignment.map(VariableAssignment::getValue).map(Value::getName).orElse("*");
 		return getString("_UI_VariableAssignment_type") + ": " + varName + "." + attribName + "." + valueName;
@@ -299,6 +255,9 @@ public class VariableAssignmentItemProvider extends ItemProviderAdapter implemen
 
 		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.VARIABLE_ASSIGNMENT__TERM,
 				SystemModelFactory.eINSTANCE.createReturnValueRef()));
+
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.VARIABLE_ASSIGNMENT__TERM,
+				SystemModelFactory.eINSTANCE.createStateRef()));
 	}
 
 	/**

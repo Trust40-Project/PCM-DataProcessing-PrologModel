@@ -60,6 +60,7 @@ public class OperationCallItemProvider extends ItemProviderAdapter implements IE
 			addParameterAssignmentsPropertyDescriptor(object);
 			addCallerPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addPreCallStateDefinitionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -124,6 +125,22 @@ public class OperationCallItemProvider extends ItemProviderAdapter implements IE
 								"_UI_OperationCall_type"),
 						SystemModelPackage.Literals.OPERATION_CALL__NAME, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Pre Call State Definitions feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPreCallStateDefinitionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_OperationCall_preCallStateDefinitions_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_OperationCall_preCallStateDefinitions_feature", "_UI_OperationCall_type"),
+						SystemModelPackage.Literals.OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS, true, false, true, null,
+						null, null));
 	}
 
 	/**
