@@ -6,6 +6,7 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.And;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Caller;
 import edu.kit.ipd.sdq.dataflow.systemmodel.DataType;
+import edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.False;
 import edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Not;
@@ -204,6 +205,13 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * @generated
 	 */
 	private EClass stateRefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass defaultStateRefEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1135,6 +1143,69 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDefaultStateRef() {
+		return defaultStateRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDefaultStateRef_StateVariable() {
+		return (EReference) defaultStateRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDefaultStateRef_Attribute() {
+		return (EReference) defaultStateRefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDefaultStateRef_Value() {
+		return (EReference) defaultStateRefEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDefaultStateRef__GetPossibleVariables() {
+		return defaultStateRefEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDefaultStateRef__GetPossibleAttributes() {
+		return defaultStateRefEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDefaultStateRef__GetPossibleValues() {
+		return defaultStateRefEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SystemModelFactory getSystemModelFactory() {
 		return (SystemModelFactory) getEFactoryInstance();
 	}
@@ -1276,6 +1347,14 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEOperation(stateRefEClass, STATE_REF___GET_POSSIBLE_VARIABLES);
 		createEOperation(stateRefEClass, STATE_REF___GET_POSSIBLE_ATTRIBUTES);
 		createEOperation(stateRefEClass, STATE_REF___GET_POSSIBLE_VALUES);
+
+		defaultStateRefEClass = createEClass(DEFAULT_STATE_REF);
+		createEReference(defaultStateRefEClass, DEFAULT_STATE_REF__STATE_VARIABLE);
+		createEReference(defaultStateRefEClass, DEFAULT_STATE_REF__ATTRIBUTE);
+		createEReference(defaultStateRefEClass, DEFAULT_STATE_REF__VALUE);
+		createEOperation(defaultStateRefEClass, DEFAULT_STATE_REF___GET_POSSIBLE_VARIABLES);
+		createEOperation(defaultStateRefEClass, DEFAULT_STATE_REF___GET_POSSIBLE_ATTRIBUTES);
+		createEOperation(defaultStateRefEClass, DEFAULT_STATE_REF___GET_POSSIBLE_VALUES);
 	}
 
 	/**
@@ -1318,6 +1397,7 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		systemUsageEClass.getESuperTypes().add(this.getCaller());
 		returnValueRefEClass.getESuperTypes().add(this.getLogicTerm());
 		stateRefEClass.getESuperTypes().add(this.getLogicTerm());
+		defaultStateRefEClass.getESuperTypes().add(this.getLogicTerm());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(systemEClass, edu.kit.ipd.sdq.dataflow.systemmodel.System.class, "System", !IS_ABSTRACT,
@@ -1433,8 +1513,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEAttribute(getOperationCall_Name(), ecorePackage.getEString(), "name", null, 0, 1, OperationCall.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationCall_PreCallStateDefinitions(), this.getVariableAssignment(), null,
-				"preCallStateDefinitions", null, 0, 1, OperationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				"preCallStateDefinitions", null, 0, -1, OperationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(variableAssignmentEClass, VariableAssignment.class, "VariableAssignment", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1590,6 +1670,27 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEOperation(getStateRef__GetPossibleValues(), this.getValue(), "getPossibleValues", 0, -1, IS_UNIQUE,
 				!IS_ORDERED);
 
+		initEClass(defaultStateRefEClass, DefaultStateRef.class, "DefaultStateRef", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDefaultStateRef_StateVariable(), this.getVariable(), null, "stateVariable", null, 1, 1,
+				DefaultStateRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDefaultStateRef_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1,
+				DefaultStateRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDefaultStateRef_Value(), this.getValue(), null, "value", null, 0, 1, DefaultStateRef.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getDefaultStateRef__GetPossibleVariables(), this.getVariable(), "getPossibleVariables", 0, -1,
+				IS_UNIQUE, !IS_ORDERED);
+
+		initEOperation(getDefaultStateRef__GetPossibleAttributes(), this.getAttribute(), "getPossibleAttributes", 0, -1,
+				IS_UNIQUE, !IS_ORDERED);
+
+		initEOperation(getDefaultStateRef__GetPossibleValues(), this.getValue(), "getPossibleValues", 0, -1, IS_UNIQUE,
+				!IS_ORDERED);
+
 		// Create resource
 		createResource(eNS_URI);
 
@@ -1643,21 +1744,21 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		addAnnotation(getVariableAssignment__GetPossibleVariables(), source, new String[] { "body",
 				"\n\t\t\t\tlet cont = self.oclContainer() in\n\t\t\t\tif(cont.oclIsUndefined()) then\n\t\t\t\t\tVariable.allInstances()->asSet()\n\t\t\t\telse \n\t\t\t\t\tif(cont.oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tif cont.oclAsType(OperationCall).parameterAssignments->includes(self) then\n\t\t\t\t\t\t\tcont.oclAsType(OperationCall).callee.parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(cont.oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tif cont.oclAsType(Operation).returnValueAssignments->includes(self) then\n\t\t\t\t\t\t\t\tcont.oclAsType(Operation).returnValues->asSet()\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tif cont.oclAsType(Operation).defaultStateDefinitions->includes(self) then\n\t\t\t\t\t\t\t\t\tcont.oclAsType(Operation).stateVariables->asSet()\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tVariable.allInstances()->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif" });
 		addAnnotation(getVariableAssignment__GetPossibleAttributes(), source, new String[] { "body",
-				"\n\t\t\t\tif variable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()\n\t\t\t\telse\n\t\t\t\t\tvariable.datatype.attributes->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif variable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tvariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getVariableAssignment__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getLogicTerm_ContainingAssignment(), source, new String[] { "derivation",
 				"let cont = self.oclAsSet()->closure(elem | elem.oclContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif" });
 		addAnnotation(getParameterRef__GetPossibleParameters(), source, new String[] { "body",
 				"\n\t\t\t\tlet assi = containingAssignment in\n\t\t\t\tif(assi.oclIsUndefined() or assi.oclContainer().oclIsUndefined()) then\n\t\t\t\t\tOperation.allInstances().parameters->asSet()\n\t\t\t\telse \n\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tlet caller = assi.oclContainer().oclAsType(OperationCall).caller in\n\t\t\t\t\t\tif (caller.oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tcaller.oclAsType(Operation).parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tSet{}\t\t\t\t\t\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tassi.oclContainer().oclAsType(Operation).parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tOperation.allInstances().parameters->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif" });
 		addAnnotation(getParameterRef__GetPossibleAttributes(), source, new String[] { "body",
-				"\n\t\t\t\tif parameter.oclIsUndefined() then\n\t\t\t\t\tgetPossibleParameters().datatype.attributes->asSet()\n\t\t\t\telse\n\t\t\t\t\tparameter.datatype.attributes->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif parameter.oclIsUndefined() then\n\t\t\t\t\tgetPossibleParameters().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tparameter.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getParameterRef__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getPropertyRef__GetPossibleProperties(), source, new String[] { "body",
 				"\n\t\t\t\tif operation.oclIsUndefined() then\n\t\t\t\t\tOperation.allInstances().propertyDefinitions.property->asSet()\n\t\t\t\telse\n\t\t\t\t\toperation.propertyDefinitions.property->asSet()\n\t\t\t\tendif" });
 		addAnnotation(getPropertyRef__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tgetPossibleProperties().type.values->asSet()\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tgetPossibleProperties().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(returnValueRefEClass, source, new String[] { "returnValueIsContainedInTargetOperation",
 				"call.callee.returnValues->includes(returnValue)", "isAttributePartOfReturnValue",
 				"(not attribute.oclIsUndefined()) implies returnValue.datatype.attributes->includes(attribute)",
@@ -1668,15 +1769,21 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		addAnnotation(getReturnValueRef__GetPossibleReturnValues(), source, new String[] { "body",
 				"\n\t\t\t\tif(call.oclIsUndefined()) then\n\t\t\t\t\tgetPossibleCalls().callee.returnValues->asSet()\n\t\t\t\telse\n\t\t\t\t\tcall.callee.returnValues->asSet()\n\t\t\t\tendif" });
 		addAnnotation(getReturnValueRef__GetPossibleAttributes(), source, new String[] { "body",
-				"\n\t\t\t\tif returnValue.oclIsUndefined() then\n\t\t\t\t\tgetPossibleReturnValues().datatype.attributes->asSet()\n\t\t\t\telse\n\t\t\t\t\treturnValue.datatype.attributes->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif returnValue.oclIsUndefined() then\n\t\t\t\t\tgetPossibleReturnValues().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\treturnValue.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getReturnValueRef__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getStateRef__GetPossibleVariables(), source,
 				new String[] { "body", "\n\t\t\t\tOperation.allInstances().stateVariables->asSet()" });
 		addAnnotation(getStateRef__GetPossibleAttributes(), source, new String[] { "body",
-				"\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getStateRef__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getDefaultStateRef__GetPossibleVariables(), source,
+				new String[] { "body", "\n\t\t\t\tOperation.allInstances().stateVariables->asSet()" });
+		addAnnotation(getDefaultStateRef__GetPossibleAttributes(), source, new String[] { "body",
+				"\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getDefaultStateRef__GetPossibleValues(), source, new String[] { "body",
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
 	}
 
 } //SystemModelPackageImpl

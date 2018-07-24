@@ -11,14 +11,15 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 class AssignmentsTranslator {
 	
-	static interface PredicateProvider {
-		def String getPredicate(String stackContextList, String variable, String attribute, String value);
-	}
 	
 	val Blackboard bb;
 	val AssignmentTypeRestrictionsCollector restrictionsCollector;
 	val LogicTermTranslator logicTermTranslator;
 	val Configuration config;
+	/**
+	 * cache variable for the type restrictions, is used across different methods.
+	 */
+	val typeRestrictions = new HashMap<VariableAssignment, TypeRestrictions>();
 	
 	new(Blackboard bb, Configuration config) {
 		this.bb = bb;
@@ -27,22 +28,22 @@ class AssignmentsTranslator {
 		logicTermTranslator = new LogicTermTranslator(bb, config);
 	}
 	
-	def void buildAssignments(List<VariableAssignment> assignments, Caller callContext, PredicateProvider predicate, PrologProgram sink) {
-		var typeRestrictions = new HashMap<VariableAssignment, TypeRestrictions>();
+	def void buildAssignments(List<VariableAssignment> assignments, AssignmentContext assiContext, PrologProgram sink) {
+		typeRestrictions.clear();
 		for(a : assignments) {
 			typeRestrictions.put(a, restrictionsCollector.collect(a));
 		}
 		var reversedAssignments = new ArrayList<VariableAssignment>(assignments);
 		Collections.reverse(reversedAssignments);
 		if(config.shorterAssignments) {
-			generateShortenedAssignments(reversedAssignments, typeRestrictions, callContext, predicate, sink);
+			generateShortenedAssignments(reversedAssignments, assiContext, sink);
 		} else {
-			generateStandardAssignments(reversedAssignments, typeRestrictions, callContext, predicate, sink);			
+			generateStandardAssignments(reversedAssignments, assiContext, sink);			
 		}
 	}
 	
 	
-	protected def void generateShortenedAssignments(List<VariableAssignment> reversedAssignments, HashMap<VariableAssignment, TypeRestrictions> typeRestrictions, Caller callContext, PredicateProvider predicate, PrologProgram sink) {
+	protected def void generateShortenedAssignments(List<VariableAssignment> reversedAssignments, AssignmentContext assiContext, PrologProgram sink) {
 		for(assi : reversedAssignments) {
 			
 			val restrictions = typeRestrictions.get(assi);
@@ -69,11 +70,11 @@ class AssignmentsTranslator {
 					}	
 				}	
 			}
-			writeAssignmentRule(callContext,restrictions.isStackReferenced,predicate,preconditions.toString,attribute,value, assi,sink);
+			writeAssignmentRule(assiContext,restrictions.isStackReferenced,preconditions.toString,attribute,value, assi,sink);
 		}
 	}
 	
-	protected def void generateStandardAssignments(List<VariableAssignment> reversedAssignments, HashMap<VariableAssignment, TypeRestrictions> typeRestrictions, Caller callContext, PredicateProvider predicate, PrologProgram sink) {
+	protected def void generateStandardAssignments(List<VariableAssignment> reversedAssignments, AssignmentContext assiContext, PrologProgram sink) {
 		var allVariables = reversedAssignments.stream().map([a | a.variable]).distinct().collect(Collectors.toSet);
 		
 		for(vari : allVariables) {
@@ -91,7 +92,7 @@ class AssignmentsTranslator {
 							
 							if(valueMatch && attributeMatch) {
 								wasAssigned = true;
-								writeAssignmentRule(callContext, tr.isStackReferenced, predicate,null, "'" + attrib.name + "'" , "'"+value.name+"'", assi, sink)
+								writeAssignmentRule(assiContext, tr.isStackReferenced, null, "'" + attrib.name + "'" , "'"+value.name+"'", assi, sink)
 							}
 						}
 					}
@@ -100,26 +101,45 @@ class AssignmentsTranslator {
 		}
 	}
 	
-	protected def Object writeAssignmentRule(Caller callContext, boolean isStackReferenced, PredicateProvider predicate,String preconditions, String attrib, String value, VariableAssignment assi, PrologProgram sink) {
-		var String stackContext;
+	protected def Object writeAssignmentRule(AssignmentContext assiContext, boolean isStackReferenced, String preconditions, String attrib, String value, VariableAssignment assi, PrologProgram sink) {
+		
+		val LogicTermContext ltContext = new LogicTermContext;
+		
+		var String stackVariable;
 		if(isStackReferenced) {
-			stackContext = '''['«callContext.name»'|S]''';
+			stackVariable= "S";
 		} else {
-			stackContext = '''['«callContext.name»'|_]''';							
+			stackVariable= "_";					
 		}
+		ltContext.currentStack = '''['«assiContext.getCurrentCaller.name»'|«stackVariable»]''';
+		
+		if(assiContext.previousCall.isPresent) {
+			val call = assiContext.previousCall.get();
+			ltContext.stateAccessPredicate = StateAccessMode.POSTCALL;
+			ltContext.stateAccessStack = '''['«call.callee.name»','«call.name»','«call.caller.name»'|«stackVariable»]''';
+		} else {
+			ltContext.stateAccessPredicate = StateAccessMode.PRECALL;
+			ltContext.stateAccessStack = ltContext.currentStack;	
+		}
+		
+		ltContext.valueWildCardInstatiation = value;
+		ltContext.attributeWildCardInstatiation = attrib;
+		
 		var preconditionsPrefix = "";
 		if(preconditions !== null) {
 			preconditionsPrefix = preconditions + "!,";
 		}
 		
-		var String pred = predicate.getPredicate(stackContext,"'" + assi.variable.name + "'",attrib,value);
-		var String term = logicTermTranslator.translate(assi.term, stackContext, attrib, value);
+		var String pred = assiContext.predicate.getPredicate(ltContext.currentStack,assi.variable,attrib,value);
+		
+		
+		var String term = logicTermTranslator.translate(assi.term, ltContext);
 		sink.addRule(pred, preconditionsPrefix + term);
 		if(config.optimizedNegations) {
 			pred = "not_"+pred;
 			val negated = SystemModelFactory.eINSTANCE.createNot();
 			negated.operand = EcoreUtil.copy(assi.term);
-			term = logicTermTranslator.translate(negated, stackContext, attrib, value);
+			term = logicTermTranslator.translate(negated, ltContext);
 			sink.addRule(pred, preconditionsPrefix + term);									
 		}
 	}

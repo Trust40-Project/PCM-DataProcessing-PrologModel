@@ -6,6 +6,7 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.And;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Caller;
 import edu.kit.ipd.sdq.dataflow.systemmodel.DataType;
+import edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.False;
 import edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Not;
@@ -155,6 +156,8 @@ public class SystemModelValidator extends EObjectValidator {
 			return validateReturnValueRef((ReturnValueRef) value, diagnostics, context);
 		case SystemModelPackage.STATE_REF:
 			return validateStateRef((StateRef) value, diagnostics, context);
+		case SystemModelPackage.DEFAULT_STATE_REF:
+			return validateDefaultStateRef((DefaultStateRef) value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -705,6 +708,16 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validateStateRef(StateRef stateRef, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(stateRef, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDefaultStateRef(DefaultStateRef defaultStateRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(defaultStateRef, diagnostics, context);
 	}
 
 	/**

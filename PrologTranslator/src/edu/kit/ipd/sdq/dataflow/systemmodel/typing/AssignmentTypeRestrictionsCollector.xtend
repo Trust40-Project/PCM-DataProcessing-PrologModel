@@ -12,7 +12,12 @@ class AssignmentTypeRestrictionsCollector {
 	}
 	
 	def TypeRestrictions collect(VariableAssignment assignment) {
-		val result = bb.getTermTypeRestrictions(assignment.term).duplicate();
+		var TypeRestrictions result;
+		try {
+			result = bb.getTermTypeRestrictions(assignment.term).duplicate();
+		}catch(Exception e) {
+			println("test")
+		}
 		
 		val isAttributeWildCard = assignment.attribute === null;
 		val isValueWildCard = assignment.value === null;

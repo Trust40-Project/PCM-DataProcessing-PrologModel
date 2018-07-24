@@ -258,6 +258,9 @@ public class VariableAssignmentItemProvider extends ItemProviderAdapter implemen
 
 		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.VARIABLE_ASSIGNMENT__TERM,
 				SystemModelFactory.eINSTANCE.createStateRef()));
+
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.VARIABLE_ASSIGNMENT__TERM,
+				SystemModelFactory.eINSTANCE.createDefaultStateRef()));
 	}
 
 	/**

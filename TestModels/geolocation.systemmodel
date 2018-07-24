@@ -65,9 +65,13 @@
   </operations>
   <operations name="test1">
     <calls callee="//@operations.5"/>
+    <stateVariables datatype="//@datatypes.0" name="myState"/>
   </operations>
   <operations name="test2">
     <calls callee="//@operations.4"/>
+    <postExecutionStateDefinitions>
+      <term xsi:type="systemmodel:StateRef" stateVariable="//@operations.4/@stateVariables.0" attribute="//@attributes.2" value="//@types.0/@values.2"/>
+    </postExecutionStateDefinitions>
   </operations>
   <properties type="//@types.0" name="deploymentLocation"/>
   <types name="geolocation">

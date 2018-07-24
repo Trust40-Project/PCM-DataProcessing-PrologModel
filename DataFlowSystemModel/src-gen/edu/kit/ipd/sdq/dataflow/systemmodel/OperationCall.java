@@ -124,29 +124,19 @@ public interface OperationCall extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Pre Call State Definitions</b></em>' reference.
+	 * Returns the value of the '<em><b>Pre Call State Definitions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pre Call State Definitions</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pre Call State Definitions</em>' reference.
-	 * @see #setPreCallStateDefinitions(VariableAssignment)
+	 * @return the value of the '<em>Pre Call State Definitions</em>' containment reference list.
 	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperationCall_PreCallStateDefinitions()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	VariableAssignment getPreCallStateDefinitions();
-
-	/**
-	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getPreCallStateDefinitions <em>Pre Call State Definitions</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pre Call State Definitions</em>' reference.
-	 * @see #getPreCallStateDefinitions()
-	 * @generated
-	 */
-	void setPreCallStateDefinitions(VariableAssignment value);
+	EList<VariableAssignment> getPreCallStateDefinitions();
 
 } // OperationCall

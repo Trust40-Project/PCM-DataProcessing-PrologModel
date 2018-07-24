@@ -636,7 +636,7 @@ public interface SystemModelPackage extends EPackage {
 	int OPERATION_CALL__NAME = 3;
 
 	/**
-	 * The feature id for the '<em><b>Pre Call State Definitions</b></em>' reference.
+	 * The feature id for the '<em><b>Pre Call State Definitions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1468,6 +1468,97 @@ public interface SystemModelPackage extends EPackage {
 	int STATE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.DefaultStateRefImpl <em>Default State Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.impl.DefaultStateRefImpl
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.impl.SystemModelPackageImpl#getDefaultStateRef()
+	 * @generated
+	 */
+	int DEFAULT_STATE_REF = 23;
+
+	/**
+	 * The feature id for the '<em><b>Containing Assignment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF__CONTAINING_ASSIGNMENT = LOGIC_TERM__CONTAINING_ASSIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>State Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF__STATE_VARIABLE = LOGIC_TERM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF__ATTRIBUTE = LOGIC_TERM_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF__VALUE = LOGIC_TERM_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Default State Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF_FEATURE_COUNT = LOGIC_TERM_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get Possible Variables</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF___GET_POSSIBLE_VARIABLES = LOGIC_TERM_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Possible Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF___GET_POSSIBLE_ATTRIBUTES = LOGIC_TERM_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Possible Values</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Default State Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 3;
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.System <em>System</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1898,10 +1989,10 @@ public interface SystemModelPackage extends EPackage {
 	EAttribute getOperationCall_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getPreCallStateDefinitions <em>Pre Call State Definitions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getPreCallStateDefinitions <em>Pre Call State Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pre Call State Definitions</em>'.
+	 * @return the meta object for the containment reference list '<em>Pre Call State Definitions</em>'.
 	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.OperationCall#getPreCallStateDefinitions()
 	 * @see #getOperationCall()
 	 * @generated
@@ -2474,6 +2565,79 @@ public interface SystemModelPackage extends EPackage {
 	EOperation getStateRef__GetPossibleValues();
 
 	/**
+	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef <em>Default State Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Default State Ref</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef
+	 * @generated
+	 */
+	EClass getDefaultStateRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getStateVariable <em>State Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>State Variable</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getStateVariable()
+	 * @see #getDefaultStateRef()
+	 * @generated
+	 */
+	EReference getDefaultStateRef_StateVariable();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Attribute</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getAttribute()
+	 * @see #getDefaultStateRef()
+	 * @generated
+	 */
+	EReference getDefaultStateRef_Attribute();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getValue()
+	 * @see #getDefaultStateRef()
+	 * @generated
+	 */
+	EReference getDefaultStateRef_Value();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getPossibleVariables() <em>Get Possible Variables</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Variables</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getPossibleVariables()
+	 * @generated
+	 */
+	EOperation getDefaultStateRef__GetPossibleVariables();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getPossibleAttributes() <em>Get Possible Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Attributes</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getPossibleAttributes()
+	 * @generated
+	 */
+	EOperation getDefaultStateRef__GetPossibleAttributes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getPossibleValues() <em>Get Possible Values</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Possible Values</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getPossibleValues()
+	 * @generated
+	 */
+	EOperation getDefaultStateRef__GetPossibleValues();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2835,7 +2999,7 @@ public interface SystemModelPackage extends EPackage {
 		EAttribute OPERATION_CALL__NAME = eINSTANCE.getOperationCall_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Pre Call State Definitions</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Pre Call State Definitions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3304,6 +3468,64 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation STATE_REF___GET_POSSIBLE_VALUES = eINSTANCE.getStateRef__GetPossibleValues();
+
+		/**
+		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.DefaultStateRefImpl <em>Default State Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.kit.ipd.sdq.dataflow.systemmodel.impl.DefaultStateRefImpl
+		 * @see edu.kit.ipd.sdq.dataflow.systemmodel.impl.SystemModelPackageImpl#getDefaultStateRef()
+		 * @generated
+		 */
+		EClass DEFAULT_STATE_REF = eINSTANCE.getDefaultStateRef();
+
+		/**
+		 * The meta object literal for the '<em><b>State Variable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEFAULT_STATE_REF__STATE_VARIABLE = eINSTANCE.getDefaultStateRef_StateVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEFAULT_STATE_REF__ATTRIBUTE = eINSTANCE.getDefaultStateRef_Attribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEFAULT_STATE_REF__VALUE = eINSTANCE.getDefaultStateRef_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Variables</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DEFAULT_STATE_REF___GET_POSSIBLE_VARIABLES = eINSTANCE.getDefaultStateRef__GetPossibleVariables();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Attributes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DEFAULT_STATE_REF___GET_POSSIBLE_ATTRIBUTES = eINSTANCE.getDefaultStateRef__GetPossibleAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Possible Values</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DEFAULT_STATE_REF___GET_POSSIBLE_VALUES = eINSTANCE.getDefaultStateRef__GetPossibleValues();
 
 	}
 

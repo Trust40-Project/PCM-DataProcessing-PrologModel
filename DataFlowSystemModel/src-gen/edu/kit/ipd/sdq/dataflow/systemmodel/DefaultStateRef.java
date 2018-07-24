@@ -6,23 +6,28 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>State Ref</b></em>'.
+ * A representation of the model object '<em><b>Default State Ref</b></em>'.
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * Main purpose is to allow the Translator to defined state assignments prior to performing the translation.
+ * This class should usually not be used when defining models.
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getStateVariable <em>State Variable</em>}</li>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getAttribute <em>Attribute</em>}</li>
- *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getValue <em>Value</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getStateVariable <em>State Variable</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getStateRef()
+ * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getDefaultStateRef()
  * @model
  * @generated
  */
-public interface StateRef extends LogicTerm {
+public interface DefaultStateRef extends LogicTerm {
 	/**
 	 * Returns the value of the '<em><b>State Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -33,14 +38,14 @@ public interface StateRef extends LogicTerm {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>State Variable</em>' reference.
 	 * @see #setStateVariable(Variable)
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getStateRef_StateVariable()
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getDefaultStateRef_StateVariable()
 	 * @model required="true"
 	 * @generated
 	 */
 	Variable getStateVariable();
 
 	/**
-	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getStateVariable <em>State Variable</em>}' reference.
+	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getStateVariable <em>State Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>State Variable</em>' reference.
@@ -59,14 +64,14 @@ public interface StateRef extends LogicTerm {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute</em>' reference.
 	 * @see #setAttribute(Attribute)
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getStateRef_Attribute()
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getDefaultStateRef_Attribute()
 	 * @model
 	 * @generated
 	 */
 	Attribute getAttribute();
 
 	/**
-	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getAttribute <em>Attribute</em>}' reference.
+	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getAttribute <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Attribute</em>' reference.
@@ -85,14 +90,14 @@ public interface StateRef extends LogicTerm {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' reference.
 	 * @see #setValue(Value)
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getStateRef_Value()
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getDefaultStateRef_Value()
 	 * @model
 	 * @generated
 	 */
 	Value getValue();
 
 	/**
-	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#getValue <em>Value</em>}' reference.
+	 * Sets the value of the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#getValue <em>Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' reference.
@@ -128,4 +133,4 @@ public interface StateRef extends LogicTerm {
 	 */
 	EList<Value> getPossibleValues();
 
-} // StateRef
+} // DefaultStateRef

@@ -10,63 +10,89 @@ class LogicTermTranslator {
 		this.config = config;
 	}
 	
-	def String getWildcard(Attribute attrib, String wildcardValue) {
+	def String getWildcard(Attribute attrib, LogicTermContext context) {
 		if(attrib !== null) {
 			return "'" + attrib.name +"'";
 		} else {
-			return wildcardValue;
+			return context.attributeWildCardInstatiation;
 		}
 	}
 	
-	def String getWildcard(Value value, String wildcardValue) {
+	def String getWildcard(Value value, LogicTermContext context) {
 		if(value !== null) {
 			return "'" + value.name +"'";
 		} else {
-			return wildcardValue;
+			return context.valueWildCardInstatiation;
 		}
 	}
 	
-	def dispatch String translate(True term, String stackList, String attrib, String value) {
+	def dispatch String translate(True term, LogicTermContext context) {
 		return "true";
 	}
 	
-	def dispatch String translate(False term, String stackList, String attrib, String value) {
+	def dispatch String translate(False term, LogicTermContext context) {
 		return "fail";
 	}
 	
-	def dispatch String translate(Not term, String stackList, String attrib, String value) {
+	def dispatch String translate(Not term, LogicTermContext context) {
 		if(config.optimizedNegations) {
-			return '''lnot(«translate(term.operand,stackList,attrib,value)»)''';	
+			return '''lnot(«translate(term.operand,context)»)''';	
 		} else {
 			if(bb.getTermTypeRestrictions(term.operand).isStackReferenced) {
 				//we have to bind the stack-variable in case it is used within the negated operand
 				//all other possible variables are required to be bound when invoking logical terms
-				return '''(stackValid(«stackList»), \+ «translate(term.operand,stackList,attrib,value)»)''';			
+				return '''(stackValid(«context.currentStack»), \+ «translate(term.operand,context)»)''';			
 			} else {
-				return '''\+ «translate(term.operand,stackList,attrib,value)»)''';			
+				return '''\+ «translate(term.operand,context)»)''';			
 			}
 		}
 	}
 	
-	def dispatch String translate(And term, String stackList, String attrib, String value) {
-		return '''(«translate(term.operands.get(0),stackList,attrib,value)» , «translate(term.operands.get(1),stackList,attrib,value)»)''';
+	def dispatch String translate(And term, LogicTermContext context) {
+		return '''(«translate(term.operands.get(0),context)» , «translate(term.operands.get(1),context)»)''';
 	}
 	
-	def dispatch String translate(Or term, String stackList, String attrib, String value) {
-		return '''(«translate(term.operands.get(0),stackList,attrib,value)» ; «translate(term.operands.get(1),stackList,attrib,value)»)''';
+	def dispatch String translate(Or term, LogicTermContext context) {
+		return '''(«translate(term.operands.get(0),context)» ; «translate(term.operands.get(1),context)»)''';
 	}
 	
-	def dispatch String translate(PropertyRef term, String stackList, String attrib, String value) {
-		return '''operationProperty('«term.operation.name»','«term.property.name»',«getWildcard(term.value,value)»)''';
+	def dispatch String translate(PropertyRef term, LogicTermContext context) {
+		return '''operationProperty('«term.operation.name»','«term.property.name»',«getWildcard(term.value,context)»)''';
 	}
 	
-	def dispatch String translate(ParameterRef term, String stackList, String attrib, String value) {
-		return '''callArgumentImpl(«stackList»,'«term.parameter.name»',«getWildcard(term.attribute,attrib)»,«getWildcard(term.value,value)»)''';
+	def dispatch String translate(DefaultStateRef term, LogicTermContext context) {
+		val variable = term.stateVariable;
+		val operation = getVariableContainingOperation(variable);
+		
+		return '''defaultStateImpl('«operation.name»','«variable.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)''';
 	}
 	
-	def dispatch String translate(ReturnValueRef term, String stackList, String attrib, String value) {
-		val callStack = '''['«term.call.callee.name»','«term.call.name»'|«stackList»]'''
-		return '''returnValueImpl(«callStack»,'«term.returnValue.name»',«getWildcard(term.attribute,attrib)»,«getWildcard(term.value,value)»)''';
+	def dispatch String translate(ParameterRef term, LogicTermContext context) {
+		return '''callArgumentImpl(«context.currentStack»,'«term.parameter.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)''';
 	}
+	
+	def dispatch String translate(ReturnValueRef term, LogicTermContext context) {
+		val callStack = '''['«term.call.callee.name»','«term.call.name»'|«context.currentStack»]'''
+		return '''returnValueImpl(«callStack»,'«term.returnValue.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)''';
+	}
+	
+	def dispatch String translate(StateRef term, LogicTermContext context) {
+		val variable = term.stateVariable;
+		val operation = getVariableContainingOperation(variable);
+		
+		return switch context.stateAccessPredicate {
+			case PRECALL: '''preCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)'''
+			case POSTCALL: '''postCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)'''
+		};
+	}
+	
+	def private getVariableContainingOperation(Variable variable) {
+		val varContainer = variable.eContainer;
+		if(!(varContainer instanceof Operation)) {
+			throw new RuntimeException("Given Variable is not contianed in an operation");
+		}
+		return varContainer as Operation;
+	}
+	
 	
 }

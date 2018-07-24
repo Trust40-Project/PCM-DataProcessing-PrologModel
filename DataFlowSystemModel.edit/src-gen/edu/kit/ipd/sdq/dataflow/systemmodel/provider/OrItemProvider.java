@@ -167,6 +167,9 @@ public class OrItemProvider extends LogicTermItemProvider {
 
 		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
 				SystemModelFactory.eINSTANCE.createStateRef()));
+
+		newChildDescriptors.add(createChildParameter(SystemModelPackage.Literals.OR__OPERANDS,
+				SystemModelFactory.eINSTANCE.createDefaultStateRef()));
 	}
 
 }

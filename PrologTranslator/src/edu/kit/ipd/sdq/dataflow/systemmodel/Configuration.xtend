@@ -1,6 +1,5 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
-import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtend.lib.annotations.Accessors
 
 class Configuration {
@@ -8,8 +7,8 @@ class Configuration {
 	@Accessors
 	boolean optimizedNegations = true;
 	@Accessors
-	boolean shorterAssignments = true;
+	boolean shorterAssignments = false;
 	
 	@Accessors
-	boolean argumentAndReturnValueIndexing = true;
+	boolean argumentAndReturnValueIndexing = false;
 }

@@ -211,6 +211,15 @@ public interface SystemModelFactory extends EFactory {
 	StateRef createStateRef();
 
 	/**
+	 * Returns a new object of class '<em>Default State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Default State Ref</em>'.
+	 * @generated
+	 */
+	DefaultStateRef createDefaultStateRef();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -61,11 +61,11 @@ class SystemTranslator {
 		addDataTypes(sys.datatypes, result);
 		
 		for(Operation op : sys.operations) {
-			callerTranslator.translate(op, result);
+			callerTranslator.translate(op,sys, result);
 		}
 		
 		for(SystemUsage su : sys.systemusages) {
-			callerTranslator.translate(su, result);
+			callerTranslator.translate(su,sys, result);
 		}
 		
 		return result;

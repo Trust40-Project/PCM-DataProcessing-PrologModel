@@ -11,6 +11,8 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef
 import edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable
+import edu.kit.ipd.sdq.dataflow.systemmodel.StateRef
+import edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef
 
 class TermTypeRestrictionsCollector {
 	
@@ -60,6 +62,21 @@ class TermTypeRestrictionsCollector {
 		val restrictions = new TypeRestrictions();
 		restrictions.isStackReferenced = true;
 		collectForVariableReference(term.parameter, term.attribute, term.value, restrictions);
+		return restrictions;
+	}
+	
+	def dispatch collect(StateRef term) {
+		val restrictions = new TypeRestrictions();
+		restrictions.isStackReferenced = true;
+		collectForVariableReference(term.stateVariable, term.attribute, term.value, restrictions);
+		return restrictions;
+	}
+	
+	def dispatch collect(DefaultStateRef term) {
+		val restrictions = new TypeRestrictions();
+		//default state is independent of the stack
+		restrictions.isStackReferenced = false;
+		collectForVariableReference(term.stateVariable, term.attribute, term.value, restrictions);
 		return restrictions;
 	}
 	
