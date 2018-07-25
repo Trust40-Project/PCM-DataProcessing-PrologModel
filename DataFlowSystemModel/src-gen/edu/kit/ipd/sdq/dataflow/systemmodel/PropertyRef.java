@@ -19,7 +19,8 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getPropertyRef()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isPropertyValid isValueValid'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isPropertyValid='getPossibleProperties()-&gt;includes(property)' isValueValid='getPossibleValues()-&gt;includes(value)'"
  * @generated
  */
 public interface PropertyRef extends LogicTerm {

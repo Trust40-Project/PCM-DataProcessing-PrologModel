@@ -20,7 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getPropertyDefinition()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valuesPartOfPropertyType'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot valuesPartOfPropertyType='getPossibleValues()-&gt;includesAll(presentValues)'"
  * @generated
  */
 public interface PropertyDefinition extends EObject {

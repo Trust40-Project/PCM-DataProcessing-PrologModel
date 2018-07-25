@@ -23,8 +23,8 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getOperation()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='parameterNamesUnique returnValueNamesUnique noDuplicatePropertyDefinitions noCyclesInCallGraph'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot parameterNamesUnique='parameters-&gt;isUnique(name)' returnValueNamesUnique='returnValues-&gt;isUnique(name)' noDuplicatePropertyDefinitions='propertyDefinitions-&gt;isUnique(property)' noCyclesInCallGraph=' self.calls-&gt;closure(call | call.callee.calls).callee-&gt;excludes(self)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='parameterNamesUnique returnValueNamesUnique stateNamesUnique noDuplicatePropertyDefinitions noCyclesInCallGraph onlyConstantDefaultStateDefinitions'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot parameterNamesUnique='parameters-&gt;isUnique(name)' returnValueNamesUnique='returnValues-&gt;isUnique(name)' stateNamesUnique='stateVariables-&gt;isUnique(name)' noDuplicatePropertyDefinitions='propertyDefinitions-&gt;isUnique(property)' noCyclesInCallGraph=' self.calls-&gt;closure(call | call.callee.calls).callee-&gt;excludes(self)' onlyConstantDefaultStateDefinitions='defaultStateDefinitions.term-&gt;closure(t | t.oclContents())-&gt;forAll(\n\t\t\toclIsKindOf(True) or oclIsKindOf(False) or\n\t\t\toclIsKindOf(And) or oclIsKindOf(Or) or oclIsKindOf(Not) or\n\t\t\toclIsKindOf(PropertyRef)\n\t\t)'"
  * @generated
  */
 public interface Operation extends Caller {

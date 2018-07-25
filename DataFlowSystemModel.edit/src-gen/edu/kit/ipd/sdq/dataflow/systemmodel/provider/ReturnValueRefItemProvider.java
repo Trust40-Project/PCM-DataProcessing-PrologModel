@@ -19,7 +19,6 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
-import edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment;
 
 /**
  * This is the item provider adapter for a {@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef} object.
@@ -138,7 +137,6 @@ public class ReturnValueRefItemProvider extends LogicTermItemProvider {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object thisObject) {
-						VariableAssignment assi = ((ReturnValueRef) thisObject).getContainingAssignment();
 						return ((ReturnValueRef) thisObject).getPossibleCalls();
 					}
 				});

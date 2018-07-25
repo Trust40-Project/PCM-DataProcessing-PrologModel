@@ -347,13 +347,19 @@ public class SystemModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(operation, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validateCaller_callNamesUnique(operation, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validateOperation_parameterNamesUnique(operation, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOperation_returnValueNamesUnique(operation, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validateOperation_stateNamesUnique(operation, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validateOperation_noDuplicatePropertyDefinitions(operation, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOperation_noCyclesInCallGraph(operation, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateOperation_onlyConstantDefaultStateDefinitions(operation, diagnostics, context);
 		return result;
 	}
 
@@ -400,6 +406,27 @@ public class SystemModelValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the stateNamesUnique constraint of '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String OPERATION__STATE_NAMES_UNIQUE__EEXPRESSION = "stateVariables->isUnique(name)";
+
+	/**
+	 * Validates the stateNamesUnique constraint of '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOperation_stateNamesUnique(Operation operation, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.OPERATION, operation, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "stateNamesUnique",
+				OPERATION__STATE_NAMES_UNIQUE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
 	 * The cached validation expression for the noDuplicatePropertyDefinitions constraint of '<em>Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -442,6 +469,31 @@ public class SystemModelValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the onlyConstantDefaultStateDefinitions constraint of '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String OPERATION__ONLY_CONSTANT_DEFAULT_STATE_DEFINITIONS__EEXPRESSION = "defaultStateDefinitions.term->closure(t | t.oclContents())->forAll(\n"
+			+ "\t\t\toclIsKindOf(True) or oclIsKindOf(False) or\n"
+			+ "\t\t\toclIsKindOf(And) or oclIsKindOf(Or) or oclIsKindOf(Not) or\n" + "\t\t\toclIsKindOf(PropertyRef)\n"
+			+ "\t\t)";
+
+	/**
+	 * Validates the onlyConstantDefaultStateDefinitions constraint of '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOperation_onlyConstantDefaultStateDefinitions(Operation operation,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.OPERATION, operation, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "onlyConstantDefaultStateDefinitions",
+				OPERATION__ONLY_CONSTANT_DEFAULT_STATE_DEFINITIONS__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -475,7 +527,47 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePropertyDefinition(PropertyDefinition propertyDefinition, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(propertyDefinition, diagnostics, context);
+		if (!validate_NoCircularContainment(propertyDefinition, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(propertyDefinition, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(propertyDefinition, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(propertyDefinition, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(propertyDefinition, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(propertyDefinition, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(propertyDefinition, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(propertyDefinition, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(propertyDefinition, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePropertyDefinition_valuesPartOfPropertyType(propertyDefinition, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the valuesPartOfPropertyType constraint of '<em>Property Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROPERTY_DEFINITION__VALUES_PART_OF_PROPERTY_TYPE__EEXPRESSION = "getPossibleValues()->includesAll(presentValues)";
+
+	/**
+	 * Validates the valuesPartOfPropertyType constraint of '<em>Property Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePropertyDefinition_valuesPartOfPropertyType(PropertyDefinition propertyDefinition,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.PROPERTY_DEFINITION, propertyDefinition, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "valuesPartOfPropertyType",
+				PROPERTY_DEFINITION__VALUES_PART_OF_PROPERTY_TYPE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -495,7 +587,93 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validateVariableAssignment(VariableAssignment variableAssignment, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(variableAssignment, diagnostics, context);
+		if (!validate_NoCircularContainment(variableAssignment, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateVariableAssignment_isVariableValid(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateVariableAssignment_isAttributeValid(variableAssignment, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateVariableAssignment_isValueValid(variableAssignment, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the isVariableValid constraint of '<em>Variable Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String VARIABLE_ASSIGNMENT__IS_VARIABLE_VALID__EEXPRESSION = "getPossibleVariables()->includes(variable)";
+
+	/**
+	 * Validates the isVariableValid constraint of '<em>Variable Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVariableAssignment_isVariableValid(VariableAssignment variableAssignment,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.VARIABLE_ASSIGNMENT, variableAssignment, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isVariableValid",
+				VARIABLE_ASSIGNMENT__IS_VARIABLE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isAttributeValid constraint of '<em>Variable Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String VARIABLE_ASSIGNMENT__IS_ATTRIBUTE_VALID__EEXPRESSION = "getPossibleAttributes()->includes(attribute)";
+
+	/**
+	 * Validates the isAttributeValid constraint of '<em>Variable Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVariableAssignment_isAttributeValid(VariableAssignment variableAssignment,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.VARIABLE_ASSIGNMENT, variableAssignment, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isAttributeValid",
+				VARIABLE_ASSIGNMENT__IS_ATTRIBUTE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isValueValid constraint of '<em>Variable Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String VARIABLE_ASSIGNMENT__IS_VALUE_VALID__EEXPRESSION = "getPossibleValues()->includes(value)";
+
+	/**
+	 * Validates the isValueValid constraint of '<em>Variable Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVariableAssignment_isValueValid(VariableAssignment variableAssignment,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.VARIABLE_ASSIGNMENT, variableAssignment, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isValueValid",
+				VARIABLE_ASSIGNMENT__IS_VALUE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -505,7 +683,47 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validateValueSetType(ValueSetType valueSetType, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(valueSetType, diagnostics, context);
+		if (!validate_NoCircularContainment(valueSetType, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(valueSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(valueSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(valueSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(valueSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(valueSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(valueSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(valueSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(valueSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateValueSetType_valueNamesUnique(valueSetType, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the valueNamesUnique constraint of '<em>Value Set Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String VALUE_SET_TYPE__VALUE_NAMES_UNIQUE__EEXPRESSION = "values->isUnique(name)";
+
+	/**
+	 * Validates the valueNamesUnique constraint of '<em>Value Set Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateValueSetType_valueNamesUnique(ValueSetType valueSetType, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.VALUE_SET_TYPE, valueSetType, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "valueNamesUnique",
+				VALUE_SET_TYPE__VALUE_NAMES_UNIQUE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -569,7 +787,93 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validateParameterRef(ParameterRef parameterRef, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(parameterRef, diagnostics, context);
+		if (!validate_NoCircularContainment(parameterRef, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateParameterRef_isParameterValid(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateParameterRef_isAttributeValid(parameterRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateParameterRef_isValueValid(parameterRef, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the isParameterValid constraint of '<em>Parameter Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PARAMETER_REF__IS_PARAMETER_VALID__EEXPRESSION = "getPossibleParameters()->includes(parameter)";
+
+	/**
+	 * Validates the isParameterValid constraint of '<em>Parameter Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateParameterRef_isParameterValid(ParameterRef parameterRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.PARAMETER_REF, parameterRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isParameterValid",
+				PARAMETER_REF__IS_PARAMETER_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isAttributeValid constraint of '<em>Parameter Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PARAMETER_REF__IS_ATTRIBUTE_VALID__EEXPRESSION = "getPossibleAttributes()->includes(attribute)";
+
+	/**
+	 * Validates the isAttributeValid constraint of '<em>Parameter Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateParameterRef_isAttributeValid(ParameterRef parameterRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.PARAMETER_REF, parameterRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isAttributeValid",
+				PARAMETER_REF__IS_ATTRIBUTE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isValueValid constraint of '<em>Parameter Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PARAMETER_REF__IS_VALUE_VALID__EEXPRESSION = "getPossibleValues()->includes(value)";
+
+	/**
+	 * Validates the isValueValid constraint of '<em>Parameter Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateParameterRef_isValueValid(ParameterRef parameterRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.PARAMETER_REF, parameterRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isValueValid",
+				PARAMETER_REF__IS_VALUE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -579,7 +883,70 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePropertyRef(PropertyRef propertyRef, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(propertyRef, diagnostics, context);
+		if (!validate_NoCircularContainment(propertyRef, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePropertyRef_isPropertyValid(propertyRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePropertyRef_isValueValid(propertyRef, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the isPropertyValid constraint of '<em>Property Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROPERTY_REF__IS_PROPERTY_VALID__EEXPRESSION = "getPossibleProperties()->includes(property)";
+
+	/**
+	 * Validates the isPropertyValid constraint of '<em>Property Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePropertyRef_isPropertyValid(PropertyRef propertyRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.PROPERTY_REF, propertyRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isPropertyValid",
+				PROPERTY_REF__IS_PROPERTY_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isValueValid constraint of '<em>Property Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROPERTY_REF__IS_VALUE_VALID__EEXPRESSION = "getPossibleValues()->includes(value)";
+
+	/**
+	 * Validates the isValueValid constraint of '<em>Property Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePropertyRef_isValueValid(PropertyRef propertyRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.PROPERTY_REF, propertyRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isValueValid",
+				PROPERTY_REF__IS_VALUE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -588,7 +955,47 @@ public class SystemModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCaller(Caller caller, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(caller, diagnostics, context);
+		if (!validate_NoCircularContainment(caller, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(caller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(caller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(caller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(caller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(caller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(caller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(caller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(caller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateCaller_callNamesUnique(caller, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the callNamesUnique constraint of '<em>Caller</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String CALLER__CALL_NAMES_UNIQUE__EEXPRESSION = "calls->isUnique(name)";
+
+	/**
+	 * Validates the callNamesUnique constraint of '<em>Caller</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCaller_callNamesUnique(Caller caller, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.CALLER, caller, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "callNamesUnique",
+				CALLER__CALL_NAMES_UNIQUE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -598,7 +1005,26 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validateSystemUsage(SystemUsage systemUsage, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(systemUsage, diagnostics, context);
+		if (!validate_NoCircularContainment(systemUsage, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(systemUsage, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(systemUsage, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(systemUsage, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(systemUsage, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(systemUsage, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(systemUsage, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(systemUsage, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(systemUsage, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateCaller_callNamesUnique(systemUsage, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -626,79 +1052,98 @@ public class SystemModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(returnValueRef, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateReturnValueRef_returnValueIsContainedInTargetOperation(returnValueRef, diagnostics,
-					context);
+			result &= validateReturnValueRef_isCallValid(returnValueRef, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateReturnValueRef_isAttributePartOfReturnValue(returnValueRef, diagnostics, context);
+			result &= validateReturnValueRef_isReturnValueValid(returnValueRef, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateReturnValueRef_isValuePartOfAttribute(returnValueRef, diagnostics, context);
+			result &= validateReturnValueRef_isAttributeValid(returnValueRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateReturnValueRef_isValueValid(returnValueRef, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the returnValueIsContainedInTargetOperation constraint of '<em>Return Value Ref</em>'.
+	 * The cached validation expression for the isCallValid constraint of '<em>Return Value Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String RETURN_VALUE_REF__RETURN_VALUE_IS_CONTAINED_IN_TARGET_OPERATION__EEXPRESSION = "call.callee.returnValues->includes(returnValue)";
+	protected static final String RETURN_VALUE_REF__IS_CALL_VALID__EEXPRESSION = "getPossibleCalls()->includes(call)";
 
 	/**
-	 * Validates the returnValueIsContainedInTargetOperation constraint of '<em>Return Value Ref</em>'.
+	 * Validates the isCallValid constraint of '<em>Return Value Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateReturnValueRef_returnValueIsContainedInTargetOperation(ReturnValueRef returnValueRef,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateReturnValueRef_isCallValid(ReturnValueRef returnValueRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate(SystemModelPackage.Literals.RETURN_VALUE_REF, returnValueRef, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "returnValueIsContainedInTargetOperation",
-				RETURN_VALUE_REF__RETURN_VALUE_IS_CONTAINED_IN_TARGET_OPERATION__EEXPRESSION, Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE, 0);
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isCallValid",
+				RETURN_VALUE_REF__IS_CALL_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
-	 * The cached validation expression for the isAttributePartOfReturnValue constraint of '<em>Return Value Ref</em>'.
+	 * The cached validation expression for the isReturnValueValid constraint of '<em>Return Value Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String RETURN_VALUE_REF__IS_ATTRIBUTE_PART_OF_RETURN_VALUE__EEXPRESSION = "(not attribute.oclIsUndefined()) implies returnValue.datatype.attributes->includes(attribute)";
+	protected static final String RETURN_VALUE_REF__IS_RETURN_VALUE_VALID__EEXPRESSION = "getPossibleReturnValues()->includes(returnValue)";
 
 	/**
-	 * Validates the isAttributePartOfReturnValue constraint of '<em>Return Value Ref</em>'.
+	 * Validates the isReturnValueValid constraint of '<em>Return Value Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateReturnValueRef_isAttributePartOfReturnValue(ReturnValueRef returnValueRef,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateReturnValueRef_isReturnValueValid(ReturnValueRef returnValueRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate(SystemModelPackage.Literals.RETURN_VALUE_REF, returnValueRef, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isAttributePartOfReturnValue",
-				RETURN_VALUE_REF__IS_ATTRIBUTE_PART_OF_RETURN_VALUE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
-				0);
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isReturnValueValid",
+				RETURN_VALUE_REF__IS_RETURN_VALUE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
-	 * The cached validation expression for the isValuePartOfAttribute constraint of '<em>Return Value Ref</em>'.
+	 * The cached validation expression for the isAttributeValid constraint of '<em>Return Value Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String RETURN_VALUE_REF__IS_VALUE_PART_OF_ATTRIBUTE__EEXPRESSION = "(not attribute.oclIsUndefined() and not value.oclIsUndefined())\n"
-			+ "\t\t\t\t\t\t\t\t\t\t\timplies attribute.type.values->includes(value)";
+	protected static final String RETURN_VALUE_REF__IS_ATTRIBUTE_VALID__EEXPRESSION = "getPossibleAttributes()->includes(attribute)";
 
 	/**
-	 * Validates the isValuePartOfAttribute constraint of '<em>Return Value Ref</em>'.
+	 * Validates the isAttributeValid constraint of '<em>Return Value Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateReturnValueRef_isValuePartOfAttribute(ReturnValueRef returnValueRef,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateReturnValueRef_isAttributeValid(ReturnValueRef returnValueRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate(SystemModelPackage.Literals.RETURN_VALUE_REF, returnValueRef, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isValuePartOfAttribute",
-				RETURN_VALUE_REF__IS_VALUE_PART_OF_ATTRIBUTE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isAttributeValid",
+				RETURN_VALUE_REF__IS_ATTRIBUTE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isValueValid constraint of '<em>Return Value Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String RETURN_VALUE_REF__IS_VALUE_VALID__EEXPRESSION = "getPossibleValues()->includes(value)";
+
+	/**
+	 * Validates the isValueValid constraint of '<em>Return Value Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReturnValueRef_isValueValid(ReturnValueRef returnValueRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.RETURN_VALUE_REF, returnValueRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isValueValid",
+				RETURN_VALUE_REF__IS_VALUE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -707,7 +1152,93 @@ public class SystemModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateStateRef(StateRef stateRef, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(stateRef, diagnostics, context);
+		if (!validate_NoCircularContainment(stateRef, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateStateRef_isStateVariableValid(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateStateRef_isAttributeValid(stateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateStateRef_isValueValid(stateRef, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the isStateVariableValid constraint of '<em>State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String STATE_REF__IS_STATE_VARIABLE_VALID__EEXPRESSION = "getPossibleVariables()->includes(stateVariable)";
+
+	/**
+	 * Validates the isStateVariableValid constraint of '<em>State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateRef_isStateVariableValid(StateRef stateRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.STATE_REF, stateRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isStateVariableValid",
+				STATE_REF__IS_STATE_VARIABLE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isAttributeValid constraint of '<em>State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String STATE_REF__IS_ATTRIBUTE_VALID__EEXPRESSION = "getPossibleAttributes()->includes(attribute)";
+
+	/**
+	 * Validates the isAttributeValid constraint of '<em>State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateRef_isAttributeValid(StateRef stateRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.STATE_REF, stateRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isAttributeValid",
+				STATE_REF__IS_ATTRIBUTE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isValueValid constraint of '<em>State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String STATE_REF__IS_VALUE_VALID__EEXPRESSION = "getPossibleValues()->includes(value)";
+
+	/**
+	 * Validates the isValueValid constraint of '<em>State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateRef_isValueValid(StateRef stateRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.STATE_REF, stateRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isValueValid",
+				STATE_REF__IS_VALUE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -717,7 +1248,93 @@ public class SystemModelValidator extends EObjectValidator {
 	 */
 	public boolean validateDefaultStateRef(DefaultStateRef defaultStateRef, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(defaultStateRef, diagnostics, context);
+		if (!validate_NoCircularContainment(defaultStateRef, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateDefaultStateRef_isStateVariableValid(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateDefaultStateRef_isAttributeValid(defaultStateRef, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateDefaultStateRef_isValueValid(defaultStateRef, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the isStateVariableValid constraint of '<em>Default State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String DEFAULT_STATE_REF__IS_STATE_VARIABLE_VALID__EEXPRESSION = "getPossibleVariables()->includes(stateVariable)";
+
+	/**
+	 * Validates the isStateVariableValid constraint of '<em>Default State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDefaultStateRef_isStateVariableValid(DefaultStateRef defaultStateRef,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.DEFAULT_STATE_REF, defaultStateRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isStateVariableValid",
+				DEFAULT_STATE_REF__IS_STATE_VARIABLE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isAttributeValid constraint of '<em>Default State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String DEFAULT_STATE_REF__IS_ATTRIBUTE_VALID__EEXPRESSION = "getPossibleAttributes()->includes(attribute)";
+
+	/**
+	 * Validates the isAttributeValid constraint of '<em>Default State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDefaultStateRef_isAttributeValid(DefaultStateRef defaultStateRef,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.DEFAULT_STATE_REF, defaultStateRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isAttributeValid",
+				DEFAULT_STATE_REF__IS_ATTRIBUTE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the isValueValid constraint of '<em>Default State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String DEFAULT_STATE_REF__IS_VALUE_VALID__EEXPRESSION = "getPossibleValues()->includes(value)";
+
+	/**
+	 * Validates the isValueValid constraint of '<em>Default State Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDefaultStateRef_isValueValid(DefaultStateRef defaultStateRef, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(SystemModelPackage.Literals.DEFAULT_STATE_REF, defaultStateRef, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "isValueValid",
+				DEFAULT_STATE_REF__IS_VALUE_VALID__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**

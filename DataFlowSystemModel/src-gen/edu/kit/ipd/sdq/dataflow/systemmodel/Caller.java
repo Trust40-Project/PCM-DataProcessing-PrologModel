@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getCaller()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='callNamesUnique'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot callNamesUnique='calls-&gt;isUnique(name)'"
  * @generated
  */
 public interface Caller extends EObject {

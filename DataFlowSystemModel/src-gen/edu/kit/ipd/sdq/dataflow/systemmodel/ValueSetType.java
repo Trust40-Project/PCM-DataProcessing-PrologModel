@@ -20,7 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getValueSetType()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valueNamesUnique'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot valueNamesUnique='values-&gt;isUnique(name)'"
  * @generated
  */
 public interface ValueSetType extends EObject {

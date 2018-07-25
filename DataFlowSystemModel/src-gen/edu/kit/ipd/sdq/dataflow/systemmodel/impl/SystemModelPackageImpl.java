@@ -1716,9 +1716,21 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		addAnnotation(systemEClass, source, new String[] { "constraints",
 				"attributeNamesUnique datatypeNamesUnique propertyNamesUnique valueSetTypeNamesUnique operationAndSystemUsageNamesUnique" });
 		addAnnotation(operationEClass, source, new String[] { "constraints",
-				"parameterNamesUnique returnValueNamesUnique noDuplicatePropertyDefinitions noCyclesInCallGraph" });
-		addAnnotation(returnValueRefEClass, source, new String[] { "constraints",
-				"returnValueIsContainedInTargetOperation isAttributePartOfReturnValue isValuePartOfAttribute" });
+				"parameterNamesUnique returnValueNamesUnique stateNamesUnique noDuplicatePropertyDefinitions noCyclesInCallGraph onlyConstantDefaultStateDefinitions" });
+		addAnnotation(propertyDefinitionEClass, source, new String[] { "constraints", "valuesPartOfPropertyType" });
+		addAnnotation(variableAssignmentEClass, source,
+				new String[] { "constraints", "isVariableValid isAttributeValid isValueValid" });
+		addAnnotation(valueSetTypeEClass, source, new String[] { "constraints", "valueNamesUnique" });
+		addAnnotation(parameterRefEClass, source,
+				new String[] { "constraints", "isParameterValid isAttributeValid isValueValid" });
+		addAnnotation(propertyRefEClass, source, new String[] { "constraints", "isPropertyValid isValueValid" });
+		addAnnotation(callerEClass, source, new String[] { "constraints", "callNamesUnique" });
+		addAnnotation(returnValueRefEClass, source,
+				new String[] { "constraints", "isCallValid isReturnValueValid isAttributeValid isValueValid" });
+		addAnnotation(stateRefEClass, source,
+				new String[] { "constraints", "isStateVariableValid isAttributeValid isValueValid" });
+		addAnnotation(defaultStateRefEClass, source,
+				new String[] { "constraints", "isStateVariableValid isAttributeValid isValueValid" });
 	}
 
 	/**
@@ -1734,36 +1746,53 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 						"datatypes->isUnique(name)", "propertyNamesUnique", "properties->isUnique(name)",
 						"valueSetTypeNamesUnique", "types->isUnique(name)", "operationAndSystemUsageNamesUnique",
 						"operations->union(systemusages)->isUnique(name)" });
-		addAnnotation(operationEClass, source,
-				new String[] { "parameterNamesUnique", "parameters->isUnique(name)", "returnValueNamesUnique",
-						"returnValues->isUnique(name)", "noDuplicatePropertyDefinitions",
-						"propertyDefinitions->isUnique(property)", "noCyclesInCallGraph",
-						" self.calls->closure(call | call.callee.calls).callee->excludes(self)" });
+		addAnnotation(operationEClass, source, new String[] { "parameterNamesUnique", "parameters->isUnique(name)",
+				"returnValueNamesUnique", "returnValues->isUnique(name)", "stateNamesUnique",
+				"stateVariables->isUnique(name)", "noDuplicatePropertyDefinitions",
+				"propertyDefinitions->isUnique(property)", "noCyclesInCallGraph",
+				" self.calls->closure(call | call.callee.calls).callee->excludes(self)",
+				"onlyConstantDefaultStateDefinitions",
+				"defaultStateDefinitions.term->closure(t | t.oclContents())->forAll(\n\t\t\toclIsKindOf(True) or oclIsKindOf(False) or\n\t\t\toclIsKindOf(And) or oclIsKindOf(Or) or oclIsKindOf(Not) or\n\t\t\toclIsKindOf(PropertyRef)\n\t\t)" });
+		addAnnotation(propertyDefinitionEClass, source,
+				new String[] { "valuesPartOfPropertyType", "getPossibleValues()->includesAll(presentValues)" });
 		addAnnotation(getPropertyDefinition__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tProperty.allInstances().type.values->asSet()\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values->asSet()\n\t\t\t\tendif" });
+		addAnnotation(variableAssignmentEClass, source,
+				new String[] { "isVariableValid", "getPossibleVariables()->includes(variable)", "isAttributeValid",
+						"getPossibleAttributes()->includes(attribute)", "isValueValid",
+						"getPossibleValues()->includes(value)" });
 		addAnnotation(getVariableAssignment__GetPossibleVariables(), source, new String[] { "body",
 				"\n\t\t\t\tlet cont = self.oclContainer() in\n\t\t\t\tif(cont.oclIsUndefined()) then\n\t\t\t\t\tVariable.allInstances()->asSet()\n\t\t\t\telse \n\t\t\t\t\tif(cont.oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tif cont.oclAsType(OperationCall).parameterAssignments->includes(self) then\n\t\t\t\t\t\t\tcont.oclAsType(OperationCall).callee.parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(cont.oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tif cont.oclAsType(Operation).returnValueAssignments->includes(self) then\n\t\t\t\t\t\t\t\tcont.oclAsType(Operation).returnValues->asSet()\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tif cont.oclAsType(Operation).defaultStateDefinitions->includes(self) then\n\t\t\t\t\t\t\t\t\tcont.oclAsType(Operation).stateVariables->asSet()\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tVariable.allInstances()->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif" });
 		addAnnotation(getVariableAssignment__GetPossibleAttributes(), source, new String[] { "body",
 				"\n\t\t\t\tif variable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tvariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getVariableAssignment__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(valueSetTypeEClass, source, new String[] { "valueNamesUnique", "values->isUnique(name)" });
 		addAnnotation(getLogicTerm_ContainingAssignment(), source, new String[] { "derivation",
 				"let cont = self.oclAsSet()->closure(elem | elem.oclContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif" });
+		addAnnotation(parameterRefEClass, source,
+				new String[] { "isParameterValid", "getPossibleParameters()->includes(parameter)", "isAttributeValid",
+						"getPossibleAttributes()->includes(attribute)", "isValueValid",
+						"getPossibleValues()->includes(value)" });
 		addAnnotation(getParameterRef__GetPossibleParameters(), source, new String[] { "body",
 				"\n\t\t\t\tlet assi = containingAssignment in\n\t\t\t\tif(assi.oclIsUndefined() or assi.oclContainer().oclIsUndefined()) then\n\t\t\t\t\tOperation.allInstances().parameters->asSet()\n\t\t\t\telse \n\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tlet caller = assi.oclContainer().oclAsType(OperationCall).caller in\n\t\t\t\t\t\tif (caller.oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tcaller.oclAsType(Operation).parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tSet{}\t\t\t\t\t\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tassi.oclContainer().oclAsType(Operation).parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tOperation.allInstances().parameters->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif" });
 		addAnnotation(getParameterRef__GetPossibleAttributes(), source, new String[] { "body",
 				"\n\t\t\t\tif parameter.oclIsUndefined() then\n\t\t\t\t\tgetPossibleParameters().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tparameter.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getParameterRef__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(propertyRefEClass, source,
+				new String[] { "isPropertyValid", "getPossibleProperties()->includes(property)", "isValueValid",
+						"getPossibleValues()->includes(value)" });
 		addAnnotation(getPropertyRef__GetPossibleProperties(), source, new String[] { "body",
 				"\n\t\t\t\tif operation.oclIsUndefined() then\n\t\t\t\t\tOperation.allInstances().propertyDefinitions.property->asSet()\n\t\t\t\telse\n\t\t\t\t\toperation.propertyDefinitions.property->asSet()\n\t\t\t\tendif" });
 		addAnnotation(getPropertyRef__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tgetPossibleProperties().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
-		addAnnotation(returnValueRefEClass, source, new String[] { "returnValueIsContainedInTargetOperation",
-				"call.callee.returnValues->includes(returnValue)", "isAttributePartOfReturnValue",
-				"(not attribute.oclIsUndefined()) implies returnValue.datatype.attributes->includes(attribute)",
-				"isValuePartOfAttribute",
-				"(not attribute.oclIsUndefined() and not value.oclIsUndefined())\n\t\t\t\t\t\t\t\t\t\t\timplies attribute.type.values->includes(value)" });
+		addAnnotation(callerEClass, source, new String[] { "callNamesUnique", "calls->isUnique(name)" });
+		addAnnotation(returnValueRefEClass, source,
+				new String[] { "isCallValid", "getPossibleCalls()->includes(call)", "isReturnValueValid",
+						"getPossibleReturnValues()->includes(returnValue)", "isAttributeValid",
+						"getPossibleAttributes()->includes(attribute)", "isValueValid",
+						"getPossibleValues()->includes(value)" });
 		addAnnotation(getReturnValueRef__GetPossibleCalls(), source, new String[] { "body",
 				"\n\t\t\t\tlet assi = containingAssignment in\n\t\t\t\tif(assi.oclIsUndefined() or assi.oclContainer().oclIsUndefined()) then\n\t\t\t\t\tCaller.allInstances().calls->asSet()\n\t\t\t\telse \n\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tlet call = assi.oclContainer().oclAsType(OperationCall) in\n\t\t\t\t\t\tlet callIdx = call.caller.calls->indexOf(call) in\n\t\t\t\t\t\tif(callIdx = 1) then\n\t\t\t\t\t\t\tSet{}\n\t\t\t\t\t\telse \n\t\t\t\t\t\t\tcall.caller.calls->subOrderedSet(1, callIdx-1)->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(Caller)) then\n\t\t\t\t\t\t\tassi.oclContainer().oclAsType(Caller).calls->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tCaller.allInstances().calls->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif" });
 		addAnnotation(getReturnValueRef__GetPossibleReturnValues(), source, new String[] { "body",
@@ -1771,19 +1800,27 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		addAnnotation(getReturnValueRef__GetPossibleAttributes(), source, new String[] { "body",
 				"\n\t\t\t\tif returnValue.oclIsUndefined() then\n\t\t\t\t\tgetPossibleReturnValues().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\treturnValue.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getReturnValueRef__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(stateRefEClass, source,
+				new String[] { "isStateVariableValid", "getPossibleVariables()->includes(stateVariable)",
+						"isAttributeValid", "getPossibleAttributes()->includes(attribute)", "isValueValid",
+						"getPossibleValues()->includes(value)" });
 		addAnnotation(getStateRef__GetPossibleVariables(), source,
 				new String[] { "body", "\n\t\t\t\tOperation.allInstances().stateVariables->asSet()" });
 		addAnnotation(getStateRef__GetPossibleAttributes(), source, new String[] { "body",
 				"\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getStateRef__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(defaultStateRefEClass, source,
+				new String[] { "isStateVariableValid", "getPossibleVariables()->includes(stateVariable)",
+						"isAttributeValid", "getPossibleAttributes()->includes(attribute)", "isValueValid",
+						"getPossibleValues()->includes(value)" });
 		addAnnotation(getDefaultStateRef__GetPossibleVariables(), source,
 				new String[] { "body", "\n\t\t\t\tOperation.allInstances().stateVariables->asSet()" });
 		addAnnotation(getDefaultStateRef__GetPossibleAttributes(), source, new String[] { "body",
 				"\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getDefaultStateRef__GetPossibleValues(), source, new String[] { "body",
-				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
 	}
 
 } //SystemModelPackageImpl

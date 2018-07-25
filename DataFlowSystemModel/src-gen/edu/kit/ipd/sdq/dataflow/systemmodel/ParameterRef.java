@@ -19,7 +19,8 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getParameterRef()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isParameterValid isAttributeValid isValueValid'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isParameterValid='getPossibleParameters()-&gt;includes(parameter)' isAttributeValid='getPossibleAttributes()-&gt;includes(attribute)' isValueValid='getPossibleValues()-&gt;includes(value)'"
  * @generated
  */
 public interface ParameterRef extends LogicTerm {
@@ -123,7 +124,7 @@ public interface ParameterRef extends LogicTerm {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes().type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()-&gt;reject(oclIsUndefined()).type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	EList<Value> getPossibleValues();
