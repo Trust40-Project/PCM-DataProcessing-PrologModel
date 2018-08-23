@@ -8,6 +8,7 @@ import java.util.HashMap
 import java.util.List
 import java.util.stream.Collectors
 import org.eclipse.emf.ecore.util.EcoreUtil
+import java.util.Set
 
 class AssignmentsTranslator {
 	
@@ -20,6 +21,12 @@ class AssignmentsTranslator {
 	 * cache variable for the type restrictions, is used across different methods.
 	 */
 	val typeRestrictions = new HashMap<VariableAssignment, TypeRestrictions>();
+	
+	/**
+	 * Only used when the "shorter assignments" optimization is enabled.
+	 * This counter is used for generating a unique assignment id.
+	 */
+	var assignmentIdCounter = 1;
 	
 	new(Blackboard bb, Configuration config) {
 		this.bb = bb;
@@ -44,8 +51,28 @@ class AssignmentsTranslator {
 	
 	
 	protected def void generateShortenedAssignments(List<VariableAssignment> reversedAssignments, AssignmentContext assiContext, PrologProgram sink) {
-		for(assi : reversedAssignments) {
-			
+		val assignmentId = assignmentIdCounter;
+		assignmentIdCounter++;
+		
+		//generate a indirection ot our assignment rule set
+		
+		val LogicTermContext ltContext = new LogicTermContext;
+		generateStackInfoForLogicTermContext(assiContext, true, ltContext);
+		val allVars = reversedAssignments.stream().map([assi | assi.variable]).collect(Collectors.toSet());
+		
+		val adaptedContext = assiContext.copy();
+		adaptedContext.predicate = [S,VAR,A,VAL | '''assignment_«assignmentId»(«S»,'«VAR.name»',«A»,«VAL»)'''];
+		
+		for(vari : allVars) {
+			sink.addRule(assiContext.predicate.getPredicate(ltContext.currentStack,vari,"A","V"),
+				adaptedContext.predicate.getPredicate(ltContext.currentStack,vari,"A","V"));
+			if(config.optimizedNegations) {
+				sink.addRule("not_"+assiContext.predicate.getPredicate(ltContext.currentStack,vari,"A","V"),
+				"not_" + adaptedContext.predicate.getPredicate(ltContext.currentStack,vari,"A","V"));
+			}
+		}
+		
+		val generateAssignment = [VariableAssignment assi, boolean negated | 
 			val restrictions = typeRestrictions.get(assi);
 			val preconditions = new StringBuilder;
 			
@@ -70,7 +97,16 @@ class AssignmentsTranslator {
 					}	
 				}	
 			}
-			writeAssignmentRule(assiContext,restrictions.isStackReferenced,preconditions.toString,attribute,value, assi,sink);
+			writeAssignmentRule(adaptedContext,restrictions.isStackReferenced,negated,preconditions.toString,attribute,value, assi,sink);
+		];
+		
+		for(assi : reversedAssignments) {
+			generateAssignment.apply(assi,false);			
+		}
+		if(config.optimizedNegations) {
+			for(assi : reversedAssignments) {
+				generateAssignment.apply(assi,true);			
+			}
 		}
 	}
 	
@@ -92,7 +128,7 @@ class AssignmentsTranslator {
 							
 							if(valueMatch && attributeMatch) {
 								wasAssigned = true;
-								writeAssignmentRule(assiContext, tr.isStackReferenced, null, "'" + attrib.name + "'" , "'"+value.name+"'", assi, sink)
+								writeAssignmentRule(assiContext, tr.isStackReferenced,false, null, "'" + attrib.name + "'" , "'"+value.name+"'", assi, sink)
 							}
 						}
 					}
@@ -101,10 +137,7 @@ class AssignmentsTranslator {
 		}
 	}
 	
-	protected def Object writeAssignmentRule(AssignmentContext assiContext, boolean isStackReferenced, String preconditions, String attrib, String value, VariableAssignment assi, PrologProgram sink) {
-		
-		val LogicTermContext ltContext = new LogicTermContext;
-		
+	protected def generateStackInfoForLogicTermContext(AssignmentContext assiContext, boolean isStackReferenced, LogicTermContext ltContext) {
 		var String stackVariable;
 		if(isStackReferenced) {
 			stackVariable= "S";
@@ -121,6 +154,15 @@ class AssignmentsTranslator {
 			ltContext.stateAccessPredicate = StateAccessMode.PRECALL;
 			ltContext.stateAccessStack = ltContext.currentStack;	
 		}
+	}
+	
+	
+	
+	protected def Object writeAssignmentRule(AssignmentContext assiContext, boolean isStackReferenced, boolean negated, String preconditions, String attrib, String value, VariableAssignment assi, PrologProgram sink) {
+		
+		val LogicTermContext ltContext = new LogicTermContext;
+		generateStackInfoForLogicTermContext(assiContext, isStackReferenced, ltContext);
+		
 		
 		ltContext.valueWildCardInstatiation = value;
 		ltContext.attributeWildCardInstatiation = attrib;
@@ -133,14 +175,15 @@ class AssignmentsTranslator {
 		var String pred = assiContext.predicate.getPredicate(ltContext.currentStack,assi.variable,attrib,value);
 		
 		
-		var String term = logicTermTranslator.translate(assi.term, ltContext);
-		sink.addRule(pred, preconditionsPrefix + term);
-		if(config.optimizedNegations) {
+		if(negated) {
 			pred = "not_"+pred;
-			val negated = SystemModelFactory.eINSTANCE.createNot();
-			negated.operand = EcoreUtil.copy(assi.term);
-			term = logicTermTranslator.translate(negated, ltContext);
+			val negatedTerm = SystemModelFactory.eINSTANCE.createNot();
+			negatedTerm.operand = EcoreUtil.copy(assi.term);
+			val term = logicTermTranslator.translate(negatedTerm, ltContext);
 			sink.addRule(pred, preconditionsPrefix + term);									
+		} else {
+			var String term = logicTermTranslator.translate(assi.term, ltContext);
+			sink.addRule(pred, preconditionsPrefix + term);			
 		}
 	}
 	

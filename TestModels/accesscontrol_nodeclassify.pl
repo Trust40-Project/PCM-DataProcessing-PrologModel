@@ -5,19 +5,30 @@
  :- discontiguous(operationProperty/3).
  :- discontiguous(operationParameterType/3).
  :- discontiguous(operationReturnValueType/3).
+ :- discontiguous(operationStateType/3).
  :- discontiguous(operationCall/3).
  :- discontiguous(isSystemUsage/1).
- :- discontiguous(callArgumentIndexed/5).
- :- discontiguous(returnValueIndexed/5).
- :- discontiguous(not_callArgumentIndexed/5).
- :- discontiguous(not_returnValueIndexed/5).
+ :- discontiguous(defaultStateImpl/4).
+ :- discontiguous(callArgumentImpl/4).
+ :- discontiguous(returnValueImpl/4).
+ :- discontiguous(preCallStateImpl/5).
+ :- discontiguous(postCallStateImpl/5).
+ :- discontiguous(not_callArgumentImpl/4).
+ :- discontiguous(not_returnValueImpl/4).
+ :- discontiguous(not_preCallStateImpl/5).
+ :- discontiguous(not_postCallStateImpl/5).
  :- discontiguous(not_operationProperty/3).
+ :- discontiguous(not_defaultStateImpl/4).
 isAttribute(ATTRIB) :- attributeType(ATTRIB,_).
 isProperty(ATTRIB) :- propertyType(ATTRIB,_).
 operationParameter(OP,PARAM) :- operationParameterType(OP,PARAM,_).
 operationReturnValue(OP,RVAL) :- operationReturnValueType(OP,RVAL,_).
+operationState(OP,SVAL) :- operationStateType(OP,SVAL,_).
 callArgument([OP|S],VAR,A,VAL) :- isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),callArgumentImpl([OP|S],VAR,A,VAL).
 returnValue([OP|S],VAR,A,VAL) :- isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),returnValueImpl([OP|S],VAR,A,VAL).
+preCallState([SOP|S],OP,VAR,A,VAL) :- isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),preCallStateImpl([SOP|S],OP,VAR,A,VAL).
+postCallState([SOP|S],OP,VAR,A,VAL) :- isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),postCallStateImpl([SOP|S],OP,VAR,A,VAL).
+defaultState(OP,VAR,A,VAL) :- operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),defaultStateImpl(OP,VAR,A,VAL).
 stackValid([SU]) :- isSystemUsage(SU).
 stackValid([DEST,CALL,SOURCE | S]) :- operationCall(SOURCE,DEST,CALL), stackValid([SOURCE | S]).
 lnot(lnot(A)) :- A.
@@ -28,12 +39,14 @@ lnot(fail) :- true.
 lnot(callArgumentImpl(S,P,A,V)) :- not_callArgumentImpl(S,P,A,V).
 lnot(returnValueImpl(S,P,A,V)) :- not_returnValueImpl(S,P,A,V).
 lnot(operationProperty(OP,P,V)) :- not_operationProperty(OP,P,V).
+lnot(preCallStateImpl(S,OP,P,A,V)) :- not_preCallStateImpl(S,OP,P,A,V).
+lnot(postCallStateImpl(S,OP,P,A,V)) :- not_postCallStateImpl(S,OP,P,A,V).
+lnot(defaultStateImpl(OP,VAR,A,V)) :- not_defaultStateImpl(OP,VAR,A,V).
 lnot(callArgument([OP|S],VAR,A,VAL)) :- isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_callArgumentImpl([OP|S],VAR,A,VAL).
 lnot(returnValue([OP|S],VAR,A,VAL)) :- isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_returnValueImpl([OP|S],VAR,A,VAL).
-callArgumentImpl([OP|S],VAR,A,VAL) :- callArgumentIndexed(OP, [OP|S],VAR,A,VAL).
-returnValueImpl([OP|S],VAR,A,VAL) :- returnValueIndexed(OP, [OP|S],VAR,A,VAL).
-not_callArgumentImpl([OP|S],VAR,A,VAL) :- not_callArgumentIndexed(OP, [OP|S],VAR,A,VAL).
-not_returnValueImpl([OP|S],VAR,A,VAL) :- not_returnValueIndexed(OP, [OP|S],VAR,A,VAL).
+lnot(preCallState([SOP|S],OP,VAR,A,VAL)) :- isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_preCallStateImpl([SOP|S],OP,VAR,A,VAL).
+lnot(postCallState([SOP|S],OP,VAR,A,VAL)) :- isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_postCallStateImpl([SOP|S],OP,VAR,A,VAL).
+lnot(defaultState(OP,VAR,A,VAL)) :- operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_defaultStateImpl(OP,VAR,A,VAL).
 
 %-------------------------Value Set Type Definitions-------------------------
 valueSetMember('role','User').
@@ -71,14 +84,26 @@ not_operationProperty('TravelPlanner_getFlightOffers','accessRoles', 'TravelAgen
 operationParameterType('TravelPlanner_getFlightOffers','input','RequestData').
 operationReturnValueType('TravelPlanner_getFlightOffers','flightOffers','FlightOffers').
 
+%-----------Default State Values of TravelPlanner_getFlightOffers------------
+
 %-------------Call to TravelAgency_getFlightOffers (checkAgency)-------------
 operationCall('TravelPlanner_getFlightOffers','TravelAgency_getFlightOffers','checkAgency').
-callArgumentIndexed('TravelAgency_getFlightOffers',['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]], 'input', A, V) :- dataTypeAttribute('RequestData', A),!,callArgumentImpl(['TravelPlanner_getFlightOffers'|S],'input',A,V).
-not_callArgumentIndexed('TravelAgency_getFlightOffers',['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]], 'input', A, V) :- dataTypeAttribute('RequestData', A),!,lnot(callArgumentImpl(['TravelPlanner_getFlightOffers'|S],'input',A,V)).
+callArgumentImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]], 'input', 'authorizedRoles', 'User') :- callArgumentImpl(['TravelPlanner_getFlightOffers'|S],'input','authorizedRoles','User').
+not_callArgumentImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]], 'input', 'authorizedRoles', 'User') :- lnot(callArgumentImpl(['TravelPlanner_getFlightOffers'|S],'input','authorizedRoles','User')).
+callArgumentImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]], 'input', 'authorizedRoles', 'Airline') :- callArgumentImpl(['TravelPlanner_getFlightOffers'|S],'input','authorizedRoles','Airline').
+not_callArgumentImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]], 'input', 'authorizedRoles', 'Airline') :- lnot(callArgumentImpl(['TravelPlanner_getFlightOffers'|S],'input','authorizedRoles','Airline')).
+callArgumentImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]], 'input', 'authorizedRoles', 'TravelAgency') :- callArgumentImpl(['TravelPlanner_getFlightOffers'|S],'input','authorizedRoles','TravelAgency').
+not_callArgumentImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]], 'input', 'authorizedRoles', 'TravelAgency') :- lnot(callArgumentImpl(['TravelPlanner_getFlightOffers'|S],'input','authorizedRoles','TravelAgency')).
 
 %---------------Return Values of TravelPlanner_getFlightOffers---------------
-returnValueIndexed('TravelPlanner_getFlightOffers',['TravelPlanner_getFlightOffers'|S], 'flightOffers', A, V) :- dataTypeAttribute('FlightOffers', A),!,returnValueImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]],'flightOffers',A,V).
-not_returnValueIndexed('TravelPlanner_getFlightOffers',['TravelPlanner_getFlightOffers'|S], 'flightOffers', A, V) :- dataTypeAttribute('FlightOffers', A),!,lnot(returnValueImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]],'flightOffers',A,V)).
+returnValueImpl(['TravelPlanner_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'User') :- returnValueImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]],'flightOffers','authorizedRoles','User').
+not_returnValueImpl(['TravelPlanner_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'User') :- lnot(returnValueImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]],'flightOffers','authorizedRoles','User')).
+returnValueImpl(['TravelPlanner_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'Airline') :- returnValueImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]],'flightOffers','authorizedRoles','Airline').
+not_returnValueImpl(['TravelPlanner_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'Airline') :- lnot(returnValueImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]],'flightOffers','authorizedRoles','Airline')).
+returnValueImpl(['TravelPlanner_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'TravelAgency') :- returnValueImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]],'flightOffers','authorizedRoles','TravelAgency').
+not_returnValueImpl(['TravelPlanner_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'TravelAgency') :- lnot(returnValueImpl(['TravelAgency_getFlightOffers','checkAgency'|['TravelPlanner_getFlightOffers'|S]],'flightOffers','authorizedRoles','TravelAgency')).
+
+%-------------State Definitions of TravelPlanner_getFlightOffers-------------
 
 
 %----------------------------------------------------------------------------
@@ -92,14 +117,26 @@ not_operationProperty('TravelAgency_getFlightOffers','accessRoles', 'Airline').
 operationParameterType('TravelAgency_getFlightOffers','input','RequestData').
 operationReturnValueType('TravelAgency_getFlightOffers','flightOffers','FlightOffers').
 
+%------------Default State Values of TravelAgency_getFlightOffers------------
+
 %--------------Call to Airline_getFlightOffers (checkAirlines)---------------
 operationCall('TravelAgency_getFlightOffers','Airline_getFlightOffers','checkAirlines').
-callArgumentIndexed('Airline_getFlightOffers',['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]], 'input', A, V) :- dataTypeAttribute('RequestData', A),!,callArgumentImpl(['TravelAgency_getFlightOffers'|S],'input',A,V).
-not_callArgumentIndexed('Airline_getFlightOffers',['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]], 'input', A, V) :- dataTypeAttribute('RequestData', A),!,lnot(callArgumentImpl(['TravelAgency_getFlightOffers'|S],'input',A,V)).
+callArgumentImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]], 'input', 'authorizedRoles', 'User') :- callArgumentImpl(['TravelAgency_getFlightOffers'|S],'input','authorizedRoles','User').
+not_callArgumentImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]], 'input', 'authorizedRoles', 'User') :- lnot(callArgumentImpl(['TravelAgency_getFlightOffers'|S],'input','authorizedRoles','User')).
+callArgumentImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]], 'input', 'authorizedRoles', 'Airline') :- callArgumentImpl(['TravelAgency_getFlightOffers'|S],'input','authorizedRoles','Airline').
+not_callArgumentImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]], 'input', 'authorizedRoles', 'Airline') :- lnot(callArgumentImpl(['TravelAgency_getFlightOffers'|S],'input','authorizedRoles','Airline')).
+callArgumentImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]], 'input', 'authorizedRoles', 'TravelAgency') :- callArgumentImpl(['TravelAgency_getFlightOffers'|S],'input','authorizedRoles','TravelAgency').
+not_callArgumentImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]], 'input', 'authorizedRoles', 'TravelAgency') :- lnot(callArgumentImpl(['TravelAgency_getFlightOffers'|S],'input','authorizedRoles','TravelAgency')).
 
 %---------------Return Values of TravelAgency_getFlightOffers----------------
-returnValueIndexed('TravelAgency_getFlightOffers',['TravelAgency_getFlightOffers'|S], 'flightOffers', A, V) :- dataTypeAttribute('FlightOffers', A),!,returnValueImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]],'flightOffers',A,V).
-not_returnValueIndexed('TravelAgency_getFlightOffers',['TravelAgency_getFlightOffers'|S], 'flightOffers', A, V) :- dataTypeAttribute('FlightOffers', A),!,lnot(returnValueImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]],'flightOffers',A,V)).
+returnValueImpl(['TravelAgency_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'User') :- returnValueImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]],'flightOffers','authorizedRoles','User').
+not_returnValueImpl(['TravelAgency_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'User') :- lnot(returnValueImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]],'flightOffers','authorizedRoles','User')).
+returnValueImpl(['TravelAgency_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'Airline') :- returnValueImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]],'flightOffers','authorizedRoles','Airline').
+not_returnValueImpl(['TravelAgency_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'Airline') :- lnot(returnValueImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]],'flightOffers','authorizedRoles','Airline')).
+returnValueImpl(['TravelAgency_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'TravelAgency') :- returnValueImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]],'flightOffers','authorizedRoles','TravelAgency').
+not_returnValueImpl(['TravelAgency_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'TravelAgency') :- lnot(returnValueImpl(['Airline_getFlightOffers','checkAirlines'|['TravelAgency_getFlightOffers'|S]],'flightOffers','authorizedRoles','TravelAgency')).
+
+%-------------State Definitions of TravelAgency_getFlightOffers--------------
 
 
 %----------------------------------------------------------------------------
@@ -113,9 +150,17 @@ not_operationProperty('Airline_getFlightOffers','accessRoles', 'TravelAgency').
 operationParameterType('Airline_getFlightOffers','input','RequestData').
 operationReturnValueType('Airline_getFlightOffers','flightOffers','FlightOffers').
 
+%--------------Default State Values of Airline_getFlightOffers---------------
+
 %------------------Return Values of Airline_getFlightOffers------------------
-returnValueIndexed('Airline_getFlightOffers',['Airline_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', V) :- !,callArgumentImpl(['Airline_getFlightOffers'|S],'input','authorizedRoles',V).
-not_returnValueIndexed('Airline_getFlightOffers',['Airline_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', V) :- !,lnot(callArgumentImpl(['Airline_getFlightOffers'|S],'input','authorizedRoles',V)).
+returnValueImpl(['Airline_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'User') :- callArgumentImpl(['Airline_getFlightOffers'|S],'input','authorizedRoles','User').
+not_returnValueImpl(['Airline_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'User') :- lnot(callArgumentImpl(['Airline_getFlightOffers'|S],'input','authorizedRoles','User')).
+returnValueImpl(['Airline_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'Airline') :- callArgumentImpl(['Airline_getFlightOffers'|S],'input','authorizedRoles','Airline').
+not_returnValueImpl(['Airline_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'Airline') :- lnot(callArgumentImpl(['Airline_getFlightOffers'|S],'input','authorizedRoles','Airline')).
+returnValueImpl(['Airline_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'TravelAgency') :- callArgumentImpl(['Airline_getFlightOffers'|S],'input','authorizedRoles','TravelAgency').
+not_returnValueImpl(['Airline_getFlightOffers'|S], 'flightOffers', 'authorizedRoles', 'TravelAgency') :- lnot(callArgumentImpl(['Airline_getFlightOffers'|S],'input','authorizedRoles','TravelAgency')).
+
+%----------------State Definitions of Airline_getFlightOffers----------------
 
 
 %----------------------------------------------------------------------------
@@ -128,21 +173,35 @@ not_operationProperty('TravelPlanner_bookFlight','accessRoles', 'Airline').
 not_operationProperty('TravelPlanner_bookFlight','accessRoles', 'TravelAgency').
 operationParameterType('TravelPlanner_bookFlight','selectedFlight','SingleFlightOffer').
 
+%--------------Default State Values of TravelPlanner_bookFlight--------------
+
 %---------------Call to CCC_requestDeclassifiedCCD (fetchCCD)----------------
 operationCall('TravelPlanner_bookFlight','CCC_requestDeclassifiedCCD','fetchCCD').
-callArgumentIndexed('CCC_requestDeclassifiedCCD',['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', 'Airline') :- !,true.
-not_callArgumentIndexed('CCC_requestDeclassifiedCCD',['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', 'Airline') :- !,lnot(true).
-callArgumentIndexed('CCC_requestDeclassifiedCCD',['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', _) :- !,fail.
-not_callArgumentIndexed('CCC_requestDeclassifiedCCD',['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', _) :- !,lnot(fail).
+callArgumentImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', 'User') :- fail.
+not_callArgumentImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', 'User') :- lnot(fail).
+callArgumentImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', 'Airline') :- true.
+not_callArgumentImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', 'Airline') :- lnot(true).
+callArgumentImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', 'TravelAgency') :- fail.
+not_callArgumentImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|_]], 'declassRequest', 'requestedRoles', 'TravelAgency') :- lnot(fail).
 
 %---------------------Call to Airline_bookFlight (book)----------------------
 operationCall('TravelPlanner_bookFlight','Airline_bookFlight','book').
-callArgumentIndexed('Airline_bookFlight',['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'flight', A, V) :- dataTypeAttribute('SingleFlightOffer', A),!,callArgumentImpl(['TravelPlanner_bookFlight'|S],'selectedFlight',A,V).
-not_callArgumentIndexed('Airline_bookFlight',['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'flight', A, V) :- dataTypeAttribute('SingleFlightOffer', A),!,lnot(callArgumentImpl(['TravelPlanner_bookFlight'|S],'selectedFlight',A,V)).
-callArgumentIndexed('Airline_bookFlight',['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'ccd', A, V) :- dataTypeAttribute('CreditCardData', A),!,returnValueImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|S]],'ccd',A,V).
-not_callArgumentIndexed('Airline_bookFlight',['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'ccd', A, V) :- dataTypeAttribute('CreditCardData', A),!,lnot(returnValueImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|S]],'ccd',A,V)).
+callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'flight', 'authorizedRoles', 'User') :- callArgumentImpl(['TravelPlanner_bookFlight'|S],'selectedFlight','authorizedRoles','User').
+not_callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'flight', 'authorizedRoles', 'User') :- lnot(callArgumentImpl(['TravelPlanner_bookFlight'|S],'selectedFlight','authorizedRoles','User')).
+callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'flight', 'authorizedRoles', 'Airline') :- callArgumentImpl(['TravelPlanner_bookFlight'|S],'selectedFlight','authorizedRoles','Airline').
+not_callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'flight', 'authorizedRoles', 'Airline') :- lnot(callArgumentImpl(['TravelPlanner_bookFlight'|S],'selectedFlight','authorizedRoles','Airline')).
+callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'flight', 'authorizedRoles', 'TravelAgency') :- callArgumentImpl(['TravelPlanner_bookFlight'|S],'selectedFlight','authorizedRoles','TravelAgency').
+not_callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'flight', 'authorizedRoles', 'TravelAgency') :- lnot(callArgumentImpl(['TravelPlanner_bookFlight'|S],'selectedFlight','authorizedRoles','TravelAgency')).
+callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'ccd', 'authorizedRoles', 'User') :- returnValueImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|S]],'ccd','authorizedRoles','User').
+not_callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'ccd', 'authorizedRoles', 'User') :- lnot(returnValueImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|S]],'ccd','authorizedRoles','User')).
+callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'ccd', 'authorizedRoles', 'Airline') :- returnValueImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|S]],'ccd','authorizedRoles','Airline').
+not_callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'ccd', 'authorizedRoles', 'Airline') :- lnot(returnValueImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|S]],'ccd','authorizedRoles','Airline')).
+callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'ccd', 'authorizedRoles', 'TravelAgency') :- returnValueImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|S]],'ccd','authorizedRoles','TravelAgency').
+not_callArgumentImpl(['Airline_bookFlight','book'|['TravelPlanner_bookFlight'|S]], 'ccd', 'authorizedRoles', 'TravelAgency') :- lnot(returnValueImpl(['CCC_requestDeclassifiedCCD','fetchCCD'|['TravelPlanner_bookFlight'|S]],'ccd','authorizedRoles','TravelAgency')).
 
 %-----------------Return Values of TravelPlanner_bookFlight------------------
+
+%---------------State Definitions of TravelPlanner_bookFlight----------------
 
 
 %----------------------------------------------------------------------------
@@ -156,9 +215,17 @@ not_operationProperty('askUserForCCDDeclassification','accessRoles', 'TravelAgen
 operationParameterType('askUserForCCDDeclassification','declassRequest','DeclassificationRequest').
 operationReturnValueType('askUserForCCDDeclassification','allowedRoles','DeclassificationRequest').
 
+%-----------Default State Values of askUserForCCDDeclassification------------
+
 %---------------Return Values of askUserForCCDDeclassification---------------
-returnValueIndexed('askUserForCCDDeclassification',['askUserForCCDDeclassification'|_], 'allowedRoles', 'requestedRoles', _) :- !,fail.
-not_returnValueIndexed('askUserForCCDDeclassification',['askUserForCCDDeclassification'|_], 'allowedRoles', 'requestedRoles', _) :- !,lnot(fail).
+returnValueImpl(['askUserForCCDDeclassification'|_], 'allowedRoles', 'requestedRoles', 'User') :- fail.
+not_returnValueImpl(['askUserForCCDDeclassification'|_], 'allowedRoles', 'requestedRoles', 'User') :- lnot(fail).
+returnValueImpl(['askUserForCCDDeclassification'|_], 'allowedRoles', 'requestedRoles', 'Airline') :- fail.
+not_returnValueImpl(['askUserForCCDDeclassification'|_], 'allowedRoles', 'requestedRoles', 'Airline') :- lnot(fail).
+returnValueImpl(['askUserForCCDDeclassification'|_], 'allowedRoles', 'requestedRoles', 'TravelAgency') :- fail.
+not_returnValueImpl(['askUserForCCDDeclassification'|_], 'allowedRoles', 'requestedRoles', 'TravelAgency') :- lnot(fail).
+
+%-------------State Definitions of askUserForCCDDeclassification-------------
 
 
 %----------------------------------------------------------------------------
@@ -172,16 +239,26 @@ not_operationProperty('CCC_requestDeclassifiedCCD','accessRoles', 'TravelAgency'
 operationParameterType('CCC_requestDeclassifiedCCD','declassRequest','DeclassificationRequest').
 operationReturnValueType('CCC_requestDeclassifiedCCD','ccd','CreditCardData').
 
+%-------------Default State Values of CCC_requestDeclassifiedCCD-------------
+
 %-------------Call to askUserForCCDDeclassification (promptUser)-------------
 operationCall('CCC_requestDeclassifiedCCD','askUserForCCDDeclassification','promptUser').
-callArgumentIndexed('askUserForCCDDeclassification',['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]], 'declassRequest', A, V) :- dataTypeAttribute('DeclassificationRequest', A),!,callArgumentImpl(['CCC_requestDeclassifiedCCD'|S],'declassRequest',A,V).
-not_callArgumentIndexed('askUserForCCDDeclassification',['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]], 'declassRequest', A, V) :- dataTypeAttribute('DeclassificationRequest', A),!,lnot(callArgumentImpl(['CCC_requestDeclassifiedCCD'|S],'declassRequest',A,V)).
+callArgumentImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]], 'declassRequest', 'requestedRoles', 'User') :- callArgumentImpl(['CCC_requestDeclassifiedCCD'|S],'declassRequest','requestedRoles','User').
+not_callArgumentImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]], 'declassRequest', 'requestedRoles', 'User') :- lnot(callArgumentImpl(['CCC_requestDeclassifiedCCD'|S],'declassRequest','requestedRoles','User')).
+callArgumentImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]], 'declassRequest', 'requestedRoles', 'Airline') :- callArgumentImpl(['CCC_requestDeclassifiedCCD'|S],'declassRequest','requestedRoles','Airline').
+not_callArgumentImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]], 'declassRequest', 'requestedRoles', 'Airline') :- lnot(callArgumentImpl(['CCC_requestDeclassifiedCCD'|S],'declassRequest','requestedRoles','Airline')).
+callArgumentImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]], 'declassRequest', 'requestedRoles', 'TravelAgency') :- callArgumentImpl(['CCC_requestDeclassifiedCCD'|S],'declassRequest','requestedRoles','TravelAgency').
+not_callArgumentImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]], 'declassRequest', 'requestedRoles', 'TravelAgency') :- lnot(callArgumentImpl(['CCC_requestDeclassifiedCCD'|S],'declassRequest','requestedRoles','TravelAgency')).
 
 %----------------Return Values of CCC_requestDeclassifiedCCD-----------------
-returnValueIndexed('CCC_requestDeclassifiedCCD',['CCC_requestDeclassifiedCCD'|_], 'ccd', 'authorizedRoles', 'User') :- !,true.
-not_returnValueIndexed('CCC_requestDeclassifiedCCD',['CCC_requestDeclassifiedCCD'|_], 'ccd', 'authorizedRoles', 'User') :- !,lnot(true).
-returnValueIndexed('CCC_requestDeclassifiedCCD',['CCC_requestDeclassifiedCCD'|S], 'ccd', 'authorizedRoles', V) :- !,returnValueImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]],'allowedRoles','requestedRoles',V).
-not_returnValueIndexed('CCC_requestDeclassifiedCCD',['CCC_requestDeclassifiedCCD'|S], 'ccd', 'authorizedRoles', V) :- !,lnot(returnValueImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]],'allowedRoles','requestedRoles',V)).
+returnValueImpl(['CCC_requestDeclassifiedCCD'|_], 'ccd', 'authorizedRoles', 'User') :- true.
+not_returnValueImpl(['CCC_requestDeclassifiedCCD'|_], 'ccd', 'authorizedRoles', 'User') :- lnot(true).
+returnValueImpl(['CCC_requestDeclassifiedCCD'|S], 'ccd', 'authorizedRoles', 'Airline') :- returnValueImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]],'allowedRoles','requestedRoles','Airline').
+not_returnValueImpl(['CCC_requestDeclassifiedCCD'|S], 'ccd', 'authorizedRoles', 'Airline') :- lnot(returnValueImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]],'allowedRoles','requestedRoles','Airline')).
+returnValueImpl(['CCC_requestDeclassifiedCCD'|S], 'ccd', 'authorizedRoles', 'TravelAgency') :- returnValueImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]],'allowedRoles','requestedRoles','TravelAgency').
+not_returnValueImpl(['CCC_requestDeclassifiedCCD'|S], 'ccd', 'authorizedRoles', 'TravelAgency') :- lnot(returnValueImpl(['askUserForCCDDeclassification','promptUser'|['CCC_requestDeclassifiedCCD'|S]],'allowedRoles','requestedRoles','TravelAgency')).
+
+%--------------State Definitions of CCC_requestDeclassifiedCCD---------------
 
 
 %----------------------------------------------------------------------------
@@ -195,7 +272,11 @@ not_operationProperty('Airline_bookFlight','accessRoles', 'TravelAgency').
 operationParameterType('Airline_bookFlight','ccd','CreditCardData').
 operationParameterType('Airline_bookFlight','flight','SingleFlightOffer').
 
+%-----------------Default State Values of Airline_bookFlight-----------------
+
 %--------------------Return Values of Airline_bookFlight---------------------
+
+%------------------State Definitions of Airline_bookFlight-------------------
 
 
 %----------------------------------------------------------------------------
@@ -205,17 +286,21 @@ isSystemUsage('BookingUsage').
 
 %------------Call to TravelPlanner_getFlightOffers (fetchOffers)-------------
 operationCall('BookingUsage','TravelPlanner_getFlightOffers','fetchOffers').
-callArgumentIndexed('TravelPlanner_getFlightOffers',['TravelPlanner_getFlightOffers','fetchOffers'|['BookingUsage'|_]], 'input', 'authorizedRoles', _) :- !,true.
-not_callArgumentIndexed('TravelPlanner_getFlightOffers',['TravelPlanner_getFlightOffers','fetchOffers'|['BookingUsage'|_]], 'input', 'authorizedRoles', _) :- !,lnot(true).
+callArgumentImpl(['TravelPlanner_getFlightOffers','fetchOffers'|['BookingUsage'|_]], 'input', 'authorizedRoles', 'User') :- true.
+not_callArgumentImpl(['TravelPlanner_getFlightOffers','fetchOffers'|['BookingUsage'|_]], 'input', 'authorizedRoles', 'User') :- lnot(true).
+callArgumentImpl(['TravelPlanner_getFlightOffers','fetchOffers'|['BookingUsage'|_]], 'input', 'authorizedRoles', 'Airline') :- true.
+not_callArgumentImpl(['TravelPlanner_getFlightOffers','fetchOffers'|['BookingUsage'|_]], 'input', 'authorizedRoles', 'Airline') :- lnot(true).
+callArgumentImpl(['TravelPlanner_getFlightOffers','fetchOffers'|['BookingUsage'|_]], 'input', 'authorizedRoles', 'TravelAgency') :- true.
+not_callArgumentImpl(['TravelPlanner_getFlightOffers','fetchOffers'|['BookingUsage'|_]], 'input', 'authorizedRoles', 'TravelAgency') :- lnot(true).
 
 %------------------Call to TravelPlanner_bookFlight (book)-------------------
 operationCall('BookingUsage','TravelPlanner_bookFlight','book').
-callArgumentIndexed('TravelPlanner_bookFlight',['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'User') :- !,true.
-not_callArgumentIndexed('TravelPlanner_bookFlight',['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'User') :- !,lnot(true).
-callArgumentIndexed('TravelPlanner_bookFlight',['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'Airline') :- !,true.
-not_callArgumentIndexed('TravelPlanner_bookFlight',['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'Airline') :- !,lnot(true).
-callArgumentIndexed('TravelPlanner_bookFlight',['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', _) :- !,fail.
-not_callArgumentIndexed('TravelPlanner_bookFlight',['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', _) :- !,lnot(fail).
+callArgumentImpl(['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'User') :- true.
+not_callArgumentImpl(['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'User') :- lnot(true).
+callArgumentImpl(['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'Airline') :- true.
+not_callArgumentImpl(['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'Airline') :- lnot(true).
+callArgumentImpl(['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'TravelAgency') :- fail.
+not_callArgumentImpl(['TravelPlanner_bookFlight','book'|['BookingUsage'|_]], 'selectedFlight', 'authorizedRoles', 'TravelAgency') :- lnot(fail).
 
 
 accessRoles(OP,R) :- findall(X,operationProperty(OP,'accessRoles',X),R).

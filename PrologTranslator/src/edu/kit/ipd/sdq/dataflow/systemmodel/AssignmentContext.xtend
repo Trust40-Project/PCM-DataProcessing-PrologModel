@@ -25,4 +25,12 @@ class AssignmentContext {
 	 */
 	Optional<OperationCall> previousCall;
 	
+	def AssignmentContext copy() {
+		val result = new AssignmentContext;
+		result.predicate = this.predicate;
+		result.currentCaller = this.currentCaller;
+		result.previousCall = this.previousCall;
+		return result;
+	}
+	
 }
