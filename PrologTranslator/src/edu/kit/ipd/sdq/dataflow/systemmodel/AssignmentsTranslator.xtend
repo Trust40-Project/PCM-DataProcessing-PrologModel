@@ -13,7 +13,7 @@ import java.util.Set
 class AssignmentsTranslator {
 	
 	
-	val Blackboard bb;
+	val TranslationCache bb;
 	val AssignmentTypeRestrictionsCollector restrictionsCollector;
 	val LogicTermTranslator logicTermTranslator;
 	val Configuration config;
@@ -28,7 +28,7 @@ class AssignmentsTranslator {
 	 */
 	var assignmentIdCounter = 1;
 	
-	new(Blackboard bb, Configuration config) {
+	new(TranslationCache bb, Configuration config) {
 		this.bb = bb;
 		this.config = config;
 		restrictionsCollector = new AssignmentTypeRestrictionsCollector(bb);
@@ -49,12 +49,11 @@ class AssignmentsTranslator {
 		}
 	}
 	
-	
 	protected def void generateShortenedAssignments(List<VariableAssignment> reversedAssignments, AssignmentContext assiContext, PrologProgram sink) {
 		val assignmentId = assignmentIdCounter;
 		assignmentIdCounter++;
 		
-		//generate a indirection ot our assignment rule set
+		//generate a indirection to our assignment rule set
 		
 		val LogicTermContext ltContext = new LogicTermContext;
 		generateStackInfoForLogicTermContext(assiContext, true, ltContext);
@@ -76,25 +75,12 @@ class AssignmentsTranslator {
 			val restrictions = typeRestrictions.get(assi);
 			val preconditions = new StringBuilder;
 			
-			var value = "V";
-			if(assi.value !== null) {
-				value = "'" + assi.value.name + "'";
-			} else if(!restrictions.valueWildCardReferenced) {
-				value ="_";
-			}
+			val value = getValueVariable(assi.value, restrictions);
+			var attribute = getAttributeVariable(assi.attribute, restrictions);
 			
-			var attribute = "A";
-			if(assi.attribute !== null) {
-				attribute = "'" + assi.attribute.name + "'";
-			} else {
-				if(restrictions.attributeRestrictions.isEmpty()) {
-					if(!restrictions.attributeWildCardReferenced) {
-						attribute = "_";
-					}
-				} else {
-					for(res : restrictions.attributeRestrictions) {
-						preconditions.append(res.getPredicateForRestriction(attribute)).append(',');
-					}	
+			if(assi.attribute === null && !restrictions.attributeRestrictions.isEmpty()) {
+				for(res : restrictions.attributeRestrictions) {
+					preconditions.append(res.getPredicateForRestriction(attribute)).append(',');
 				}	
 			}
 			writeAssignmentRule(adaptedContext,restrictions.isStackReferenced,negated,preconditions.toString,attribute,value, assi,sink);
@@ -129,6 +115,9 @@ class AssignmentsTranslator {
 							if(valueMatch && attributeMatch) {
 								wasAssigned = true;
 								writeAssignmentRule(assiContext, tr.isStackReferenced,false, null, "'" + attrib.name + "'" , "'"+value.name+"'", assi, sink)
+								if(config.optimizedNegations) {
+									writeAssignmentRule(assiContext, tr.isStackReferenced,true, null, "'" + attrib.name + "'" , "'"+value.name+"'", assi, sink)			
+								}
 							}
 						}
 					}
@@ -137,14 +126,14 @@ class AssignmentsTranslator {
 		}
 	}
 	
-	protected def generateStackInfoForLogicTermContext(AssignmentContext assiContext, boolean isStackReferenced, LogicTermContext ltContext) {
+	private def generateStackInfoForLogicTermContext(AssignmentContext assiContext, boolean isStackReferenced, LogicTermContext ltContext) {
 		var String stackVariable;
 		if(isStackReferenced) {
 			stackVariable= "S";
 		} else {
 			stackVariable= "_";					
 		}
-		ltContext.currentStack = '''['«assiContext.getCurrentCaller.name»'|«stackVariable»]''';
+		ltContext.currentStack = '''['«assiContext.getCurrentOperation.name»'|«stackVariable»]''';
 		
 		if(assiContext.previousCall.isPresent) {
 			val call = assiContext.previousCall.get();
@@ -156,9 +145,31 @@ class AssignmentsTranslator {
 		}
 	}
 	
+	private def getValueVariable(Value value, TypeRestrictions typeRestrictions) {
+		if(value !== null) {
+			return "'" + value.name + "'";
+		} else {
+			if(!typeRestrictions.valueWildCardReferenced) {
+				return "_";				
+			} else {
+				return "V";
+			}
+		}
+	}
 	
+	private def getAttributeVariable(Attribute attrib, TypeRestrictions typeRestrictions) {
+		if(attrib !== null) {
+			return "'" + attrib.name + "'";
+		} else {
+			if(typeRestrictions.attributeRestrictions.isEmpty() && !typeRestrictions.attributeWildCardReferenced) {
+				return "_";
+			} else {
+				return "A";
+			}
+		}
+	}	
 	
-	protected def Object writeAssignmentRule(AssignmentContext assiContext, boolean isStackReferenced, boolean negated, String preconditions, String attrib, String value, VariableAssignment assi, PrologProgram sink) {
+	private def Object writeAssignmentRule(AssignmentContext assiContext, boolean isStackReferenced, boolean negated, String preconditions, String attrib, String value, VariableAssignment assi, PrologProgram sink) {
 		
 		val LogicTermContext ltContext = new LogicTermContext;
 		generateStackInfoForLogicTermContext(assiContext, isStackReferenced, ltContext);

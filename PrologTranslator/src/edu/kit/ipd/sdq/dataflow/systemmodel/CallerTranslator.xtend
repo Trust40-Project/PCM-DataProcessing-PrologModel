@@ -10,7 +10,7 @@ class CallerTranslator {
 	val AssignmentsTranslator assignmentTrans;
 	val Configuration config;
 	
-	new(Blackboard bb, Configuration config) {
+	new(TranslationCache bb, Configuration config) {
 		assignmentTrans  = new AssignmentsTranslator(bb, config);
 		this.config = config;
 	}
@@ -80,7 +80,7 @@ class CallerTranslator {
 			context.predicate = [stack,vari,attrib,value | 
 			'''postCallStateImpl(«stack»,'«(vari.eContainer as Operation).name»','«vari.name»', «attrib», «value»)'''];
 		}
-		context.currentCaller = op;
+		context.currentOperation = op;
 		context.previousCall = Optional.ofNullable(op.calls.last);
 		assignmentTrans.buildAssignments(assignments, context ,result);
 	}
@@ -88,7 +88,7 @@ class CallerTranslator {
 	private def translateDefaultStateAssignments(Operation op, PrologProgram result) {
 		result.addMinorHeading('''Default State Values of «op.name»''')		
 		val context = new AssignmentContext;
-		context.currentCaller = op;
+		context.currentOperation = op;
 		context.previousCall = Optional.empty();
 		context.predicate = [stack,vari,attrib,value | '''defaultStateImpl('«op.name»', '«vari.name»', «attrib», «value»)'''];
 		assignmentTrans.buildAssignments(op.defaultStateDefinitions, context, result);
@@ -120,7 +120,7 @@ class CallerTranslator {
 		
 		val context = new AssignmentContext;
 		context.predicate = argPred;
-		context.currentCaller = call.caller;
+		context.currentOperation = call.caller;
 		context.previousCall = previousCall;
 		
 		assignmentTrans.buildAssignments(call.parameterAssignments, context, result);
@@ -139,7 +139,7 @@ class CallerTranslator {
 			context.predicate = [stack,vari,attrib,value | 
 			'''preCallStateImpl(['«call.callee.name»','«call.name»'|«stack»],'«(vari.eContainer as Operation).name»','«vari.name»', «attrib», «value»)'''];
 		}
-		context.currentCaller = call.caller;
+		context.currentOperation = call.caller;
 		context.previousCall =previousCall;
 		
 		assignmentTrans.buildAssignments(assignments, context ,result);
@@ -156,7 +156,7 @@ class CallerTranslator {
 		
 		val context = new AssignmentContext;
 		context.predicate = rvPred;
-		context.currentCaller = op;
+		context.currentOperation = op;
 		context.previousCall = Optional.ofNullable(op.calls.last);		
 		assignmentTrans.buildAssignments(op.returnValueAssignments , context ,result);
 	}

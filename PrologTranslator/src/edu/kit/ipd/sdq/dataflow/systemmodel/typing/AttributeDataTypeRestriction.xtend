@@ -2,8 +2,8 @@ package edu.kit.ipd.sdq.dataflow.systemmodel.typing
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.DataType
 import org.eclipse.xtend.lib.annotations.Data
-import edu.kit.ipd.sdq.dataflow.systemmodel.Blackboard
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute
+import edu.kit.ipd.sdq.dataflow.systemmodel.TranslationCache
 
 /**
  * Restriction that an unbound Attribute-Variable in an assignment rule must be part of a DataType.
@@ -13,7 +13,7 @@ class AttributeDataTypeRestriction implements AttributeRestriction {
 	
 	DataType requiredContainingDataType;
 	
-	override doesAttributeMatch(Blackboard bb, Attribute attribute) {
+	override doesAttributeMatch(TranslationCache bb, Attribute attribute) {
 		return bb.getDataTypeAttributes(requiredContainingDataType).contains(attribute);
 	}
 	

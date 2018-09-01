@@ -4,7 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Set
 import java.util.HashSet
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute
-import edu.kit.ipd.sdq.dataflow.systemmodel.Blackboard
+import edu.kit.ipd.sdq.dataflow.systemmodel.TranslationCache
 
 class TypeRestrictions {
 	
@@ -36,7 +36,7 @@ class TypeRestrictions {
 		attributeRestrictions.add(restriction);
 	}
 	
-	def boolean doesAttributeMatchRestrictions(Blackboard bb, Attribute attrib) {
+	def boolean doesAttributeMatchRestrictions(TranslationCache bb, Attribute attrib) {
 		for(res : attributeRestrictions) {
 			if(!res.doesAttributeMatch(bb, attrib)) {
 				return false;
@@ -54,6 +54,9 @@ class TypeRestrictions {
 		return copy;
 	}
 	
+	/**
+	 * Combines this isntance with another one, resulting in a TypeRestrictions instance which represents both restrictiosn combined.
+	 */
 	def getMerged(TypeRestrictions other) {
 		val copy = new TypeRestrictions();
 		copy.isStackReferenced = this.isStackReferenced || other.isStackReferenced;

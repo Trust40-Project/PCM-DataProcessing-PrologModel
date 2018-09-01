@@ -2,7 +2,6 @@ package edu.kit.ipd.sdq.dataflow.systemmodel.typing
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.And
 import edu.kit.ipd.sdq.dataflow.systemmodel.Attribute
-import edu.kit.ipd.sdq.dataflow.systemmodel.Blackboard
 import edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm
 import edu.kit.ipd.sdq.dataflow.systemmodel.Not
 import edu.kit.ipd.sdq.dataflow.systemmodel.Or
@@ -13,12 +12,16 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.Value
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable
 import edu.kit.ipd.sdq.dataflow.systemmodel.StateRef
 import edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef
+import edu.kit.ipd.sdq.dataflow.systemmodel.TranslationCache
 
+/**
+ * Collects all TypeRestrictions for a given LogicTerm.
+ */
 class TermTypeRestrictionsCollector {
 	
-	var Blackboard bb;
+	var TranslationCache bb;
 	
-	new(Blackboard bb) {
+	new(TranslationCache bb) {
 		this.bb = bb;
 	}
 	

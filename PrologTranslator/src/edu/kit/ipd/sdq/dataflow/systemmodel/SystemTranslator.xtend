@@ -6,13 +6,13 @@ class SystemTranslator {
 	
 	val Configuration config;
 	
-	val Blackboard bb;
+	val TranslationCache bb;
 	val CallerTranslator callerTranslator;
 	val PreambleBuilder preambleBuilder;
 	
 	new(Configuration config) {
 		this.config = config;
-		bb = new Blackboard();
+		bb = new TranslationCache();
 		callerTranslator = new CallerTranslator(bb, config);
 		preambleBuilder = new PreambleBuilder(config);
 	}

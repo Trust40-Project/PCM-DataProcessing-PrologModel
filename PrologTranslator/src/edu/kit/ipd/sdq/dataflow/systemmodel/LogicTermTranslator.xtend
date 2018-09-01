@@ -2,15 +2,15 @@ package edu.kit.ipd.sdq.dataflow.systemmodel
 
 class LogicTermTranslator {
 	
-	val Blackboard bb;
+	val TranslationCache bb;
 	val Configuration config
 	
-	new(Blackboard bb, Configuration config) {
+	new(TranslationCache bb, Configuration config) {
 		this.bb = bb;
 		this.config = config;
 	}
 	
-	def String getWildcard(Attribute attrib, LogicTermContext context) {
+	def String getWildcardOrName(Attribute attrib, LogicTermContext context) {
 		if(attrib !== null) {
 			return "'" + attrib.name +"'";
 		} else {
@@ -18,7 +18,7 @@ class LogicTermTranslator {
 		}
 	}
 	
-	def String getWildcard(Value value, LogicTermContext context) {
+	def String getWildcardOrName(Value value, LogicTermContext context) {
 		if(value !== null) {
 			return "'" + value.name +"'";
 		} else {
@@ -57,23 +57,23 @@ class LogicTermTranslator {
 	}
 	
 	def dispatch String translate(PropertyRef term, LogicTermContext context) {
-		return '''operationProperty('«term.operation.name»','«term.property.name»',«getWildcard(term.value,context)»)''';
+		return '''operationProperty('«term.operation.name»','«term.property.name»',«getWildcardOrName(term.value,context)»)''';
 	}
 	
 	def dispatch String translate(DefaultStateRef term, LogicTermContext context) {
 		val variable = term.stateVariable;
 		val operation = getVariableContainingOperation(variable);
 		
-		return '''defaultStateImpl('«operation.name»','«variable.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)''';
+		return '''defaultStateImpl('«operation.name»','«variable.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)''';
 	}
 	
 	def dispatch String translate(ParameterRef term, LogicTermContext context) {
-		return '''callArgumentImpl(«context.currentStack»,'«term.parameter.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)''';
+		return '''callArgumentImpl(«context.currentStack»,'«term.parameter.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)''';
 	}
 	
 	def dispatch String translate(ReturnValueRef term, LogicTermContext context) {
 		val callStack = '''['«term.call.callee.name»','«term.call.name»'|«context.currentStack»]'''
-		return '''returnValueImpl(«callStack»,'«term.returnValue.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)''';
+		return '''returnValueImpl(«callStack»,'«term.returnValue.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)''';
 	}
 	
 	def dispatch String translate(StateRef term, LogicTermContext context) {
@@ -81,15 +81,15 @@ class LogicTermTranslator {
 		val operation = getVariableContainingOperation(variable);
 		
 		return switch context.stateAccessPredicate {
-			case PRECALL: '''preCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)'''
-			case POSTCALL: '''postCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcard(term.attribute,context)»,«getWildcard(term.value,context)»)'''
+			case PRECALL: '''preCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)'''
+			case POSTCALL: '''postCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)'''
 		};
 	}
 	
 	def private getVariableContainingOperation(Variable variable) {
 		val varContainer = variable.eContainer;
 		if(!(varContainer instanceof Operation)) {
-			throw new RuntimeException("Given Variable is not contianed in an operation");
+			throw new RuntimeException("Given Variable is not contained in an operation");
 		}
 		return varContainer as Operation;
 	}
