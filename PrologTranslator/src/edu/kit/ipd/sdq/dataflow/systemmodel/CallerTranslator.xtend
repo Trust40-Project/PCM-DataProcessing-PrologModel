@@ -4,6 +4,7 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.AssignmentContext.PredicateProvider
 import java.util.ArrayList
 import java.util.HashSet
 import java.util.Optional
+import javax.swing.SwingWorker.StateValue
 
 class CallerTranslator {
 	
@@ -29,11 +30,11 @@ class CallerTranslator {
 	}
 	
 	
-	def dispatch translate(SystemUsage op, System contianingSystem, PrologProgram result) {
+	def dispatch translate(SystemUsage op, System containingSystem, PrologProgram result) {
 		result.addMajorHeading('''System Usage «op.name»''')
 		result.addFact('''isSystemUsage('«op.name»')''')
 	
-		translateCalls(result,contianingSystem, op);
+		translateCalls(result,containingSystem, op);
 		
 	}
 	
@@ -171,18 +172,23 @@ class CallerTranslator {
 			for(state : op.stateVariables) {
 				var assi = fac.createVariableAssignment();
 				assi.variable = state;
-				if(useDefaultState) {
-					var term = fac.createDefaultStateRef();
-					term.stateVariable = state;
-					assi.term = term;					
-				} else {
-					var term = fac.createStateRef();
-					term.stateVariable = state;
-					assi.term = term;					
-				}
+				assi.term = buildStateReference(useDefaultState, state);	
 				assignments.add(assi);				
 			}
 		}
 		return assignments;
+	}
+	
+	private def buildStateReference(boolean useDefaultState, Variable state) {
+		val fac = SystemModelFactory.eINSTANCE;		
+		if(useDefaultState) {
+			var term = fac.createDefaultStateRef();
+			term.stateVariable = state;
+			return term;					
+		} else {
+			var term = fac.createStateRef();
+			term.stateVariable = state;
+			return term;		
+		}
 	}
 }

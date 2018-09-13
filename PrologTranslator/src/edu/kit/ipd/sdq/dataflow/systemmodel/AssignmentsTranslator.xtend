@@ -8,7 +8,9 @@ import java.util.HashMap
 import java.util.List
 import java.util.stream.Collectors
 import org.eclipse.emf.ecore.util.EcoreUtil
-import java.util.Set
+import java.util.Collection
+import edu.kit.ipd.sdq.dataflow.systemmodel.typing.AttributeRestriction
+import java.util.Optional
 
 class AssignmentsTranslator {
 	
@@ -73,17 +75,17 @@ class AssignmentsTranslator {
 		
 		val generateAssignment = [VariableAssignment assi, boolean negated | 
 			val restrictions = typeRestrictions.get(assi);
-			val preconditions = new StringBuilder;
 			
 			val value = getValueVariable(assi.value, restrictions);
 			var attribute = getAttributeVariable(assi.attribute, restrictions);
 			
-			if(assi.attribute === null && !restrictions.attributeRestrictions.isEmpty()) {
-				for(res : restrictions.attributeRestrictions) {
-					preconditions.append(res.getPredicateForRestriction(attribute)).append(',');
-				}	
+			var Optional<Collection<AttributeRestriction>> preconditions;			
+			if(assi.isAttributeWildcard) {
+				preconditions = Optional.of(restrictions.attributeRestrictions);
+			} else {
+				preconditions = Optional.of(Collections.emptyList());
 			}
-			writeAssignmentRule(adaptedContext,restrictions.isStackReferenced,negated,preconditions.toString,attribute,value, assi,sink);
+			writeAssignmentRule(adaptedContext,restrictions.isStackReferenced,negated,preconditions,attribute,value, assi,sink);
 		];
 		
 		for(assi : reversedAssignments) {
@@ -94,6 +96,10 @@ class AssignmentsTranslator {
 				generateAssignment.apply(assi,true);			
 			}
 		}
+	}
+	
+	private def quote(String str) {
+		return "'" + str + "'";
 	}
 	
 	protected def void generateStandardAssignments(List<VariableAssignment> reversedAssignments, AssignmentContext assiContext, PrologProgram sink) {
@@ -114,9 +120,9 @@ class AssignmentsTranslator {
 							
 							if(valueMatch && attributeMatch) {
 								wasAssigned = true;
-								writeAssignmentRule(assiContext, tr.isStackReferenced,false, null, "'" + attrib.name + "'" , "'"+value.name+"'", assi, sink)
+								writeAssignmentRule(assiContext, tr.isStackReferenced,false, Optional.empty(), attrib.name.quote(), value.name.quote(), assi, sink)
 								if(config.optimizedNegations) {
-									writeAssignmentRule(assiContext, tr.isStackReferenced,true, null, "'" + attrib.name + "'" , "'"+value.name+"'", assi, sink)			
+									writeAssignmentRule(assiContext, tr.isStackReferenced,true, Optional.empty(), attrib.name.quote() , value.name.quote(), assi, sink)			
 								}
 							}
 						}
@@ -169,7 +175,7 @@ class AssignmentsTranslator {
 		}
 	}	
 	
-	private def Object writeAssignmentRule(AssignmentContext assiContext, boolean isStackReferenced, boolean negated, String preconditions, String attrib, String value, VariableAssignment assi, PrologProgram sink) {
+	private def void writeAssignmentRule(AssignmentContext assiContext, boolean isStackReferenced, boolean negated, Optional<Collection<AttributeRestriction>> preconditions, String attrib, String value, VariableAssignment assi, PrologProgram sink) {
 		
 		val LogicTermContext ltContext = new LogicTermContext;
 		generateStackInfoForLogicTermContext(assiContext, isStackReferenced, ltContext);
@@ -179,7 +185,10 @@ class AssignmentsTranslator {
 		ltContext.attributeWildCardInstatiation = attrib;
 		
 		var preconditionsPrefix = "";
-		if(preconditions !== null) {
+		if(preconditions.isPresent) {
+			for(precond : preconditions.get()) {
+				preconditionsPrefix += precond.getPredicateForRestriction(attrib) + ",";
+			}
 			preconditionsPrefix = preconditions + "!,";
 		}
 		

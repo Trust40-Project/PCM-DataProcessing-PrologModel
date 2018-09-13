@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -34,6 +35,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.VariableAssignmentImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.VariableAssignmentImpl#getValue <em>Value</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.VariableAssignmentImpl#getTerm <em>Term</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.VariableAssignmentImpl#getIsAttributeWildcard <em>Is Attribute Wildcard</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.VariableAssignmentImpl#getIsValueWildcard <em>Is Value Wildcard</em>}</li>
  * </ul>
  *
  * @generated
@@ -78,6 +81,28 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected LogicTerm term;
+
+	/**
+	 * The cached setting delegate for the '{@link #getIsAttributeWildcard() <em>Is Attribute Wildcard</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIsAttributeWildcard()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate IS_ATTRIBUTE_WILDCARD__ESETTING_DELEGATE = ((EStructuralFeature.Internal) SystemModelPackage.Literals.VARIABLE_ASSIGNMENT__IS_ATTRIBUTE_WILDCARD)
+			.getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getIsValueWildcard() <em>Is Value Wildcard</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIsValueWildcard()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate IS_VALUE_WILDCARD__ESETTING_DELEGATE = ((EStructuralFeature.Internal) SystemModelPackage.Literals.VARIABLE_ASSIGNMENT__IS_VALUE_WILDCARD)
+			.getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -269,6 +294,24 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Boolean getIsAttributeWildcard() {
+		return (Boolean) IS_ATTRIBUTE_WILDCARD__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Boolean getIsValueWildcard() {
+		return (Boolean) IS_VALUE_WILDCARD__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #getPossibleVariables() <em>Get Possible Variables</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -379,6 +422,10 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 			return basicGetValue();
 		case SystemModelPackage.VARIABLE_ASSIGNMENT__TERM:
 			return getTerm();
+		case SystemModelPackage.VARIABLE_ASSIGNMENT__IS_ATTRIBUTE_WILDCARD:
+			return getIsAttributeWildcard();
+		case SystemModelPackage.VARIABLE_ASSIGNMENT__IS_VALUE_WILDCARD:
+			return getIsValueWildcard();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -447,6 +494,10 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 			return value != null;
 		case SystemModelPackage.VARIABLE_ASSIGNMENT__TERM:
 			return term != null;
+		case SystemModelPackage.VARIABLE_ASSIGNMENT__IS_ATTRIBUTE_WILDCARD:
+			return IS_ATTRIBUTE_WILDCARD__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+		case SystemModelPackage.VARIABLE_ASSIGNMENT__IS_VALUE_WILDCARD:
+			return IS_VALUE_WILDCARD__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

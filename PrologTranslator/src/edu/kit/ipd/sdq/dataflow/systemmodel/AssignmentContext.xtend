@@ -14,7 +14,7 @@ class AssignmentContext {
 	 * Functional interface used to define the left side of generated rules.
 	 * Examples for such Predicates are callArgument(...) or retrunValue(...).
 	 */
-	static interface PredicateProvider {
+	interface PredicateProvider {
 		/**
 		 * @param stackContextList the list representing the current stack, for example ['myOperation'|S]
 		 * @param variable the variable being assigned

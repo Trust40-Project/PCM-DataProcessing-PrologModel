@@ -702,6 +702,24 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVariableAssignment_IsAttributeWildcard() {
+		return (EAttribute) variableAssignmentEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVariableAssignment_IsValueWildcard() {
+		return (EAttribute) variableAssignmentEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getVariableAssignment__GetPossibleVariables() {
 		return variableAssignmentEClass.getEOperations().get(0);
 	}
@@ -1285,6 +1303,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEReference(variableAssignmentEClass, VARIABLE_ASSIGNMENT__ATTRIBUTE);
 		createEReference(variableAssignmentEClass, VARIABLE_ASSIGNMENT__VALUE);
 		createEReference(variableAssignmentEClass, VARIABLE_ASSIGNMENT__TERM);
+		createEAttribute(variableAssignmentEClass, VARIABLE_ASSIGNMENT__IS_ATTRIBUTE_WILDCARD);
+		createEAttribute(variableAssignmentEClass, VARIABLE_ASSIGNMENT__IS_VALUE_WILDCARD);
 		createEOperation(variableAssignmentEClass, VARIABLE_ASSIGNMENT___GET_POSSIBLE_VARIABLES);
 		createEOperation(variableAssignmentEClass, VARIABLE_ASSIGNMENT___GET_POSSIBLE_ATTRIBUTES);
 		createEOperation(variableAssignmentEClass, VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES);
@@ -1530,6 +1550,12 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEReference(getVariableAssignment_Term(), this.getLogicTerm(), null, "term", null, 1, 1,
 				VariableAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariableAssignment_IsAttributeWildcard(), ecorePackage.getEBooleanObject(),
+				"isAttributeWildcard", null, 0, 1, VariableAssignment.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariableAssignment_IsValueWildcard(), ecorePackage.getEBooleanObject(), "isValueWildcard",
+				null, 0, 1, VariableAssignment.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getVariableAssignment__GetPossibleVariables(), this.getVariable(), "getPossibleVariables", 0, -1,
 				IS_UNIQUE, !IS_ORDERED);
@@ -1767,6 +1793,10 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 				"\n\t\t\t\tif variable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tvariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getVariableAssignment__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getVariableAssignment_IsAttributeWildcard(), source,
+				new String[] { "derivation", "attribute.oclIsUndefined()" });
+		addAnnotation(getVariableAssignment_IsValueWildcard(), source,
+				new String[] { "derivation", "attribute.oclIsUndefined()" });
 		addAnnotation(valueSetTypeEClass, source, new String[] { "valueNamesUnique", "values->isUnique(name)" });
 		addAnnotation(getLogicTerm_ContainingAssignment(), source, new String[] { "derivation",
 				"let cont = self.oclAsSet()->closure(elem | elem.oclContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif" });

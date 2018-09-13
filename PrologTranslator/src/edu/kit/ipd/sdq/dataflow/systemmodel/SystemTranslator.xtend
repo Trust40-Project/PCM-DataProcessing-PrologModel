@@ -4,14 +4,11 @@ import java.util.Collection
 
 class SystemTranslator {
 	
-	val Configuration config;
-	
 	val TranslationCache bb;
 	val CallerTranslator callerTranslator;
 	val PreambleBuilder preambleBuilder;
 	
 	new(Configuration config) {
-		this.config = config;
 		bb = new TranslationCache();
 		callerTranslator = new CallerTranslator(bb, config);
 		preambleBuilder = new PreambleBuilder(config);
@@ -53,6 +50,7 @@ class SystemTranslator {
 	def PrologProgram translate(System sys) {
 		val result = new PrologProgram;
 		
+		bb.clear();
 		preambleBuilder.buildPreamble(result);
 		
 		addValueSetTypes(sys.types, result);

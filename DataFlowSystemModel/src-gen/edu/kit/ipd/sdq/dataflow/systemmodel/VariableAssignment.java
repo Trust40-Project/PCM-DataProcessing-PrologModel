@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getValue <em>Value</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getTerm <em>Term</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getIsAttributeWildcard <em>Is Attribute Wildcard</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getIsValueWildcard <em>Is Value Wildcard</em>}</li>
  * </ul>
  *
  * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getVariableAssignment()
@@ -129,6 +131,38 @@ public interface VariableAssignment extends EObject {
 	 * @generated
 	 */
 	void setTerm(LogicTerm value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Attribute Wildcard</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Attribute Wildcard</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Attribute Wildcard</em>' attribute.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getVariableAssignment_IsAttributeWildcard()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='attribute.oclIsUndefined()'"
+	 * @generated
+	 */
+	Boolean getIsAttributeWildcard();
+
+	/**
+	 * Returns the value of the '<em><b>Is Value Wildcard</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Value Wildcard</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Value Wildcard</em>' attribute.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage#getVariableAssignment_IsValueWildcard()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='attribute.oclIsUndefined()'"
+	 * @generated
+	 */
+	Boolean getIsValueWildcard();
 
 	/**
 	 * <!-- begin-user-doc -->

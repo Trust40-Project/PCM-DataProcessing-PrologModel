@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Evaluation
+Bundle-SymbolicName: Evaluation
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: Evaluation.jar,
+  swipl/lib/jpl.jar
+Require-Bundle: PrologTranslator;bundle-version="1.0.0",
+ org.eclipse.emf.ecore.xmi

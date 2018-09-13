@@ -2,9 +2,9 @@ package edu.kit.ipd.sdq.dataflow.systemmodel
 
 class PrologProgram {
 	
-	var resultCode = new StringBuilder;
+	val resultCode = new StringBuilder;
 	
-	val SEPARATOR_LINE = "----------------------------------------------------------------------------";
+	static val SEPARATOR_LINE = "----------------------------------------------------------------------------";
 	
 	def getCode() {
 		return resultCode.toString()
