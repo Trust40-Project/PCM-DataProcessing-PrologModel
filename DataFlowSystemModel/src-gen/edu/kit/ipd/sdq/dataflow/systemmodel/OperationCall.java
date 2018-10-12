@@ -128,7 +128,7 @@ public interface OperationCall extends EObject {
 	 * The list contents are of type {@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pre Call State Definitions</em>' reference isn't clear,
+	 * If the meaning of the '<em>Pre Call State Definitions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

@@ -27,8 +27,8 @@ public class AveragePerformanceMeasurement {
 
 	private PrologAdapter[] interpreters = {
 		new SWIPrologAdapter(),
-		//new EclipsePrologAdapter(),
-		//new JIPrologAdapter()
+		new EclipsePrologAdapter(),
+		new JIPrologAdapter()
 	};
 	
 	private static final String MODEL = "models/accesscontrol_correct.systemmodel";
@@ -36,7 +36,7 @@ public class AveragePerformanceMeasurement {
 	
 	private static final String AC_QUERY = QueryResultChecks.ACCESSCONTROL_QUERY;
 	
-	private static final int NUM_REPETITIONS = 5;
+	private static final int NUM_REPETITIONS = 10;
 	
 	ModelScaler scaler = new ModelScaler();
 	
@@ -46,9 +46,9 @@ public class AveragePerformanceMeasurement {
 	private static final boolean[][] configs = {
 			{false,false,false},
 			{true,true,true},
-			//{true,false,false},
-			//{false,true,false},
-			//{false,false,true},
+			{true,false,false},
+			{false,true,false},
+			{false,false,true},
 	};
 	
 	System baseModel;
@@ -57,18 +57,19 @@ public class AveragePerformanceMeasurement {
 	
 	public static void main(String[] args) throws IOException {
 		AveragePerformanceMeasurement m = new AveragePerformanceMeasurement();
+		for(int i=0; i<10; i++) {
+			m.measureTimings(Optional.empty(), 1, m.baseModel, AC_QUERY);			
+		}
 		
-		java.lang.System.out.println("Runnign warmup...");
-		m.measureTimings(Optional.empty(), 1, m.baseModel, AC_QUERY);
+		m.measureScalingWithOperations(201,20);
+		m.measureScalingWithCallGraph(1001, 100);
+		m.measureScalingWithparams(201, 20);
+		m.measureScalingWithAttributeValueCombinations(21, 2);
+		m.measureScalingWithProperties(41, 4, new Random(42));
+		m.measureIndexingPerfTest(1501, 150);
+		m.measureNegationPerfTest(17, 2);
 		
-		//m.measureScalingWithOperations(200,10);
-		//m.measureScalingWithCallGraph(1000, 50);
-		//m.measureScalingWithparams(200, 20);
-		//m.measureScalingWithAttributeValueCombinations(20, 1);
-		//m.measureScalingWithProperties(20, 1, new Random(42));
-		//m.measureIndexingPerfTest(1000, 50);
-		//m.measureNegationPerfTest(17, 1);
-		m.measureAssignmentsPerfTest(80, 10);
+		//m.measureAssignmentsPerfTest(80, 10);
 	}
 	
 	public AveragePerformanceMeasurement() throws IOException {

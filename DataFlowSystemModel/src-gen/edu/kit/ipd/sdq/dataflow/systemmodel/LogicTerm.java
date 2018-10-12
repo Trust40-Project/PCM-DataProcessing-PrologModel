@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface LogicTerm extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Containing Assignment</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -37,4 +36,5 @@ public interface LogicTerm extends EObject {
 	 * @generated
 	 */
 	VariableAssignment getContainingAssignment();
+
 } // LogicTerm

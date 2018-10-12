@@ -9,10 +9,12 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.Value;
 import edu.kit.ipd.sdq.dataflow.systemmodel.Variable;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;

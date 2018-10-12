@@ -80,7 +80,7 @@ class AssignmentsTranslator {
 			var attribute = getAttributeVariable(assi.attribute, restrictions);
 			
 			var Optional<Collection<AttributeRestriction>> preconditions;			
-			if(assi.isAttributeWildcard) {
+			if(assi.attribute === null) {
 				preconditions = Optional.of(restrictions.attributeRestrictions);
 			} else {
 				preconditions = Optional.of(Collections.emptyList());
@@ -189,7 +189,7 @@ class AssignmentsTranslator {
 			for(precond : preconditions.get()) {
 				preconditionsPrefix += precond.getPredicateForRestriction(attrib) + ",";
 			}
-			preconditionsPrefix = preconditions + "!,";
+			preconditionsPrefix += "!,";
 		}
 		
 		var String pred = assiContext.predicate.getPredicate(ltContext.currentStack,assi.variable,attrib,value);

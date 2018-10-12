@@ -23,7 +23,7 @@ public class JIPrologAdapter implements PrologAdapter{
 
 	@Override
 	public boolean reset() {
-		engine = new JIPEngine();
+		engine.reset();
 		return true;
 	}
 

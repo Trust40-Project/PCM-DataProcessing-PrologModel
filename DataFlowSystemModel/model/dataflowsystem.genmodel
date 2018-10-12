@@ -61,12 +61,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//OperationCall/preCallStateDefinitions"/>
     </genClasses>
     <genClasses ecoreClass="dataflowsystem.ecore#//VariableAssignment">
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/variable"/>
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/attribute"/>
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/variable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/value"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflowsystem.ecore#//VariableAssignment/term"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//VariableAssignment/isAttributeWildcard"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute dataflowsystem.ecore#//VariableAssignment/isValueWildcard"/>
       <genOperations ecoreOperation="dataflowsystem.ecore#//VariableAssignment/getPossibleVariables"/>
       <genOperations ecoreOperation="dataflowsystem.ecore#//VariableAssignment/getPossibleAttributes"/>
       <genOperations ecoreOperation="dataflowsystem.ecore#//VariableAssignment/getPossibleValues"/>

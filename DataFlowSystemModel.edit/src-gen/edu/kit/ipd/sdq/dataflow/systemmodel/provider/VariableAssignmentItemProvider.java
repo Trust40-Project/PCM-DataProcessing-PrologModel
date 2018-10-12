@@ -209,11 +209,6 @@ public class VariableAssignmentItemProvider extends ItemProviderAdapter implemen
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VariableAssignment.class)) {
-		case SystemModelPackage.VARIABLE_ASSIGNMENT__VARIABLE:
-		case SystemModelPackage.VARIABLE_ASSIGNMENT__ATTRIBUTE:
-		case SystemModelPackage.VARIABLE_ASSIGNMENT__VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
 		case SystemModelPackage.VARIABLE_ASSIGNMENT__TERM:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;

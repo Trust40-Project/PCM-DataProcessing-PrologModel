@@ -4,6 +4,7 @@ package edu.kit.ipd.sdq.dataflow.systemmodel.impl;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemUsage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

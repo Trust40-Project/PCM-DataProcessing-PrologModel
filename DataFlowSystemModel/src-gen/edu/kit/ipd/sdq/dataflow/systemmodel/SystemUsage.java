@@ -13,5 +13,4 @@ package edu.kit.ipd.sdq.dataflow.systemmodel;
  * @generated
  */
 public interface SystemUsage extends Caller {
-
 } // SystemUsage

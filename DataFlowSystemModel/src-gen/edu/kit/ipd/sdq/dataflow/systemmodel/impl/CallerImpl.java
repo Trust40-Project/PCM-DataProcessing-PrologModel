@@ -56,6 +56,7 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

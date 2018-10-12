@@ -4,11 +4,11 @@ package edu.kit.ipd.sdq.dataflow.systemmodel.impl;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
-
 import edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**

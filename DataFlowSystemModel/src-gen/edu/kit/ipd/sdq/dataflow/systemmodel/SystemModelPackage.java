@@ -709,31 +709,13 @@ public interface SystemModelPackage extends EPackage {
 	int VARIABLE_ASSIGNMENT__TERM = 3;
 
 	/**
-	 * The feature id for the '<em><b>Is Attribute Wildcard</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_ASSIGNMENT__IS_ATTRIBUTE_WILDCARD = 4;
-
-	/**
-	 * The feature id for the '<em><b>Is Value Wildcard</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_ASSIGNMENT__IS_VALUE_WILDCARD = 5;
-
-	/**
 	 * The number of structural features of the '<em>Variable Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_ASSIGNMENT_FEATURE_COUNT = 6;
+	int VARIABLE_ASSIGNMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Get Possible Variables</em>' operation.
@@ -2072,28 +2054,6 @@ public interface SystemModelPackage extends EPackage {
 	EReference getVariableAssignment_Term();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getIsAttributeWildcard <em>Is Attribute Wildcard</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Attribute Wildcard</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getIsAttributeWildcard()
-	 * @see #getVariableAssignment()
-	 * @generated
-	 */
-	EAttribute getVariableAssignment_IsAttributeWildcard();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getIsValueWildcard <em>Is Value Wildcard</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Value Wildcard</em>'.
-	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getIsValueWildcard()
-	 * @see #getVariableAssignment()
-	 * @generated
-	 */
-	EAttribute getVariableAssignment_IsValueWildcard();
-
-	/**
 	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#getPossibleVariables() <em>Get Possible Variables</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3087,22 +3047,6 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VARIABLE_ASSIGNMENT__TERM = eINSTANCE.getVariableAssignment_Term();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Attribute Wildcard</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VARIABLE_ASSIGNMENT__IS_ATTRIBUTE_WILDCARD = eINSTANCE.getVariableAssignment_IsAttributeWildcard();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Value Wildcard</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VARIABLE_ASSIGNMENT__IS_VALUE_WILDCARD = eINSTANCE.getVariableAssignment_IsValueWildcard();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Possible Variables</b></em>' operation.
