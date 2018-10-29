@@ -730,6 +730,24 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getVariableAssignment__IsAttributeWildcard() {
+		return variableAssignmentEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getVariableAssignment__IsValueWildcard() {
+		return variableAssignmentEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getValueSetType() {
 		return valueSetTypeEClass;
 	}
@@ -910,6 +928,24 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getParameterRef__IsAttributeWildcard() {
+		return parameterRefEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getParameterRef__IsValueWildcard() {
+		return parameterRefEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPropertyRef() {
 		return propertyRefEClass;
 	}
@@ -957,6 +993,15 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 */
 	public EOperation getPropertyRef__GetPossibleValues() {
 		return propertyRefEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPropertyRef__IsValueWildcard() {
+		return propertyRefEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -1081,6 +1126,24 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getReturnValueRef__IsAttributeWildcard() {
+		return returnValueRefEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getReturnValueRef__IsValueWildcard() {
+		return returnValueRefEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStateRef() {
 		return stateRefEClass;
 	}
@@ -1144,6 +1207,24 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getStateRef__IsAttributeWildcard() {
+		return stateRefEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getStateRef__IsValueWildcard() {
+		return stateRefEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDefaultStateRef() {
 		return defaultStateRefEClass;
 	}
@@ -1200,6 +1281,24 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 	 */
 	public EOperation getDefaultStateRef__GetPossibleValues() {
 		return defaultStateRefEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDefaultStateRef__IsAttributeWildcard() {
+		return defaultStateRefEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDefaultStateRef__IsValueWildcard() {
+		return defaultStateRefEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -1289,6 +1388,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEOperation(variableAssignmentEClass, VARIABLE_ASSIGNMENT___GET_POSSIBLE_VARIABLES);
 		createEOperation(variableAssignmentEClass, VARIABLE_ASSIGNMENT___GET_POSSIBLE_ATTRIBUTES);
 		createEOperation(variableAssignmentEClass, VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES);
+		createEOperation(variableAssignmentEClass, VARIABLE_ASSIGNMENT___IS_ATTRIBUTE_WILDCARD);
+		createEOperation(variableAssignmentEClass, VARIABLE_ASSIGNMENT___IS_VALUE_WILDCARD);
 
 		valueSetTypeEClass = createEClass(VALUE_SET_TYPE);
 		createEReference(valueSetTypeEClass, VALUE_SET_TYPE__VALUES);
@@ -1317,6 +1418,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEOperation(parameterRefEClass, PARAMETER_REF___GET_POSSIBLE_PARAMETERS);
 		createEOperation(parameterRefEClass, PARAMETER_REF___GET_POSSIBLE_ATTRIBUTES);
 		createEOperation(parameterRefEClass, PARAMETER_REF___GET_POSSIBLE_VALUES);
+		createEOperation(parameterRefEClass, PARAMETER_REF___IS_ATTRIBUTE_WILDCARD);
+		createEOperation(parameterRefEClass, PARAMETER_REF___IS_VALUE_WILDCARD);
 
 		propertyRefEClass = createEClass(PROPERTY_REF);
 		createEReference(propertyRefEClass, PROPERTY_REF__OPERATION);
@@ -1324,6 +1427,7 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEReference(propertyRefEClass, PROPERTY_REF__PROPERTY);
 		createEOperation(propertyRefEClass, PROPERTY_REF___GET_POSSIBLE_PROPERTIES);
 		createEOperation(propertyRefEClass, PROPERTY_REF___GET_POSSIBLE_VALUES);
+		createEOperation(propertyRefEClass, PROPERTY_REF___IS_VALUE_WILDCARD);
 
 		callerEClass = createEClass(CALLER);
 		createEReference(callerEClass, CALLER__CALLS);
@@ -1340,6 +1444,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEOperation(returnValueRefEClass, RETURN_VALUE_REF___GET_POSSIBLE_RETURN_VALUES);
 		createEOperation(returnValueRefEClass, RETURN_VALUE_REF___GET_POSSIBLE_ATTRIBUTES);
 		createEOperation(returnValueRefEClass, RETURN_VALUE_REF___GET_POSSIBLE_VALUES);
+		createEOperation(returnValueRefEClass, RETURN_VALUE_REF___IS_ATTRIBUTE_WILDCARD);
+		createEOperation(returnValueRefEClass, RETURN_VALUE_REF___IS_VALUE_WILDCARD);
 
 		stateRefEClass = createEClass(STATE_REF);
 		createEReference(stateRefEClass, STATE_REF__STATE_VARIABLE);
@@ -1348,6 +1454,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEOperation(stateRefEClass, STATE_REF___GET_POSSIBLE_VARIABLES);
 		createEOperation(stateRefEClass, STATE_REF___GET_POSSIBLE_ATTRIBUTES);
 		createEOperation(stateRefEClass, STATE_REF___GET_POSSIBLE_VALUES);
+		createEOperation(stateRefEClass, STATE_REF___IS_ATTRIBUTE_WILDCARD);
+		createEOperation(stateRefEClass, STATE_REF___IS_VALUE_WILDCARD);
 
 		defaultStateRefEClass = createEClass(DEFAULT_STATE_REF);
 		createEReference(defaultStateRefEClass, DEFAULT_STATE_REF__STATE_VARIABLE);
@@ -1356,6 +1464,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		createEOperation(defaultStateRefEClass, DEFAULT_STATE_REF___GET_POSSIBLE_VARIABLES);
 		createEOperation(defaultStateRefEClass, DEFAULT_STATE_REF___GET_POSSIBLE_ATTRIBUTES);
 		createEOperation(defaultStateRefEClass, DEFAULT_STATE_REF___GET_POSSIBLE_VALUES);
+		createEOperation(defaultStateRefEClass, DEFAULT_STATE_REF___IS_ATTRIBUTE_WILDCARD);
+		createEOperation(defaultStateRefEClass, DEFAULT_STATE_REF___IS_VALUE_WILDCARD);
 	}
 
 	/**
@@ -1541,6 +1651,12 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEOperation(getVariableAssignment__GetPossibleValues(), this.getValue(), "getPossibleValues", 0, -1,
 				IS_UNIQUE, !IS_ORDERED);
 
+		initEOperation(getVariableAssignment__IsAttributeWildcard(), ecorePackage.getEBoolean(), "isAttributeWildcard",
+				1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getVariableAssignment__IsValueWildcard(), ecorePackage.getEBoolean(), "isValueWildcard", 1, 1,
+				IS_UNIQUE, IS_ORDERED);
+
 		initEClass(valueSetTypeEClass, ValueSetType.class, "ValueSetType", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getValueSetType_Values(), this.getValue(), this.getValue_ContainingType(), "values", null, 0, -1,
@@ -1595,6 +1711,12 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEOperation(getParameterRef__GetPossibleValues(), this.getValue(), "getPossibleValues", 0, -1, IS_UNIQUE,
 				!IS_ORDERED);
 
+		initEOperation(getParameterRef__IsAttributeWildcard(), ecorePackage.getEBoolean(), "isAttributeWildcard", 1, 1,
+				IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getParameterRef__IsValueWildcard(), ecorePackage.getEBoolean(), "isValueWildcard", 1, 1,
+				IS_UNIQUE, IS_ORDERED);
+
 		initEClass(propertyRefEClass, PropertyRef.class, "PropertyRef", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertyRef_Operation(), this.getOperation(), null, "operation", null, 1, 1,
@@ -1612,6 +1734,9 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 
 		initEOperation(getPropertyRef__GetPossibleValues(), this.getValue(), "getPossibleValues", 0, -1, IS_UNIQUE,
 				!IS_ORDERED);
+
+		initEOperation(getPropertyRef__IsValueWildcard(), ecorePackage.getEBoolean(), "isValueWildcard", 1, 1,
+				IS_UNIQUE, IS_ORDERED);
 
 		initEClass(callerEClass, Caller.class, "Caller", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCaller_Calls(), this.getOperationCall(), this.getOperationCall_Caller(), "calls", null, 0, -1,
@@ -1650,6 +1775,12 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEOperation(getReturnValueRef__GetPossibleValues(), this.getValue(), "getPossibleValues", 0, -1, IS_UNIQUE,
 				!IS_ORDERED);
 
+		initEOperation(getReturnValueRef__IsAttributeWildcard(), ecorePackage.getEBoolean(), "isAttributeWildcard", 1,
+				1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getReturnValueRef__IsValueWildcard(), ecorePackage.getEBoolean(), "isValueWildcard", 1, 1,
+				IS_UNIQUE, IS_ORDERED);
+
 		initEClass(stateRefEClass, StateRef.class, "StateRef", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStateRef_StateVariable(), this.getVariable(), null, "stateVariable", null, 1, 1,
@@ -1671,6 +1802,12 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 		initEOperation(getStateRef__GetPossibleValues(), this.getValue(), "getPossibleValues", 0, -1, IS_UNIQUE,
 				!IS_ORDERED);
 
+		initEOperation(getStateRef__IsAttributeWildcard(), ecorePackage.getEBoolean(), "isAttributeWildcard", 1, 1,
+				IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getStateRef__IsValueWildcard(), ecorePackage.getEBoolean(), "isValueWildcard", 1, 1, IS_UNIQUE,
+				IS_ORDERED);
+
 		initEClass(defaultStateRefEClass, DefaultStateRef.class, "DefaultStateRef", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDefaultStateRef_StateVariable(), this.getVariable(), null, "stateVariable", null, 1, 1,
@@ -1691,6 +1828,12 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 
 		initEOperation(getDefaultStateRef__GetPossibleValues(), this.getValue(), "getPossibleValues", 0, -1, IS_UNIQUE,
 				!IS_ORDERED);
+
+		initEOperation(getDefaultStateRef__IsAttributeWildcard(), ecorePackage.getEBoolean(), "isAttributeWildcard", 1,
+				1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getDefaultStateRef__IsValueWildcard(), ecorePackage.getEBoolean(), "isValueWildcard", 1, 1,
+				IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1768,6 +1911,10 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 				"\n\t\t\t\tif variable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tvariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getVariableAssignment__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getVariableAssignment__IsAttributeWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tattribute.oclIsUndefined()" });
+		addAnnotation(getVariableAssignment__IsValueWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tvalue.oclIsUndefined()" });
 		addAnnotation(valueSetTypeEClass, source, new String[] { "valueNamesUnique", "values->isUnique(name)" });
 		addAnnotation(getLogicTerm_ContainingAssignment(), source, new String[] { "derivation",
 				"let cont = self.oclAsSet()->closure(elem | elem.oclContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif" });
@@ -1781,6 +1928,10 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 				"\n\t\t\t\tif parameter.oclIsUndefined() then\n\t\t\t\t\tgetPossibleParameters().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tparameter.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getParameterRef__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getParameterRef__IsAttributeWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tattribute.oclIsUndefined()" });
+		addAnnotation(getParameterRef__IsValueWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tvalue.oclIsUndefined()" });
 		addAnnotation(propertyRefEClass, source,
 				new String[] { "isPropertyValid", "getPossibleProperties()->includes(property)", "isValueValid",
 						"getPossibleValues()->includes(value)" });
@@ -1788,6 +1939,8 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 				"\n\t\t\t\tif operation.oclIsUndefined() then\n\t\t\t\t\tOperation.allInstances().propertyDefinitions.property->asSet()\n\t\t\t\telse\n\t\t\t\t\toperation.propertyDefinitions.property->asSet()\n\t\t\t\tendif" });
 		addAnnotation(getPropertyRef__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tgetPossibleProperties().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getPropertyRef__IsValueWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tvalue.oclIsUndefined()" });
 		addAnnotation(callerEClass, source, new String[] { "callNamesUnique", "calls->isUnique(name)" });
 		addAnnotation(returnValueRefEClass, source,
 				new String[] { "isCallValid", "getPossibleCalls()->includes(call)", "isReturnValueValid",
@@ -1802,6 +1955,10 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 				"\n\t\t\t\tif returnValue.oclIsUndefined() then\n\t\t\t\t\tgetPossibleReturnValues().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\treturnValue.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getReturnValueRef__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getReturnValueRef__IsAttributeWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tattribute.oclIsUndefined()" });
+		addAnnotation(getReturnValueRef__IsValueWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tvalue.oclIsUndefined()" });
 		addAnnotation(stateRefEClass, source,
 				new String[] { "isStateVariableValid", "getPossibleVariables()->includes(stateVariable)",
 						"isAttributeValid", "getPossibleAttributes()->includes(attribute)", "isValueValid",
@@ -1812,6 +1969,10 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 				"\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getStateRef__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getStateRef__IsAttributeWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tattribute.oclIsUndefined()" });
+		addAnnotation(getStateRef__IsValueWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tvalue.oclIsUndefined()" });
 		addAnnotation(defaultStateRefEClass, source,
 				new String[] { "isStateVariableValid", "getPossibleVariables()->includes(stateVariable)",
 						"isAttributeValid", "getPossibleAttributes()->includes(attribute)", "isValueValid",
@@ -1822,6 +1983,10 @@ public class SystemModelPackageImpl extends EPackageImpl implements SystemModelP
 				"\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif" });
 		addAnnotation(getDefaultStateRef__GetPossibleValues(), source, new String[] { "body",
 				"\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif" });
+		addAnnotation(getDefaultStateRef__IsAttributeWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tattribute.oclIsUndefined()" });
+		addAnnotation(getDefaultStateRef__IsValueWildcard(), source,
+				new String[] { "body", "\n\t\t\t\tvalue.oclIsUndefined()" });
 	}
 
 } //SystemModelPackageImpl

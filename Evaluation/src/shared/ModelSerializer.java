@@ -8,13 +8,20 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-
+import org.eclipse.ocl.pivot.utilities.PivotStandaloneSetup;
+import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import edu.kit.ipd.sdq.dataflow.systemmodel.System;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemModelPackage;
 
 public class ModelSerializer {
 	
+	static {
+		PivotStandaloneSetup.doSetup();
+		CompleteOCLStandaloneSetup.doSetup();		
+	}
+	
 	public System loadSystem(String filePath) {
+		
 		SystemModelPackage.eINSTANCE.getClass();
         Registry reg = Resource.Factory.Registry.INSTANCE;
       	reg.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());

@@ -257,6 +257,30 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isValueWildcard() <em>Is Value Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isValueWildcard()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_VALUE_WILDCARD__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.PROPERTY_REF___IS_VALUE_WILDCARD)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isValueWildcard() {
+		try {
+			return (Boolean) IS_VALUE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -352,6 +376,8 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef {
 			return getPossibleProperties();
 		case SystemModelPackage.PROPERTY_REF___GET_POSSIBLE_VALUES:
 			return getPossibleValues();
+		case SystemModelPackage.PROPERTY_REF___IS_VALUE_WILDCARD:
+			return isValueWildcard();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

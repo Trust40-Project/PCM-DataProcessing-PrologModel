@@ -27,8 +27,8 @@ public class CorrectnessEval {
 	ModelSerializer ser = new ModelSerializer();
 	ModelRandomizer randomizer;
 	
-	private static final int MODELS_PER_CLASS = 1;
-	private static final int NUM_RANDOMIZATIONS = 100;
+	private static final int MODELS_PER_CLASS = 5;
+	private static final int NUM_RANDOMIZATIONS = 20;
 	
 	private PrologAdapter[] interpreters = {
 		new EclipsePrologAdapter(),

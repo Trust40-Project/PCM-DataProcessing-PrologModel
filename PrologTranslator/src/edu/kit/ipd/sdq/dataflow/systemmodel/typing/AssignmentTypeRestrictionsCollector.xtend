@@ -11,14 +11,6 @@ class AssignmentTypeRestrictionsCollector {
 		this.bb = bb;
 	}
 	
-	def isAttributeWildcard(VariableAssignment assign) {
-		return assign.attribute === null;
-	}
-	
-	def isValueWildcard(VariableAssignment assign) {
-		return assign.value === null;
-	}
-	
 	def TypeRestrictions collect(VariableAssignment assignment) {
 		var TypeRestrictions result = bb.getTermTypeRestrictions(assignment.term).duplicate();		
 		if(assignment.isAttributeWildcard) {

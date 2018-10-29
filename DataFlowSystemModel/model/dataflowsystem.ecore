@@ -134,6 +134,16 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if attribute.oclIsUndefined() then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;getPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;attribute.type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="isAttributeWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;attribute.oclIsUndefined()"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isValueWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
@@ -198,6 +208,16 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if attribute.oclIsUndefined() then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;getPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;attribute.type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="isAttributeWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;attribute.oclIsUndefined()"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isValueWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
@@ -219,6 +239,11 @@
     <eOperations name="getPossibleValues" ordered="false" upperBound="-1" eType="#//Value">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if property.oclIsUndefined() then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;getPossibleProperties().type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;property.type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isValueWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
@@ -269,6 +294,16 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if attribute.oclIsUndefined() then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;getPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;attribute.type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="isAttributeWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;attribute.oclIsUndefined()"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isValueWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" lowerBound="1"
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
@@ -297,6 +332,16 @@
     <eOperations name="getPossibleValues" ordered="false" upperBound="-1" eType="#//Value">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if attribute.oclIsUndefined() then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;getPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;attribute.type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isAttributeWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;attribute.oclIsUndefined()"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isValueWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" lowerBound="1"
@@ -329,6 +374,16 @@
     <eOperations name="getPossibleValues" ordered="false" upperBound="-1" eType="#//Value">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if attribute.oclIsUndefined() then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;getPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;attribute.type.values->asSet()->union(Set{null})&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isAttributeWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;attribute.oclIsUndefined()"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isValueWildcard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" lowerBound="1"

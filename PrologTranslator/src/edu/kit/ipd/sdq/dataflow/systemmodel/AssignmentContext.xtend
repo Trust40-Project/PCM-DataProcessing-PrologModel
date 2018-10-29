@@ -2,6 +2,7 @@ package edu.kit.ipd.sdq.dataflow.systemmodel
 
 import java.util.Optional
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.List
 
 /**
  * Container for properties that influence the generation of an individual VariableAssignment.
@@ -14,20 +15,25 @@ class AssignmentContext {
 	 * Functional interface used to define the left side of generated rules.
 	 * Examples for such Predicates are callArgument(...) or retrunValue(...).
 	 */
-	interface PredicateProvider {
+	interface PredicateArgumentsProvider {
 		/**
 		 * @param stackContextList the list representing the current stack, for example ['myOperation'|S]
 		 * @param variable the variable being assigned
 		 * @param attribute the attribute (or a placeholder) which is assigned
 		 * @param value the value (or a placeholder) which is assigned
 		 */
-		def String getPredicate(String stackContextList, Variable variable, String attribute, String value);
+		def List<String> getPredicateArguments(String stackContextList, Variable variable, String attribute, String value);
 	}
 	
 	/**
-	 * Defines the predicate on the left-hand side of the assignment.
+	 * Defines the name of the predicate on the left-hand side of the assignment.
 	 */
-	PredicateProvider predicate;
+	String predicateName;
+	
+	/**
+	 * Defines the arguments of the predicate on the left-hand side of the assignment.
+	 */
+	PredicateArgumentsProvider predicateArguments;
 	
 	/**
 	 * Defines the operation which owns the Assignment.
@@ -43,7 +49,8 @@ class AssignmentContext {
 	
 	def AssignmentContext copy() {
 		val result = new AssignmentContext;
-		result.predicate = this.predicate;
+		result.predicateName = this.predicateName;
+		result.predicateArguments = this.predicateArguments;
 		result.currentOperation = this.currentOperation;
 		result.previousCall = this.previousCall;
 		return result;

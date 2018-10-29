@@ -6,4 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: Evaluation.jar,
   swipl/lib/jpl.jar
 Require-Bundle: PrologTranslator;bundle-version="1.0.0",
- org.eclipse.emf.ecore.xmi
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.ocl.pivot,
+ org.eclipse.ocl.xtext.completeocl

@@ -346,6 +346,54 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isAttributeWildcard() <em>Is Attribute Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAttributeWildcard()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_ATTRIBUTE_WILDCARD__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.VARIABLE_ASSIGNMENT___IS_ATTRIBUTE_WILDCARD)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAttributeWildcard() {
+		try {
+			return (Boolean) IS_ATTRIBUTE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #isValueWildcard() <em>Is Value Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isValueWildcard()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_VALUE_WILDCARD__EINVOCATION_DELEGATE = ((EOperation.Internal) SystemModelPackage.Literals.VARIABLE_ASSIGNMENT___IS_VALUE_WILDCARD)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isValueWildcard() {
+		try {
+			return (Boolean) IS_VALUE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -467,6 +515,10 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 			return getPossibleAttributes();
 		case SystemModelPackage.VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES:
 			return getPossibleValues();
+		case SystemModelPackage.VARIABLE_ASSIGNMENT___IS_ATTRIBUTE_WILDCARD:
+			return isAttributeWildcard();
+		case SystemModelPackage.VARIABLE_ASSIGNMENT___IS_VALUE_WILDCARD:
+			return isValueWildcard();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

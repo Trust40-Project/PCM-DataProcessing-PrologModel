@@ -745,13 +745,31 @@ public interface SystemModelPackage extends EPackage {
 	int VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES = 2;
 
 	/**
+	 * The operation id for the '<em>Is Attribute Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_ASSIGNMENT___IS_ATTRIBUTE_WILDCARD = 3;
+
+	/**
+	 * The operation id for the '<em>Is Value Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_ASSIGNMENT___IS_VALUE_WILDCARD = 4;
+
+	/**
 	 * The number of operations of the '<em>Variable Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_ASSIGNMENT_OPERATION_COUNT = 3;
+	int VARIABLE_ASSIGNMENT_OPERATION_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ValueSetTypeImpl <em>Value Set Type</em>}' class.
@@ -1131,13 +1149,31 @@ public interface SystemModelPackage extends EPackage {
 	int PARAMETER_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Attribute Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_REF___IS_ATTRIBUTE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Is Value Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_REF___IS_VALUE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Parameter Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 3;
+	int PARAMETER_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.PropertyRefImpl <em>Property Ref</em>}' class.
@@ -1213,13 +1249,22 @@ public interface SystemModelPackage extends EPackage {
 	int PROPERTY_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Value Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REF___IS_VALUE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Property Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 2;
+	int PROPERTY_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.SystemUsageImpl <em>System Usage</em>}' class.
@@ -1368,13 +1413,31 @@ public interface SystemModelPackage extends EPackage {
 	int RETURN_VALUE_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Is Attribute Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_VALUE_REF___IS_ATTRIBUTE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Is Value Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_VALUE_REF___IS_VALUE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Return Value Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RETURN_VALUE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 4;
+	int RETURN_VALUE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl <em>State Ref</em>}' class.
@@ -1459,13 +1522,31 @@ public interface SystemModelPackage extends EPackage {
 	int STATE_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Attribute Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF___IS_ATTRIBUTE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Is Value Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_REF___IS_VALUE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>State Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 3;
+	int STATE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.DefaultStateRefImpl <em>Default State Ref</em>}' class.
@@ -1550,13 +1631,31 @@ public interface SystemModelPackage extends EPackage {
 	int DEFAULT_STATE_REF___GET_POSSIBLE_VALUES = LOGIC_TERM_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Attribute Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF___IS_ATTRIBUTE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Is Value Wildcard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_STATE_REF___IS_VALUE_WILDCARD = LOGIC_TERM_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Default State Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_STATE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 3;
+	int DEFAULT_STATE_REF_OPERATION_COUNT = LOGIC_TERM_OPERATION_COUNT + 5;
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.System <em>System</em>}'.
@@ -2084,6 +2183,26 @@ public interface SystemModelPackage extends EPackage {
 	EOperation getVariableAssignment__GetPossibleValues();
 
 	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#isAttributeWildcard() <em>Is Attribute Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Attribute Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#isAttributeWildcard()
+	 * @generated
+	 */
+	EOperation getVariableAssignment__IsAttributeWildcard();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#isValueWildcard() <em>Is Value Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Value Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.VariableAssignment#isValueWildcard()
+	 * @generated
+	 */
+	EOperation getVariableAssignment__IsValueWildcard();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ValueSetType <em>Value Set Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2293,6 +2412,26 @@ public interface SystemModelPackage extends EPackage {
 	EOperation getParameterRef__GetPossibleValues();
 
 	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#isAttributeWildcard() <em>Is Attribute Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Attribute Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#isAttributeWildcard()
+	 * @generated
+	 */
+	EOperation getParameterRef__IsAttributeWildcard();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#isValueWildcard() <em>Is Value Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Value Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ParameterRef#isValueWildcard()
+	 * @generated
+	 */
+	EOperation getParameterRef__IsValueWildcard();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef <em>Property Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2354,6 +2493,16 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPropertyRef__GetPossibleValues();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#isValueWildcard() <em>Is Value Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Value Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.PropertyRef#isValueWildcard()
+	 * @generated
+	 */
+	EOperation getPropertyRef__IsValueWildcard();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.Caller <em>Caller</em>}'.
@@ -2492,6 +2641,26 @@ public interface SystemModelPackage extends EPackage {
 	EOperation getReturnValueRef__GetPossibleValues();
 
 	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#isAttributeWildcard() <em>Is Attribute Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Attribute Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#isAttributeWildcard()
+	 * @generated
+	 */
+	EOperation getReturnValueRef__IsAttributeWildcard();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#isValueWildcard() <em>Is Value Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Value Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.ReturnValueRef#isValueWildcard()
+	 * @generated
+	 */
+	EOperation getReturnValueRef__IsValueWildcard();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef <em>State Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2565,6 +2734,26 @@ public interface SystemModelPackage extends EPackage {
 	EOperation getStateRef__GetPossibleValues();
 
 	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#isAttributeWildcard() <em>Is Attribute Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Attribute Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#isAttributeWildcard()
+	 * @generated
+	 */
+	EOperation getStateRef__IsAttributeWildcard();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#isValueWildcard() <em>Is Value Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Value Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.StateRef#isValueWildcard()
+	 * @generated
+	 */
+	EOperation getStateRef__IsValueWildcard();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef <em>Default State Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2636,6 +2825,26 @@ public interface SystemModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getDefaultStateRef__GetPossibleValues();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#isAttributeWildcard() <em>Is Attribute Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Attribute Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#isAttributeWildcard()
+	 * @generated
+	 */
+	EOperation getDefaultStateRef__IsAttributeWildcard();
+
+	/**
+	 * Returns the meta object for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#isValueWildcard() <em>Is Value Wildcard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Value Wildcard</em>' operation.
+	 * @see edu.kit.ipd.sdq.dataflow.systemmodel.DefaultStateRef#isValueWildcard()
+	 * @generated
+	 */
+	EOperation getDefaultStateRef__IsValueWildcard();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3075,6 +3284,22 @@ public interface SystemModelPackage extends EPackage {
 		EOperation VARIABLE_ASSIGNMENT___GET_POSSIBLE_VALUES = eINSTANCE.getVariableAssignment__GetPossibleValues();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Attribute Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VARIABLE_ASSIGNMENT___IS_ATTRIBUTE_WILDCARD = eINSTANCE.getVariableAssignment__IsAttributeWildcard();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Value Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VARIABLE_ASSIGNMENT___IS_VALUE_WILDCARD = eINSTANCE.getVariableAssignment__IsValueWildcard();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.ValueSetTypeImpl <em>Value Set Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3251,6 +3476,22 @@ public interface SystemModelPackage extends EPackage {
 		EOperation PARAMETER_REF___GET_POSSIBLE_VALUES = eINSTANCE.getParameterRef__GetPossibleValues();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Attribute Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PARAMETER_REF___IS_ATTRIBUTE_WILDCARD = eINSTANCE.getParameterRef__IsAttributeWildcard();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Value Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PARAMETER_REF___IS_VALUE_WILDCARD = eINSTANCE.getParameterRef__IsValueWildcard();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.PropertyRefImpl <em>Property Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3299,6 +3540,14 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation PROPERTY_REF___GET_POSSIBLE_VALUES = eINSTANCE.getPropertyRef__GetPossibleValues();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Value Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROPERTY_REF___IS_VALUE_WILDCARD = eINSTANCE.getPropertyRef__IsValueWildcard();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.CallerImpl <em>Caller</em>}' class.
@@ -3412,6 +3661,22 @@ public interface SystemModelPackage extends EPackage {
 		EOperation RETURN_VALUE_REF___GET_POSSIBLE_VALUES = eINSTANCE.getReturnValueRef__GetPossibleValues();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Attribute Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation RETURN_VALUE_REF___IS_ATTRIBUTE_WILDCARD = eINSTANCE.getReturnValueRef__IsAttributeWildcard();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Value Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation RETURN_VALUE_REF___IS_VALUE_WILDCARD = eINSTANCE.getReturnValueRef__IsValueWildcard();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.StateRefImpl <em>State Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3470,6 +3735,22 @@ public interface SystemModelPackage extends EPackage {
 		EOperation STATE_REF___GET_POSSIBLE_VALUES = eINSTANCE.getStateRef__GetPossibleValues();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Attribute Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STATE_REF___IS_ATTRIBUTE_WILDCARD = eINSTANCE.getStateRef__IsAttributeWildcard();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Value Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STATE_REF___IS_VALUE_WILDCARD = eINSTANCE.getStateRef__IsValueWildcard();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.dataflow.systemmodel.impl.DefaultStateRefImpl <em>Default State Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3526,6 +3807,22 @@ public interface SystemModelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation DEFAULT_STATE_REF___GET_POSSIBLE_VALUES = eINSTANCE.getDefaultStateRef__GetPossibleValues();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Attribute Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DEFAULT_STATE_REF___IS_ATTRIBUTE_WILDCARD = eINSTANCE.getDefaultStateRef__IsAttributeWildcard();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Value Wildcard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DEFAULT_STATE_REF___IS_VALUE_WILDCARD = eINSTANCE.getDefaultStateRef__IsValueWildcard();
 
 	}
 

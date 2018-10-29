@@ -165,4 +165,22 @@ public interface ReturnValueRef extends LogicTerm {
 	 */
 	EList<Value> getPossibleValues();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tattribute.oclIsUndefined()'"
+	 * @generated
+	 */
+	boolean isAttributeWildcard();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tvalue.oclIsUndefined()'"
+	 * @generated
+	 */
+	boolean isValueWildcard();
+
 } // ReturnValueRef

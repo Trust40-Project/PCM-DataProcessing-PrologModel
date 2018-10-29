@@ -1,4 +1,6 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
+import static java.util.Arrays.asList;
+import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.asAtom;
 
 import java.util.Collection
 
@@ -9,6 +11,7 @@ class SystemTranslator {
 	val PreambleBuilder preambleBuilder;
 	
 	new(Configuration config) {
+		
 		bb = new TranslationCache();
 		callerTranslator = new CallerTranslator(bb, config);
 		preambleBuilder = new PreambleBuilder(config);
@@ -18,7 +21,7 @@ class SystemTranslator {
 		result.addMinorHeading("Value Set Type Definitions");
 		for(ValueSetType type : types) {
 			for(Value value : type.values) {
-				result.addFact('''valueSetMember('«type.name»','«value.name»')''')
+				result.addFact("valueSetMember",asList(type.name.asAtom,value.name.asAtom));
 			}
 		}
 	}
@@ -26,23 +29,23 @@ class SystemTranslator {
 	private def addProperties(Collection<Property> properties, PrologProgram result) {
 		result.addMinorHeading("Property Type Definitions");
 		for(Property prop : properties) {
-			result.addFact('''propertyType('«prop.name»','«prop.type.name»')''')
+			result.addFact("propertyType",asList(prop.name.asAtom,prop.type.name.asAtom));
 		}
 	}
 	
 	private def addAttributes(Collection<Attribute> attributes, PrologProgram result) {
 		result.addMinorHeading("Attribute Type Definitions");
 		for(Attribute attrib : attributes) {
-			result.addFact('''attributeType('«attrib.name»','«attrib.type.name»')''')
+			result.addFact("attributeType",asList(attrib.name.asAtom,attrib.type.name.asAtom));
 		}
 	}
 	
 	private def addDataTypes(Collection<DataType> types, PrologProgram result) {
 		result.addMinorHeading("Data Type Definitions");
 		for(DataType dtype : types) {
-			result.addFact('''isDataType('«dtype.name»')''');
+			result.addFact("isDataType",asList(dtype.name.asAtom));
 			for(Attribute attrib : dtype.attributes) {
-				result.addFact('''dataTypeAttribute('«dtype.name»','«attrib.name»')''');
+				result.addFact("dataTypeAttribute", asList(dtype.name.asAtom,attrib.name.asAtom));
 			}
 		}
 	}

@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.Collection
 import edu.kit.ipd.sdq.dataflow.systemmodel.typing.AttributeRestriction
 import java.util.Optional
+import static java.util.Arrays.asList;
+import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.asAtom;
 
 class AssignmentsTranslator {
 	
@@ -62,14 +64,19 @@ class AssignmentsTranslator {
 		val allVars = reversedAssignments.stream().map([assi | assi.variable]).collect(Collectors.toSet());
 		
 		val adaptedContext = assiContext.copy();
-		adaptedContext.predicate = [S,VAR,A,VAL | '''assignment_«assignmentId»(«S»,'«VAR.name»',«A»,«VAL»)'''];
+		adaptedContext.predicateName = '''assignment_«assignmentId»''';
+		adaptedContext.predicateArguments = [S,VAR,A,VAL | asList(S,VAR.name.asAtom(),A,VAL)];
+		
+		val getAdaptedContextPredicate = [String S,Variable VAR,String A, String VAL | '''assignment_«assignmentId»(«S»,«VAR.name.asAtom()»,«A»,«VAL»)'''.toString()]
 		
 		for(vari : allVars) {
-			sink.addRule(assiContext.predicate.getPredicate(ltContext.currentStack,vari,"A","V"),
-				adaptedContext.predicate.getPredicate(ltContext.currentStack,vari,"A","V"));
+			sink.addRule(assiContext.predicateName,
+				assiContext.predicateArguments.getPredicateArguments(ltContext.currentStack,vari,"A","V"),
+				getAdaptedContextPredicate.apply(ltContext.currentStack,vari,"A","V"));
 			if(config.optimizedNegations) {
-				sink.addRule("not_"+assiContext.predicate.getPredicate(ltContext.currentStack,vari,"A","V"),
-				"not_" + adaptedContext.predicate.getPredicate(ltContext.currentStack,vari,"A","V"));
+				sink.addRule("not_"+assiContext.predicateName,
+					assiContext.predicateArguments.getPredicateArguments(ltContext.currentStack,vari,"A","V"),
+				"not_" + getAdaptedContextPredicate.apply(ltContext.currentStack,vari,"A","V"));
 			}
 		}
 		
@@ -98,10 +105,6 @@ class AssignmentsTranslator {
 		}
 	}
 	
-	private def quote(String str) {
-		return "'" + str + "'";
-	}
-	
 	protected def void generateStandardAssignments(List<VariableAssignment> reversedAssignments, AssignmentContext assiContext, PrologProgram sink) {
 		var allVariables = reversedAssignments.stream().map([a | a.variable]).distinct().collect(Collectors.toSet);
 		
@@ -120,9 +123,9 @@ class AssignmentsTranslator {
 							
 							if(valueMatch && attributeMatch) {
 								wasAssigned = true;
-								writeAssignmentRule(assiContext, tr.isStackReferenced,false, Optional.empty(), attrib.name.quote(), value.name.quote(), assi, sink)
+								writeAssignmentRule(assiContext, tr.isStackReferenced,false, Optional.empty(), attrib.name.asAtom(), value.name.asAtom(), assi, sink)
 								if(config.optimizedNegations) {
-									writeAssignmentRule(assiContext, tr.isStackReferenced,true, Optional.empty(), attrib.name.quote() , value.name.quote(), assi, sink)			
+									writeAssignmentRule(assiContext, tr.isStackReferenced,true, Optional.empty(), attrib.name.asAtom() , value.name.asAtom(), assi, sink)			
 								}
 							}
 						}
@@ -139,12 +142,12 @@ class AssignmentsTranslator {
 		} else {
 			stackVariable= "_";					
 		}
-		ltContext.currentStack = '''['«assiContext.getCurrentOperation.name»'|«stackVariable»]''';
+		ltContext.currentStack = '''[«assiContext.getCurrentOperation.name.asAtom»|«stackVariable»]''';
 		
 		if(assiContext.previousCall.isPresent) {
 			val call = assiContext.previousCall.get();
 			ltContext.stateAccessPredicate = StateAccessMode.POSTCALL;
-			ltContext.stateAccessStack = '''['«call.callee.name»','«call.name»','«call.caller.name»'|«stackVariable»]''';
+			ltContext.stateAccessStack = '''[«call.callee.name.asAtom»,«call.name.asAtom»,«call.caller.name.asAtom»|«stackVariable»]''';
 		} else {
 			ltContext.stateAccessPredicate = StateAccessMode.PRECALL;
 			ltContext.stateAccessStack = ltContext.currentStack;	
@@ -153,7 +156,7 @@ class AssignmentsTranslator {
 	
 	private def getValueVariable(Value value, TypeRestrictions typeRestrictions) {
 		if(value !== null) {
-			return "'" + value.name + "'";
+			return value.name.asAtom;
 		} else {
 			if(!typeRestrictions.valueWildCardReferenced) {
 				return "_";				
@@ -165,7 +168,7 @@ class AssignmentsTranslator {
 	
 	private def getAttributeVariable(Attribute attrib, TypeRestrictions typeRestrictions) {
 		if(attrib !== null) {
-			return "'" + attrib.name + "'";
+			return attrib.name.asAtom;
 		} else {
 			if(typeRestrictions.attributeRestrictions.isEmpty() && !typeRestrictions.attributeWildCardReferenced) {
 				return "_";
@@ -192,18 +195,16 @@ class AssignmentsTranslator {
 			preconditionsPrefix += "!,";
 		}
 		
-		var String pred = assiContext.predicate.getPredicate(ltContext.currentStack,assi.variable,attrib,value);
-		
+		val predArgs = assiContext.predicateArguments.getPredicateArguments(ltContext.currentStack,assi.variable,attrib,value);
 		
 		if(negated) {
-			pred = "not_"+pred;
 			val negatedTerm = SystemModelFactory.eINSTANCE.createNot();
 			negatedTerm.operand = EcoreUtil.copy(assi.term);
 			val term = logicTermTranslator.translate(negatedTerm, ltContext);
-			sink.addRule(pred, preconditionsPrefix + term);									
+			sink.addRule("not_" + assiContext.predicateName,predArgs, preconditionsPrefix + term);									
 		} else {
 			var String term = logicTermTranslator.translate(assi.term, ltContext);
-			sink.addRule(pred, preconditionsPrefix + term);			
+			sink.addRule(assiContext.predicateName,predArgs, preconditionsPrefix + term);			
 		}
 	}
 	
