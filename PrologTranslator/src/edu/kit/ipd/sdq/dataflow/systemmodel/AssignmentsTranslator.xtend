@@ -1,23 +1,30 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
+import edu.kit.ipd.sdq.dataflow.systemmodel.configuration.Configuration
 import edu.kit.ipd.sdq.dataflow.systemmodel.typing.AssignmentTypeRestrictionsCollector
+import edu.kit.ipd.sdq.dataflow.systemmodel.typing.AttributeRestriction
 import edu.kit.ipd.sdq.dataflow.systemmodel.typing.TypeRestrictions
 import java.util.ArrayList
+import java.util.Collection
 import java.util.Collections
 import java.util.HashMap
 import java.util.List
+import java.util.Optional
 import java.util.stream.Collectors
 import org.eclipse.emf.ecore.util.EcoreUtil
-import java.util.Collection
-import edu.kit.ipd.sdq.dataflow.systemmodel.typing.AttributeRestriction
-import java.util.Optional
-import static java.util.Arrays.asList;
-import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.asAtom;
 
+import static java.util.Arrays.asList
+
+import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.asAtom
+import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.negatedPredicate
+
+/**
+ * Translates sets of assignments for a single predicate.
+ */
 class AssignmentsTranslator {
 	
 	
-	val TranslationCache bb;
+	val TranslationCache cache;
 	val AssignmentTypeRestrictionsCollector restrictionsCollector;
 	val LogicTermTranslator logicTermTranslator;
 	val Configuration config;
@@ -33,7 +40,7 @@ class AssignmentsTranslator {
 	var assignmentIdCounter = 1;
 	
 	new(TranslationCache bb, Configuration config) {
-		this.bb = bb;
+		this.cache = bb;
 		this.config = config;
 		restrictionsCollector = new AssignmentTypeRestrictionsCollector(bb);
 		logicTermTranslator = new LogicTermTranslator(bb, config);
@@ -74,9 +81,9 @@ class AssignmentsTranslator {
 				assiContext.predicateArguments.getPredicateArguments(ltContext.currentStack,vari,"A","V"),
 				getAdaptedContextPredicate.apply(ltContext.currentStack,vari,"A","V"));
 			if(config.optimizedNegations) {
-				sink.addRule("not_"+assiContext.predicateName,
+				sink.addRule(assiContext.predicateName.negatedPredicate,
 					assiContext.predicateArguments.getPredicateArguments(ltContext.currentStack,vari,"A","V"),
-				"not_" + getAdaptedContextPredicate.apply(ltContext.currentStack,vari,"A","V"));
+				getAdaptedContextPredicate.apply(ltContext.currentStack,vari,"A","V").negatedPredicate);
 			}
 		}
 		
@@ -87,7 +94,7 @@ class AssignmentsTranslator {
 			var attribute = getAttributeVariable(assi.attribute, restrictions);
 			
 			var Optional<Collection<AttributeRestriction>> preconditions;			
-			if(assi.attribute === null) {
+			if(assi.isAttributeWildcard) {
 				preconditions = Optional.of(restrictions.attributeRestrictions);
 			} else {
 				preconditions = Optional.of(Collections.emptyList());
@@ -95,12 +102,12 @@ class AssignmentsTranslator {
 			writeAssignmentRule(adaptedContext,restrictions.isStackReferenced,negated,preconditions,attribute,value, assi,sink);
 		];
 		
-		for(assi : reversedAssignments) {
-			generateAssignment.apply(assi,false);			
+		for(assign : reversedAssignments) {
+			generateAssignment.apply(assign,false);			
 		}
 		if(config.optimizedNegations) {
-			for(assi : reversedAssignments) {
-				generateAssignment.apply(assi,true);			
+			for(assign : reversedAssignments) {
+				generateAssignment.apply(assign,true);			
 			}
 		}
 	}
@@ -112,20 +119,20 @@ class AssignmentsTranslator {
 			for(attrib : vari.datatype.attributes) {
 				for(value : attrib.type.values) {
 					var wasAssigned = false;
-					for(assi : reversedAssignments) {
-						if(!wasAssigned && assi.variable === vari) {
+					for(assign : reversedAssignments) {
+						if(!wasAssigned && assign.variable === vari) {
 							
-							var tr = typeRestrictions.get(assi);
+							var tr = typeRestrictions.get(assign);
 							
-							val valueMatch = assi.value === null || assi.value === value;
-							val attributeMatch = (assi.attribute === attrib || assi.attribute === null)
-												&& tr.doesAttributeMatchRestrictions(bb, attrib);
+							val valueMatch = assign.isValueWildcard || assign.value === value;
+							val attributeMatch = (assign.attribute === attrib || assign.isAttributeWildcard)
+												&& tr.doesAttributeMatchRestrictions(cache, attrib);
 							
 							if(valueMatch && attributeMatch) {
 								wasAssigned = true;
-								writeAssignmentRule(assiContext, tr.isStackReferenced,false, Optional.empty(), attrib.name.asAtom(), value.name.asAtom(), assi, sink)
+								writeAssignmentRule(assiContext, tr.isStackReferenced,false, Optional.empty(), attrib.name.asAtom(), value.name.asAtom(), assign, sink)
 								if(config.optimizedNegations) {
-									writeAssignmentRule(assiContext, tr.isStackReferenced,true, Optional.empty(), attrib.name.asAtom() , value.name.asAtom(), assi, sink)			
+									writeAssignmentRule(assiContext, tr.isStackReferenced,true, Optional.empty(), attrib.name.asAtom() , value.name.asAtom(), assign, sink)			
 								}
 							}
 						}
@@ -157,7 +164,7 @@ class AssignmentsTranslator {
 	private def getValueVariable(Value value, TypeRestrictions typeRestrictions) {
 		if(value !== null) {
 			return value.name.asAtom;
-		} else {
+		} else {  //value is wildcard
 			if(!typeRestrictions.valueWildCardReferenced) {
 				return "_";				
 			} else {
@@ -169,7 +176,7 @@ class AssignmentsTranslator {
 	private def getAttributeVariable(Attribute attrib, TypeRestrictions typeRestrictions) {
 		if(attrib !== null) {
 			return attrib.name.asAtom;
-		} else {
+		} else { //attribute is wildcard
 			if(typeRestrictions.attributeRestrictions.isEmpty() && !typeRestrictions.attributeWildCardReferenced) {
 				return "_";
 			} else {
@@ -201,7 +208,7 @@ class AssignmentsTranslator {
 			val negatedTerm = SystemModelFactory.eINSTANCE.createNot();
 			negatedTerm.operand = EcoreUtil.copy(assi.term);
 			val term = logicTermTranslator.translate(negatedTerm, ltContext);
-			sink.addRule("not_" + assiContext.predicateName,predArgs, preconditionsPrefix + term);									
+			sink.addRule(assiContext.predicateName.negatedPredicate,predArgs, preconditionsPrefix + term);									
 		} else {
 			var String term = logicTermTranslator.translate(assi.term, ltContext);
 			sink.addRule(assiContext.predicateName,predArgs, preconditionsPrefix + term);			

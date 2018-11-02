@@ -1,6 +1,15 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
-import static java.util.Arrays.asList;
 
+import edu.kit.ipd.sdq.dataflow.systemmodel.configuration.Configuration
+
+import static java.util.Arrays.asList
+
+import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.negatedPredicate
+
+/**
+ * Builds teh preamble added to every program.
+ * This preamble defines common analysis logic.
+ */
 class PreambleBuilder {
 	
 	val Configuration config;
@@ -46,32 +55,32 @@ class PreambleBuilder {
 		result.addRule("lnot",asList("fail"), "true");
 		
 		//translatiuon rules
-		result.addRule("lnot",asList("callArgumentImpl(S,P,A,V)"), "not_callArgumentImpl(S,P,A,V)");
-		result.addRule("lnot",asList("returnValueImpl(S,P,A,V)"), "not_returnValueImpl(S,P,A,V)");
-		result.addRule("lnot",asList("operationProperty(OP,P,V)"), "not_operationProperty(OP,P,V)");
-		result.addRule("lnot",asList("preCallStateImpl(S,OP,P,A,V)"), "not_preCallStateImpl(S,OP,P,A,V)");
-		result.addRule("lnot",asList("postCallStateImpl(S,OP,P,A,V)"), "not_postCallStateImpl(S,OP,P,A,V)");
-		result.addRule("lnot",asList("defaultStateImpl(OP,VAR,A,V)"), "not_defaultStateImpl(OP,VAR,A,V)");
+		result.addRule("lnot",asList("callArgumentImpl(S,P,A,V)"), "callArgumentImpl(S,P,A,V)".negatedPredicate);
+		result.addRule("lnot",asList("returnValueImpl(S,P,A,V)"), "returnValueImpl(S,P,A,V)".negatedPredicate);
+		result.addRule("lnot",asList("operationProperty(OP,P,V)"), "operationProperty(OP,P,V)".negatedPredicate);
+		result.addRule("lnot",asList("preCallStateImpl(S,OP,P,A,V)"), "preCallStateImpl(S,OP,P,A,V)".negatedPredicate);
+		result.addRule("lnot",asList("postCallStateImpl(S,OP,P,A,V)"), "postCallStateImpl(S,OP,P,A,V)".negatedPredicate);
+		result.addRule("lnot",asList("defaultStateImpl(OP,VAR,A,V)"), "defaultStateImpl(OP,VAR,A,V)".negatedPredicate);
 		//Facade translations
 		result.addRule("lnot",
 			asList("callArgument([OP|S],VAR,A,VAL)"),
-			"isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_callArgumentImpl([OP|S],VAR,A,VAL)"
+			"isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "callArgumentImpl([OP|S],VAR,A,VAL)".negatedPredicate
 		);
 		result.addRule("lnot", 
 			asList("returnValue([OP|S],VAR,A,VAL)"),
-			"isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_returnValueImpl([OP|S],VAR,A,VAL)"
+			"isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "returnValueImpl([OP|S],VAR,A,VAL)".negatedPredicate
 		);
 		result.addRule("lnot",
 			asList("preCallState([SOP|S],OP,VAR,A,VAL)"),
-			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_preCallStateImpl([SOP|S],OP,VAR,A,VAL)"
+			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "preCallStateImpl([SOP|S],OP,VAR,A,VAL)".negatedPredicate
 		);
 		result.addRule("lnot",
 			asList("postCallState([SOP|S],OP,VAR,A,VAL)"),
-			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_postCallStateImpl([SOP|S],OP,VAR,A,VAL)"
+			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "postCallStateImpl([SOP|S],OP,VAR,A,VAL)".negatedPredicate
 		);
 		result.addRule("lnot",
 			asList("defaultState(OP,VAR,A,VAL)"),
-			"operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),not_defaultStateImpl(OP,VAR,A,VAL)"
+			"operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "defaultStateImpl(OP,VAR,A,VAL)".negatedPredicate
 		);
 		
 	}
@@ -90,18 +99,18 @@ class PreambleBuilder {
 			asList("[OP|S]","OWNER","VAR","A","VAL"),
 			"postCallStateIndexed(OP, [OP|S],OWNER,VAR,A,VAL)");
 		if(config.optimizedNegations) {
-			result.addRule("not_callArgumentImpl",
+			result.addRule("callArgumentImpl".negatedPredicate,
 				asList("[OP|S]","VAR","A","VAL"),
-				"not_callArgumentIndexed(OP, [OP|S],VAR,A,VAL)");
-			result.addRule("not_returnValueImpl",
+				"callArgumentIndexed(OP, [OP|S],VAR,A,VAL)".negatedPredicate);
+			result.addRule("returnValueImpl".negatedPredicate,
 				asList("[OP|S]","VAR","A","VAL"),
-				"not_returnValueIndexed(OP, [OP|S],VAR,A,VAL)");
-			result.addRule("not_preCallStateImpl",
+				"returnValueIndexed(OP, [OP|S],VAR,A,VAL)".negatedPredicate);
+			result.addRule("preCallStateImpl".negatedPredicate,
 				asList("[OP|S]","OWNER","VAR","A","VAL"),
-				"not_preCallStateIndexed(OP, [OP|S],OWNER,VAR,A,VAL)");
-			result.addRule("not_postCallStateImpl",
+				"preCallStateIndexed(OP, [OP|S],OWNER,VAR,A,VAL)".negatedPredicate);
+			result.addRule("postCallStateImpl".negatedPredicate,
 				asList("[OP|S]","OWNER","VAR","A","VAL"),
-				"not_postCallStateIndexed(OP, [OP|S],OWNER,VAR,A,VAL)");
+				"postCallStateIndexed(OP, [OP|S],OWNER,VAR,A,VAL)".negatedPredicate);
 		}
 	}
 	

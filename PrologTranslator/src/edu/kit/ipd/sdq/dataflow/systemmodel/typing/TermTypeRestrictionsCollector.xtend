@@ -44,7 +44,7 @@ class TermTypeRestrictionsCollector {
 	}
 	
 	def dispatch collect(PropertyRef term) {
-		if(term.value === null) {
+		if(term.isValueWildcard) {
 			val restrictions = new TypeRestrictions();
 			restrictions.addAttributeRestriction(new AttributeValueSetTypeRestriction(term.property.type));
 			restrictions.valueWildCardReferenced = true;
@@ -83,7 +83,7 @@ class TermTypeRestrictionsCollector {
 		return restrictions;
 	}
 	
-	def private collectForVariableReference(Variable vari, Attribute attrib, Value value, TypeRestrictions restrictions) {
+	private def collectForVariableReference(Variable vari, Attribute attrib, Value value, TypeRestrictions restrictions) {
 		val isAttribWildcard = attrib === null;	
 		val isValueWildcard = value === null;	
 		

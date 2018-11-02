@@ -1,13 +1,22 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
+import edu.kit.ipd.sdq.dataflow.systemmodel.configuration.Configuration
 import java.util.ArrayList
 import java.util.HashSet
 import java.util.Optional
+import org.slf4j.LoggerFactory
 
 import static java.util.Arrays.asList
-import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.asAtom;
 
+import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.asAtom
+import static extension edu.kit.ipd.sdq.dataflow.systemmodel.Util.negatedPredicate
+
+/**
+ * Translates Callers, namely SystemUsages and Operations.
+ */
 class CallerTranslator {
+	
+	static val LOG = LoggerFactory.getLogger(typeof(CallerTranslator));
 	
 	val AssignmentsTranslator assignmentTrans;
 	val Configuration config;
@@ -18,6 +27,7 @@ class CallerTranslator {
 	}
 	
 	def dispatch translate(Operation op, System containingSystem, PrologProgram result) {
+		LOG.info('''Translating Operation «op.name»''')
 		result.addMajorHeading('''Operation «op.name»''')
 		result.addFact("isOperation",asList(op.name.asAtom))
 		
@@ -32,6 +42,7 @@ class CallerTranslator {
 	
 	
 	def dispatch translate(SystemUsage op, System containingSystem, PrologProgram result) {
+		LOG.info('''Translating SystemUsage «op.name»''')
 		result.addMajorHeading('''System Usage «op.name»''')
 		result.addFact("isSystemUsage",asList(op.name.asAtom))
 	
@@ -49,7 +60,7 @@ class CallerTranslator {
 				val presentValues = new HashSet<Value>(propDef.presentValues);
 				for(Value value : propDef.property.type.values) {
 					if(!presentValues.contains(value)) {
-						result.addFact("not_operationProperty",asList(op.name.asAtom,propDef.property.name.asAtom,value.name.asAtom));						
+						result.addFact("operationProperty".negatedPredicate,asList(op.name.asAtom,propDef.property.name.asAtom,value.name.asAtom));						
 					}
 				}
 			}
@@ -68,7 +79,7 @@ class CallerTranslator {
 		}
 	}
 	
-	def translatePostExecutionStateChanges(PrologProgram result, Operation op, System sys) {
+	private def translatePostExecutionStateChanges(PrologProgram result, Operation op, System sys) {
 		var assignments = generateStateCopyAssignments(sys, false);
 		assignments.addAll(op.postExecutionStateDefinitions);
 		
@@ -115,7 +126,7 @@ class CallerTranslator {
 		}
 	}
 	
-	def private buildCallArgumentAssignments(PrologProgram result, OperationCall call, Optional<OperationCall> previousCall) {
+	private def buildCallArgumentAssignments(PrologProgram result, OperationCall call, Optional<OperationCall> previousCall) {
 		val context = new AssignmentContext;
 		
 		if(config.argumentAndReturnValueIndexing) {
@@ -132,7 +143,7 @@ class CallerTranslator {
 		assignmentTrans.buildAssignments(call.parameterAssignments, context, result);
 	}
 	
-	def buildCallStateAssignments(PrologProgram result,System sys, OperationCall call, Optional<OperationCall> previousCall) {
+	private def buildCallStateAssignments(PrologProgram result,System sys, OperationCall call, Optional<OperationCall> previousCall) {
 		val useDefaultState = !previousCall.isPresent() && (call.caller instanceof SystemUsage);
 		var assignments = generateStateCopyAssignments(sys, useDefaultState);
 		assignments.addAll(call.preCallStateDefinitions);
@@ -178,10 +189,10 @@ class CallerTranslator {
 		val assignments = new ArrayList<VariableAssignment>;
 		for(op : sys.operations) {
 			for(state : op.stateVariables) {
-				var assi = fac.createVariableAssignment();
-				assi.variable = state;
-				assi.term = buildStateReference(useDefaultState, state);	
-				assignments.add(assi);				
+				var assign = fac.createVariableAssignment();
+				assign.variable = state;
+				assign.term = buildStateReference(useDefaultState, state);	
+				assignments.add(assign);				
 			}
 		}
 		return assignments;

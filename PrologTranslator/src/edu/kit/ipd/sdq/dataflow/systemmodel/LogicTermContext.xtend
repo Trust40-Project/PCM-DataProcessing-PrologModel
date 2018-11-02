@@ -2,6 +2,9 @@ package edu.kit.ipd.sdq.dataflow.systemmodel
 
 import org.eclipse.xtend.lib.annotations.Accessors
 
+/**
+ * Provides the context information required for the LogicTermTranslator.
+ */
 @Accessors
 class LogicTermContext {
 	

@@ -1,5 +1,10 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
+import edu.kit.ipd.sdq.dataflow.systemmodel.configuration.Configuration
+
+/**
+ * Translates LogicTerms (the right sides of Variable Assignments).
+ */
 class LogicTermTranslator {
 	
 	val TranslationCache bb;

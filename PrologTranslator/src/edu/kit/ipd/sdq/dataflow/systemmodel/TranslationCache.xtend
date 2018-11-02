@@ -11,8 +11,8 @@ import edu.kit.ipd.sdq.dataflow.systemmodel.typing.TermTypeRestrictionsCollector
  */
 class TranslationCache {
 	
-	val dataTypeAttributesCache = new WeakHashMap<edu.kit.ipd.sdq.dataflow.systemmodel.DataType, Set<edu.kit.ipd.sdq.dataflow.systemmodel.Attribute>>();
-	val typeRestrictionsCache = new WeakHashMap<edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm, TypeRestrictions>();
+	val dataTypeAttributesCache = new WeakHashMap<DataType, Set<Attribute>>();
+	val typeRestrictionsCache = new WeakHashMap<LogicTerm, TypeRestrictions>();
 	
 	val termTypeRestrictionsCollector = new TermTypeRestrictionsCollector(this);
 	
@@ -21,22 +21,19 @@ class TranslationCache {
 		typeRestrictionsCache.clear();
 	}
 	
-	def Set<edu.kit.ipd.sdq.dataflow.systemmodel.Attribute> getDataTypeAttributes(edu.kit.ipd.sdq.dataflow.systemmodel.DataType dt) {
-		var result = dataTypeAttributesCache.get(dt);
-		if(result === null) {
-			result = Collections.newSetFromMap(new WeakHashMap<edu.kit.ipd.sdq.dataflow.systemmodel.Attribute, Boolean>());
-			result.addAll(dt.attributes);
-			dataTypeAttributesCache.put(dt, result);
-		}
+	def Set<edu.kit.ipd.sdq.dataflow.systemmodel.Attribute> getDataTypeAttributes(DataType dt) {
+		val result = dataTypeAttributesCache.computeIfAbsent(dt, [type |
+			val set = Collections.newSetFromMap(new WeakHashMap<Attribute, Boolean>());
+			set.addAll(type.attributes);
+			return set;
+		]);
 		return Collections.unmodifiableSet(result);
 	}
 	
-	def TypeRestrictions getTermTypeRestrictions(edu.kit.ipd.sdq.dataflow.systemmodel.LogicTerm term) {
-		var result = typeRestrictionsCache.get(term);
-		if(result === null) {
-			result = termTypeRestrictionsCollector.collect(term);
-			typeRestrictionsCache.put(term, result);
-		}
+	def TypeRestrictions getTermTypeRestrictions(LogicTerm term) {
+		val result = typeRestrictionsCache.computeIfAbsent(term, [ t |
+			 termTypeRestrictionsCollector.collect(t)
+		]);
 		return result;
 	}
 	

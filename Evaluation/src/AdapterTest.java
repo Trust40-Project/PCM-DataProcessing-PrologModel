@@ -9,7 +9,7 @@ import java.util.Map;
 import javax.swing.event.ListSelectionEvent;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.System;
-import edu.kit.ipd.sdq.dataflow.systemmodel.Configuration;
+import edu.kit.ipd.sdq.dataflow.systemmodel.configuration.Configuration;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PrologProgram;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemTranslator;
 import interpreters.SWIPrologAdapter;

@@ -1,15 +1,17 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
-import java.util.HashMap
-import java.util.List
 import java.util.HashSet
+import java.util.List
 
+/**
+ * Class for the easier generation of textual Prolog Programs.
+ * This class also tracks discontigous predicates and adds the corresponding statements.
+ */
 class PrologProgram {
 	
 	val resultCode = new StringBuilder;
 	
 	static val SEPARATOR_LINE = "----------------------------------------------------------------------------";
-	
 	
 	val usedPredicates = new HashSet<String>();
 	val discontigousPredicates = new HashSet<String>();
@@ -72,7 +74,7 @@ class PrologProgram {
 	/**
 	 * Checks if the given predicate is a discontigous one.
 	 */
-	def private void checkForDiscontiguity(String predicate, int arity) {
+	private def void checkForDiscontiguity(String predicate, int arity) {
 		val predIdentifier = predicate+"/"+arity;
 		if(!predIdentifier.equals(lastPredicate) && usedPredicates.contains(predIdentifier)) {
 			discontigousPredicates.add(predIdentifier);
@@ -81,7 +83,7 @@ class PrologProgram {
 		lastPredicate = predIdentifier;
 	}
 	
-	def private String generateDiscontigousStatements() {
+	private def String generateDiscontigousStatements() {
 		val result = new StringBuffer;
 		for(pred : discontigousPredicates) {
 			result.append(''':-discontiguous(«pred»).''' + "\n");
@@ -89,7 +91,7 @@ class PrologProgram {
 		return result.toString;
 	}
 	
-	def private String buildMinorHeadingLine(String title) {
+	private def String buildMinorHeadingLine(String title) {
 		val leftWidth = Math.max(0, (SEPARATOR_LINE.length() - title.length()) / 2);
 		val rightBegin = Math.min(SEPARATOR_LINE.length(), leftWidth + title.length());
 		return '''

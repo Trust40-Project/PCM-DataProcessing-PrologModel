@@ -9,7 +9,7 @@ import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import edu.kit.ipd.sdq.dataflow.systemmodel.Configuration;
+import edu.kit.ipd.sdq.dataflow.systemmodel.configuration.Configuration;
 
 public class CSVWriter implements Closeable {
 	

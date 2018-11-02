@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.kit.ipd.sdq.dataflow.systemmodel.Configuration;
+import edu.kit.ipd.sdq.dataflow.systemmodel.configuration.Configuration;
 import edu.kit.ipd.sdq.dataflow.systemmodel.PrologProgram;
 import edu.kit.ipd.sdq.dataflow.systemmodel.System;
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemTranslator;

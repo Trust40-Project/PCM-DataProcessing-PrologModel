@@ -3,6 +3,7 @@ package edu.kit.ipd.sdq.dataflow.systemmodel
 import java.util.Optional
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
+import org.apache.commons.beanutils.BeanUtils;
 
 /**
  * Container for properties that influence the generation of an individual VariableAssignment.
@@ -48,12 +49,7 @@ class AssignmentContext {
 	Optional<OperationCall> previousCall;
 	
 	def AssignmentContext copy() {
-		val result = new AssignmentContext;
-		result.predicateName = this.predicateName;
-		result.predicateArguments = this.predicateArguments;
-		result.currentOperation = this.currentOperation;
-		result.previousCall = this.previousCall;
-		return result;
+		return BeanUtils.cloneBean(this) as AssignmentContext;
 	}
 	
 }

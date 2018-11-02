@@ -46,6 +46,7 @@ class TypeRestrictions {
 	}
 	
 	def duplicate() {
+		//BeanUtils.cloneBean not applicable as we want a deep copy for the sets
 		val copy = new TypeRestrictions();
 		copy.isStackReferenced = this.isStackReferenced;
 		copy.attributeWildCardReferenced = this.attributeWildCardReferenced;

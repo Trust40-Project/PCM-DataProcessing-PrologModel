@@ -1,6 +1,6 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel.main;
 
-import edu.kit.ipd.sdq.dataflow.systemmodel.Configuration
+import edu.kit.ipd.sdq.dataflow.systemmodel.configuration.Configuration
 import edu.kit.ipd.sdq.dataflow.systemmodel.System
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemTranslator
 import java.nio.file.Files
@@ -18,7 +18,7 @@ class Main {
 	
 	static val LOG = LoggerFactory.getLogger(typeof(Main))
 	
-	def static System loadSystem(String filePath) {
+	private def static System loadSystem(String filePath) {
 		//the model required OCL
 		PivotStandaloneSetup.doSetup();
 		CompleteOCLStandaloneSetup.doSetup();
@@ -30,7 +30,7 @@ class Main {
       	reg.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
       	
         val resSet = new ResourceSetImpl();
-        val resource = resSet.getResource(URI.createURI("file://" + filePath), true);
+        val resource = resSet.getResource(URI.createFileURI(filePath), true);
         
         return resource.getContents().get(0) as System;
 	}
