@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.palladiosimulator.pcm.dataprocessing.prolog/src-gen"
+    editDirectory="/org.palladiosimulator.pcm.dataprocessing.prolog.edit/src-gen"
+    editorDirectory="/org.palladiosimulator.pcm.dataprocessing.prolog.editor/src-gen"
+    modelPluginID="org.palladiosimulator.pcm.dataprocessing.prolog" modelName="Prologmodel"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.palladiosimulator.pcm.dataprocessing.prolog.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" minimalReflectiveMethods="false" complianceLevel="10.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>prologmodel.ecore</foreignModel>
+  <genPackages prefix="Prologmodel" basePackage="org.palladiosimulator.pcm.dataprocessing.prolog"
+      disposableProviderFactory="true" ecorePackage="prologmodel.ecore#/">
+    <genClasses ecoreClass="prologmodel.ecore#//System">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//System/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//System/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//System/datatypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//System/operations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//System/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//System/types"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//System/systemusages"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//Attribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//Attribute/name"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//Value">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//Value/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference prologmodel.ecore#//Value/containingType"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//Operation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Operation/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Operation/returnValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Operation/propertyDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Operation/returnValueAssignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Operation/stateVariables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Operation/defaultStateDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Operation/postExecutionStateDefinitions"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//Variable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Variable/datatype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//Variable/name"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//DataType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//DataType/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//DataType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//Property">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Property/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//Property/name"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//PropertyDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//PropertyDefinition/property"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//PropertyDefinition/presentValues"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//PropertyDefinition/getPossibleValues"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//OperationCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//OperationCall/callee"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//OperationCall/parameterAssignments"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference prologmodel.ecore#//OperationCall/caller"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//OperationCall/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//OperationCall/preCallStateDefinitions"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//VariableAssignment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//VariableAssignment/variable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//VariableAssignment/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//VariableAssignment/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//VariableAssignment/term"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//VariableAssignment/getPossibleVariables"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//VariableAssignment/getPossibleAttributes"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//VariableAssignment/getPossibleValues"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//VariableAssignment/isAttributeWildcard"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//VariableAssignment/isValueWildcard"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//ValueSetType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//ValueSetType/values"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//ValueSetType/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="prologmodel.ecore#//LogicTerm">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference prologmodel.ecore#//LogicTerm/containingAssignment"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//True"/>
+    <genClasses ecoreClass="prologmodel.ecore#//False"/>
+    <genClasses ecoreClass="prologmodel.ecore#//And">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//And/operands"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//Or">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Or/operands"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//Not">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Not/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//ParameterRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//ParameterRef/parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//ParameterRef/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//ParameterRef/value"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ParameterRef/getPossibleParameters"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ParameterRef/getPossibleAttributes"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ParameterRef/getPossibleValues"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ParameterRef/isAttributeWildcard"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ParameterRef/isValueWildcard"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//PropertyRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//PropertyRef/operation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//PropertyRef/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//PropertyRef/property"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//PropertyRef/getPossibleProperties"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//PropertyRef/getPossibleValues"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//PropertyRef/isValueWildcard"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="prologmodel.ecore#//Caller">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prologmodel.ecore#//Caller/calls"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prologmodel.ecore#//Caller/name"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//SystemUsage"/>
+    <genClasses ecoreClass="prologmodel.ecore#//ReturnValueRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//ReturnValueRef/returnValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//ReturnValueRef/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//ReturnValueRef/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//ReturnValueRef/call"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ReturnValueRef/getPossibleCalls"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ReturnValueRef/getPossibleReturnValues"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ReturnValueRef/getPossibleAttributes"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ReturnValueRef/getPossibleValues"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ReturnValueRef/isAttributeWildcard"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//ReturnValueRef/isValueWildcard"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//StateRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//StateRef/stateVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//StateRef/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//StateRef/value"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//StateRef/getPossibleVariables"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//StateRef/getPossibleAttributes"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//StateRef/getPossibleValues"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//StateRef/isAttributeWildcard"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//StateRef/isValueWildcard"/>
+    </genClasses>
+    <genClasses ecoreClass="prologmodel.ecore#//DefaultStateRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//DefaultStateRef/stateVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//DefaultStateRef/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference prologmodel.ecore#//DefaultStateRef/value"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//DefaultStateRef/getPossibleVariables"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//DefaultStateRef/getPossibleAttributes"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//DefaultStateRef/getPossibleValues"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//DefaultStateRef/isAttributeWildcard"/>
+      <genOperations ecoreOperation="prologmodel.ecore#//DefaultStateRef/isValueWildcard"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

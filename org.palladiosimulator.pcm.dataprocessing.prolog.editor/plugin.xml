@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated prologmodel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.presentation.PrologmodelModelWizardID"
+            name="%_UI_PrologmodelModelWizard_label"
+            class="org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.presentation.PrologmodelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PrologmodelModelFile.gif">
+         <description>%_UI_PrologmodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated prologmodel -->
+      <editor
+            id="org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.presentation.PrologmodelEditorID"
+            name="%_UI_PrologmodelEditor_label"
+            icon="icons/full/obj16/PrologmodelModelFile.gif"
+            extensions="prologmodel"
+            class="org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.presentation.PrologmodelEditor"
+            contributorClass="org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.presentation.PrologmodelActionBarContributor">
+      </editor>
+   </extension>
+</plugin>
