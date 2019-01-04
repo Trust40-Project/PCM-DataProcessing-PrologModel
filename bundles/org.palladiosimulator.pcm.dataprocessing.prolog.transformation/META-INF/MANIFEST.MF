@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: PrologTranslator
+Bundle-SymbolicName: org.palladiosimulator.pcm.dataprocessing.prolog.transformation
+Bundle-Version: 1.0.0.qualifier
+Export-Package: .,
+ edu.kit.ipd.sdq.dataflow.systemmodel,
+ edu.kit.ipd.sdq.dataflow.systemmodel.configuration
+Require-Bundle: org.palladiosimulator.pcm.dataprocessing.prolog;bundle-version="0.1.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.13.0",
+ org.apache.log4j;bundle-version="1.2.15",
+ com.google.inject;bundle-version="3.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.palladiosimulator.pcm.dataprocessing.prolog.transformation

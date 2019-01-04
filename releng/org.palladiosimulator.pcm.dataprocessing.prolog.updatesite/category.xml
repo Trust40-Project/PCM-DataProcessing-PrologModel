@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.palladiosimulator.pcm.dataprocessing.prolog.feature_0.1.0.qualifier.jar" id="org.palladiosimulator.pcm.dataprocessing.prolog.feature" version="0.1.0.qualifier">
+      <category name="org.palladiosimulator.pcm.dataprocessing.prolog"/>
+   </feature>
+   <feature url="features/org.palladiosimulator.pcm.dataprocessing.prolog.model.feature_0.1.0.qualifier.jar" id="org.palladiosimulator.pcm.dataprocessing.prolog.model.feature" version="0.1.0.qualifier">
+      <category name="org.palladiosimulator.pcm.dataprocessing.prolog"/>
+   </feature>
+   <feature url="features/org.palladiosimulator.pcm.dataprocessing.prolog.transformation.feature_0.1.0.qualifier.jar" id="org.palladiosimulator.pcm.dataprocessing.prolog.transformation.feature" version="0.1.0.qualifier">
+      <category name="org.palladiosimulator.pcm.dataprocessing.prolog"/>
+   </feature>
+   <category-def name="org.palladiosimulator.pcm.dataprocessing.prolog" label="Prolog Model"/>
+</site>
