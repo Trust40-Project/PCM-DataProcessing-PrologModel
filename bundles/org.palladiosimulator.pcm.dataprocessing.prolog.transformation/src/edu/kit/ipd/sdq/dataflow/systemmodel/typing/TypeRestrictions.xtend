@@ -1,7 +1,7 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel.typing
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.TranslationCache
-import java.util.HashSet
+import java.util.LinkedHashSet
 import java.util.Set
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.Attribute
@@ -30,7 +30,7 @@ class TypeRestrictions {
 	boolean attributeWildCardReferenced = false;
 	
 	@Accessors(PUBLIC_GETTER,NONE)
-	Set<AttributeRestriction> attributeRestrictions = new HashSet<AttributeRestriction>();
+	Set<AttributeRestriction> attributeRestrictions = new LinkedHashSet<AttributeRestriction>();
 	
 	def void addAttributeRestriction(AttributeRestriction restriction) {
 		attributeRestrictions.add(restriction);
@@ -56,7 +56,7 @@ class TypeRestrictions {
 	}
 	
 	/**
-	 * Combines this isntance with another one, resulting in a TypeRestrictions instance which represents both restrictiosn combined.
+	 * Combines this instance with another one, resulting in a TypeRestrictions instance which represents both restrictiosn combined.
 	 */
 	def getMerged(TypeRestrictions other) {
 		val copy = new TypeRestrictions();

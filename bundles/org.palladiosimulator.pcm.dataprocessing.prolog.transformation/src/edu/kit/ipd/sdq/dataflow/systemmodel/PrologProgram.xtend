@@ -1,6 +1,7 @@
 package edu.kit.ipd.sdq.dataflow.systemmodel
 
 import java.util.HashSet
+import java.util.LinkedHashSet
 import java.util.List
 
 /**
@@ -14,7 +15,7 @@ class PrologProgram {
 	static val SEPARATOR_LINE = "----------------------------------------------------------------------------";
 	
 	val usedPredicates = new HashSet<String>();
-	val discontigousPredicates = new HashSet<String>();
+	val discontigousPredicates = new LinkedHashSet<String>();
 	var lastPredicate = null;
 	
 	def getCode() {

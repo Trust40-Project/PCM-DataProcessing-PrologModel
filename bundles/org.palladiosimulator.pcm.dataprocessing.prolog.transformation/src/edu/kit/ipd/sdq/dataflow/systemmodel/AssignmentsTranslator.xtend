@@ -73,7 +73,7 @@ class AssignmentsTranslator {
 		
 		val LogicTermContext ltContext = new LogicTermContext;
 		generateStackInfoForLogicTermContext(assiContext, true, ltContext);
-		val allVars = reversedAssignments.stream().map([assi | assi.variable]).collect(Collectors.toSet());
+		val allVars = reversedAssignments.stream().map([assi | assi.variable]).distinct.collect(Collectors.toList());
 		
 		val adaptedContext = assiContext.copy();
 		adaptedContext.predicateName = '''assignment_«assignmentId»''';
@@ -118,7 +118,7 @@ class AssignmentsTranslator {
 	}
 	
 	protected def void generateStandardAssignments(List<VariableAssignment> reversedAssignments, AssignmentContext assiContext, PrologProgram sink) {
-		var allVariables = reversedAssignments.stream().map([a | a.variable]).distinct().collect(Collectors.toSet);
+		var allVariables = reversedAssignments.stream().map([a | a.variable]).distinct().collect(Collectors.toList);
 		
 		for(vari : allVariables) {
 			for(attrib : vari.datatype.attributes) {
