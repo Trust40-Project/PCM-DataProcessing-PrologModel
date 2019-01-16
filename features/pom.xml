@@ -13,6 +13,8 @@
 	<name>Feature Modules</name>
 
 	<modules>
+		<module>org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.feature</module>
+		<module>org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.feature</module>
 		<module>org.palladiosimulator.pcm.dataprocessing.prolog.feature</module>
 		<module>org.palladiosimulator.pcm.dataprocessing.prolog.model.feature</module>
 		<module>org.palladiosimulator.pcm.dataprocessing.prolog.transformation.feature</module>

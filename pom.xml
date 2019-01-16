@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.palladiosimulator</groupId>
-		<artifactId>eclipse-parent</artifactId>
-		<version>0.1.10</version>
+		<artifactId>eclipse-parent-updatesite</artifactId>
+		<version>0.1.0</version>
 	</parent>
 	<groupId>org.palladiosimulator.dataprocessing.prolog</groupId>
 	<artifactId>parent</artifactId>	
@@ -14,14 +14,13 @@
 	<packaging>pom</packaging>
 	
 	<properties>
-		<xtext.version>2.14.0</xtext.version>
-		<org.palladiosimulator.maven.tychotprefresh.tplocation.0>tools.mdsd:eclipse-target-platforms:0.1.0:eclipse-modeling-photon-0:target</org.palladiosimulator.maven.tychotprefresh.tplocation.0>
 		<org.palladiosimulator.maven.tychotprefresh.tplocation.1>${project.basedir}/releng/org.palladiosimulator.pcm.dataprocessing.prolog.targetplatform/tp.target</org.palladiosimulator.maven.tychotprefresh.tplocation.1>
 	</properties>
 	
 	<modules>
 		<module>bundles</module>
 		<module>features</module>
+		<module>products</module>
 		<module>releng</module>
 	</modules>
 	

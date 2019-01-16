@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Performance Application
+Bundle-SymbolicName: org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.application;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Automatic-Module-Name: org.palladiosimulator.pcm.dataprocessing.prolog.headlessapplication
+Require-Bundle: org.eclipse.equinox.app,
+ org.palladiosimulator.pcm.dataprocessing.prolog.transformation;bundle-version="1.0.0",
+ org.apache.commons.io;bundle-version="2.2.0",
+ org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.eclipse;bundle-version="7.0.44",
+ org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.jpl;bundle-version="7.4.0"
+Bundle-ClassPath: .,
+ libs/commons-text-1.6.jar,
+ libs/commons-cli-1.4.jar
+Bundle-Activator: org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.application.Activator
+Bundle-ActivationPolicy: lazy

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="org.palladiosimulator.simulizar Target Platform" sequenceNumber="1">
+<?pde version="3.8"?><target name="Prolog Model Target Platform" sequenceNumber="1">
 <locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
-			<unit id="org.eclipse.emf.mwe2.runtime.sdk.feature.group" version="2.9.1.201705291011"/>
-			<unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="2.9.1.201705291011"/>
+			<unit id="org.apache.commons.beanutils" version="1.8.0.v201205091237"/>
+			<unit id="org.apache.commons.collections" version="3.2.2.v201511171945"/>
+			<unit id="org.slf4j.api" version="1.7.2.v20121108-1250"/>
+			<unit id="org.eclipse.equinox.executable.feature.group" version="3.8.0.v20180518-2029"/>
 			<repository location="http://download.eclipse.org/releases/photon"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+			<unit id="org.palladiosimulator.license.feature.group" version="2.0.0"/>
+			<repository location="https://sdqweb.ipd.kit.edu/eclipse/palladio/supporting/branding/nightly/"/>
 		</location>
 </locations>
 </target>

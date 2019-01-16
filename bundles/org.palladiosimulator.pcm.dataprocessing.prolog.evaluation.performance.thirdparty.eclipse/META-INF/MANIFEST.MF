@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Eclipse Prolog Interface
+Bundle-SymbolicName: org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.eclipse
+Bundle-Version: 7.0.44
+Automatic-Module-Name: com.parctechnologies.eclipse
+Export-Package: com.parctechnologies.eclipse

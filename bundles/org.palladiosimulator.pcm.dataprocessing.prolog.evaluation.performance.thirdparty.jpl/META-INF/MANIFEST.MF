@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Jpl7
+Bundle-SymbolicName: org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.jpl
+Bundle-Version: 7.4.0
+Automatic-Module-Name: org.jpl7
+Export-Package: org.jpl7

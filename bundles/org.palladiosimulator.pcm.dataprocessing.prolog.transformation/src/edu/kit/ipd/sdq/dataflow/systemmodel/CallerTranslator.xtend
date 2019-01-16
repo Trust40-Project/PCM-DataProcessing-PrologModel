@@ -37,8 +37,8 @@ class CallerTranslator {
 	}
 	
 	def dispatch translate(Operation op, System containingSystem, PrologProgram result) {
-		LOG.info('''Translating Operation «op.name»''')
-		result.addMajorHeading('''Operation «op.name»''')
+		LOG.info('''Translating Operation Â«op.nameÂ»''')
+		result.addMajorHeading('''Operation Â«op.nameÂ»''')
 		result.addFact("isOperation",asList(op.name.asAtom))
 		
 		translatePropertyDefinitions(op, result)
@@ -52,8 +52,8 @@ class CallerTranslator {
 	
 	
 	def dispatch translate(SystemUsage op, System containingSystem, PrologProgram result) {
-		LOG.info('''Translating SystemUsage «op.name»''')
-		result.addMajorHeading('''System Usage «op.name»''')
+		LOG.info('''Translating SystemUsage Â«op.nameÂ»''')
+		result.addMajorHeading('''System Usage Â«op.nameÂ»''')
 		result.addFact("isSystemUsage",asList(op.name.asAtom))
 	
 		translateCalls(result,containingSystem, op);
@@ -93,7 +93,7 @@ class CallerTranslator {
 		var assignments = generateStateCopyAssignments(sys, false);
 		assignments.addAll(op.postExecutionStateDefinitions);
 		
-		result.addMinorHeading('''State Definitions of «op.name»''')
+		result.addMinorHeading('''State Definitions of Â«op.nameÂ»''')
 		
 		val context = new AssignmentContext;
 		if(config.argumentAndReturnValueIndexing) {
@@ -111,7 +111,7 @@ class CallerTranslator {
 	}
 	
 	private def translateDefaultStateAssignments(Operation op, PrologProgram result) {
-		result.addMinorHeading('''Default State Values of «op.name»''')		
+		result.addMinorHeading('''Default State Values of Â«op.nameÂ»''')		
 		val context = new AssignmentContext;
 		context.currentOperation = op;
 		context.previousCall = Optional.empty();
@@ -125,7 +125,7 @@ class CallerTranslator {
 		var Optional<OperationCall> previousCall = Optional.empty();
 		
 		for(OperationCall call : caller.calls) {
-			result.addMinorHeading('''Call to «call.callee.name» («call.name»)''');
+			result.addMinorHeading('''Call to Â«call.callee.nameÂ» (Â«call.nameÂ»)''');
 			result.addFact("operationCall",asList(call.caller.name.asAtom,call.callee.name.asAtom,call.name.asAtom));
 			
 			buildCallArgumentAssignments(result,call,previousCall);
@@ -141,10 +141,10 @@ class CallerTranslator {
 		
 		if(config.argumentAndReturnValueIndexing) {
 			context.predicateName = "callArgumentIndexed";
-			context.predicateArguments = [stack,vari,attrib,value | asList(call.callee.name.asAtom,'''[«call.callee.name.asAtom»,«call.name.asAtom»|«stack»]''',vari.name.asAtom,attrib,value)];	
+			context.predicateArguments = [stack,vari,attrib,value | asList(call.callee.name.asAtom,'''[Â«call.callee.name.asAtomÂ»,Â«call.name.asAtomÂ»|Â«stackÂ»]''',vari.name.asAtom,attrib,value)];	
 		} else {
 			context.predicateName = "callArgumentImpl";
-			context.predicateArguments = [stack,vari,attrib,value | asList('''[«call.callee.name.asAtom»,«call.name.asAtom»|«stack»]''',vari.name.asAtom,attrib,value)];		
+			context.predicateArguments = [stack,vari,attrib,value | asList('''[Â«call.callee.name.asAtomÂ»,Â«call.name.asAtomÂ»|Â«stackÂ»]''',vari.name.asAtom,attrib,value)];		
 		}
 		
 		context.currentOperation = call.caller;
@@ -162,11 +162,11 @@ class CallerTranslator {
 		if(config.argumentAndReturnValueIndexing) {
 			context.predicateName = "preCallStateIndexed";
 			context.predicateArguments = [stack,vari,attrib,value | 
-			asList(call.callee.name.asAtom, '''[«call.callee.name.asAtom»,«call.name.asAtom»|«stack»]''',(vari.eContainer as Operation).name.asAtom,vari.name.asAtom,attrib,value)];
+			asList(call.callee.name.asAtom, '''[Â«call.callee.name.asAtomÂ»,Â«call.name.asAtomÂ»|Â«stackÂ»]''',(vari.eContainer as Operation).name.asAtom,vari.name.asAtom,attrib,value)];
 		} else {
 			context.predicateName = "preCallStateImpl";
 			context.predicateArguments = [stack,vari,attrib,value | 
-			asList('''[«call.callee.name.asAtom»,«call.name.asAtom»|«stack»]''',(vari.eContainer as Operation).name.asAtom,vari.name.asAtom,attrib,value)];
+			asList('''[Â«call.callee.name.asAtomÂ»,Â«call.name.asAtomÂ»|Â«stackÂ»]''',(vari.eContainer as Operation).name.asAtom,vari.name.asAtom,attrib,value)];
 		}
 		context.currentOperation = call.caller;
 		context.previousCall =previousCall;
@@ -175,7 +175,7 @@ class CallerTranslator {
 	}
 	
 	private def translateReturnValueAssignments(PrologProgram result, Operation op) {
-		result.addMinorHeading('''Return Values of «op.name»''')
+		result.addMinorHeading('''Return Values of Â«op.nameÂ»''')
 		val context = new AssignmentContext;
 		
 		if(config.argumentAndReturnValueIndexing) {

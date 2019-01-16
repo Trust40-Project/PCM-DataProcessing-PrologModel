@@ -55,44 +55,44 @@ class LogicTermTranslator {
 	
 	def dispatch String translate(Not term, LogicTermContext context) {
 		if(config.optimizedNegations) {
-			return '''lnot(«translate(term.operand,context)»)''';	
+			return '''lnot(Â«translate(term.operand,context)Â»)''';	
 		} else {
 			if(bb.getTermTypeRestrictions(term.operand).isStackReferenced) {
 				//we have to bind the stack-variable in case it is used within the negated operand
 				//all other possible variables are required to be bound when invoking logical terms
-				return '''(stackValid(«context.currentStack»), \+ «translate(term.operand,context)»)''';			
+				return '''(stackValid(Â«context.currentStackÂ»), \+ Â«translate(term.operand,context)Â»)''';			
 			} else {
-				return '''\+ «translate(term.operand,context)»)''';			
+				return '''\+ Â«translate(term.operand,context)Â»)''';			
 			}
 		}
 	}
 	
 	def dispatch String translate(And term, LogicTermContext context) {
-		return '''(«translate(term.operands.get(0),context)» , «translate(term.operands.get(1),context)»)''';
+		return '''(Â«translate(term.operands.get(0),context)Â» , Â«translate(term.operands.get(1),context)Â»)''';
 	}
 	
 	def dispatch String translate(Or term, LogicTermContext context) {
-		return '''(«translate(term.operands.get(0),context)» ; «translate(term.operands.get(1),context)»)''';
+		return '''(Â«translate(term.operands.get(0),context)Â» ; Â«translate(term.operands.get(1),context)Â»)''';
 	}
 	
 	def dispatch String translate(PropertyRef term, LogicTermContext context) {
-		return '''operationProperty('«term.operation.name»','«term.property.name»',«getWildcardOrName(term.value,context)»)''';
+		return '''operationProperty('Â«term.operation.nameÂ»','Â«term.property.nameÂ»',Â«getWildcardOrName(term.value,context)Â»)''';
 	}
 	
 	def dispatch String translate(DefaultStateRef term, LogicTermContext context) {
 		val variable = term.stateVariable;
 		val operation = getVariableContainingOperation(variable);
 		
-		return '''defaultStateImpl('«operation.name»','«variable.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)''';
+		return '''defaultStateImpl('Â«operation.nameÂ»','Â«variable.nameÂ»',Â«getWildcardOrName(term.attribute,context)Â»,Â«getWildcardOrName(term.value,context)Â»)''';
 	}
 	
 	def dispatch String translate(ParameterRef term, LogicTermContext context) {
-		return '''callArgumentImpl(«context.currentStack»,'«term.parameter.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)''';
+		return '''callArgumentImpl(Â«context.currentStackÂ»,'Â«term.parameter.nameÂ»',Â«getWildcardOrName(term.attribute,context)Â»,Â«getWildcardOrName(term.value,context)Â»)''';
 	}
 	
 	def dispatch String translate(ReturnValueRef term, LogicTermContext context) {
-		val callStack = '''['«term.call.callee.name»','«term.call.name»'|«context.currentStack»]'''
-		return '''returnValueImpl(«callStack»,'«term.returnValue.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)''';
+		val callStack = '''['Â«term.call.callee.nameÂ»','Â«term.call.nameÂ»'|Â«context.currentStackÂ»]'''
+		return '''returnValueImpl(Â«callStackÂ»,'Â«term.returnValue.nameÂ»',Â«getWildcardOrName(term.attribute,context)Â»,Â«getWildcardOrName(term.value,context)Â»)''';
 	}
 	
 	def dispatch String translate(StateRef term, LogicTermContext context) {
@@ -100,8 +100,8 @@ class LogicTermTranslator {
 		val operation = getVariableContainingOperation(variable);
 		
 		return switch context.stateAccessPredicate {
-			case PRECALL: '''preCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)'''
-			case POSTCALL: '''postCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)'''
+			case PRECALL: '''preCallStateImpl(Â«context.stateAccessStackÂ»,'Â«operation.nameÂ»','Â«variable.nameÂ»',Â«getWildcardOrName(term.attribute,context)Â»,Â«getWildcardOrName(term.value,context)Â»)'''
+			case POSTCALL: '''postCallStateImpl(Â«context.stateAccessStackÂ»,'Â«operation.nameÂ»','Â«variable.nameÂ»',Â«getWildcardOrName(term.attribute,context)Â»,Â«getWildcardOrName(term.value,context)Â»)'''
 		};
 	}
 	

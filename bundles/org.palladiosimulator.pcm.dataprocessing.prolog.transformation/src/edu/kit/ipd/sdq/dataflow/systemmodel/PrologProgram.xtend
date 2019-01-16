@@ -58,7 +58,7 @@ class PrologProgram {
 	def void addMinorHeading(String title) {
 		resultCode.append( '''
 		
-		«buildMinorHeadingLine(title)»
+		Â«buildMinorHeadingLine(title)Â»
 		''')
 	}
 	
@@ -66,9 +66,9 @@ class PrologProgram {
 		resultCode.append( '''
 		
 		
-		%«SEPARATOR_LINE»
-		«buildMinorHeadingLine(title)»
-		%«SEPARATOR_LINE»
+		%Â«SEPARATOR_LINEÂ»
+		Â«buildMinorHeadingLine(title)Â»
+		%Â«SEPARATOR_LINEÂ»
 		''')
 	}
 	
@@ -87,7 +87,7 @@ class PrologProgram {
 	private def String generateDiscontigousStatements() {
 		val result = new StringBuffer;
 		for(pred : discontigousPredicates) {
-			result.append(''':-discontiguous(«pred»).''' + "\n");
+			result.append(''':-discontiguous(Â«predÂ»).''' + "\n");
 		}
 		return result.toString;
 	}
@@ -96,7 +96,7 @@ class PrologProgram {
 		val leftWidth = Math.max(0, (SEPARATOR_LINE.length() - title.length()) / 2);
 		val rightBegin = Math.min(SEPARATOR_LINE.length(), leftWidth + title.length());
 		return '''
-		%«SEPARATOR_LINE.substring(0,leftWidth)»«title»«SEPARATOR_LINE.substring(rightBegin)»
+		%Â«SEPARATOR_LINE.substring(0,leftWidth)Â»Â«titleÂ»Â«SEPARATOR_LINE.substring(rightBegin)Â»
 		''';
 	}
 }

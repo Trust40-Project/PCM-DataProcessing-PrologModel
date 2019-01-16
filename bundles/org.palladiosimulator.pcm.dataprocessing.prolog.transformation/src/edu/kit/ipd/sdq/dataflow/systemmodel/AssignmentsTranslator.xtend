@@ -76,10 +76,10 @@ class AssignmentsTranslator {
 		val allVars = reversedAssignments.stream().map([assi | assi.variable]).distinct.collect(Collectors.toList());
 		
 		val adaptedContext = assiContext.copy();
-		adaptedContext.predicateName = '''assignment_«assignmentId»''';
+		adaptedContext.predicateName = '''assignment_Â«assignmentIdÂ»''';
 		adaptedContext.predicateArguments = [S,VAR,A,VAL | asList(S,VAR.name.asAtom(),A,VAL)];
 		
-		val getAdaptedContextPredicate = [String S,Variable VAR,String A, String VAL | '''assignment_«assignmentId»(«S»,«VAR.name.asAtom()»,«A»,«VAL»)'''.toString()]
+		val getAdaptedContextPredicate = [String S,Variable VAR,String A, String VAL | '''assignment_Â«assignmentIdÂ»(Â«SÂ»,Â«VAR.name.asAtom()Â»,Â«AÂ»,Â«VALÂ»)'''.toString()]
 		
 		for(vari : allVars) {
 			sink.addRule(assiContext.predicateName,
@@ -154,12 +154,12 @@ class AssignmentsTranslator {
 		} else {
 			stackVariable= "_";					
 		}
-		ltContext.currentStack = '''[«assiContext.getCurrentOperation.name.asAtom»|«stackVariable»]''';
+		ltContext.currentStack = '''[Â«assiContext.getCurrentOperation.name.asAtomÂ»|Â«stackVariableÂ»]''';
 		
 		if(assiContext.previousCall.isPresent) {
 			val call = assiContext.previousCall.get();
 			ltContext.stateAccessPredicate = StateAccessMode.POSTCALL;
-			ltContext.stateAccessStack = '''[«call.callee.name.asAtom»,«call.name.asAtom»,«call.caller.name.asAtom»|«stackVariable»]''';
+			ltContext.stateAccessStack = '''[Â«call.callee.name.asAtomÂ»,Â«call.name.asAtomÂ»,Â«call.caller.name.asAtomÂ»|Â«stackVariableÂ»]''';
 		} else {
 			ltContext.stateAccessPredicate = StateAccessMode.PRECALL;
 			ltContext.stateAccessStack = ltContext.currentStack;	

@@ -17,6 +17,9 @@
 		<module>org.palladiosimulator.pcm.dataprocessing.prolog</module>
 		<module>org.palladiosimulator.pcm.dataprocessing.prolog.edit</module>
 		<module>org.palladiosimulator.pcm.dataprocessing.prolog.editor</module>
+		<module>org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.application</module>
+		<module>org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.eclipse</module>
+		<module>org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.jpl</module>
 		<module>org.palladiosimulator.pcm.dataprocessing.prolog.transformation</module>
 	</modules>
 
