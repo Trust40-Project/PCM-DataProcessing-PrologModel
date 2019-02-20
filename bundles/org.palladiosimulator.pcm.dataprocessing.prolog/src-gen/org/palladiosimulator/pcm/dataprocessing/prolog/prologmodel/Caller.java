@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.PrologmodelPackage#getCaller()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='callNamesUnique'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL callNamesUnique='calls-&gt;isUnique(name)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot callNamesUnique='calls-&gt;isUnique(name)'"
  * @generated
  */
 public interface Caller extends EObject

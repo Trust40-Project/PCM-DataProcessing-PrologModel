@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.PrologmodelPackage#getSystem()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeNamesUnique datatypeNamesUnique propertyNamesUnique valueSetTypeNamesUnique operationAndSystemUsageNamesUnique'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL attributeNamesUnique='attributes-&gt;isUnique(name)' datatypeNamesUnique='datatypes-&gt;isUnique(name)' propertyNamesUnique='properties-&gt;isUnique(name)' valueSetTypeNamesUnique='types-&gt;isUnique(name)' operationAndSystemUsageNamesUnique='operations-&gt;union(systemusages)-&gt;isUnique(name)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot attributeNamesUnique='attributes-&gt;isUnique(name)' datatypeNamesUnique='datatypes-&gt;isUnique(name)' propertyNamesUnique='properties-&gt;isUnique(name)' valueSetTypeNamesUnique='types-&gt;isUnique(name)' operationAndSystemUsageNamesUnique='operations-&gt;selectByKind(Caller)-&gt;asBag()-&gt;union(systemusages-&gt;selectByKind(Caller)-&gt;asBag())-&gt;isUnique(name)'"
  * @generated
  */
 public interface System extends EObject

@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.PrologmodelPackage#getReturnValueRef()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isCallValid isReturnValueValid isAttributeValid isValueValid'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL isCallValid='getPossibleCalls()-&gt;includes(call)' isReturnValueValid='getPossibleReturnValues()-&gt;includes(returnValue)' isAttributeValid='getPossibleAttributes()-&gt;includes(attribute)' isValueValid='getPossibleValues()-&gt;includes(value)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isCallValid='getPossibleCalls()-&gt;includes(call)' isReturnValueValid='getPossibleReturnValues()-&gt;includes(returnValue)' isAttributeValid='getPossibleAttributes()-&gt;includes(attribute)' isValueValid='getPossibleValues()-&gt;includes(value)'"
  * @generated
  */
 public interface ReturnValueRef extends LogicTerm
@@ -134,7 +134,7 @@ public interface ReturnValueRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tlet assi = containingAssignment in\n\t\t\t\tif(assi.oclIsUndefined() or assi.oclContainer().oclIsUndefined()) then\n\t\t\t\t\tCaller.allInstances().calls-&gt;asSet()\n\t\t\t\telse \n\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tlet call = assi.oclContainer().oclAsType(OperationCall) in\n\t\t\t\t\t\tlet callIdx = call.caller.calls-&gt;indexOf(call) in\n\t\t\t\t\t\tif(callIdx = 1) then\n\t\t\t\t\t\t\tSet{}\n\t\t\t\t\t\telse \n\t\t\t\t\t\t\tcall.caller.calls-&gt;subOrderedSet(1, callIdx-1)-&gt;asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(Caller)) then\n\t\t\t\t\t\t\tassi.oclContainer().oclAsType(Caller).calls-&gt;asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tCaller.allInstances().calls-&gt;asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if(containingAssignment.oclIsUndefined() or containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsUndefined()) then\n\tCaller.allInstances().calls-&gt;asSet()\nelse \n\tif(containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsKindOf(OperationCall)) then\n\t\tlet call = containingAssignment.oclAsType(ecore::EObject).eContainer().oclAsType(OperationCall) in\n\t\tlet callIdx = call.caller.calls-&gt;indexOf(call) in\n\t\tif(callIdx = 1) then\n\t\t\tSet{}\n\t\telse \n\t\t\tcall.caller.calls-&gt;subOrderedSet(1, callIdx-1)-&gt;asSet()\n\t\tendif\n\telse\n\t\tif(containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsKindOf(Caller)) then\n\t\t\tcontainingAssignment.oclAsType(ecore::EObject).eContainer().oclAsType(Caller).calls-&gt;asSet()\n\t\telse\n\t\t\tCaller.allInstances().calls-&gt;asSet()\n\t\tendif\n\tendif\nendif'"
 	 * @generated
 	 */
 	EList<OperationCall> getPossibleCalls();
@@ -143,7 +143,7 @@ public interface ReturnValueRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tif(call.oclIsUndefined()) then\n\t\t\t\t\tgetPossibleCalls().callee.returnValues-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\tcall.callee.returnValues-&gt;asSet()\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif(call.oclIsUndefined()) then\n\t\t\t\t\tgetPossibleCalls().callee.returnValues-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\tcall.callee.returnValues-&gt;asSet()\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	EList<Variable> getPossibleReturnValues();
@@ -152,7 +152,7 @@ public interface ReturnValueRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tif returnValue.oclIsUndefined() then\n\t\t\t\t\tgetPossibleReturnValues().datatype.attributes-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\telse\n\t\t\t\t\treturnValue.datatype.attributes-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif returnValue.oclIsUndefined() then\n\t\t\t\t\tgetPossibleReturnValues().datatype.attributes-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\telse\n\t\t\t\t\treturnValue.datatype.attributes-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	EList<Attribute> getPossibleAttributes();
@@ -161,7 +161,7 @@ public interface ReturnValueRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()-&gt;reject(oclIsUndefined()).type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()-&gt;reject(oclIsUndefined()).type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	EList<Value> getPossibleValues();
@@ -170,7 +170,7 @@ public interface ReturnValueRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tattribute.oclIsUndefined()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tattribute.oclIsUndefined()'"
 	 * @generated
 	 */
 	boolean isAttributeWildcard();
@@ -179,7 +179,7 @@ public interface ReturnValueRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tvalue.oclIsUndefined()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tvalue.oclIsUndefined()'"
 	 * @generated
 	 */
 	boolean isValueWildcard();

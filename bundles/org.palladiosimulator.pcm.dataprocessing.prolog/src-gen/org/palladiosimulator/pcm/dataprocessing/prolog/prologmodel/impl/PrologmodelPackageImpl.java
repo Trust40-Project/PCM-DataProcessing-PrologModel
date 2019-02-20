@@ -1799,10 +1799,28 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		createResource(eNS_URI);
 
 		// Create annotations
+		// http://www.eclipse.org/OCL/Import
+		createImportAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL
-		createOCLAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+		createPivotAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createImportAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Import";
+		addAnnotation
+		  (this,
+		   source,
+		   new String[] {
+			   "ecore", "http://www.eclipse.org/emf/2002/Ecore"
+		   });
 	}
 
 	/**
@@ -1818,9 +1836,9 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		  (this,
 		   source,
 		   new String[] {
-			   "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
-			   "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
-			   "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
+			   "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			   "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			   "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
 		   });
 		addAnnotation
 		  (systemEClass,
@@ -1891,13 +1909,13 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	}
 
 	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createOCLAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";
+	protected void createPivotAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
 		addAnnotation
 		  (systemEClass,
 		   source,
@@ -1906,7 +1924,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 			   "datatypeNamesUnique", "datatypes->isUnique(name)",
 			   "propertyNamesUnique", "properties->isUnique(name)",
 			   "valueSetTypeNamesUnique", "types->isUnique(name)",
-			   "operationAndSystemUsageNamesUnique", "operations->union(systemusages)->isUnique(name)"
+			   "operationAndSystemUsageNamesUnique", "operations->selectByKind(Caller)->asBag()->union(systemusages->selectByKind(Caller)->asBag())->isUnique(name)"
 		   });
 		addAnnotation
 		  (operationEClass,
@@ -1917,7 +1935,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 			   "stateNamesUnique", "stateVariables->isUnique(name)",
 			   "noDuplicatePropertyDefinitions", "propertyDefinitions->isUnique(property)",
 			   "noCyclesInCallGraph", " self.calls->closure(call | call.callee.calls).callee->excludes(self)",
-			   "onlyConstantDefaultStateDefinitions", "defaultStateDefinitions.term->closure(t | t.oclContents())->forAll(\n\t\t\toclIsKindOf(True) or oclIsKindOf(False) or\n\t\t\toclIsKindOf(And) or oclIsKindOf(Or) or oclIsKindOf(Not) or\n\t\t\toclIsKindOf(PropertyRef)\n\t\t)"
+			   "onlyConstantDefaultStateDefinitions", "defaultStateDefinitions.term.oclAsType(ecore::EObject)->closure(t : ecore::EObject | t.oclAsType(ecore::EObject).eContents()->selectByKind(ecore::EObject))->forAll(\n\toclIsKindOf(True) or\n\toclIsKindOf(False) or\n\toclIsKindOf(And) or\n\toclIsKindOf(Or) or\n\toclIsKindOf(Not) or\n\toclIsKindOf(PropertyRef)\n)"
 		   });
 		addAnnotation
 		  (propertyDefinitionEClass,
@@ -1943,7 +1961,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		  (getVariableAssignment__GetPossibleVariables(),
 		   source,
 		   new String[] {
-			   "body", "\n\t\t\t\tlet cont = self.oclContainer() in\n\t\t\t\tif(cont.oclIsUndefined()) then\n\t\t\t\t\tVariable.allInstances()->asSet()\n\t\t\t\telse \n\t\t\t\t\tif(cont.oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tif cont.oclAsType(OperationCall).parameterAssignments->includes(self) then\n\t\t\t\t\t\t\tcont.oclAsType(OperationCall).callee.parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(cont.oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tif cont.oclAsType(Operation).returnValueAssignments->includes(self) then\n\t\t\t\t\t\t\t\tcont.oclAsType(Operation).returnValues->asSet()\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tif cont.oclAsType(Operation).defaultStateDefinitions->includes(self) then\n\t\t\t\t\t\t\t\t\tcont.oclAsType(Operation).stateVariables->asSet()\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tVariable.allInstances()->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif"
+			   "body", "if(self.oclAsType(ecore::EObject).eContainer().oclIsUndefined()) then\n\tVariable.allInstances()->asSet()\nelse \n\tif(self.oclAsType(ecore::EObject).eContainer().oclIsKindOf(OperationCall)) then\n\t\tif self.oclAsType(ecore::EObject).eContainer().oclAsType(OperationCall).parameterAssignments->includes(self) then\n\t\t\tself.oclAsType(ecore::EObject).eContainer().oclAsType(OperationCall).callee.parameters->asSet()\n\t\telse\n\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\tendif\n\telse\n\t\tif(self.oclAsType(ecore::EObject).eContainer().oclIsKindOf(Operation)) then\n\t\t\tif self.oclAsType(ecore::EObject).eContainer().oclAsType(Operation).returnValueAssignments->includes(self) then\n\t\t\t\tself.oclAsType(ecore::EObject).eContainer().oclAsType(Operation).returnValues->asSet()\n\t\t\telse\n\t\t\t\tif self.oclAsType(ecore::EObject).eContainer().oclAsType(Operation).defaultStateDefinitions->includes(self) then\n\t\t\t\t\tself.oclAsType(ecore::EObject).eContainer().oclAsType(Operation).stateVariables->asSet()\n\t\t\t\telse\n\t\t\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\t\t\tendif\n\t\t\tendif\n\t\telse\n\t\t\tVariable.allInstances()->asSet()\n\t\tendif\n\tendif\nendif"
 		   });
 		addAnnotation
 		  (getVariableAssignment__GetPossibleAttributes(),
@@ -1979,7 +1997,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		  (getLogicTerm_ContainingAssignment(),
 		   source,
 		   new String[] {
-			   "derivation", "let cont = self.oclAsSet()->closure(elem | elem.oclContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif"
+			   "derivation", "let cont = self.oclAsSet()->selectByKind(ecore::EObject)->closure(elem | elem.oclAsType(ecore::EObject).eContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (parameterRefEClass,
@@ -2063,7 +2081,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		  (getReturnValueRef__GetPossibleCalls(),
 		   source,
 		   new String[] {
-			   "body", "\n\t\t\t\tlet assi = containingAssignment in\n\t\t\t\tif(assi.oclIsUndefined() or assi.oclContainer().oclIsUndefined()) then\n\t\t\t\t\tCaller.allInstances().calls->asSet()\n\t\t\t\telse \n\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tlet call = assi.oclContainer().oclAsType(OperationCall) in\n\t\t\t\t\t\tlet callIdx = call.caller.calls->indexOf(call) in\n\t\t\t\t\t\tif(callIdx = 1) then\n\t\t\t\t\t\t\tSet{}\n\t\t\t\t\t\telse \n\t\t\t\t\t\t\tcall.caller.calls->subOrderedSet(1, callIdx-1)->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(Caller)) then\n\t\t\t\t\t\t\tassi.oclContainer().oclAsType(Caller).calls->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tCaller.allInstances().calls->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif"
+			   "body", "if(containingAssignment.oclIsUndefined() or containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsUndefined()) then\n\tCaller.allInstances().calls->asSet()\nelse \n\tif(containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsKindOf(OperationCall)) then\n\t\tlet call = containingAssignment.oclAsType(ecore::EObject).eContainer().oclAsType(OperationCall) in\n\t\tlet callIdx = call.caller.calls->indexOf(call) in\n\t\tif(callIdx = 1) then\n\t\t\tSet{}\n\t\telse \n\t\t\tcall.caller.calls->subOrderedSet(1, callIdx-1)->asSet()\n\t\tendif\n\telse\n\t\tif(containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsKindOf(Caller)) then\n\t\t\tcontainingAssignment.oclAsType(ecore::EObject).eContainer().oclAsType(Caller).calls->asSet()\n\t\telse\n\t\t\tCaller.allInstances().calls->asSet()\n\t\tendif\n\tendif\nendif"
 		   });
 		addAnnotation
 		  (getReturnValueRef__GetPossibleReturnValues(),

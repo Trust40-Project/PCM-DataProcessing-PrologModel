@@ -31,13 +31,21 @@ public class HeadlessPerformanceApplication implements IApplication {
 	
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
-		Map<?, ?> contextArgs = context.getArguments();
-		String[] appArgs = (String[]) contextArgs.get("application.args");
-		PerformanceMeasurementConfiguration config = getMeasurementConfiguration(appArgs);
-		
-		new AveragePerformanceMeasurement(config.getInterpreter(), config.getNumberOfRepetitions(), config.getScaleFactor()).performMeasurements();
-		
-		return IApplication.EXIT_OK;
+		try {			
+			Map<?, ?> contextArgs = context.getArguments();
+			String[] appArgs = (String[]) contextArgs.get("application.args");
+			PerformanceMeasurementConfiguration config = getMeasurementConfiguration(appArgs);
+			
+			new AveragePerformanceMeasurement(config.getInterpreter(), config.getNumberOfRepetitions(), config.getScaleFactor()).performMeasurements();
+			
+			return IApplication.EXIT_OK;			
+		} catch (Exception e) {
+			// prevent eclipse from running other applications
+			System.out.println(e);
+			System.out.println("Terminating!");
+			System.exit(42);
+			return 42;
+		}
 	}
 	
 

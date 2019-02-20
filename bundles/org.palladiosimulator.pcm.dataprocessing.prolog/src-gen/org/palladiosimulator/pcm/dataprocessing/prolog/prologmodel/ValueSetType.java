@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.PrologmodelPackage#getValueSetType()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valueNamesUnique'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL valueNamesUnique='values-&gt;isUnique(name)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot valueNamesUnique='values-&gt;isUnique(name)'"
  * @generated
  */
 public interface ValueSetType extends EObject

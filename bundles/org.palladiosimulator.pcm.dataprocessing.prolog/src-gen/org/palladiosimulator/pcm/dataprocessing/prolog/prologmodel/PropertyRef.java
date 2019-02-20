@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.PrologmodelPackage#getPropertyRef()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isPropertyValid isValueValid'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL isPropertyValid='getPossibleProperties()-&gt;includes(property)' isValueValid='getPossibleValues()-&gt;includes(value)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isPropertyValid='getPossibleProperties()-&gt;includes(property)' isValueValid='getPossibleValues()-&gt;includes(value)'"
  * @generated
  */
 public interface PropertyRef extends LogicTerm
@@ -107,7 +107,7 @@ public interface PropertyRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tif operation.oclIsUndefined() then\n\t\t\t\t\tOperation.allInstances().propertyDefinitions.property-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\toperation.propertyDefinitions.property-&gt;asSet()\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif operation.oclIsUndefined() then\n\t\t\t\t\tOperation.allInstances().propertyDefinitions.property-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\toperation.propertyDefinitions.property-&gt;asSet()\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	EList<Property> getPossibleProperties();
@@ -116,7 +116,7 @@ public interface PropertyRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tgetPossibleProperties().type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tgetPossibleProperties().type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values-&gt;asSet()-&gt;union(Set{null})\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	EList<Value> getPossibleValues();
@@ -125,7 +125,7 @@ public interface PropertyRef extends LogicTerm
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tvalue.oclIsUndefined()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tvalue.oclIsUndefined()'"
 	 * @generated
 	 */
 	boolean isValueWildcard();

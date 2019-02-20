@@ -33,7 +33,7 @@ public interface LogicTerm extends EObject
 	 * @return the value of the '<em>Containing Assignment</em>' reference.
 	 * @see org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.PrologmodelPackage#getLogicTerm_ContainingAssignment()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='let cont = self.oclAsSet()-&gt;closure(elem | elem.oclContainer())-&gt;any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='let cont = self.oclAsSet()-&gt;selectByKind(ecore::EObject)-&gt;closure(elem | elem.oclAsType(ecore::EObject).eContainer())-&gt;any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	VariableAssignment getContainingAssignment();

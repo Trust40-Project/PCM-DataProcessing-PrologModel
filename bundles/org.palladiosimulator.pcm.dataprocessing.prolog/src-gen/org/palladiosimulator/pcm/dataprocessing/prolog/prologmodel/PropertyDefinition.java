@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.PrologmodelPackage#getPropertyDefinition()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valuesPartOfPropertyType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL valuesPartOfPropertyType='getPossibleValues()-&gt;includesAll(presentValues)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot valuesPartOfPropertyType='getPossibleValues()-&gt;includesAll(presentValues)'"
  * @generated
  */
 public interface PropertyDefinition extends EObject
@@ -72,7 +72,7 @@ public interface PropertyDefinition extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tProperty.allInstances().type.values-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values-&gt;asSet()\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tProperty.allInstances().type.values-&gt;asSet()\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values-&gt;asSet()\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	EList<Value> getPossibleValues();
