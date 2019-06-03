@@ -50,13 +50,16 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 */
 	public static PrologmodelFactory init()
 	{
-		try {
+		try
+		{
 			PrologmodelFactory thePrologmodelFactory = (PrologmodelFactory)EPackage.Registry.INSTANCE.getEFactory(PrologmodelPackage.eNS_URI);
-			if (thePrologmodelFactory != null) {
+			if (thePrologmodelFactory != null)
+			{
 				return thePrologmodelFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new PrologmodelFactoryImpl();
@@ -81,7 +84,8 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case PrologmodelPackage.SYSTEM: return createSystem();
 			case PrologmodelPackage.ATTRIBUTE: return createAttribute();
 			case PrologmodelPackage.VALUE: return createValue();
@@ -114,6 +118,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.System createSystem()
 	{
 		SystemImpl system = new SystemImpl();
@@ -125,6 +130,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Attribute createAttribute()
 	{
 		AttributeImpl attribute = new AttributeImpl();
@@ -136,6 +142,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Value createValue()
 	{
 		ValueImpl value = new ValueImpl();
@@ -147,6 +154,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation createOperation()
 	{
 		OperationImpl operation = new OperationImpl();
@@ -158,6 +166,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable createVariable()
 	{
 		VariableImpl variable = new VariableImpl();
@@ -169,6 +178,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataType createDataType()
 	{
 		DataTypeImpl dataType = new DataTypeImpl();
@@ -180,6 +190,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property createProperty()
 	{
 		PropertyImpl property = new PropertyImpl();
@@ -191,6 +202,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PropertyDefinition createPropertyDefinition()
 	{
 		PropertyDefinitionImpl propertyDefinition = new PropertyDefinitionImpl();
@@ -202,6 +214,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OperationCall createOperationCall()
 	{
 		OperationCallImpl operationCall = new OperationCallImpl();
@@ -213,6 +226,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableAssignment createVariableAssignment()
 	{
 		VariableAssignmentImpl variableAssignment = new VariableAssignmentImpl();
@@ -224,6 +238,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueSetType createValueSetType()
 	{
 		ValueSetTypeImpl valueSetType = new ValueSetTypeImpl();
@@ -235,6 +250,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public True createTrue()
 	{
 		TrueImpl true_ = new TrueImpl();
@@ -246,6 +262,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public False createFalse()
 	{
 		FalseImpl false_ = new FalseImpl();
@@ -257,6 +274,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public And createAnd()
 	{
 		AndImpl and = new AndImpl();
@@ -268,6 +286,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Or createOr()
 	{
 		OrImpl or = new OrImpl();
@@ -279,6 +298,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Not createNot()
 	{
 		NotImpl not = new NotImpl();
@@ -290,6 +310,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ParameterRef createParameterRef()
 	{
 		ParameterRefImpl parameterRef = new ParameterRefImpl();
@@ -301,6 +322,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PropertyRef createPropertyRef()
 	{
 		PropertyRefImpl propertyRef = new PropertyRefImpl();
@@ -312,6 +334,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SystemUsage createSystemUsage()
 	{
 		SystemUsageImpl systemUsage = new SystemUsageImpl();
@@ -323,6 +346,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReturnValueRef createReturnValueRef()
 	{
 		ReturnValueRefImpl returnValueRef = new ReturnValueRefImpl();
@@ -334,6 +358,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StateRef createStateRef()
 	{
 		StateRefImpl stateRef = new StateRefImpl();
@@ -345,6 +370,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DefaultStateRef createDefaultStateRef()
 	{
 		DefaultStateRefImpl defaultStateRef = new DefaultStateRefImpl();
@@ -356,6 +382,7 @@ public class PrologmodelFactoryImpl extends EFactoryImpl implements PrologmodelF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PrologmodelPackage getPrologmodelPackage()
 	{
 		return (PrologmodelPackage)getEPackage();

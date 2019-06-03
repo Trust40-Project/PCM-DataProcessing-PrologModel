@@ -65,6 +65,7 @@ public class NotImpl extends LogicTermImpl implements Not
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LogicTerm getOperand()
 	{
 		return operand;
@@ -79,7 +80,8 @@ public class NotImpl extends LogicTermImpl implements Not
 	{
 		LogicTerm oldOperand = operand;
 		operand = newOperand;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PrologmodelPackage.NOT__OPERAND, oldOperand, newOperand);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -91,9 +93,11 @@ public class NotImpl extends LogicTermImpl implements Not
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperand(LogicTerm newOperand)
 	{
-		if (newOperand != operand) {
+		if (newOperand != operand)
+		{
 			NotificationChain msgs = null;
 			if (operand != null)
 				msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PrologmodelPackage.NOT__OPERAND, null, msgs);
@@ -114,7 +118,8 @@ public class NotImpl extends LogicTermImpl implements Not
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.NOT__OPERAND:
 				return basicSetOperand(null, msgs);
 		}
@@ -129,7 +134,8 @@ public class NotImpl extends LogicTermImpl implements Not
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.NOT__CONTAINING_ASSIGNMENT:
 				if (resolve) return getContainingAssignment();
 				return basicGetContainingAssignment();
@@ -147,7 +153,8 @@ public class NotImpl extends LogicTermImpl implements Not
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.NOT__OPERAND:
 				setOperand((LogicTerm)newValue);
 				return;
@@ -163,7 +170,8 @@ public class NotImpl extends LogicTermImpl implements Not
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.NOT__OPERAND:
 				setOperand((LogicTerm)null);
 				return;
@@ -179,7 +187,8 @@ public class NotImpl extends LogicTermImpl implements Not
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.NOT__CONTAINING_ASSIGNMENT:
 				return CONTAINING_ASSIGNMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case PrologmodelPackage.NOT__OPERAND:

@@ -94,12 +94,15 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getStateVariable()
 	{
-		if (stateVariable != null && stateVariable.eIsProxy()) {
+		if (stateVariable != null && stateVariable.eIsProxy())
+		{
 			InternalEObject oldStateVariable = (InternalEObject)stateVariable;
 			stateVariable = (Variable)eResolveProxy(oldStateVariable);
-			if (stateVariable != oldStateVariable) {
+			if (stateVariable != oldStateVariable)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.DEFAULT_STATE_REF__STATE_VARIABLE, oldStateVariable, stateVariable));
 			}
@@ -122,6 +125,7 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStateVariable(Variable newStateVariable)
 	{
 		Variable oldStateVariable = stateVariable;
@@ -135,12 +139,15 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Attribute getAttribute()
 	{
-		if (attribute != null && attribute.eIsProxy()) {
+		if (attribute != null && attribute.eIsProxy())
+		{
 			InternalEObject oldAttribute = (InternalEObject)attribute;
 			attribute = (Attribute)eResolveProxy(oldAttribute);
-			if (attribute != oldAttribute) {
+			if (attribute != oldAttribute)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.DEFAULT_STATE_REF__ATTRIBUTE, oldAttribute, attribute));
 			}
@@ -163,6 +170,7 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAttribute(Attribute newAttribute)
 	{
 		Attribute oldAttribute = attribute;
@@ -176,12 +184,15 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Value getValue()
 	{
-		if (value != null && value.eIsProxy()) {
+		if (value != null && value.eIsProxy())
+		{
 			InternalEObject oldValue = (InternalEObject)value;
 			value = (Value)eResolveProxy(oldValue);
-			if (value != oldValue) {
+			if (value != oldValue)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.DEFAULT_STATE_REF__VALUE, oldValue, value));
 			}
@@ -204,6 +215,7 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(Value newValue)
 	{
 		Value oldValue = value;
@@ -228,12 +240,15 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Variable> getPossibleVariables()
 	{
-		try {
+		try
+		{
 			return (EList<Variable>)GET_POSSIBLE_VARIABLES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -254,12 +269,15 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Attribute> getPossibleAttributes()
 	{
-		try {
+		try
+		{
 			return (EList<Attribute>)GET_POSSIBLE_ATTRIBUTES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -280,12 +298,15 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Value> getPossibleValues()
 	{
-		try {
+		try
+		{
 			return (EList<Value>)GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -305,12 +326,15 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAttributeWildcard()
 	{
-		try {
+		try
+		{
 			return (Boolean)IS_ATTRIBUTE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -330,12 +354,15 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValueWildcard()
 	{
-		try {
+		try
+		{
 			return (Boolean)IS_VALUE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -348,7 +375,8 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.DEFAULT_STATE_REF__CONTAINING_ASSIGNMENT:
 				if (resolve) return getContainingAssignment();
 				return basicGetContainingAssignment();
@@ -373,7 +401,8 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.DEFAULT_STATE_REF__STATE_VARIABLE:
 				setStateVariable((Variable)newValue);
 				return;
@@ -395,7 +424,8 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.DEFAULT_STATE_REF__STATE_VARIABLE:
 				setStateVariable((Variable)null);
 				return;
@@ -417,7 +447,8 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.DEFAULT_STATE_REF__CONTAINING_ASSIGNMENT:
 				return CONTAINING_ASSIGNMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case PrologmodelPackage.DEFAULT_STATE_REF__STATE_VARIABLE:
@@ -438,7 +469,8 @@ public class DefaultStateRefImpl extends LogicTermImpl implements DefaultStateRe
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
-		switch (operationID) {
+		switch (operationID)
+		{
 			case PrologmodelPackage.DEFAULT_STATE_REF___GET_POSSIBLE_VARIABLES:
 				return getPossibleVariables();
 			case PrologmodelPackage.DEFAULT_STATE_REF___GET_POSSIBLE_ATTRIBUTES:

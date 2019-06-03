@@ -86,12 +86,15 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataType getDatatype()
 	{
-		if (datatype != null && datatype.eIsProxy()) {
+		if (datatype != null && datatype.eIsProxy())
+		{
 			InternalEObject oldDatatype = (InternalEObject)datatype;
 			datatype = (DataType)eResolveProxy(oldDatatype);
-			if (datatype != oldDatatype) {
+			if (datatype != oldDatatype)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.VARIABLE__DATATYPE, oldDatatype, datatype));
 			}
@@ -114,6 +117,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatatype(DataType newDatatype)
 	{
 		DataType oldDatatype = datatype;
@@ -127,6 +131,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -137,6 +142,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -153,7 +159,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE__DATATYPE:
 				if (resolve) return getDatatype();
 				return basicGetDatatype();
@@ -171,7 +178,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE__DATATYPE:
 				setDatatype((DataType)newValue);
 				return;
@@ -190,7 +198,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE__DATATYPE:
 				setDatatype((DataType)null);
 				return;
@@ -209,7 +218,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE__DATATYPE:
 				return datatype != null;
 			case PrologmodelPackage.VARIABLE__NAME:

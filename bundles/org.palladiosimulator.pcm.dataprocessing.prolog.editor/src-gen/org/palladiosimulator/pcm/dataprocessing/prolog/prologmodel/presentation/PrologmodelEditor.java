@@ -155,7 +155,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.provider.PrologmodelItemProviderAdapterFactory;
+import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.provider.extension.PrologmodelItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
@@ -327,6 +327,7 @@ public class PrologmodelEditor
 	protected IPartListener partListener =
 		new IPartListener()
 		{
+			@Override
 			public void partActivated(IWorkbenchPart p)
 			{
 				if (p instanceof ContentOutline)
@@ -351,18 +352,22 @@ public class PrologmodelEditor
 					handleActivate();
 				}
 			}
+			@Override
 			public void partBroughtToTop(IWorkbenchPart p)
 			{
 				// Ignore.
 			}
+			@Override
 			public void partClosed(IWorkbenchPart p)
 			{
 				// Ignore.
 			}
+			@Override
 			public void partDeactivated(IWorkbenchPart p)
 			{
 				// Ignore.
 			}
+			@Override
 			public void partOpened(IWorkbenchPart p)
 			{
 				// Ignore.
@@ -460,6 +465,7 @@ public class PrologmodelEditor
 					getSite().getShell().getDisplay().asyncExec
 						(new Runnable()
 						 {
+							 @Override
 							 public void run()
 							 {
 								 dispatching = false;
@@ -493,6 +499,7 @@ public class PrologmodelEditor
 	protected IResourceChangeListener resourceChangeListener =
 		new IResourceChangeListener()
 		{
+			@Override
 			public void resourceChanged(IResourceChangeEvent event)
 			{
 				IResourceDelta delta = event.getDelta();
@@ -504,6 +511,7 @@ public class PrologmodelEditor
 						protected Collection<Resource> changedResources = new ArrayList<Resource>();
 						protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
+						@Override
 						public boolean visit(IResourceDelta delta)
 						{
 							if (delta.getResource().getType() == IResource.FILE)
@@ -549,6 +557,7 @@ public class PrologmodelEditor
 						getSite().getShell().getDisplay().asyncExec
 							(new Runnable()
 							 {
+								 @Override
 								 public void run()
 								 {
 									 removedResources.addAll(visitor.getRemovedResources());
@@ -565,6 +574,7 @@ public class PrologmodelEditor
 						getSite().getShell().getDisplay().asyncExec
 							(new Runnable()
 							 {
+								 @Override
 								 public void run()
 								 {
 									 changedResources.addAll(visitor.getChangedResources());
@@ -789,11 +799,13 @@ public class PrologmodelEditor
 		commandStack.addCommandStackListener
 			(new CommandStackListener()
 			 {
+				 @Override
 				 public void commandStackChanged(final EventObject event)
 				 {
 					 getContainer().getDisplay().asyncExec
 						 (new Runnable()
 						  {
+							  @Override
 							  public void run()
 							  {
 								  firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -855,6 +867,7 @@ public class PrologmodelEditor
 			Runnable runnable =
 				new Runnable()
 				{
+					@Override
 					public void run()
 					{
 						// Try to select the items in the current content viewer of the editor.
@@ -877,6 +890,7 @@ public class PrologmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EditingDomain getEditingDomain()
 	{
 		return editingDomain;
@@ -987,6 +1001,7 @@ public class PrologmodelEditor
 					{
 						// This just notifies those things that are affected by the section.
 						//
+						@Override
 						public void selectionChanged(SelectionChangedEvent selectionChangedEvent)
 						{
 							setSelection(selectionChangedEvent.getSelection());
@@ -1024,6 +1039,7 @@ public class PrologmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Viewer getViewer()
 	{
 		return currentViewer;
@@ -1360,6 +1376,7 @@ public class PrologmodelEditor
 			getSite().getShell().getDisplay().asyncExec
 				(new Runnable()
 				 {
+					 @Override
 					 public void run()
 					 {
 						 if (!getContainer().isDisposed())
@@ -1392,6 +1409,7 @@ public class PrologmodelEditor
 		getSite().getShell().getDisplay().asyncExec
 			(new Runnable()
 			 {
+				 @Override
 				 public void run()
 				 {
 					 updateProblemIndication();
@@ -1549,6 +1567,7 @@ public class PrologmodelEditor
 				 {
 					 // This ensures that we handle selections correctly.
 					 //
+					 @Override
 					 public void selectionChanged(SelectionChangedEvent event)
 					 {
 						 handleContentOutlineSelection(event.getSelection());
@@ -1805,6 +1824,7 @@ public class PrologmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void gotoMarker(IMarker marker)
 	{
 		List<?> targetObjects = markerHelper.getTargetObjects(editingDomain, marker);
@@ -1855,6 +1875,7 @@ public class PrologmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addSelectionChangedListener(ISelectionChangedListener listener)
 	{
 		selectionChangedListeners.add(listener);
@@ -1866,6 +1887,7 @@ public class PrologmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeSelectionChangedListener(ISelectionChangedListener listener)
 	{
 		selectionChangedListeners.remove(listener);
@@ -1877,6 +1899,7 @@ public class PrologmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ISelection getSelection()
 	{
 		return editorSelection;
@@ -1889,6 +1912,7 @@ public class PrologmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSelection(ISelection selection)
 	{
 		editorSelection = selection;
@@ -1970,6 +1994,7 @@ public class PrologmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void menuAboutToShow(IMenuManager menuManager)
 	{
 		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);

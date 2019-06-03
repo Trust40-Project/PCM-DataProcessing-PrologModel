@@ -62,6 +62,7 @@ public abstract class LogicTermImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableAssignment getContainingAssignment()
 	{
 		return (VariableAssignment)CONTAINING_ASSIGNMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
@@ -85,7 +86,8 @@ public abstract class LogicTermImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.LOGIC_TERM__CONTAINING_ASSIGNMENT:
 				if (resolve) return getContainingAssignment();
 				return basicGetContainingAssignment();
@@ -101,7 +103,8 @@ public abstract class LogicTermImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.LOGIC_TERM__CONTAINING_ASSIGNMENT:
 				return CONTAINING_ASSIGNMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}

@@ -63,7 +63,8 @@ public class PrologmodelSwitch<T> extends Switch<T>
 	 */
 	public PrologmodelSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = PrologmodelPackage.eINSTANCE;
 		}
 	}
@@ -92,157 +93,182 @@ public class PrologmodelSwitch<T> extends Switch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case PrologmodelPackage.SYSTEM: {
+		switch (classifierID)
+		{
+			case PrologmodelPackage.SYSTEM:
+			{
 				org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.System system = (org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.System)theEObject;
 				T result = caseSystem(system);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.ATTRIBUTE: {
+			case PrologmodelPackage.ATTRIBUTE:
+			{
 				Attribute attribute = (Attribute)theEObject;
 				T result = caseAttribute(attribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.VALUE: {
+			case PrologmodelPackage.VALUE:
+			{
 				Value value = (Value)theEObject;
 				T result = caseValue(value);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.OPERATION: {
+			case PrologmodelPackage.OPERATION:
+			{
 				Operation operation = (Operation)theEObject;
 				T result = caseOperation(operation);
 				if (result == null) result = caseCaller(operation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.VARIABLE: {
+			case PrologmodelPackage.VARIABLE:
+			{
 				Variable variable = (Variable)theEObject;
 				T result = caseVariable(variable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.DATA_TYPE: {
+			case PrologmodelPackage.DATA_TYPE:
+			{
 				DataType dataType = (DataType)theEObject;
 				T result = caseDataType(dataType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.PROPERTY: {
+			case PrologmodelPackage.PROPERTY:
+			{
 				Property property = (Property)theEObject;
 				T result = caseProperty(property);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.PROPERTY_DEFINITION: {
+			case PrologmodelPackage.PROPERTY_DEFINITION:
+			{
 				PropertyDefinition propertyDefinition = (PropertyDefinition)theEObject;
 				T result = casePropertyDefinition(propertyDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.OPERATION_CALL: {
+			case PrologmodelPackage.OPERATION_CALL:
+			{
 				OperationCall operationCall = (OperationCall)theEObject;
 				T result = caseOperationCall(operationCall);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.VARIABLE_ASSIGNMENT: {
+			case PrologmodelPackage.VARIABLE_ASSIGNMENT:
+			{
 				VariableAssignment variableAssignment = (VariableAssignment)theEObject;
 				T result = caseVariableAssignment(variableAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.VALUE_SET_TYPE: {
+			case PrologmodelPackage.VALUE_SET_TYPE:
+			{
 				ValueSetType valueSetType = (ValueSetType)theEObject;
 				T result = caseValueSetType(valueSetType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.LOGIC_TERM: {
+			case PrologmodelPackage.LOGIC_TERM:
+			{
 				LogicTerm logicTerm = (LogicTerm)theEObject;
 				T result = caseLogicTerm(logicTerm);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.TRUE: {
+			case PrologmodelPackage.TRUE:
+			{
 				True true_ = (True)theEObject;
 				T result = caseTrue(true_);
 				if (result == null) result = caseLogicTerm(true_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.FALSE: {
+			case PrologmodelPackage.FALSE:
+			{
 				False false_ = (False)theEObject;
 				T result = caseFalse(false_);
 				if (result == null) result = caseLogicTerm(false_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.AND: {
+			case PrologmodelPackage.AND:
+			{
 				And and = (And)theEObject;
 				T result = caseAnd(and);
 				if (result == null) result = caseLogicTerm(and);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.OR: {
+			case PrologmodelPackage.OR:
+			{
 				Or or = (Or)theEObject;
 				T result = caseOr(or);
 				if (result == null) result = caseLogicTerm(or);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.NOT: {
+			case PrologmodelPackage.NOT:
+			{
 				Not not = (Not)theEObject;
 				T result = caseNot(not);
 				if (result == null) result = caseLogicTerm(not);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.PARAMETER_REF: {
+			case PrologmodelPackage.PARAMETER_REF:
+			{
 				ParameterRef parameterRef = (ParameterRef)theEObject;
 				T result = caseParameterRef(parameterRef);
 				if (result == null) result = caseLogicTerm(parameterRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.PROPERTY_REF: {
+			case PrologmodelPackage.PROPERTY_REF:
+			{
 				PropertyRef propertyRef = (PropertyRef)theEObject;
 				T result = casePropertyRef(propertyRef);
 				if (result == null) result = caseLogicTerm(propertyRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.CALLER: {
+			case PrologmodelPackage.CALLER:
+			{
 				Caller caller = (Caller)theEObject;
 				T result = caseCaller(caller);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.SYSTEM_USAGE: {
+			case PrologmodelPackage.SYSTEM_USAGE:
+			{
 				SystemUsage systemUsage = (SystemUsage)theEObject;
 				T result = caseSystemUsage(systemUsage);
 				if (result == null) result = caseCaller(systemUsage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.RETURN_VALUE_REF: {
+			case PrologmodelPackage.RETURN_VALUE_REF:
+			{
 				ReturnValueRef returnValueRef = (ReturnValueRef)theEObject;
 				T result = caseReturnValueRef(returnValueRef);
 				if (result == null) result = caseLogicTerm(returnValueRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.STATE_REF: {
+			case PrologmodelPackage.STATE_REF:
+			{
 				StateRef stateRef = (StateRef)theEObject;
 				T result = caseStateRef(stateRef);
 				if (result == null) result = caseLogicTerm(stateRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PrologmodelPackage.DEFAULT_STATE_REF: {
+			case PrologmodelPackage.DEFAULT_STATE_REF:
+			{
 				DefaultStateRef defaultStateRef = (DefaultStateRef)theEObject;
 				T result = caseDefaultStateRef(defaultStateRef);
 				if (result == null) result = caseLogicTerm(defaultStateRef);

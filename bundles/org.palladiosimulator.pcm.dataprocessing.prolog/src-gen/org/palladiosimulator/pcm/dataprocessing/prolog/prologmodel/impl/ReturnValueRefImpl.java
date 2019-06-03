@@ -106,12 +106,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getReturnValue()
 	{
-		if (returnValue != null && returnValue.eIsProxy()) {
+		if (returnValue != null && returnValue.eIsProxy())
+		{
 			InternalEObject oldReturnValue = (InternalEObject)returnValue;
 			returnValue = (Variable)eResolveProxy(oldReturnValue);
-			if (returnValue != oldReturnValue) {
+			if (returnValue != oldReturnValue)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.RETURN_VALUE_REF__RETURN_VALUE, oldReturnValue, returnValue));
 			}
@@ -134,6 +137,7 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnValue(Variable newReturnValue)
 	{
 		Variable oldReturnValue = returnValue;
@@ -147,12 +151,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Attribute getAttribute()
 	{
-		if (attribute != null && attribute.eIsProxy()) {
+		if (attribute != null && attribute.eIsProxy())
+		{
 			InternalEObject oldAttribute = (InternalEObject)attribute;
 			attribute = (Attribute)eResolveProxy(oldAttribute);
-			if (attribute != oldAttribute) {
+			if (attribute != oldAttribute)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.RETURN_VALUE_REF__ATTRIBUTE, oldAttribute, attribute));
 			}
@@ -175,6 +182,7 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAttribute(Attribute newAttribute)
 	{
 		Attribute oldAttribute = attribute;
@@ -188,12 +196,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Value getValue()
 	{
-		if (value != null && value.eIsProxy()) {
+		if (value != null && value.eIsProxy())
+		{
 			InternalEObject oldValue = (InternalEObject)value;
 			value = (Value)eResolveProxy(oldValue);
-			if (value != oldValue) {
+			if (value != oldValue)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.RETURN_VALUE_REF__VALUE, oldValue, value));
 			}
@@ -216,6 +227,7 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(Value newValue)
 	{
 		Value oldValue = value;
@@ -229,12 +241,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OperationCall getCall()
 	{
-		if (call != null && call.eIsProxy()) {
+		if (call != null && call.eIsProxy())
+		{
 			InternalEObject oldCall = (InternalEObject)call;
 			call = (OperationCall)eResolveProxy(oldCall);
-			if (call != oldCall) {
+			if (call != oldCall)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.RETURN_VALUE_REF__CALL, oldCall, call));
 			}
@@ -257,6 +272,7 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCall(OperationCall newCall)
 	{
 		OperationCall oldCall = call;
@@ -281,12 +297,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<OperationCall> getPossibleCalls()
 	{
-		try {
+		try
+		{
 			return (EList<OperationCall>)GET_POSSIBLE_CALLS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -307,12 +326,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Variable> getPossibleReturnValues()
 	{
-		try {
+		try
+		{
 			return (EList<Variable>)GET_POSSIBLE_RETURN_VALUES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -333,12 +355,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Attribute> getPossibleAttributes()
 	{
-		try {
+		try
+		{
 			return (EList<Attribute>)GET_POSSIBLE_ATTRIBUTES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -359,12 +384,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Value> getPossibleValues()
 	{
-		try {
+		try
+		{
 			return (EList<Value>)GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -384,12 +412,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAttributeWildcard()
 	{
-		try {
+		try
+		{
 			return (Boolean)IS_ATTRIBUTE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -409,12 +440,15 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValueWildcard()
 	{
-		try {
+		try
+		{
 			return (Boolean)IS_VALUE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -427,7 +461,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.RETURN_VALUE_REF__CONTAINING_ASSIGNMENT:
 				if (resolve) return getContainingAssignment();
 				return basicGetContainingAssignment();
@@ -455,7 +490,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.RETURN_VALUE_REF__RETURN_VALUE:
 				setReturnValue((Variable)newValue);
 				return;
@@ -480,7 +516,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.RETURN_VALUE_REF__RETURN_VALUE:
 				setReturnValue((Variable)null);
 				return;
@@ -505,7 +542,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.RETURN_VALUE_REF__CONTAINING_ASSIGNMENT:
 				return CONTAINING_ASSIGNMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case PrologmodelPackage.RETURN_VALUE_REF__RETURN_VALUE:
@@ -528,7 +566,8 @@ public class ReturnValueRefImpl extends LogicTermImpl implements ReturnValueRef
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
-		switch (operationID) {
+		switch (operationID)
+		{
 			case PrologmodelPackage.RETURN_VALUE_REF___GET_POSSIBLE_CALLS:
 				return getPossibleCalls();
 			case PrologmodelPackage.RETURN_VALUE_REF___GET_POSSIBLE_RETURN_VALUES:

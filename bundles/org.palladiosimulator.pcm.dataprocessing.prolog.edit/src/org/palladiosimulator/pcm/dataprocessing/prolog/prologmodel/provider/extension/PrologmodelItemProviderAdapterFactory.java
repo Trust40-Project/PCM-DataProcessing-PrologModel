@@ -1,7 +1,6 @@
 package org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.provider.extension;
 
 import org.eclipse.emf.common.notify.Adapter;
-import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.provider.VariableItemProvider;
 
 public class PrologmodelItemProviderAdapterFactory extends
 		org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.provider.PrologmodelItemProviderAdapterFactory {

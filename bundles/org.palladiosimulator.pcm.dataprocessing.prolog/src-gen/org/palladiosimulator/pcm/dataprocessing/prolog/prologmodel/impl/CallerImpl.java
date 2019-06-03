@@ -94,9 +94,11 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<OperationCall> getCalls()
 	{
-		if (calls == null) {
+		if (calls == null)
+		{
 			calls = new EObjectContainmentWithInverseEList<OperationCall>(OperationCall.class, this, PrologmodelPackage.CALLER__CALLS, PrologmodelPackage.OPERATION_CALL__CALLER);
 		}
 		return calls;
@@ -107,6 +109,7 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -117,6 +120,7 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -134,7 +138,8 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.CALLER__CALLS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCalls()).basicAdd(otherEnd, msgs);
 		}
@@ -149,7 +154,8 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.CALLER__CALLS:
 				return ((InternalEList<?>)getCalls()).basicRemove(otherEnd, msgs);
 		}
@@ -164,7 +170,8 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.CALLER__CALLS:
 				return getCalls();
 			case PrologmodelPackage.CALLER__NAME:
@@ -182,7 +189,8 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.CALLER__CALLS:
 				getCalls().clear();
 				getCalls().addAll((Collection<? extends OperationCall>)newValue);
@@ -202,7 +210,8 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.CALLER__CALLS:
 				getCalls().clear();
 				return;
@@ -221,7 +230,8 @@ public abstract class CallerImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.CALLER__CALLS:
 				return calls != null && !calls.isEmpty();
 			case PrologmodelPackage.CALLER__NAME:

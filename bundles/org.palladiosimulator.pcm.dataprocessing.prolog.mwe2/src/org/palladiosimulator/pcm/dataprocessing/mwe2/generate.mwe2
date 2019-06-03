@@ -115,15 +115,15 @@ Workflow {
 		replacement = {
 			filename =  "${pluginEditDir}/plugin.xml"
 			mapping = {
-				from = "${projectName}.dataprocessing.prolog.prologmodel.provider.PrologmodelItemProviderAdapterFactory"
-				to = "${projectName}.dataprocessing.prolog.prologmodel.provider.extension.PrologmodelItemProviderAdapterFactory"
+				from = "${projectName}.prologmodel.provider.PrologmodelItemProviderAdapterFactory"
+				to = "${projectName}.prologmodel.provider.extension.PrologmodelItemProviderAdapterFactory"
 			}
 		}
 		replacement = {
 			filename = "${pluginEditorDir}/src-gen/**/*Editor.java"
 			mapping = {
-				from = "${projectName}.dataprocessing.prolog.prologmodel.provider.PrologmodelItemProviderAdapterFactory"
-				to = "${projectName}.dataprocessing.prolog.prologmodel.provider.extension.PrologmodelItemProviderAdapterFactor"
+				from = "${projectName}.prologmodel.provider.PrologmodelItemProviderAdapterFactory"
+				to = "${projectName}.prologmodel.provider.extension.PrologmodelItemProviderAdapterFactory"
 			}
 		}
 		

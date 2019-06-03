@@ -87,12 +87,15 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getProperty()
 	{
-		if (property != null && property.eIsProxy()) {
+		if (property != null && property.eIsProxy())
+		{
 			InternalEObject oldProperty = (InternalEObject)property;
 			property = (Property)eResolveProxy(oldProperty);
-			if (property != oldProperty) {
+			if (property != oldProperty)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.PROPERTY_DEFINITION__PROPERTY, oldProperty, property));
 			}
@@ -115,6 +118,7 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProperty(Property newProperty)
 	{
 		Property oldProperty = property;
@@ -128,9 +132,11 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Value> getPresentValues()
 	{
-		if (presentValues == null) {
+		if (presentValues == null)
+		{
 			presentValues = new EObjectResolvingEList<Value>(Value.class, this, PrologmodelPackage.PROPERTY_DEFINITION__PRESENT_VALUES);
 		}
 		return presentValues;
@@ -152,12 +158,15 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Value> getPossibleValues()
 	{
-		try {
+		try
+		{
 			return (EList<Value>)GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -170,7 +179,8 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY_DEFINITION__PROPERTY:
 				if (resolve) return getProperty();
 				return basicGetProperty();
@@ -189,7 +199,8 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY_DEFINITION__PROPERTY:
 				setProperty((Property)newValue);
 				return;
@@ -209,7 +220,8 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY_DEFINITION__PROPERTY:
 				setProperty((Property)null);
 				return;
@@ -228,7 +240,8 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY_DEFINITION__PROPERTY:
 				return property != null;
 			case PrologmodelPackage.PROPERTY_DEFINITION__PRESENT_VALUES:
@@ -245,7 +258,8 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
-		switch (operationID) {
+		switch (operationID)
+		{
 			case PrologmodelPackage.PROPERTY_DEFINITION___GET_POSSIBLE_VALUES:
 				return getPossibleValues();
 		}

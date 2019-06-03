@@ -153,6 +153,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -163,6 +164,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -176,9 +178,11 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Attribute> getAttributes()
 	{
-		if (attributes == null) {
+		if (attributes == null)
+		{
 			attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, PrologmodelPackage.SYSTEM__ATTRIBUTES);
 		}
 		return attributes;
@@ -189,9 +193,11 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DataType> getDatatypes()
 	{
-		if (datatypes == null) {
+		if (datatypes == null)
+		{
 			datatypes = new EObjectContainmentEList<DataType>(DataType.class, this, PrologmodelPackage.SYSTEM__DATATYPES);
 		}
 		return datatypes;
@@ -202,9 +208,11 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Operation> getOperations()
 	{
-		if (operations == null) {
+		if (operations == null)
+		{
 			operations = new EObjectContainmentEList<Operation>(Operation.class, this, PrologmodelPackage.SYSTEM__OPERATIONS);
 		}
 		return operations;
@@ -215,9 +223,11 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Property> getProperties()
 	{
-		if (properties == null) {
+		if (properties == null)
+		{
 			properties = new EObjectContainmentEList<Property>(Property.class, this, PrologmodelPackage.SYSTEM__PROPERTIES);
 		}
 		return properties;
@@ -228,9 +238,11 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ValueSetType> getTypes()
 	{
-		if (types == null) {
+		if (types == null)
+		{
 			types = new EObjectContainmentEList<ValueSetType>(ValueSetType.class, this, PrologmodelPackage.SYSTEM__TYPES);
 		}
 		return types;
@@ -241,9 +253,11 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SystemUsage> getSystemusages()
 	{
-		if (systemusages == null) {
+		if (systemusages == null)
+		{
 			systemusages = new EObjectContainmentEList<SystemUsage>(SystemUsage.class, this, PrologmodelPackage.SYSTEM__SYSTEMUSAGES);
 		}
 		return systemusages;
@@ -257,7 +271,8 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.SYSTEM__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 			case PrologmodelPackage.SYSTEM__DATATYPES:
@@ -282,7 +297,8 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.SYSTEM__NAME:
 				return getName();
 			case PrologmodelPackage.SYSTEM__ATTRIBUTES:
@@ -310,7 +326,8 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.SYSTEM__NAME:
 				setName((String)newValue);
 				return;
@@ -350,7 +367,8 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.SYSTEM__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -384,7 +402,8 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.pall
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.SYSTEM__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PrologmodelPackage.SYSTEM__ATTRIBUTES:

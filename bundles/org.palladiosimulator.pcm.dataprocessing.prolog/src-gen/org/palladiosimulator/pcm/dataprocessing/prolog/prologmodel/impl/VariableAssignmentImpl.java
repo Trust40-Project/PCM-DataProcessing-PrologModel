@@ -108,12 +108,15 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getVariable()
 	{
-		if (variable != null && variable.eIsProxy()) {
+		if (variable != null && variable.eIsProxy())
+		{
 			InternalEObject oldVariable = (InternalEObject)variable;
 			variable = (Variable)eResolveProxy(oldVariable);
-			if (variable != oldVariable) {
+			if (variable != oldVariable)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.VARIABLE_ASSIGNMENT__VARIABLE, oldVariable, variable));
 			}
@@ -136,6 +139,7 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVariable(Variable newVariable)
 	{
 		Variable oldVariable = variable;
@@ -149,12 +153,15 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Attribute getAttribute()
 	{
-		if (attribute != null && attribute.eIsProxy()) {
+		if (attribute != null && attribute.eIsProxy())
+		{
 			InternalEObject oldAttribute = (InternalEObject)attribute;
 			attribute = (Attribute)eResolveProxy(oldAttribute);
-			if (attribute != oldAttribute) {
+			if (attribute != oldAttribute)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.VARIABLE_ASSIGNMENT__ATTRIBUTE, oldAttribute, attribute));
 			}
@@ -177,6 +184,7 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAttribute(Attribute newAttribute)
 	{
 		Attribute oldAttribute = attribute;
@@ -190,12 +198,15 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Value getValue()
 	{
-		if (value != null && value.eIsProxy()) {
+		if (value != null && value.eIsProxy())
+		{
 			InternalEObject oldValue = (InternalEObject)value;
 			value = (Value)eResolveProxy(oldValue);
-			if (value != oldValue) {
+			if (value != oldValue)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.VARIABLE_ASSIGNMENT__VALUE, oldValue, value));
 			}
@@ -218,6 +229,7 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(Value newValue)
 	{
 		Value oldValue = value;
@@ -231,6 +243,7 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LogicTerm getTerm()
 	{
 		return term;
@@ -245,7 +258,8 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	{
 		LogicTerm oldTerm = term;
 		term = newTerm;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PrologmodelPackage.VARIABLE_ASSIGNMENT__TERM, oldTerm, newTerm);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -257,9 +271,11 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTerm(LogicTerm newTerm)
 	{
-		if (newTerm != term) {
+		if (newTerm != term)
+		{
 			NotificationChain msgs = null;
 			if (term != null)
 				msgs = ((InternalEObject)term).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PrologmodelPackage.VARIABLE_ASSIGNMENT__TERM, null, msgs);
@@ -288,12 +304,15 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Variable> getPossibleVariables()
 	{
-		try {
+		try
+		{
 			return (EList<Variable>)GET_POSSIBLE_VARIABLES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -314,12 +333,15 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Attribute> getPossibleAttributes()
 	{
-		try {
+		try
+		{
 			return (EList<Attribute>)GET_POSSIBLE_ATTRIBUTES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -340,12 +362,15 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Value> getPossibleValues()
 	{
-		try {
+		try
+		{
 			return (EList<Value>)GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -365,12 +390,15 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAttributeWildcard()
 	{
-		try {
+		try
+		{
 			return (Boolean)IS_ATTRIBUTE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -390,12 +418,15 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValueWildcard()
 	{
-		try {
+		try
+		{
 			return (Boolean)IS_VALUE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -408,7 +439,8 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE_ASSIGNMENT__TERM:
 				return basicSetTerm(null, msgs);
 		}
@@ -423,7 +455,8 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE_ASSIGNMENT__VARIABLE:
 				if (resolve) return getVariable();
 				return basicGetVariable();
@@ -447,7 +480,8 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE_ASSIGNMENT__VARIABLE:
 				setVariable((Variable)newValue);
 				return;
@@ -472,7 +506,8 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE_ASSIGNMENT__VARIABLE:
 				setVariable((Variable)null);
 				return;
@@ -497,7 +532,8 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VARIABLE_ASSIGNMENT__VARIABLE:
 				return variable != null;
 			case PrologmodelPackage.VARIABLE_ASSIGNMENT__ATTRIBUTE:
@@ -518,7 +554,8 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
-		switch (operationID) {
+		switch (operationID)
+		{
 			case PrologmodelPackage.VARIABLE_ASSIGNMENT___GET_POSSIBLE_VARIABLES:
 				return getPossibleVariables();
 			case PrologmodelPackage.VARIABLE_ASSIGNMENT___GET_POSSIBLE_ATTRIBUTES:

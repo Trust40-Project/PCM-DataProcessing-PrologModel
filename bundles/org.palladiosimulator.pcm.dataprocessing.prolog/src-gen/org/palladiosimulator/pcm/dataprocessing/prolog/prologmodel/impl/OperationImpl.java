@@ -138,9 +138,11 @@ public class OperationImpl extends CallerImpl implements Operation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Variable> getParameters()
 	{
-		if (parameters == null) {
+		if (parameters == null)
+		{
 			parameters = new EObjectContainmentEList<Variable>(Variable.class, this, PrologmodelPackage.OPERATION__PARAMETERS);
 		}
 		return parameters;
@@ -151,9 +153,11 @@ public class OperationImpl extends CallerImpl implements Operation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Variable> getReturnValues()
 	{
-		if (returnValues == null) {
+		if (returnValues == null)
+		{
 			returnValues = new EObjectContainmentEList<Variable>(Variable.class, this, PrologmodelPackage.OPERATION__RETURN_VALUES);
 		}
 		return returnValues;
@@ -164,9 +168,11 @@ public class OperationImpl extends CallerImpl implements Operation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PropertyDefinition> getPropertyDefinitions()
 	{
-		if (propertyDefinitions == null) {
+		if (propertyDefinitions == null)
+		{
 			propertyDefinitions = new EObjectContainmentEList<PropertyDefinition>(PropertyDefinition.class, this, PrologmodelPackage.OPERATION__PROPERTY_DEFINITIONS);
 		}
 		return propertyDefinitions;
@@ -177,9 +183,11 @@ public class OperationImpl extends CallerImpl implements Operation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableAssignment> getReturnValueAssignments()
 	{
-		if (returnValueAssignments == null) {
+		if (returnValueAssignments == null)
+		{
 			returnValueAssignments = new EObjectContainmentEList<VariableAssignment>(VariableAssignment.class, this, PrologmodelPackage.OPERATION__RETURN_VALUE_ASSIGNMENTS);
 		}
 		return returnValueAssignments;
@@ -190,9 +198,11 @@ public class OperationImpl extends CallerImpl implements Operation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Variable> getStateVariables()
 	{
-		if (stateVariables == null) {
+		if (stateVariables == null)
+		{
 			stateVariables = new EObjectContainmentEList<Variable>(Variable.class, this, PrologmodelPackage.OPERATION__STATE_VARIABLES);
 		}
 		return stateVariables;
@@ -203,9 +213,11 @@ public class OperationImpl extends CallerImpl implements Operation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableAssignment> getDefaultStateDefinitions()
 	{
-		if (defaultStateDefinitions == null) {
+		if (defaultStateDefinitions == null)
+		{
 			defaultStateDefinitions = new EObjectContainmentEList<VariableAssignment>(VariableAssignment.class, this, PrologmodelPackage.OPERATION__DEFAULT_STATE_DEFINITIONS);
 		}
 		return defaultStateDefinitions;
@@ -216,9 +228,11 @@ public class OperationImpl extends CallerImpl implements Operation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableAssignment> getPostExecutionStateDefinitions()
 	{
-		if (postExecutionStateDefinitions == null) {
+		if (postExecutionStateDefinitions == null)
+		{
 			postExecutionStateDefinitions = new EObjectContainmentEList<VariableAssignment>(VariableAssignment.class, this, PrologmodelPackage.OPERATION__POST_EXECUTION_STATE_DEFINITIONS);
 		}
 		return postExecutionStateDefinitions;
@@ -232,7 +246,8 @@ public class OperationImpl extends CallerImpl implements Operation
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION__CALLS:
 				return ((InternalEList<?>)getCalls()).basicRemove(otherEnd, msgs);
 			case PrologmodelPackage.OPERATION__PARAMETERS:
@@ -261,7 +276,8 @@ public class OperationImpl extends CallerImpl implements Operation
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION__CALLS:
 				return getCalls();
 			case PrologmodelPackage.OPERATION__NAME:
@@ -293,7 +309,8 @@ public class OperationImpl extends CallerImpl implements Operation
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION__CALLS:
 				getCalls().clear();
 				getCalls().addAll((Collection<? extends OperationCall>)newValue);
@@ -341,7 +358,8 @@ public class OperationImpl extends CallerImpl implements Operation
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION__CALLS:
 				getCalls().clear();
 				return;
@@ -381,7 +399,8 @@ public class OperationImpl extends CallerImpl implements Operation
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION__CALLS:
 				return calls != null && !calls.isEmpty();
 			case PrologmodelPackage.OPERATION__NAME:

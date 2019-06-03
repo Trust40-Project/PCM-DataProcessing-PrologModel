@@ -273,8 +273,11 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
 			(thePrologmodelPackage,
-			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
+			 new EValidator.Descriptor()
+			 {
+				 @Override
+				 public EValidator getEValidator()
+				 {
 					 return PrologmodelValidator.INSTANCE;
 				 }
 			 });
@@ -292,6 +295,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSystem()
 	{
 		return systemEClass;
@@ -302,6 +306,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSystem_Name()
 	{
 		return (EAttribute)systemEClass.getEStructuralFeatures().get(0);
@@ -312,6 +317,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSystem_Attributes()
 	{
 		return (EReference)systemEClass.getEStructuralFeatures().get(1);
@@ -322,6 +328,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSystem_Datatypes()
 	{
 		return (EReference)systemEClass.getEStructuralFeatures().get(2);
@@ -332,6 +339,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSystem_Operations()
 	{
 		return (EReference)systemEClass.getEStructuralFeatures().get(3);
@@ -342,6 +350,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSystem_Properties()
 	{
 		return (EReference)systemEClass.getEStructuralFeatures().get(4);
@@ -352,6 +361,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSystem_Types()
 	{
 		return (EReference)systemEClass.getEStructuralFeatures().get(5);
@@ -362,6 +372,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSystem_Systemusages()
 	{
 		return (EReference)systemEClass.getEStructuralFeatures().get(6);
@@ -372,6 +383,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAttribute()
 	{
 		return attributeEClass;
@@ -382,6 +394,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAttribute_Type()
 	{
 		return (EReference)attributeEClass.getEStructuralFeatures().get(0);
@@ -392,6 +405,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAttribute_Name()
 	{
 		return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
@@ -402,6 +416,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getValue()
 	{
 		return valueEClass;
@@ -412,6 +427,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getValue_Name()
 	{
 		return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
@@ -422,6 +438,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getValue_ContainingType()
 	{
 		return (EReference)valueEClass.getEStructuralFeatures().get(1);
@@ -432,6 +449,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperation()
 	{
 		return operationEClass;
@@ -442,6 +460,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_Parameters()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(0);
@@ -452,6 +471,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_ReturnValues()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(1);
@@ -462,6 +482,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_PropertyDefinitions()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(2);
@@ -472,6 +493,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_ReturnValueAssignments()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(3);
@@ -482,6 +504,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_StateVariables()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(4);
@@ -492,6 +515,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_DefaultStateDefinitions()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(5);
@@ -502,6 +526,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_PostExecutionStateDefinitions()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(6);
@@ -512,6 +537,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariable()
 	{
 		return variableEClass;
@@ -522,6 +548,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariable_Datatype()
 	{
 		return (EReference)variableEClass.getEStructuralFeatures().get(0);
@@ -532,6 +559,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVariable_Name()
 	{
 		return (EAttribute)variableEClass.getEStructuralFeatures().get(1);
@@ -542,6 +570,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataType()
 	{
 		return dataTypeEClass;
@@ -552,6 +581,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDataType_Attributes()
 	{
 		return (EReference)dataTypeEClass.getEStructuralFeatures().get(0);
@@ -562,6 +592,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataType_Name()
 	{
 		return (EAttribute)dataTypeEClass.getEStructuralFeatures().get(1);
@@ -572,6 +603,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProperty()
 	{
 		return propertyEClass;
@@ -582,6 +614,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_Type()
 	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(0);
@@ -592,6 +625,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_Name()
 	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
@@ -602,6 +636,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPropertyDefinition()
 	{
 		return propertyDefinitionEClass;
@@ -612,6 +647,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyDefinition_Property()
 	{
 		return (EReference)propertyDefinitionEClass.getEStructuralFeatures().get(0);
@@ -622,6 +658,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyDefinition_PresentValues()
 	{
 		return (EReference)propertyDefinitionEClass.getEStructuralFeatures().get(1);
@@ -632,6 +669,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPropertyDefinition__GetPossibleValues()
 	{
 		return propertyDefinitionEClass.getEOperations().get(0);
@@ -642,6 +680,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperationCall()
 	{
 		return operationCallEClass;
@@ -652,6 +691,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCall_Callee()
 	{
 		return (EReference)operationCallEClass.getEStructuralFeatures().get(0);
@@ -662,6 +702,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCall_ParameterAssignments()
 	{
 		return (EReference)operationCallEClass.getEStructuralFeatures().get(1);
@@ -672,6 +713,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCall_Caller()
 	{
 		return (EReference)operationCallEClass.getEStructuralFeatures().get(2);
@@ -682,6 +724,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOperationCall_Name()
 	{
 		return (EAttribute)operationCallEClass.getEStructuralFeatures().get(3);
@@ -692,6 +735,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCall_PreCallStateDefinitions()
 	{
 		return (EReference)operationCallEClass.getEStructuralFeatures().get(4);
@@ -702,6 +746,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariableAssignment()
 	{
 		return variableAssignmentEClass;
@@ -712,6 +757,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableAssignment_Variable()
 	{
 		return (EReference)variableAssignmentEClass.getEStructuralFeatures().get(0);
@@ -722,6 +768,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableAssignment_Attribute()
 	{
 		return (EReference)variableAssignmentEClass.getEStructuralFeatures().get(1);
@@ -732,6 +779,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableAssignment_Value()
 	{
 		return (EReference)variableAssignmentEClass.getEStructuralFeatures().get(2);
@@ -742,6 +790,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableAssignment_Term()
 	{
 		return (EReference)variableAssignmentEClass.getEStructuralFeatures().get(3);
@@ -752,6 +801,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getVariableAssignment__GetPossibleVariables()
 	{
 		return variableAssignmentEClass.getEOperations().get(0);
@@ -762,6 +812,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getVariableAssignment__GetPossibleAttributes()
 	{
 		return variableAssignmentEClass.getEOperations().get(1);
@@ -772,6 +823,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getVariableAssignment__GetPossibleValues()
 	{
 		return variableAssignmentEClass.getEOperations().get(2);
@@ -782,6 +834,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getVariableAssignment__IsAttributeWildcard()
 	{
 		return variableAssignmentEClass.getEOperations().get(3);
@@ -792,6 +845,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getVariableAssignment__IsValueWildcard()
 	{
 		return variableAssignmentEClass.getEOperations().get(4);
@@ -802,6 +856,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getValueSetType()
 	{
 		return valueSetTypeEClass;
@@ -812,6 +867,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getValueSetType_Values()
 	{
 		return (EReference)valueSetTypeEClass.getEStructuralFeatures().get(0);
@@ -822,6 +878,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getValueSetType_Name()
 	{
 		return (EAttribute)valueSetTypeEClass.getEStructuralFeatures().get(1);
@@ -832,6 +889,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLogicTerm()
 	{
 		return logicTermEClass;
@@ -842,6 +900,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLogicTerm_ContainingAssignment()
 	{
 		return (EReference)logicTermEClass.getEStructuralFeatures().get(0);
@@ -852,6 +911,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTrue()
 	{
 		return trueEClass;
@@ -862,6 +922,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFalse()
 	{
 		return falseEClass;
@@ -872,6 +933,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAnd()
 	{
 		return andEClass;
@@ -882,6 +944,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnd_Operands()
 	{
 		return (EReference)andEClass.getEStructuralFeatures().get(0);
@@ -892,6 +955,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOr()
 	{
 		return orEClass;
@@ -902,6 +966,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOr_Operands()
 	{
 		return (EReference)orEClass.getEStructuralFeatures().get(0);
@@ -912,6 +977,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNot()
 	{
 		return notEClass;
@@ -922,6 +988,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNot_Operand()
 	{
 		return (EReference)notEClass.getEStructuralFeatures().get(0);
@@ -932,6 +999,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getParameterRef()
 	{
 		return parameterRefEClass;
@@ -942,6 +1010,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getParameterRef_Parameter()
 	{
 		return (EReference)parameterRefEClass.getEStructuralFeatures().get(0);
@@ -952,6 +1021,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getParameterRef_Attribute()
 	{
 		return (EReference)parameterRefEClass.getEStructuralFeatures().get(1);
@@ -962,6 +1032,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getParameterRef_Value()
 	{
 		return (EReference)parameterRefEClass.getEStructuralFeatures().get(2);
@@ -972,6 +1043,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getParameterRef__GetPossibleParameters()
 	{
 		return parameterRefEClass.getEOperations().get(0);
@@ -982,6 +1054,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getParameterRef__GetPossibleAttributes()
 	{
 		return parameterRefEClass.getEOperations().get(1);
@@ -992,6 +1065,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getParameterRef__GetPossibleValues()
 	{
 		return parameterRefEClass.getEOperations().get(2);
@@ -1002,6 +1076,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getParameterRef__IsAttributeWildcard()
 	{
 		return parameterRefEClass.getEOperations().get(3);
@@ -1012,6 +1087,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getParameterRef__IsValueWildcard()
 	{
 		return parameterRefEClass.getEOperations().get(4);
@@ -1022,6 +1098,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPropertyRef()
 	{
 		return propertyRefEClass;
@@ -1032,6 +1109,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyRef_Operation()
 	{
 		return (EReference)propertyRefEClass.getEStructuralFeatures().get(0);
@@ -1042,6 +1120,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyRef_Value()
 	{
 		return (EReference)propertyRefEClass.getEStructuralFeatures().get(1);
@@ -1052,6 +1131,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyRef_Property()
 	{
 		return (EReference)propertyRefEClass.getEStructuralFeatures().get(2);
@@ -1062,6 +1142,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPropertyRef__GetPossibleProperties()
 	{
 		return propertyRefEClass.getEOperations().get(0);
@@ -1072,6 +1153,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPropertyRef__GetPossibleValues()
 	{
 		return propertyRefEClass.getEOperations().get(1);
@@ -1082,6 +1164,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPropertyRef__IsValueWildcard()
 	{
 		return propertyRefEClass.getEOperations().get(2);
@@ -1092,6 +1175,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCaller()
 	{
 		return callerEClass;
@@ -1102,6 +1186,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCaller_Calls()
 	{
 		return (EReference)callerEClass.getEStructuralFeatures().get(0);
@@ -1112,6 +1197,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCaller_Name()
 	{
 		return (EAttribute)callerEClass.getEStructuralFeatures().get(1);
@@ -1122,6 +1208,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSystemUsage()
 	{
 		return systemUsageEClass;
@@ -1132,6 +1219,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReturnValueRef()
 	{
 		return returnValueRefEClass;
@@ -1142,6 +1230,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReturnValueRef_ReturnValue()
 	{
 		return (EReference)returnValueRefEClass.getEStructuralFeatures().get(0);
@@ -1152,6 +1241,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReturnValueRef_Attribute()
 	{
 		return (EReference)returnValueRefEClass.getEStructuralFeatures().get(1);
@@ -1162,6 +1252,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReturnValueRef_Value()
 	{
 		return (EReference)returnValueRefEClass.getEStructuralFeatures().get(2);
@@ -1172,6 +1263,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReturnValueRef_Call()
 	{
 		return (EReference)returnValueRefEClass.getEStructuralFeatures().get(3);
@@ -1182,6 +1274,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getReturnValueRef__GetPossibleCalls()
 	{
 		return returnValueRefEClass.getEOperations().get(0);
@@ -1192,6 +1285,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getReturnValueRef__GetPossibleReturnValues()
 	{
 		return returnValueRefEClass.getEOperations().get(1);
@@ -1202,6 +1296,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getReturnValueRef__GetPossibleAttributes()
 	{
 		return returnValueRefEClass.getEOperations().get(2);
@@ -1212,6 +1307,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getReturnValueRef__GetPossibleValues()
 	{
 		return returnValueRefEClass.getEOperations().get(3);
@@ -1222,6 +1318,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getReturnValueRef__IsAttributeWildcard()
 	{
 		return returnValueRefEClass.getEOperations().get(4);
@@ -1232,6 +1329,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getReturnValueRef__IsValueWildcard()
 	{
 		return returnValueRefEClass.getEOperations().get(5);
@@ -1242,6 +1340,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStateRef()
 	{
 		return stateRefEClass;
@@ -1252,6 +1351,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStateRef_StateVariable()
 	{
 		return (EReference)stateRefEClass.getEStructuralFeatures().get(0);
@@ -1262,6 +1362,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStateRef_Attribute()
 	{
 		return (EReference)stateRefEClass.getEStructuralFeatures().get(1);
@@ -1272,6 +1373,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStateRef_Value()
 	{
 		return (EReference)stateRefEClass.getEStructuralFeatures().get(2);
@@ -1282,6 +1384,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getStateRef__GetPossibleVariables()
 	{
 		return stateRefEClass.getEOperations().get(0);
@@ -1292,6 +1395,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getStateRef__GetPossibleAttributes()
 	{
 		return stateRefEClass.getEOperations().get(1);
@@ -1302,6 +1406,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getStateRef__GetPossibleValues()
 	{
 		return stateRefEClass.getEOperations().get(2);
@@ -1312,6 +1417,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getStateRef__IsAttributeWildcard()
 	{
 		return stateRefEClass.getEOperations().get(3);
@@ -1322,6 +1428,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getStateRef__IsValueWildcard()
 	{
 		return stateRefEClass.getEOperations().get(4);
@@ -1332,6 +1439,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDefaultStateRef()
 	{
 		return defaultStateRefEClass;
@@ -1342,6 +1450,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDefaultStateRef_StateVariable()
 	{
 		return (EReference)defaultStateRefEClass.getEStructuralFeatures().get(0);
@@ -1352,6 +1461,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDefaultStateRef_Attribute()
 	{
 		return (EReference)defaultStateRefEClass.getEStructuralFeatures().get(1);
@@ -1362,6 +1472,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDefaultStateRef_Value()
 	{
 		return (EReference)defaultStateRefEClass.getEStructuralFeatures().get(2);
@@ -1372,6 +1483,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getDefaultStateRef__GetPossibleVariables()
 	{
 		return defaultStateRefEClass.getEOperations().get(0);
@@ -1382,6 +1494,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getDefaultStateRef__GetPossibleAttributes()
 	{
 		return defaultStateRefEClass.getEOperations().get(1);
@@ -1392,6 +1505,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getDefaultStateRef__GetPossibleValues()
 	{
 		return defaultStateRefEClass.getEOperations().get(2);
@@ -1402,6 +1516,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getDefaultStateRef__IsAttributeWildcard()
 	{
 		return defaultStateRefEClass.getEOperations().get(3);
@@ -1412,6 +1527,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getDefaultStateRef__IsValueWildcard()
 	{
 		return defaultStateRefEClass.getEOperations().get(4);
@@ -1422,6 +1538,7 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PrologmodelFactory getPrologmodelFactory()
 	{
 		return (PrologmodelFactory)getEFactoryInstance();
@@ -1813,12 +1930,14 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createImportAnnotations() {
+	protected void createImportAnnotations()
+	{
 		String source = "http://www.eclipse.org/OCL/Import";
 		addAnnotation
 		  (this,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "ecore", "http://www.eclipse.org/emf/2002/Ecore"
 		   });
 	}
@@ -1835,7 +1954,8 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (this,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			   "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			   "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
@@ -1843,67 +1963,78 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (systemEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "attributeNamesUnique datatypeNamesUnique propertyNamesUnique valueSetTypeNamesUnique operationAndSystemUsageNamesUnique"
 		   });
 		addAnnotation
 		  (operationEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "parameterNamesUnique returnValueNamesUnique stateNamesUnique noDuplicatePropertyDefinitions noCyclesInCallGraph onlyConstantDefaultStateDefinitions"
 		   });
 		addAnnotation
 		  (propertyDefinitionEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "valuesPartOfPropertyType"
 		   });
 		addAnnotation
 		  (variableAssignmentEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "isVariableValid isAttributeValid isValueValid"
 		   });
 		addAnnotation
 		  (valueSetTypeEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "valueNamesUnique"
 		   });
 		addAnnotation
 		  (parameterRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "isParameterValid isAttributeValid isValueValid"
 		   });
 		addAnnotation
 		  (propertyRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "isPropertyValid isValueValid"
 		   });
 		addAnnotation
 		  (callerEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "callNamesUnique"
 		   });
 		addAnnotation
 		  (returnValueRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "isCallValid isReturnValueValid isAttributeValid isValueValid"
 		   });
 		addAnnotation
 		  (stateRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "isStateVariableValid isAttributeValid isValueValid"
 		   });
 		addAnnotation
 		  (defaultStateRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "constraints", "isStateVariableValid isAttributeValid isValueValid"
 		   });
 	}
@@ -1914,12 +2045,14 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createPivotAnnotations() {
+	protected void createPivotAnnotations()
+	{
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
 		addAnnotation
 		  (systemEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "attributeNamesUnique", "attributes->isUnique(name)",
 			   "datatypeNamesUnique", "datatypes->isUnique(name)",
 			   "propertyNamesUnique", "properties->isUnique(name)",
@@ -1929,7 +2062,8 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (operationEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "parameterNamesUnique", "parameters->isUnique(name)",
 			   "returnValueNamesUnique", "returnValues->isUnique(name)",
 			   "stateNamesUnique", "stateVariables->isUnique(name)",
@@ -1940,19 +2074,22 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (propertyDefinitionEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "valuesPartOfPropertyType", "getPossibleValues()->includesAll(presentValues)"
 		   });
 		addAnnotation
 		  (getPropertyDefinition__GetPossibleValues(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tProperty.allInstances().type.values->asSet()\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values->asSet()\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (variableAssignmentEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "isVariableValid", "getPossibleVariables()->includes(variable)",
 			   "isAttributeValid", "getPossibleAttributes()->includes(attribute)",
 			   "isValueValid", "getPossibleValues()->includes(value)"
@@ -1960,49 +2097,57 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (getVariableAssignment__GetPossibleVariables(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "if(self.oclAsType(ecore::EObject).eContainer().oclIsUndefined()) then\n\tVariable.allInstances()->asSet()\nelse \n\tif(self.oclAsType(ecore::EObject).eContainer().oclIsKindOf(OperationCall)) then\n\t\tif self.oclAsType(ecore::EObject).eContainer().oclAsType(OperationCall).parameterAssignments->includes(self) then\n\t\t\tself.oclAsType(ecore::EObject).eContainer().oclAsType(OperationCall).callee.parameters->asSet()\n\t\telse\n\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\tendif\n\telse\n\t\tif(self.oclAsType(ecore::EObject).eContainer().oclIsKindOf(Operation)) then\n\t\t\tif self.oclAsType(ecore::EObject).eContainer().oclAsType(Operation).returnValueAssignments->includes(self) then\n\t\t\t\tself.oclAsType(ecore::EObject).eContainer().oclAsType(Operation).returnValues->asSet()\n\t\t\telse\n\t\t\t\tif self.oclAsType(ecore::EObject).eContainer().oclAsType(Operation).defaultStateDefinitions->includes(self) then\n\t\t\t\t\tself.oclAsType(ecore::EObject).eContainer().oclAsType(Operation).stateVariables->asSet()\n\t\t\t\telse\n\t\t\t\t\tOperation.allInstances().stateVariables->asSet()\n\t\t\t\tendif\n\t\t\tendif\n\t\telse\n\t\t\tVariable.allInstances()->asSet()\n\t\tendif\n\tendif\nendif"
 		   });
 		addAnnotation
 		  (getVariableAssignment__GetPossibleAttributes(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif variable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tvariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getVariableAssignment__GetPossibleValues(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getVariableAssignment__IsAttributeWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tattribute.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (getVariableAssignment__IsValueWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tvalue.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (valueSetTypeEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "valueNamesUnique", "values->isUnique(name)"
 		   });
 		addAnnotation
 		  (getLogicTerm_ContainingAssignment(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "derivation", "let cont = self.oclAsSet()->selectByKind(ecore::EObject)->closure(elem | elem.oclAsType(ecore::EObject).eContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in\n\t\t\t\tif(cont.oclIsInvalid()) then \n\t\t\t\t\tnull\n\t\t\t\telse \n\t\t\t\t\tcont.oclAsType(VariableAssignment)\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (parameterRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "isParameterValid", "getPossibleParameters()->includes(parameter)",
 			   "isAttributeValid", "getPossibleAttributes()->includes(attribute)",
 			   "isValueValid", "getPossibleValues()->includes(value)"
@@ -2010,68 +2155,79 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (getParameterRef__GetPossibleParameters(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tlet assi = containingAssignment in\n\t\t\t\tif(assi.oclIsUndefined() or assi.oclContainer().oclIsUndefined()) then\n\t\t\t\t\tOperation.allInstances().parameters->asSet()\n\t\t\t\telse \n\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(OperationCall)) then\n\t\t\t\t\t\tlet caller = assi.oclContainer().oclAsType(OperationCall).caller in\n\t\t\t\t\t\tif (caller.oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tcaller.oclAsType(Operation).parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tSet{}\t\t\t\t\t\n\t\t\t\t\t\tendif\n\t\t\t\t\telse\n\t\t\t\t\t\tif(assi.oclContainer().oclIsKindOf(Operation)) then\n\t\t\t\t\t\t\tassi.oclContainer().oclAsType(Operation).parameters->asSet()\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tOperation.allInstances().parameters->asSet()\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getParameterRef__GetPossibleAttributes(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif parameter.oclIsUndefined() then\n\t\t\t\t\tgetPossibleParameters().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tparameter.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getParameterRef__GetPossibleValues(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getParameterRef__IsAttributeWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tattribute.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (getParameterRef__IsValueWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tvalue.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (propertyRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "isPropertyValid", "getPossibleProperties()->includes(property)",
 			   "isValueValid", "getPossibleValues()->includes(value)"
 		   });
 		addAnnotation
 		  (getPropertyRef__GetPossibleProperties(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif operation.oclIsUndefined() then\n\t\t\t\t\tOperation.allInstances().propertyDefinitions.property->asSet()\n\t\t\t\telse\n\t\t\t\t\toperation.propertyDefinitions.property->asSet()\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getPropertyRef__GetPossibleValues(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif property.oclIsUndefined() then\n\t\t\t\t\tgetPossibleProperties().type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tproperty.type.values->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getPropertyRef__IsValueWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tvalue.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (callerEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "callNamesUnique", "calls->isUnique(name)"
 		   });
 		addAnnotation
 		  (returnValueRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "isCallValid", "getPossibleCalls()->includes(call)",
 			   "isReturnValueValid", "getPossibleReturnValues()->includes(returnValue)",
 			   "isAttributeValid", "getPossibleAttributes()->includes(attribute)",
@@ -2080,43 +2236,50 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (getReturnValueRef__GetPossibleCalls(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "if(containingAssignment.oclIsUndefined() or containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsUndefined()) then\n\tCaller.allInstances().calls->asSet()\nelse \n\tif(containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsKindOf(OperationCall)) then\n\t\tlet call = containingAssignment.oclAsType(ecore::EObject).eContainer().oclAsType(OperationCall) in\n\t\tlet callIdx = call.caller.calls->indexOf(call) in\n\t\tif(callIdx = 1) then\n\t\t\tSet{}\n\t\telse \n\t\t\tcall.caller.calls->subOrderedSet(1, callIdx-1)->asSet()\n\t\tendif\n\telse\n\t\tif(containingAssignment.oclAsType(ecore::EObject).eContainer().oclIsKindOf(Caller)) then\n\t\t\tcontainingAssignment.oclAsType(ecore::EObject).eContainer().oclAsType(Caller).calls->asSet()\n\t\telse\n\t\t\tCaller.allInstances().calls->asSet()\n\t\tendif\n\tendif\nendif"
 		   });
 		addAnnotation
 		  (getReturnValueRef__GetPossibleReturnValues(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif(call.oclIsUndefined()) then\n\t\t\t\t\tgetPossibleCalls().callee.returnValues->asSet()\n\t\t\t\telse\n\t\t\t\t\tcall.callee.returnValues->asSet()\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getReturnValueRef__GetPossibleAttributes(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif returnValue.oclIsUndefined() then\n\t\t\t\t\tgetPossibleReturnValues().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\treturnValue.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getReturnValueRef__GetPossibleValues(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getReturnValueRef__IsAttributeWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tattribute.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (getReturnValueRef__IsValueWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tvalue.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (stateRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "isStateVariableValid", "getPossibleVariables()->includes(stateVariable)",
 			   "isAttributeValid", "getPossibleAttributes()->includes(attribute)",
 			   "isValueValid", "getPossibleValues()->includes(value)"
@@ -2124,37 +2287,43 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (getStateRef__GetPossibleVariables(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tOperation.allInstances().stateVariables->asSet()"
 		   });
 		addAnnotation
 		  (getStateRef__GetPossibleAttributes(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getStateRef__GetPossibleValues(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getStateRef__IsAttributeWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tattribute.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (getStateRef__IsValueWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tvalue.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (defaultStateRefEClass,
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "isStateVariableValid", "getPossibleVariables()->includes(stateVariable)",
 			   "isAttributeValid", "getPossibleAttributes()->includes(attribute)",
 			   "isValueValid", "getPossibleValues()->includes(value)"
@@ -2162,31 +2331,36 @@ public class PrologmodelPackageImpl extends EPackageImpl implements PrologmodelP
 		addAnnotation
 		  (getDefaultStateRef__GetPossibleVariables(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tOperation.allInstances().stateVariables->asSet()"
 		   });
 		addAnnotation
 		  (getDefaultStateRef__GetPossibleAttributes(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif stateVariable.oclIsUndefined() then\n\t\t\t\t\tgetPossibleVariables().datatype.attributes->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tstateVariable.datatype.attributes->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getDefaultStateRef__GetPossibleValues(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tif attribute.oclIsUndefined() then\n\t\t\t\t\tgetPossibleAttributes()->reject(oclIsUndefined()).type.values->asSet()->union(Set{null})\n\t\t\t\telse\n\t\t\t\t\tattribute.type.values->asSet()->union(Set{null})\n\t\t\t\tendif"
 		   });
 		addAnnotation
 		  (getDefaultStateRef__IsAttributeWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tattribute.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (getDefaultStateRef__IsValueWildcard(),
 		   source,
-		   new String[] {
+		   new String[]
+		   {
 			   "body", "\n\t\t\t\tvalue.oclIsUndefined()"
 		   });
 	}

@@ -94,12 +94,15 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getOperation()
 	{
-		if (operation != null && operation.eIsProxy()) {
+		if (operation != null && operation.eIsProxy())
+		{
 			InternalEObject oldOperation = (InternalEObject)operation;
 			operation = (Operation)eResolveProxy(oldOperation);
-			if (operation != oldOperation) {
+			if (operation != oldOperation)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.PROPERTY_REF__OPERATION, oldOperation, operation));
 			}
@@ -122,6 +125,7 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperation(Operation newOperation)
 	{
 		Operation oldOperation = operation;
@@ -135,12 +139,15 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Value getValue()
 	{
-		if (value != null && value.eIsProxy()) {
+		if (value != null && value.eIsProxy())
+		{
 			InternalEObject oldValue = (InternalEObject)value;
 			value = (Value)eResolveProxy(oldValue);
-			if (value != oldValue) {
+			if (value != oldValue)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.PROPERTY_REF__VALUE, oldValue, value));
 			}
@@ -163,6 +170,7 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(Value newValue)
 	{
 		Value oldValue = value;
@@ -176,12 +184,15 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getProperty()
 	{
-		if (property != null && property.eIsProxy()) {
+		if (property != null && property.eIsProxy())
+		{
 			InternalEObject oldProperty = (InternalEObject)property;
 			property = (Property)eResolveProxy(oldProperty);
-			if (property != oldProperty) {
+			if (property != oldProperty)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.PROPERTY_REF__PROPERTY, oldProperty, property));
 			}
@@ -204,6 +215,7 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProperty(Property newProperty)
 	{
 		Property oldProperty = property;
@@ -228,12 +240,15 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Property> getPossibleProperties()
 	{
-		try {
+		try
+		{
 			return (EList<Property>)GET_POSSIBLE_PROPERTIES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -254,12 +269,15 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Value> getPossibleValues()
 	{
-		try {
+		try
+		{
 			return (EList<Value>)GET_POSSIBLE_VALUES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -279,12 +297,15 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValueWildcard()
 	{
-		try {
+		try
+		{
 			return (Boolean)IS_VALUE_WILDCARD__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
-		catch (InvocationTargetException ite) {
+		catch (InvocationTargetException ite)
+		{
 			throw new WrappedException(ite);
 		}
 	}
@@ -297,7 +318,8 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY_REF__CONTAINING_ASSIGNMENT:
 				if (resolve) return getContainingAssignment();
 				return basicGetContainingAssignment();
@@ -322,7 +344,8 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY_REF__OPERATION:
 				setOperation((Operation)newValue);
 				return;
@@ -344,7 +367,8 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY_REF__OPERATION:
 				setOperation((Operation)null);
 				return;
@@ -366,7 +390,8 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY_REF__CONTAINING_ASSIGNMENT:
 				return CONTAINING_ASSIGNMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case PrologmodelPackage.PROPERTY_REF__OPERATION:
@@ -387,7 +412,8 @@ public class PropertyRefImpl extends LogicTermImpl implements PropertyRef
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
-		switch (operationID) {
+		switch (operationID)
+		{
 			case PrologmodelPackage.PROPERTY_REF___GET_POSSIBLE_PROPERTIES:
 				return getPossibleProperties();
 			case PrologmodelPackage.PROPERTY_REF___GET_POSSIBLE_VALUES:

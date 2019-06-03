@@ -60,7 +60,8 @@ public class PrologmodelAdapterFactory extends AdapterFactoryImpl
 	 */
 	public PrologmodelAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = PrologmodelPackage.eINSTANCE;
 		}
 	}
@@ -76,10 +77,12 @@ public class PrologmodelAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -92,105 +95,131 @@ public class PrologmodelAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected PrologmodelSwitch<Adapter> modelSwitch =
-		new PrologmodelSwitch<Adapter>() {
+		new PrologmodelSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseSystem(org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.System object) {
+			public Adapter caseSystem(org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.System object)
+			{
 				return createSystemAdapter();
 			}
 			@Override
-			public Adapter caseAttribute(Attribute object) {
+			public Adapter caseAttribute(Attribute object)
+			{
 				return createAttributeAdapter();
 			}
 			@Override
-			public Adapter caseValue(Value object) {
+			public Adapter caseValue(Value object)
+			{
 				return createValueAdapter();
 			}
 			@Override
-			public Adapter caseOperation(Operation object) {
+			public Adapter caseOperation(Operation object)
+			{
 				return createOperationAdapter();
 			}
 			@Override
-			public Adapter caseVariable(Variable object) {
+			public Adapter caseVariable(Variable object)
+			{
 				return createVariableAdapter();
 			}
 			@Override
-			public Adapter caseDataType(DataType object) {
+			public Adapter caseDataType(DataType object)
+			{
 				return createDataTypeAdapter();
 			}
 			@Override
-			public Adapter caseProperty(Property object) {
+			public Adapter caseProperty(Property object)
+			{
 				return createPropertyAdapter();
 			}
 			@Override
-			public Adapter casePropertyDefinition(PropertyDefinition object) {
+			public Adapter casePropertyDefinition(PropertyDefinition object)
+			{
 				return createPropertyDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseOperationCall(OperationCall object) {
+			public Adapter caseOperationCall(OperationCall object)
+			{
 				return createOperationCallAdapter();
 			}
 			@Override
-			public Adapter caseVariableAssignment(VariableAssignment object) {
+			public Adapter caseVariableAssignment(VariableAssignment object)
+			{
 				return createVariableAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseValueSetType(ValueSetType object) {
+			public Adapter caseValueSetType(ValueSetType object)
+			{
 				return createValueSetTypeAdapter();
 			}
 			@Override
-			public Adapter caseLogicTerm(LogicTerm object) {
+			public Adapter caseLogicTerm(LogicTerm object)
+			{
 				return createLogicTermAdapter();
 			}
 			@Override
-			public Adapter caseTrue(True object) {
+			public Adapter caseTrue(True object)
+			{
 				return createTrueAdapter();
 			}
 			@Override
-			public Adapter caseFalse(False object) {
+			public Adapter caseFalse(False object)
+			{
 				return createFalseAdapter();
 			}
 			@Override
-			public Adapter caseAnd(And object) {
+			public Adapter caseAnd(And object)
+			{
 				return createAndAdapter();
 			}
 			@Override
-			public Adapter caseOr(Or object) {
+			public Adapter caseOr(Or object)
+			{
 				return createOrAdapter();
 			}
 			@Override
-			public Adapter caseNot(Not object) {
+			public Adapter caseNot(Not object)
+			{
 				return createNotAdapter();
 			}
 			@Override
-			public Adapter caseParameterRef(ParameterRef object) {
+			public Adapter caseParameterRef(ParameterRef object)
+			{
 				return createParameterRefAdapter();
 			}
 			@Override
-			public Adapter casePropertyRef(PropertyRef object) {
+			public Adapter casePropertyRef(PropertyRef object)
+			{
 				return createPropertyRefAdapter();
 			}
 			@Override
-			public Adapter caseCaller(Caller object) {
+			public Adapter caseCaller(Caller object)
+			{
 				return createCallerAdapter();
 			}
 			@Override
-			public Adapter caseSystemUsage(SystemUsage object) {
+			public Adapter caseSystemUsage(SystemUsage object)
+			{
 				return createSystemUsageAdapter();
 			}
 			@Override
-			public Adapter caseReturnValueRef(ReturnValueRef object) {
+			public Adapter caseReturnValueRef(ReturnValueRef object)
+			{
 				return createReturnValueRefAdapter();
 			}
 			@Override
-			public Adapter caseStateRef(StateRef object) {
+			public Adapter caseStateRef(StateRef object)
+			{
 				return createStateRefAdapter();
 			}
 			@Override
-			public Adapter caseDefaultStateRef(DefaultStateRef object) {
+			public Adapter caseDefaultStateRef(DefaultStateRef object)
+			{
 				return createDefaultStateRefAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

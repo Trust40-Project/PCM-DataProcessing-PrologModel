@@ -69,9 +69,11 @@ public class OrImpl extends LogicTermImpl implements Or
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LogicTerm> getOperands()
 	{
-		if (operands == null) {
+		if (operands == null)
+		{
 			operands = new EObjectContainmentEList<LogicTerm>(LogicTerm.class, this, PrologmodelPackage.OR__OPERANDS);
 		}
 		return operands;
@@ -85,7 +87,8 @@ public class OrImpl extends LogicTermImpl implements Or
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OR__OPERANDS:
 				return ((InternalEList<?>)getOperands()).basicRemove(otherEnd, msgs);
 		}
@@ -100,7 +103,8 @@ public class OrImpl extends LogicTermImpl implements Or
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OR__CONTAINING_ASSIGNMENT:
 				if (resolve) return getContainingAssignment();
 				return basicGetContainingAssignment();
@@ -119,7 +123,8 @@ public class OrImpl extends LogicTermImpl implements Or
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OR__OPERANDS:
 				getOperands().clear();
 				getOperands().addAll((Collection<? extends LogicTerm>)newValue);
@@ -136,7 +141,8 @@ public class OrImpl extends LogicTermImpl implements Or
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OR__OPERANDS:
 				getOperands().clear();
 				return;
@@ -152,7 +158,8 @@ public class OrImpl extends LogicTermImpl implements Or
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OR__CONTAINING_ASSIGNMENT:
 				return CONTAINING_ASSIGNMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case PrologmodelPackage.OR__OPERANDS:

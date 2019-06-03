@@ -79,6 +79,7 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -89,6 +90,7 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -102,6 +104,7 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueSetType getContainingType()
 	{
 		if (eContainerFeatureID() != PrologmodelPackage.VALUE__CONTAINING_TYPE) return null;
@@ -124,9 +127,11 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainingType(ValueSetType newContainingType)
 	{
-		if (newContainingType != eInternalContainer() || (eContainerFeatureID() != PrologmodelPackage.VALUE__CONTAINING_TYPE && newContainingType != null)) {
+		if (newContainingType != eInternalContainer() || (eContainerFeatureID() != PrologmodelPackage.VALUE__CONTAINING_TYPE && newContainingType != null))
+		{
 			if (EcoreUtil.isAncestor(this, newContainingType))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -149,7 +154,8 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE__CONTAINING_TYPE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -166,7 +172,8 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE__CONTAINING_TYPE:
 				return basicSetContainingType(null, msgs);
 		}
@@ -181,7 +188,8 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID())
+		{
 			case PrologmodelPackage.VALUE__CONTAINING_TYPE:
 				return eInternalContainer().eInverseRemove(this, PrologmodelPackage.VALUE_SET_TYPE__VALUES, ValueSetType.class, msgs);
 		}
@@ -196,7 +204,8 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE__NAME:
 				return getName();
 			case PrologmodelPackage.VALUE__CONTAINING_TYPE:
@@ -213,7 +222,8 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE__NAME:
 				setName((String)newValue);
 				return;
@@ -232,7 +242,8 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -251,7 +262,8 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PrologmodelPackage.VALUE__CONTAINING_TYPE:

@@ -94,9 +94,11 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Value> getValues()
 	{
-		if (values == null) {
+		if (values == null)
+		{
 			values = new EObjectContainmentWithInverseEList<Value>(Value.class, this, PrologmodelPackage.VALUE_SET_TYPE__VALUES, PrologmodelPackage.VALUE__CONTAINING_TYPE);
 		}
 		return values;
@@ -107,6 +109,7 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -117,6 +120,7 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -134,7 +138,8 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE_SET_TYPE__VALUES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getValues()).basicAdd(otherEnd, msgs);
 		}
@@ -149,7 +154,8 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE_SET_TYPE__VALUES:
 				return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
 		}
@@ -164,7 +170,8 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE_SET_TYPE__VALUES:
 				return getValues();
 			case PrologmodelPackage.VALUE_SET_TYPE__NAME:
@@ -182,7 +189,8 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE_SET_TYPE__VALUES:
 				getValues().clear();
 				getValues().addAll((Collection<? extends Value>)newValue);
@@ -202,7 +210,8 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE_SET_TYPE__VALUES:
 				getValues().clear();
 				return;
@@ -221,7 +230,8 @@ public class ValueSetTypeImpl extends MinimalEObjectImpl.Container implements Va
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.VALUE_SET_TYPE__VALUES:
 				return values != null && !values.isEmpty();
 			case PrologmodelPackage.VALUE_SET_TYPE__NAME:

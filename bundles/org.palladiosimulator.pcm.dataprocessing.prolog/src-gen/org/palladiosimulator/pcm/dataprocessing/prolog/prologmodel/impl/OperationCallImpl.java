@@ -120,12 +120,15 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getCallee()
 	{
-		if (callee != null && callee.eIsProxy()) {
+		if (callee != null && callee.eIsProxy())
+		{
 			InternalEObject oldCallee = (InternalEObject)callee;
 			callee = (Operation)eResolveProxy(oldCallee);
-			if (callee != oldCallee) {
+			if (callee != oldCallee)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.OPERATION_CALL__CALLEE, oldCallee, callee));
 			}
@@ -148,6 +151,7 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCallee(Operation newCallee)
 	{
 		Operation oldCallee = callee;
@@ -161,9 +165,11 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableAssignment> getParameterAssignments()
 	{
-		if (parameterAssignments == null) {
+		if (parameterAssignments == null)
+		{
 			parameterAssignments = new EObjectContainmentEList<VariableAssignment>(VariableAssignment.class, this, PrologmodelPackage.OPERATION_CALL__PARAMETER_ASSIGNMENTS);
 		}
 		return parameterAssignments;
@@ -174,6 +180,7 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Caller getCaller()
 	{
 		if (eContainerFeatureID() != PrologmodelPackage.OPERATION_CALL__CALLER) return null;
@@ -196,9 +203,11 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCaller(Caller newCaller)
 	{
-		if (newCaller != eInternalContainer() || (eContainerFeatureID() != PrologmodelPackage.OPERATION_CALL__CALLER && newCaller != null)) {
+		if (newCaller != eInternalContainer() || (eContainerFeatureID() != PrologmodelPackage.OPERATION_CALL__CALLER && newCaller != null))
+		{
 			if (EcoreUtil.isAncestor(this, newCaller))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -218,6 +227,7 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -228,6 +238,7 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -241,9 +252,11 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableAssignment> getPreCallStateDefinitions()
 	{
-		if (preCallStateDefinitions == null) {
+		if (preCallStateDefinitions == null)
+		{
 			preCallStateDefinitions = new EObjectContainmentEList<VariableAssignment>(VariableAssignment.class, this, PrologmodelPackage.OPERATION_CALL__PRE_CALL_STATE_DEFINITIONS);
 		}
 		return preCallStateDefinitions;
@@ -257,7 +270,8 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION_CALL__CALLER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -274,7 +288,8 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION_CALL__PARAMETER_ASSIGNMENTS:
 				return ((InternalEList<?>)getParameterAssignments()).basicRemove(otherEnd, msgs);
 			case PrologmodelPackage.OPERATION_CALL__CALLER:
@@ -293,7 +308,8 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID())
+		{
 			case PrologmodelPackage.OPERATION_CALL__CALLER:
 				return eInternalContainer().eInverseRemove(this, PrologmodelPackage.CALLER__CALLS, Caller.class, msgs);
 		}
@@ -308,7 +324,8 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION_CALL__CALLEE:
 				if (resolve) return getCallee();
 				return basicGetCallee();
@@ -333,7 +350,8 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION_CALL__CALLEE:
 				setCallee((Operation)newValue);
 				return;
@@ -363,7 +381,8 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION_CALL__CALLEE:
 				setCallee((Operation)null);
 				return;
@@ -391,7 +410,8 @@ public class OperationCallImpl extends MinimalEObjectImpl.Container implements O
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.OPERATION_CALL__CALLEE:
 				return callee != null;
 			case PrologmodelPackage.OPERATION_CALL__PARAMETER_ASSIGNMENTS:

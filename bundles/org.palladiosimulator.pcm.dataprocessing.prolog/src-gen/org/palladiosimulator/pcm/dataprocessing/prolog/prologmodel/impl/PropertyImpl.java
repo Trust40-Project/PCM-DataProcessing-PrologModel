@@ -86,12 +86,15 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueSetType getType()
 	{
-		if (type != null && type.eIsProxy()) {
+		if (type != null && type.eIsProxy())
+		{
 			InternalEObject oldType = (InternalEObject)type;
 			type = (ValueSetType)eResolveProxy(oldType);
-			if (type != oldType) {
+			if (type != oldType)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrologmodelPackage.PROPERTY__TYPE, oldType, type));
 			}
@@ -114,6 +117,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(ValueSetType newType)
 	{
 		ValueSetType oldType = type;
@@ -127,6 +131,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -137,6 +142,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -153,7 +159,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -171,7 +178,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY__TYPE:
 				setType((ValueSetType)newValue);
 				return;
@@ -190,7 +198,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY__TYPE:
 				setType((ValueSetType)null);
 				return;
@@ -209,7 +218,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.PROPERTY__TYPE:
 				return type != null;
 			case PrologmodelPackage.PROPERTY__NAME:

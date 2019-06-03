@@ -112,7 +112,8 @@ public class PrologmodelValidator extends EObjectValidator
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		switch (classifierID) {
+		switch (classifierID)
+		{
 			case PrologmodelPackage.SYSTEM:
 				return validateSystem((org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.System)value, diagnostics, context);
 			case PrologmodelPackage.ATTRIBUTE:

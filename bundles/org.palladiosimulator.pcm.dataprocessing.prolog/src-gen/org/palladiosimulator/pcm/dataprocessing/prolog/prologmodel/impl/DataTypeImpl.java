@@ -91,9 +91,11 @@ public class DataTypeImpl extends MinimalEObjectImpl.Container implements DataTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Attribute> getAttributes()
 	{
-		if (attributes == null) {
+		if (attributes == null)
+		{
 			attributes = new EObjectResolvingEList<Attribute>(Attribute.class, this, PrologmodelPackage.DATA_TYPE__ATTRIBUTES);
 		}
 		return attributes;
@@ -104,6 +106,7 @@ public class DataTypeImpl extends MinimalEObjectImpl.Container implements DataTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -114,6 +117,7 @@ public class DataTypeImpl extends MinimalEObjectImpl.Container implements DataTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -130,7 +134,8 @@ public class DataTypeImpl extends MinimalEObjectImpl.Container implements DataTy
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.DATA_TYPE__ATTRIBUTES:
 				return getAttributes();
 			case PrologmodelPackage.DATA_TYPE__NAME:
@@ -148,7 +153,8 @@ public class DataTypeImpl extends MinimalEObjectImpl.Container implements DataTy
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.DATA_TYPE__ATTRIBUTES:
 				getAttributes().clear();
 				getAttributes().addAll((Collection<? extends Attribute>)newValue);
@@ -168,7 +174,8 @@ public class DataTypeImpl extends MinimalEObjectImpl.Container implements DataTy
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.DATA_TYPE__ATTRIBUTES:
 				getAttributes().clear();
 				return;
@@ -187,7 +194,8 @@ public class DataTypeImpl extends MinimalEObjectImpl.Container implements DataTy
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case PrologmodelPackage.DATA_TYPE__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
 			case PrologmodelPackage.DATA_TYPE__NAME:
