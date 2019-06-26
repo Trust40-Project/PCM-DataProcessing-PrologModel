@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    name="prologmodel" nsURI="http://www.palladiosimulator.org/pcm/dataprocessing/prolog/0.1/" nsPrefix="prologmodel">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="prologmodel" nsURI="http://www.palladiosimulator.org/pcm/dataprocessing/prolog/0.1/"
+    nsPrefix="prologmodel">
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
   </eAnnotations>
@@ -21,12 +22,18 @@
       <details key="operationAndSystemUsageNamesUnique" value="operations->selectByKind(Caller)->asBag()->union(systemusages->selectByKind(Caller)->asBag())->isUnique(name)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1" eType="#//Attribute" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="datatypes" upperBound="-1" eType="#//DataType" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1" eType="#//Operation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1" eType="#//Property" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1" eType="#//ValueSetType" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="systemusages" upperBound="-1" eType="#//SystemUsage" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//Attribute" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datatypes" upperBound="-1"
+        eType="#//DataType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
+        eType="#//Operation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//Property" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
+        eType="#//ValueSetType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="systemusages" upperBound="-1"
+        eType="#//SystemUsage" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//ValueSetType"/>
@@ -34,7 +41,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="containingType" lowerBound="1" eType="#//ValueSetType" eOpposite="#//ValueSetType/values"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingType" lowerBound="1"
+        eType="#//ValueSetType" eOpposite="#//ValueSetType/values"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Caller">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -48,21 +56,29 @@
       <details key="noCyclesInCallGraph" value=" self.calls->closure(call | call.callee.calls).callee->excludes(self)"/>
       <details key="onlyConstantDefaultStateDefinitions" value="defaultStateDefinitions.term.oclAsType(ecore::EObject)->closure(t : ecore::EObject | t.oclAsType(ecore::EObject).eContents()->selectByKind(ecore::EObject))->forAll(&#xA;&#x9;oclIsKindOf(True) or&#xA;&#x9;oclIsKindOf(False) or&#xA;&#x9;oclIsKindOf(And) or&#xA;&#x9;oclIsKindOf(Or) or&#xA;&#x9;oclIsKindOf(Not) or&#xA;&#x9;oclIsKindOf(PropertyRef)&#xA;)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1" eType="#//Variable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValues" upperBound="-1" eType="#//Variable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyDefinitions" upperBound="-1" eType="#//PropertyDefinition" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValueAssignments" upperBound="-1" eType="#//VariableAssignment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariables" upperBound="-1" eType="#//Variable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultStateDefinitions" upperBound="-1" eType="#//VariableAssignment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="postExecutionStateDefinitions" upperBound="-1" eType="#//VariableAssignment"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValues" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyDefinitions" upperBound="-1"
+        eType="#//PropertyDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValueAssignments"
+        upperBound="-1" eType="#//VariableAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariables" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultStateDefinitions"
+        upperBound="-1" eType="#//VariableAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postExecutionStateDefinitions"
+        upperBound="-1" eType="#//VariableAssignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" lowerBound="1" eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" lowerBound="1"
+        eType="#//DataType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1" eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
@@ -81,15 +97,21 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if property.oclIsUndefined() then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Property.allInstances().type.values->asSet()&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;property.type.values->asSet()&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1" eType="#//Property"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="presentValues" upperBound="-1" eType="#//Value"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+        eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="presentValues" upperBound="-1"
+        eType="#//Value"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationCall">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="callee" lowerBound="1" eType="#//Operation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterAssignments" upperBound="-1" eType="#//VariableAssignment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="caller" lowerBound="1" eType="#//Caller" eOpposite="#//Caller/calls"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="callee" lowerBound="1"
+        eType="#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterAssignments" upperBound="-1"
+        eType="#//VariableAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="caller" lowerBound="1"
+        eType="#//Caller" eOpposite="#//Caller/calls"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="preCallStateDefinitions" upperBound="-1" eType="#//VariableAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preCallStateDefinitions"
+        upperBound="-1" eType="#//VariableAssignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableAssignment">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -125,10 +147,12 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="term" lowerBound="1" eType="#//LogicTerm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="term" lowerBound="1" eType="#//LogicTerm"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValueSetType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -137,12 +161,13 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="valueNamesUnique" value="values->isUnique(name)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1" eType="#//Value" containment="true" eOpposite="#//Value/containingType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//Value" containment="true" eOpposite="#//Value/containingType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LogicTerm" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="containingAssignment" eType="#//VariableAssignment" changeable="false" volatile="true"
-        transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingAssignment" eType="#//VariableAssignment"
+        changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="derivation" value="let cont = self.oclAsSet()->selectByKind(ecore::EObject)->closure(elem | elem.oclAsType(ecore::EObject).eContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in&#xA;&#x9;&#x9;&#x9;&#x9;if(cont.oclIsInvalid()) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;null&#xA;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;cont.oclAsType(VariableAssignment)&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
@@ -151,13 +176,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//LogicTerm"/>
   <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//LogicTerm"/>
   <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//LogicTerm">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="2" upperBound="2" eType="#//LogicTerm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="2"
+        upperBound="2" eType="#//LogicTerm" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//LogicTerm">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="2" upperBound="2" eType="#//LogicTerm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="2"
+        upperBound="2" eType="#//LogicTerm" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//LogicTerm">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1" eType="#//LogicTerm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
+        eType="#//LogicTerm" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterRef" eSuperTypes="#//LogicTerm">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -193,7 +221,8 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+        eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
   </eClassifiers>
@@ -220,9 +249,11 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1" eType="#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
+        eType="#//Operation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1" eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+        eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Caller" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -231,7 +262,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="callNamesUnique" value="calls->isUnique(name)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="calls" upperBound="-1" eType="#//OperationCall" containment="true" eOpposite="#//OperationCall/caller"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calls" upperBound="-1"
+        eType="#//OperationCall" containment="true" eOpposite="#//OperationCall/caller"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SystemUsage" eSuperTypes="#//Caller"/>
@@ -275,7 +307,8 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" lowerBound="1" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" lowerBound="1"
+        eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="call" lowerBound="1" eType="#//OperationCall"/>
@@ -314,7 +347,8 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" lowerBound="1" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" lowerBound="1"
+        eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
   </eClassifiers>
@@ -355,7 +389,8 @@
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;value.oclIsUndefined()"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" lowerBound="1" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" lowerBound="1"
+        eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
   </eClassifiers>
