@@ -1,0 +1,50 @@
+module org.palladiosimulator.pcm.dataspec.mwe2.dataspec
+
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+import org.eclipse.emf.mwe2.ecore.EcoreGenerator
+import tools.mdsd.ecoreworkflow.mwe2lib.component.RegexComponent
+
+var workspaceRoot = "../../"
+var projectName = "org.palladiosimulator.pcm.dataprocessing.prolog"
+var pluginEditDir = "${workspaceRoot}/bundles/${projectName}.edit"
+var pluginEditorDir = "${workspaceRoot}/bundles/${projectName}.editor"
+
+Workflow {
+
+	bean = StandaloneSetup {
+		scanClassPath = true
+		platformUri = workspaceRoot
+		logResourceUriMap = false
+	}
+
+	component = EcoreGenerator {
+		generateCustomClasses = false
+		generateEdit = true
+		generateEditor = true
+		genModel = "platform:/resource/${projectName}/model/prologmodel.genmodel"
+		srcPath = "platform:/resource/${projectName}/src"
+		srcPath = "platform:/resource/${projectName}.edit/src"
+		srcPath = "platform:/resource/${projectName}.editor/src"
+	}
+
+	component = RegexComponent {
+		
+		replacement = {
+			filename =  "${pluginEditDir}/plugin.xml"
+			mapping = {
+				from = "${projectName}.prologmodel.provider.PrologmodelItemProviderAdapterFactory"
+				to = "${projectName}.prologmodel.provider.extension.PrologmodelItemProviderAdapterFactory"
+			}
+		}
+		replacement = {
+			directory = "${pluginEditorDir}/src-gen"
+			wildcard = "**/*Editor.java"
+			mapping = {
+				from = "${projectName}.prologmodel.provider.PrologmodelItemProviderAdapterFactory"
+				to = "${projectName}.prologmodel.provider.extension.PrologmodelItemProviderAdapterFactory"
+			}
+		}
+		
+	}
+}

@@ -1,0 +1,20 @@
+module clean
+
+import tools.mdsd.ecoreworkflow.mwe2lib.bean.EclipseRCPSupportingStandaloneSetup
+import tools.mdsd.ecoreworkflow.mwe2lib.component.URISupportingDirectoryCleaner
+
+var workspaceRoot = "../../bundles/"
+
+Workflow {
+	bean = EclipseRCPSupportingStandaloneSetup {
+		scanClassPath = true
+		platformUri = workspaceRoot
+		logResourceUriMap = false
+	}
+
+	component = URISupportingDirectoryCleaner {
+		directory = "platform:/resource/org.palladiosimulator.pcm.dataprocessing.prolog/src-gen"
+		directory = "platform:/resource/org.palladiosimulator.pcm.dataprocessing.prolog.edit/src-gen"
+		directory = "platform:/resource/org.palladiosimulator.pcm.dataprocessing.prolog.editor/src-gen"
+	}
+}

@@ -3,8 +3,13 @@
       id="org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.feature"
       label="Performance Evaluation Thirdparty Feature"
       version="0.1.0.qualifier"
-      license-feature="org.palladiosimulator.license"
-      license-feature-version="2.0.0">
+      plugin="org.palladiosimulator.branding"
+      license-feature="org.palladiosimulator.license.epl2"
+      license-feature-version="1.0.0">
+
+   <requires>
+      <import plugin="org.palladiosimulator.branding"/>
+   </requires>
 
    <plugin
          id="com.google.guava"

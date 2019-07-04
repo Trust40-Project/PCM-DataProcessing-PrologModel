@@ -5,14 +5,11 @@
 			<unit id="org.apache.commons.beanutils" version="1.8.0.v201205091237"/>
 			<unit id="org.apache.commons.collections" version="3.2.2.v201511171945"/>
 			<unit id="org.slf4j.api" version="1.7.2.v20121108-1250"/>
-			<unit id="org.eclipse.equinox.executable.feature.group" version="3.8.0.v20180518-2029"/>
-			<unit id="org.eclipse.ocl.examples.unified.feature.group" version="4.3.0.v20180611-1119"/>
-			<unit id="org.eclipse.xtend.sdk.feature.group" version="2.14.0.v20180523-0937"/>
-			<repository location="http://download.eclipse.org/releases/photon"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
-			<unit id="org.palladiosimulator.license.feature.group" version="2.0.0"/>
-			<repository location="https://sdqweb.ipd.kit.edu/eclipse/palladio/supporting/branding/nightly/"/>
+			<unit id="org.eclipse.equinox.executable.feature.group" version="3.8.400.v20190515-0925"/>
+			<unit id="org.eclipse.ocl.examples.unified.feature.group" version="4.8.0.v20190603-1146"/>
+			<unit id="org.eclipse.xtend.sdk.feature.group" version="2.18.0.v20190528-0716"/>
+			<unit id="org.eclipse.equinox.core.feature.feature.group" version="1.9.0.v20190517-1309"/>
+			<repository location="http://download.eclipse.org/releases/2019-06"/>
 		</location>
 </locations>
 </target>
