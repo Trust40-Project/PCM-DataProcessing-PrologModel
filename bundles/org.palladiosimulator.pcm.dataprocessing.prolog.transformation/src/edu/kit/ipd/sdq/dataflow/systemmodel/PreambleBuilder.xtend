@@ -22,23 +22,23 @@ class PreambleBuilder {
 		
 		result.addRule("callArgument",
 			asList("[OP|S]","VAR","A","VAL"),
-			"isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),callArgumentImpl([OP|S],VAR,A,VAL)"
+			"isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),callArgumentImpl([OP|S],VAR,A,VAL)"
 		);
 		result.addRule("returnValue", 
 			asList("[OP|S]","VAR","A","VAL"),
-			"isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),returnValueImpl([OP|S],VAR,A,VAL)"
+			"isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),returnValueImpl([OP|S],VAR,A,VAL)"
 		);
 		result.addRule("preCallState", 
 			asList("[SOP|S]","OP","VAR","A","VAL"),
-			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),preCallStateImpl([SOP|S],OP,VAR,A,VAL)"
+			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),preCallStateImpl([SOP|S],OP,VAR,A,VAL)"
 		);
 		result.addRule("postCallState",
 			asList("[SOP|S]","OP","VAR","A","VAL"),
-			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),postCallStateImpl([SOP|S],OP,VAR,A,VAL)"
+			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),postCallStateImpl([SOP|S],OP,VAR,A,VAL)"
 		);
 		result.addRule("defaultState", 
 			asList("OP","VAR","A","VAL"),
-			"operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL),defaultStateImpl(OP,VAR,A,VAL)"
+			"operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),defaultStateImpl(OP,VAR,A,VAL)"
 		);
 		
 		result.addRule("stackValid",asList("[SU]"), "isSystemUsage(SU)");
@@ -64,23 +64,23 @@ class PreambleBuilder {
 		//Facade translations
 		result.addRule("lnot",
 			asList("callArgument([OP|S],VAR,A,VAL)"),
-			"isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "callArgumentImpl([OP|S],VAR,A,VAL)".negatedPredicate
+			"isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_)," + "callArgumentImpl([OP|S],VAR,A,VAL)".negatedPredicate
 		);
 		result.addRule("lnot", 
 			asList("returnValue([OP|S],VAR,A,VAL)"),
-			"isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "returnValueImpl([OP|S],VAR,A,VAL)".negatedPredicate
+			"isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_)," + "returnValueImpl([OP|S],VAR,A,VAL)".negatedPredicate
 		);
 		result.addRule("lnot",
 			asList("preCallState([SOP|S],OP,VAR,A,VAL)"),
-			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "preCallStateImpl([SOP|S],OP,VAR,A,VAL)".negatedPredicate
+			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_)," + "preCallStateImpl([SOP|S],OP,VAR,A,VAL)".negatedPredicate
 		);
 		result.addRule("lnot",
 			asList("postCallState([SOP|S],OP,VAR,A,VAL)"),
-			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "postCallStateImpl([SOP|S],OP,VAR,A,VAL)".negatedPredicate
+			"isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_)," + "postCallStateImpl([SOP|S],OP,VAR,A,VAL)".negatedPredicate
 		);
 		result.addRule("lnot",
 			asList("defaultState(OP,VAR,A,VAL)"),
-			"operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL)," + "defaultStateImpl(OP,VAR,A,VAL)".negatedPredicate
+			"operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_)," + "defaultStateImpl(OP,VAR,A,VAL)".negatedPredicate
 		);
 		
 	}
@@ -122,6 +122,11 @@ class PreambleBuilder {
 		result.addRule("operationReturnValue",asList("OP","RVAL"), "operationReturnValueType(OP,RVAL,_)");	
 		result.addRule("operationState",asList("OP","SVAL"), "operationStateType(OP,SVAL,_)");		
 	}
+	
+	def addHelperRules(PrologProgram result) {
+		result.addRule("valueLessOrEqual", asList("VS", "V", "M"), "valueSetMember(VS, M, MNUM), valueSetMember(VS, V, VNUM), VNUM =< MNUM")
+		result.addRule("valueGreater", asList("VS", "V", "M"), "valueSetMember(VS, M, MNUM), valueSetMember(VS, V, VNUM), VNUM > MNUM")
+	}
 		
 	def buildPreamble(PrologProgram result) {
 		addAPIShortcuts(result);
@@ -132,6 +137,7 @@ class PreambleBuilder {
 		if(config.argumentAndReturnValueIndexing) {
 			addIndexResolvingRules(result);
 		}
+		addHelperRules(result);
 	}
 	
 }

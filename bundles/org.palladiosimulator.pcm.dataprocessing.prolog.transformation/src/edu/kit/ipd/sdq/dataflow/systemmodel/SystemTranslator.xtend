@@ -42,8 +42,8 @@ class SystemTranslator {
 		LOG.info("Translating ValueSetTypes")
 		result.addMinorHeading("Value Set Type Definitions");
 		for(ValueSetType type : types) {
-			for(Value value : type.values) {
-				result.addFact("valueSetMember",asList(type.name.asAtom,value.name.asAtom));
+			for (var i = 0; i < type.values.size; i++) {
+				result.addFact("valueSetMember",asList(type.name.asAtom,type.values.get(i).name.asAtom,i.toString));				
 			}
 		}
 	}

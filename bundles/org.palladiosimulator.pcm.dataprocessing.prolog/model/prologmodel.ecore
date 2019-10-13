@@ -169,7 +169,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="containingAssignment" eType="#//VariableAssignment"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="let cont = self.oclAsSet()->selectByKind(ecore::EObject)->closure(elem | elem.oclAsType(ecore::EObject).eContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in&#xA;&#x9;&#x9;&#x9;&#x9;if(cont.oclIsInvalid()) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;null&#xA;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;cont.oclAsType(VariableAssignment)&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+        <details key="derivation" value="let cont = self->selectByKind(ocl::OclElement)->closure(elem | elem.oclContainer())->any(e | e.oclIsKindOf(VariableAssignment)) in&#xA;&#x9;&#x9;&#x9;&#x9;if(cont.oclIsInvalid()) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;null&#xA;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;cont.oclAsType(VariableAssignment)&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -393,5 +393,19 @@
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MinStatic" eSuperTypes="#//LogicTerm">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="leftHandSideIsValueWildcard leftHandSideIsNoAttributeWildcard operandsAreAttributeWildcards valueMatchesAssignmentType"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="leftHandSideIsValueWildcard" value="self.containingAssignment.value.oclIsUndefined()"/>
+      <details key="leftHandSideIsNoAttributeWildcard" value="not self.containingAssignment.attribute.oclIsUndefined()"/>
+      <details key="operandsAreAttributeWildcards" value="let o : LogicTerm = self.operand in&#xA;&#x9;&#x9;&#x9;(o.oclIsTypeOf(ParameterRef) and let ref : ParameterRef = o.oclAsType(ParameterRef) in&#xA;&#x9;&#x9;&#x9;&#x9;ref.isValueWildcard() and not ref.isAttributeWildcard() and ref.attribute = self.containingAssignment.attribute&#xA;&#x9;&#x9;&#x9;) or&#xA;&#x9;&#x9;&#x9;(o.oclIsTypeOf(ReturnValueRef) and let ref : ReturnValueRef = o.oclAsType(ReturnValueRef) in&#xA;&#x9;&#x9;&#x9;&#x9;ref.isValueWildcard() and not ref.isAttributeWildcard() and ref.attribute = self.containingAssignment.attribute&#xA;&#x9;&#x9;&#x9;) or&#xA;&#x9;&#x9;&#x9;(o.oclIsTypeOf(StateRef) and let ref : StateRef = o.oclAsType(StateRef) in&#xA;&#x9;&#x9;&#x9;&#x9;ref.isValueWildcard() and not ref.isAttributeWildcard() and ref.attribute = self.containingAssignment.attribute&#xA;&#x9;&#x9;&#x9;) or&#xA;&#x9;&#x9;&#x9;(o.oclIsTypeOf(DefaultStateRef) and let ref : DefaultStateRef = o.oclAsType(DefaultStateRef) in&#xA;&#x9;&#x9;&#x9;&#x9;ref.isValueWildcard() and not ref.isAttributeWildcard() and ref.attribute = self.containingAssignment.attribute&#xA;&#x9;&#x9;&#x9;) or&#xA;&#x9;&#x9;&#x9;(o.oclIsTypeOf(PropertyRef) and let ref : PropertyRef = o.oclAsType(PropertyRef) in&#xA;&#x9;&#x9;&#x9;&#x9;ref.isValueWildcard() and ref.property.type = self.containingAssignment.attribute.type&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="valueMatchesAssignmentType" value="self.containingAssignment.attribute.type = self.value.containingType"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
+        eType="#//LogicTerm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Value"/>
   </eClassifiers>
 </ecore:EPackage>

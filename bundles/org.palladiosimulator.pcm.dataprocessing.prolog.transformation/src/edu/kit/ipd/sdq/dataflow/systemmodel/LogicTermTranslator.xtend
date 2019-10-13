@@ -5,6 +5,7 @@ import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.And
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.Attribute
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.DefaultStateRef
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.False
+import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.MinStatic
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.Not
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.Operation
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.Or
@@ -15,6 +16,7 @@ import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.StateRef
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.True
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.Value
 import org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.Variable
+import org.apache.commons.beanutils.BeanUtils
 
 /**
  * Translates LogicTerms (the right sides of Variable Assignments).
@@ -104,6 +106,27 @@ class LogicTermTranslator {
 			case POSTCALL: '''postCallStateImpl(«context.stateAccessStack»,'«operation.name»','«variable.name»',«getWildcardOrName(term.attribute,context)»,«getWildcardOrName(term.value,context)»)'''
 		};
 	}
+	
+	def dispatch String translate(MinStatic term, LogicTermContext context) {
+		if (term.value.name.equals(context.valueWildCardInstatiation.replace("'", ""))) {
+			val localVarName = "ACTIVEVAL"
+			var testContext = BeanUtils.cloneBean(context) as LogicTermContext;
+			testContext.valueWildCardInstatiation = localVarName
+			term.translateMinStaticForStaticValue(context, testContext, "ACTIVEVAL")
+		} else {
+			term.translateMinStaticForValue(context)
+		}
+//		
+//		return '''
+//		«IF term.value.name.equals(context.valueWildCardInstatiation.replace("'", ""))»(«term.operand.translate(testContext)»,	valueGreater('«term.value.containingType.name»', «localVarName», '«term.value.name»'));«ENDIF»(valueLessOrEqual('«term.value.containingType.name»', «context.valueWildCardInstatiation», '«term.value.name»'), «term.operand.translate(context)»)
+//		'''
+	}
+	
+	def String translateMinStaticForValue(MinStatic term, LogicTermContext context)
+		'''valueLessOrEqual('«term.value.containingType.name»', «context.valueWildCardInstatiation», '«term.value.name»'), «term.operand.translate(context)»'''
+	
+	def String translateMinStaticForStaticValue(MinStatic term, LogicTermContext context, LogicTermContext activaValueContext, String localVarName)
+		'''«term.operand.translate(context)»;(«term.operand.translate(activaValueContext)», valueGreater('«term.value.containingType.name»', «localVarName», '«term.value.name»'))'''
 	
 	def private getVariableContainingOperation(Variable variable) {
 		val varContainer = variable.eContainer;

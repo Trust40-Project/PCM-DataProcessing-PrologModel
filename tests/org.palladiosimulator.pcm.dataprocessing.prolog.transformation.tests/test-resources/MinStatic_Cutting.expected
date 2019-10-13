@@ -1,0 +1,55 @@
+isAttribute(ATTRIB) :- attributeType(ATTRIB,_).
+isProperty(ATTRIB) :- propertyType(ATTRIB,_).
+operationParameter(OP,PARAM) :- operationParameterType(OP,PARAM,_).
+operationReturnValue(OP,RVAL) :- operationReturnValueType(OP,RVAL,_).
+operationState(OP,SVAL) :- operationStateType(OP,SVAL,_).
+callArgument([OP|S],VAR,A,VAL) :- isOperation(OP),operationParameterType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),callArgumentImpl([OP|S],VAR,A,VAL).
+returnValue([OP|S],VAR,A,VAL) :- isOperation(OP),operationReturnValueType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),returnValueImpl([OP|S],VAR,A,VAL).
+preCallState([SOP|S],OP,VAR,A,VAL) :- isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),preCallStateImpl([SOP|S],OP,VAR,A,VAL).
+postCallState([SOP|S],OP,VAR,A,VAL) :- isOperation(SOP),operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),postCallStateImpl([SOP|S],OP,VAR,A,VAL).
+defaultState(OP,VAR,A,VAL) :- operationStateType(OP,VAR,T),dataTypeAttribute(T,A),attributeType(A,VT),valueSetMember(VT,VAL,_),defaultStateImpl(OP,VAR,A,VAL).
+stackValid([SU]) :- isSystemUsage(SU).
+stackValid([DEST,CALL,SOURCE | S]) :- operationCall(SOURCE,DEST,CALL), stackValid([SOURCE | S]).
+valueLessOrEqual(VS,V,M) :- valueSetMember(VS, M, MNUM), valueSetMember(VS, V, VNUM), VNUM =< MNUM.
+valueGreater(VS,V,M) :- valueSetMember(VS, M, MNUM), valueSetMember(VS, V, VNUM), VNUM > MNUM.
+%-------------------------Value Set Type Definitions-------------------------
+
+valueSetMember('ValueSetType_PrivacyLevel','PUBLIC',0).
+valueSetMember('ValueSetType_PrivacyLevel','OFFICIAL',1).
+valueSetMember('ValueSetType_PrivacyLevel','PRIVATE',2).
+%-------------------------Property Type Definitions--------------------------
+
+%-------------------------Attribute Type Definitions-------------------------
+
+attributeType('Attribute_PrivacyLevel','ValueSetType_PrivacyLevel').
+%---------------------------Data Type Definitions----------------------------
+
+isDataType('DataType_UserData').
+dataTypeAttribute('DataType_UserData','Attribute_PrivacyLevel').
+
+%----------------------------------------------------------------------------
+%----------------------------Operation declassify----------------------------
+%----------------------------------------------------------------------------
+
+isOperation('declassify').
+operationParameterType('declassify','inputParam01','DataType_UserData').
+operationReturnValueType('declassify','outputParam01','DataType_UserData').
+%---------------------Default State Values of declassify---------------------
+
+%------------------------Return Values of declassify-------------------------
+
+returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','PUBLIC') :- valueLessOrEqual('ValueSetType_PrivacyLevel', 'PUBLIC', 'OFFICIAL'), callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','PUBLIC').
+returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','OFFICIAL') :- callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','OFFICIAL');(callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel',ACTIVEVAL), valueGreater('ValueSetType_PrivacyLevel', ACTIVEVAL, 'OFFICIAL')).
+returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','PRIVATE') :- valueLessOrEqual('ValueSetType_PrivacyLevel', 'PRIVATE', 'OFFICIAL'), callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','PRIVATE').
+%----------------------State Definitions of declassify-----------------------
+
+
+%----------------------------------------------------------------------------
+%-------------------------System Usage SystemUsage01-------------------------
+%----------------------------------------------------------------------------
+
+isSystemUsage('SystemUsage01').
+%------------Call to declassify (Call_SystemUsage01_Operation01)-------------
+
+operationCall('SystemUsage01','declassify','Call_SystemUsage01_Operation01').
+callArgumentImpl(['declassify','Call_SystemUsage01_Operation01'|['SystemUsage01'|_]],'inputParam01','Attribute_PrivacyLevel','PRIVATE') :- true.
