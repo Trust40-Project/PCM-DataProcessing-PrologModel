@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prologmodel:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:prologmodel="http://www.palladiosimulator.org/pcm/dataprocessing/prolog/0.1/" name="Demo System">
+  <attributes type="//@types.0" name="allowedLocations"/>
+  <attributes type="//@types.2" name="encryption"/>
+  <attributes type="//@types.1" name="authorizedRoles"/>
+  <datatypes attributes="//@attributes.0" name="d2"/>
+  <datatypes attributes="//@attributes.1 //@attributes.2" name="d1"/>
+  <operations name="Operation 1">
+    <calls callee="//@operations.1" name="callOperation2"/>
+    <calls callee="//@operations.2" name="callSink1"/>
+    <parameters datatype="//@datatypes.1" name="a"/>
+  </operations>
+  <operations name="Operation 2">
+    <returnValues datatype="//@datatypes.1" name="b"/>
+  </operations>
+  <operations name="Sink 1">
+    <parameters datatype="//@datatypes.0" name="c"/>
+  </operations>
+  <operations name="Source 1">
+    <calls callee="//@operations.0" name="callOperation1">
+      <parameterAssignments variable="//@operations.0/@parameters.0">
+        <term xsi:type="prologmodel:ParameterRef" parameter="//@operations.3/@parameters.0"/>
+      </parameterAssignments>
+    </calls>
+    <parameters datatype="//@datatypes.1" name="delegateA"/>
+    <propertyDefinitions property="//@properties.0" presentValues="//@types.0/@values.1"/>
+    <propertyDefinitions property="//@properties.1" presentValues="//@types.1/@values.2"/>
+  </operations>
+  <properties type="//@types.0" name="Location"/>
+  <properties type="//@types.1" name="Role"/>
+  <types name="Location">
+    <values name="EN"/>
+    <values name="GER"/>
+    <values name="US"/>
+    <values name="FR"/>
+  </types>
+  <types name="Role">
+    <values name="Customer"/>
+    <values name="Admin"/>
+    <values name="User"/>
+  </types>
+  <types name="Encryption">
+    <values name="DES"/>
+    <values name="AES"/>
+    <values name="RSA"/>
+  </types>
+  <systemusages name="Start Source 1">
+    <calls callee="//@operations.3" name="initialCall"/>
+  </systemusages>
+</prologmodel:System>

@@ -71,6 +71,14 @@ public class TransformationTest {
     }
     
     @Test
+    public void generate() throws Exception {
+        System sys = loadSystemModel("modellRobert.prologmodel");
+        
+        String actual = subject.translate(sys).getCode().trim().replace("\r\n", "\n");
+        java.lang.System.out.println(actual);
+    }
+    
+    @Test
     public void testMinStaticAppliesStaticValue() throws Exception {
         testFile("MinStatic_Cutting");
 

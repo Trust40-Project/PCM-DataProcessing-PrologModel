@@ -8,7 +8,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.provider.PrologmodelEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.provider,
  org.palladiosimulator.pcm.dataprocessing.prolog.prologmodel.provider.extension
 Require-Bundle: org.eclipse.core.runtime,
