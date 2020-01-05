@@ -5,8 +5,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.palladiosimulator.dataprocessing.prolog</groupId>
-		<artifactId>features</artifactId>
+		<artifactId>parent</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
+		<relativePath>../../</relativePath>
 	</parent>
 	<artifactId>org.palladiosimulator.pcm.dataprocessing.prolog.evaluation.performance.thirdparty.feature</artifactId>
 	<packaging>eclipse-feature</packaging>
