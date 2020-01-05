@@ -94,6 +94,14 @@ public class TransformationTest {
         assertEquals("PUBLIC", privacyLevel);
     }
     
+    @Test
+    public void testMinStaticTwoOperators() throws Exception {
+        testFile("MinStatic_MultipleOperands");
+        
+        String privacyLevel = getPrivacyLevel("declassify", "Call_SystemUsage01_Operation01", "SystemUsage01", "outputParam01");
+        assertEquals("OFFICIAL", privacyLevel);
+    }
+    
     private String testFile(String filePrefix) throws Exception {
         System sys = loadSystemModel(filePrefix + ".prologmodel");
         String expected = readFile(filePrefix + ".expected");

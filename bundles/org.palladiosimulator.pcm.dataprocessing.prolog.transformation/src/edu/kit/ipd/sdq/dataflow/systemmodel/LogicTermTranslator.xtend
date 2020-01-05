@@ -108,13 +108,13 @@ class LogicTermTranslator {
 	}
 	
 	def dispatch String translate(MinStatic term, LogicTermContext context) {
+		val localVarName = "ACTIVEVAL"
+		val testContext = BeanUtils.cloneBean(context) as LogicTermContext;
+		testContext.valueWildCardInstatiation = localVarName
 		if (term.value.name.equals(context.valueWildCardInstatiation.replace("'", ""))) {
-			val localVarName = "ACTIVEVAL"
-			var testContext = BeanUtils.cloneBean(context) as LogicTermContext;
-			testContext.valueWildCardInstatiation = localVarName
-			term.translateMinStaticForStaticValue(context, testContext, "ACTIVEVAL")
+			term.translateMinStaticForStaticValue(context, testContext, "ACTIVEVAL").trimWhitespaces
 		} else {
-			term.translateMinStaticForValue(context)
+			term.translateMinStaticForValue(context, testContext, "ACTIVEVAL").trimWhitespaces
 		}
 //		
 //		return '''
@@ -122,11 +122,46 @@ class LogicTermTranslator {
 //		'''
 	}
 	
-	def String translateMinStaticForValue(MinStatic term, LogicTermContext context)
-		'''valueLessOrEqual('«term.value.containingType.name»', «context.valueWildCardInstatiation», '«term.value.name»'), «term.operand.translate(context)»'''
+	def String translateMinStaticForValue(MinStatic term, LogicTermContext context, LogicTermContext activaValueContext, String localVarName)
+		'''
+		
+			valueLessOrEqual('«term.value.containingType.name»', «context.valueWildCardInstatiation», '«term.value.name»'),
+			(
+				«FOR operand : term.operands»
+					«operand.translate(context)»;
+				«ENDFOR»
+				false
+			),
+			\+ (
+				valueGreater('«term.value.containingType.name»', «localVarName», '«term.value.name»'),
+				(
+					«FOR operand : term.operands»
+						«operand.translate(activaValueContext)»;
+					«ENDFOR»
+					false
+				)
+			)
+		'''
 	
 	def String translateMinStaticForStaticValue(MinStatic term, LogicTermContext context, LogicTermContext activaValueContext, String localVarName)
-		'''«term.operand.translate(context)»;(«term.operand.translate(activaValueContext)», valueGreater('«term.value.containingType.name»', «localVarName», '«term.value.name»'))'''
+		'''
+		
+			(
+				«FOR operand : term.operands»
+					«operand.translate(context)»;
+				«ENDFOR»
+				false
+			);
+			(
+				valueGreater('«term.value.containingType.name»', «localVarName», '«term.value.name»'),
+				(
+					«FOR operand : term.operands»
+						«operand.translate(activaValueContext)»;
+					«ENDFOR»
+					false
+				)
+			)
+		'''
 	
 	def private getVariableContainingOperation(Variable variable) {
 		val varContainer = variable.eContainer;
@@ -136,5 +171,8 @@ class LogicTermTranslator {
 		return varContainer as Operation;
 	}
 	
+	static def trimWhitespaces(String text) {
+		text.replaceAll("\\s+", " ").trim
+	}
 	
 }

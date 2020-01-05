@@ -38,9 +38,9 @@ operationReturnValueType('declassify','outputParam01','DataType_UserData').
 
 %------------------------Return Values of declassify-------------------------
 
-returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','PUBLIC') :- valueLessOrEqual('ValueSetType_PrivacyLevel', 'PUBLIC', 'OFFICIAL'), callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','PUBLIC').
-returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','OFFICIAL') :- callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','OFFICIAL');(callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel',ACTIVEVAL), valueGreater('ValueSetType_PrivacyLevel', ACTIVEVAL, 'OFFICIAL')).
-returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','PRIVATE') :- valueLessOrEqual('ValueSetType_PrivacyLevel', 'PRIVATE', 'OFFICIAL'), callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','PRIVATE').
+returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','PUBLIC') :- valueLessOrEqual('ValueSetType_PrivacyLevel', 'PUBLIC', 'OFFICIAL'), ( callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','PUBLIC'); false ), \+ ( valueGreater('ValueSetType_PrivacyLevel', ACTIVEVAL, 'OFFICIAL'), ( callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel',ACTIVEVAL); false ) ).
+returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','OFFICIAL') :- ( callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','OFFICIAL'); false ); ( valueGreater('ValueSetType_PrivacyLevel', ACTIVEVAL, 'OFFICIAL'), ( callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel',ACTIVEVAL); false ) ).
+returnValueImpl(['declassify'|_],'outputParam01','Attribute_PrivacyLevel','PRIVATE') :- valueLessOrEqual('ValueSetType_PrivacyLevel', 'PRIVATE', 'OFFICIAL'), ( callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel','PRIVATE'); false ), \+ ( valueGreater('ValueSetType_PrivacyLevel', ACTIVEVAL, 'OFFICIAL'), ( callArgumentImpl(['declassify'|_],'inputParam01','Attribute_PrivacyLevel',ACTIVEVAL); false ) ).
 %----------------------State Definitions of declassify-----------------------
 
 
