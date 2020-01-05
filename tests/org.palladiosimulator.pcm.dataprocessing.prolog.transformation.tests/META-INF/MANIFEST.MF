@@ -12,6 +12,5 @@ Require-Bundle: org.junit,
  org.apache.log4j;bundle-version="1.2.15",
  org.apache.commons.io;bundle-version="2.6.0",
  org.apache.commons.logging;bundle-version="1.1.1",
- prolog4j-tuprolog;bundle-version="1.0.0",
- prolog4j-api,
- it.unibo.alice.tuprolog;bundle-version="3.3.0"
+ org.prolog4j.api;bundle-version="1.0.0",
+ org.prolog4j.tuprolog;bundle-version="1.0.0"

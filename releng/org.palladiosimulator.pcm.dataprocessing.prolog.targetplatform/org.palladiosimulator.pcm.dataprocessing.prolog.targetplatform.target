@@ -12,11 +12,11 @@
 			<repository location="http://download.eclipse.org/releases/2019-09"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly" refresh="true">
-			<unit id="prolog4j-tuprolog" version="1.0.0.20190927084340"/>
+			<unit id="org.prolog4j.tuprolog.feature.feature.group" version="1.0.0.20190927084340"/>
 			<repository location="https://updatesite.palladio-simulator.com/palladio-supporting-prolog4j/nightly/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release" refresh="true">
-			<unit id="prolog4j-tuprolog" version="1.0.0.20190927084340"/>
+			<unit id="org.prolog4j.tuprolog.feature.feature.group" version="1.0.0.20190927084340"/>
 			<repository location="https://updatesite.palladio-simulator.com/palladio-supporting-prolog4j/release/latest/"/>
 		</location>
 </locations>
