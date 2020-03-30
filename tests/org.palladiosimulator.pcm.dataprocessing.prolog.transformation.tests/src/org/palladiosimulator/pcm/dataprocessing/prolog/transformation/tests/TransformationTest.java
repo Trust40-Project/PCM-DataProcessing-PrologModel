@@ -102,6 +102,29 @@ public class TransformationTest {
         assertEquals("OFFICIAL", privacyLevel);
     }
     
+    @Test
+    public void testGeoLocation() throws Exception {
+    	testFile("GeoLocation");
+    	
+    	Query query = prover.query("OP=?OP," +
+    			"S=[OP|_]," +
+    			"VTRUE=?VTRUE," +
+        		"stackValid(S)," + 
+        		"preCallState(S,OP,VAR,?TORIGIN,?VEU)," + 
+        		"preCallState(S,OP,VAR,?TPERSONALINFORMATION,VTRUE)," + 
+        		"\\+ preCallState(S,OP,VAR,?TENCRYPTION,VTRUE).");
+    	query.bind("J$OP", "ResourceDemandingSEFF (_GDFtwHKJEeq9tYpRa9lb6Q) - AC _q7weoHKJEeq9tYpRa9lb6Q");
+        query.bind("J$TORIGIN", "EnumCharacteristicType Origin (_tN5q8HKKEeq9tYpRa9lb6Q)");
+        query.bind("J$TPERSONALINFORMATION", "EnumCharacteristicType PersonalInformation (__hrkUHKKEeq9tYpRa9lb6Q)");
+        query.bind("J$TENCRYPTION", "EnumCharacteristicType Encryption (_98iygHKKEeq9tYpRa9lb6Q)");
+        query.bind("J$VEU", "EnumCharacteristicLiteral EU (_ryWS8HKKEeq9tYpRa9lb6Q)");
+        query.bind("J$VTRUE", "EnumCharacteristicLiteral true (_6MC8YHKKEeq9tYpRa9lb6Q)");
+        Solution<Object> solution = query.solve("VAR");
+        assertTrue(solution.isSuccess());
+        String violatingVar = solution.get("VAR", String.class);
+        assertEquals("DB.store.param.input_STATE_5e4e3009", violatingVar);
+    }
+    
     private String testFile(String filePrefix) throws Exception {
         System sys = loadSystemModel(filePrefix + ".prologmodel");
         String expected = readFile(filePrefix + ".expected");
@@ -110,7 +133,7 @@ public class TransformationTest {
         assertEquals(expected, actual);
         
         prover.addTheory(actual);
-        
+
         return actual;
     }
 
