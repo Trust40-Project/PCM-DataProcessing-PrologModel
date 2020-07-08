@@ -54,7 +54,7 @@
       <details key="stateNamesUnique" value="stateVariables->isUnique(name)"/>
       <details key="noDuplicatePropertyDefinitions" value="propertyDefinitions->isUnique(property)"/>
       <details key="noCyclesInCallGraph" value=" self.calls->closure(call | call.callee.calls).callee->excludes(self)"/>
-      <details key="onlyConstantDefaultStateDefinitions" value="defaultStateDefinitions.term.oclAsType(ecore::EObject)->closure(t : ecore::EObject | t.oclAsType(ecore::EObject).eContents()->selectByKind(ecore::EObject))->forAll(&#xA;&#x9;oclIsKindOf(True) or&#xA;&#x9;oclIsKindOf(False) or&#xA;&#x9;oclIsKindOf(And) or&#xA;&#x9;oclIsKindOf(Or) or&#xA;&#x9;oclIsKindOf(Not) or&#xA;&#x9;oclIsKindOf(PropertyRef)&#xA;)"/>
+      <details key="onlyConstantDefaultStateDefinitions" value="defaultStateDefinitions.term->selectByKind(LogicTerm)->closure(t | t.oclContents()->selectByKind(LogicTerm))->forAll(&#xA;&#x9;oclIsKindOf(True) or&#xA;&#x9;oclIsKindOf(False) or&#xA;&#x9;oclIsKindOf(And) or&#xA;&#x9;oclIsKindOf(Or) or&#xA;&#x9;oclIsKindOf(Not) or&#xA;&#x9;oclIsKindOf(PropertyRef)&#xA;)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Variable" containment="true"/>
