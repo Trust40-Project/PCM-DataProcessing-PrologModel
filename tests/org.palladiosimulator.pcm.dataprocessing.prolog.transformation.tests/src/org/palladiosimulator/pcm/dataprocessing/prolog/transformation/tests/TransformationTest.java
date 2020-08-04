@@ -26,6 +26,7 @@ import org.prolog4j.IProverFactory;
 import org.prolog4j.Prover;
 import org.prolog4j.Query;
 import org.prolog4j.Solution;
+import org.prolog4j.SolutionIterator;
 import org.prolog4j.tuprolog.TuPrologProverFactory;
 
 import edu.kit.ipd.sdq.dataflow.systemmodel.SystemTranslator;
@@ -71,11 +72,38 @@ public class TransformationTest {
     }
     
     @Test
-    public void generate() throws Exception {
-        System sys = loadSystemModel("modellRobert.prologmodel");
+    public void testTrust40Evaluation() throws Exception {
+        testFile("Trust40_Evaluation");
         
-        String actual = subject.translate(sys).getCode().trim().replace("\r\n", "\n");
-        java.lang.System.out.println(actual);
+        prover.addTheory("aggregationInterval(OP, ROLE, AGGRS) :-\r\n" + 
+                "    ROLEATTR = 'EnumCharacteristicType Roles (_TyEfcKZAEeqY44iaA32xXw)',\r\n" + 
+                "    hasProperty(OP, ROLEATTR),\r\n" + 
+                "    operationProperty(OP, ROLEATTR, ROLE),\r\n" + 
+                "    setof(X, aggregationInterval(OP, X), AGGRS).\r\n" + 
+                "\r\n" + 
+                "aggregationInterval(OP, VAL) :-\r\n" + 
+                "    ATTR = 'EnumCharacteristicType AggregationInterval (_Uf_vsJn7EeqbD7MI1AForg)',\r\n" + 
+                "    T = 'CollectionDataType TimeSeries (_0hC44JnQEeqbD7MI1AForg)',\r\n" + 
+                "    operationStateType(OP, SVAL, T),\r\n" + 
+                "    stackValid(S),\r\n" + 
+                "    preCallState(S, OP, SVAL, ATTR, VAL).\r\n" + 
+                "    \r\n" + 
+                "aggregationInterval(OP, VAL) :-\r\n" + 
+                "    ATTR = 'EnumCharacteristicType AggregationInterval (_Uf_vsJn7EeqbD7MI1AForg)',\r\n" + 
+                "    T = 'CollectionDataType TimeSeries (_0hC44JnQEeqbD7MI1AForg)',\r\n" + 
+                "    operationReturnValueType(OP, RVAL, T),\r\n" + 
+                "    S = [OP|_],\r\n" + 
+                "    stackValid(S),\r\n" + 
+                "    returnValue(S, RVAL, ATTR, VAL).");
+        
+        Query query = prover.query("aggregationInterval(OP, ROLE, AGGRS).");
+        Solution<Object> solution = query.solve();
+        assertTrue(solution.isSuccess());
+        int solutionCounter = 0;
+        for (SolutionIterator<Object> iter = solution.iterator(); iter.hasNext(); iter.next()) {
+            solutionCounter++;
+        }
+        assertEquals(3, solutionCounter);
     }
     
     @Test
