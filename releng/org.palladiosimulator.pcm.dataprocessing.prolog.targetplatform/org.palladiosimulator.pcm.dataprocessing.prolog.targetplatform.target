@@ -5,19 +5,17 @@
 			<unit id="org.apache.commons.beanutils" version="1.8.0.v201205091237"/>
 			<unit id="org.apache.commons.collections" version="3.2.2.v201511171945"/>
 			<unit id="org.slf4j.api" version="1.7.2.v20121108-1250"/>
-			<unit id="org.eclipse.equinox.executable.feature.group" version="3.8.500.v20190907-0428"/>
-			<unit id="org.eclipse.ocl.examples.unified.feature.group" version="4.9.0.v20190910-0937"/>
-			<unit id="org.eclipse.xtend.sdk.feature.group" version="2.19.0.v20190902-1322"/>
-			<unit id="org.eclipse.equinox.core.feature.feature.group" version="1.10.0.v20190830-1434"/>
-			<repository location="http://download.eclipse.org/releases/2019-09"/>
+			<unit id="org.eclipse.ocl.examples.unified.feature.group" version="4.12.0.v20200608-1555"/>
+			<unit id="org.eclipse.xtend.sdk.feature.group" version="2.22.0.v20200602-1533"/>
+			<repository location="http://download.eclipse.org/releases/2020-06"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly" refresh="true">
-			<unit id="org.prolog4j.tuprolog.feature.feature.group" version="1.0.0.20190927084340"/>
-			<repository location="https://updatesite.palladio-simulator.com/palladio-supporting-prolog4j/nightly/"/>
+			<unit id="org.prolog4j.tuprolog.feature.feature.group" version="tbd"/>
+			<repository location="https://updatesite.palladio-simulator.com/trust40-project/palladio-supporting-prolog4j/nightly/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release" refresh="true">
-			<unit id="org.prolog4j.tuprolog.feature.feature.group" version="1.0.0.20190927084340"/>
-			<repository location="https://updatesite.palladio-simulator.com/palladio-supporting-prolog4j/release/latest/"/>
+			<unit id="org.prolog4j.tuprolog.feature.feature.group" version="tbd"/>
+			<repository location="https://updatesite.palladio-simulator.com/trust40-project/palladio-supporting-prolog4j/releases/latest/"/>
 		</location>
 </locations>
 </target>
